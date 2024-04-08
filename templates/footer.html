@@ -1,0 +1,25 @@
+{% load static %}
+<img class="crop" src="{% static 'img/hero1.png'%}" draggable="false">
+
+<footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer" style="border-top: solid; border-top-color: #009999;">
+    <div class="container-fluid tm-container-small">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 mb-5">
+                <img src="{% static 'img/icon/Logo1.png'%}" alt="">
+            </div>
+            <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Tentang Auto Generate</h3>
+                <p>Membantu penenun dalam menghasilkan berbagai motif yang bervariasi dengan hanya memanfaatkan sedikit Lidi. Motif yang dihasilkan telah teruji mampu menciptakan samapai ratusan motif hanya dengan mengandalkan 8 jenis Lidi saja dan dipastikan dapat dikerjakan pada kain tenun ulos</p>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                <h3 class="tm-text-primary mb-4 tm-footer-title">Links</h3>
+                <ul class="tm-footer-links pl-0">
+                    <li><a class="linkFooter" href="{% url 'home' %}">Beranda</a></li>
+                    <li><a class="linkFooter" href="{% url 'generator' %}">Generator</a></li>
+                    <li><a class="linkFooter" href="{% url 'list1' %}">Motif</a></li>
+                    <li><a class="linkFooter" href="{% url 'help' %}">Bantuan</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

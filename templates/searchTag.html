@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
+    <title>Auto Generate</title>
+    <link rel="icon" href="{% static 'img/icon/Title4.ico'%}" type="image/x-icon">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+
+    {% include "header.html" %}
+    {% for msg in messages %}
+        <div class="info">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{msg}}
+        </div>
+    {% endfor %}
+    {% if status %}
+        <div class="tm-hero d-flex justify-content-center align-items-center ">
+            <img class="imageBehind" src="{% static 'img/icon/Motif.png'%}" draggable="false">
+        </div>
+
+        <div class="row tm-mb-90 tm-gallery" style=" margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
+            {% for entries in motifForm %}
+                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
+                    <figure class="effect-ming tm-video-item">
+                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
+                        <figcaption class="d-flex align-items-center justify-content-center">
+                            <h2><b>View Detail</b></h2>
+                                <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
+                        </figcaption>                    
+                    </figure>
+                    <div class="d-flex justify-content-between tm-text-gray">
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
+                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="text-center" style="margin-top: 30px;">
+                <a href="{% url 'list1' %}" style="background-color: #009999; border: 0px; border-radius: 5px; padding: 12px 50px 14px; font-size: 1.2rem; color: #fff; text-decoration: none;"> Back </a>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="row d-flex justify-content-center">
+            
+            <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding-top: 10%;">
+                <div class="col-md-10 col"><h3 class="font-weight-bold ml-md-0 mx-auto text-center"> Akun Belum Diverifikasi oleh Admin </h3>
+                    <p class="mt-md-4  ml-md-0 ml-2 text-center"> Silahkan menghubungi admin terkait untuk dapat menggunakan fitur generate motif</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding: 5%;">
+                <a href="{% url 'generator' %}" class="btn btn-primary"> Get Started</a>
+            </div>
+        </div>
+    {% endif %}
+
+    {% include "footer.html" %}
+
+    
+<script src="{% static 'plugins.js'%}"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

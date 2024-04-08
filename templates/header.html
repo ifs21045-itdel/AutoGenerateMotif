@@ -1,0 +1,49 @@
+<header style="border-bottom: solid; border-bottom-color: #009999;">
+    {% load static %}
+    <nav class="navbar navbar-expand-lg" style="background:linear-gradient(to right, #EEEEEE, #EEEEEE, #EEEEEE);">
+        <div class="container-fluid" >
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/icon/Logo1.png'%}" >
+            </a>
+            <button class="navbar-toggler" type="button" onclick="myFunction2()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="{% static 'img/icon/icons8-four-squares.png'%}" id="IDImage">
+                <img src="{% static 'img/icon/icons8-four-squares1.png'%}" id="IDImage2">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto;">
+                <li class="nav-item">
+                    <a class="{{navlink1}}" aria-current="page" href="{% url 'home' %}">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{navlink2}}" href="{% url 'generator' %}">Generator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{navlink3}}"href="{% url 'list1' %}">Motif</a>
+                </li>
+                <li class="nav-item">
+                    <a class="{{navlink4}}" href="{% url 'help' %}">Bantuan</a>
+                </li>
+                   
+                <a class="nav-link" id="Logout" href="{% url 'logout' %}"> <img style="width: 20%;" src="{% static 'img/icon/icons8-logout-rounded-64.png'%}" alt=""> Keluar </a>
+               
+            </ul>
+            </div>
+        </div>
+        
+    </nav>
+    <!-- <hr style="border: 3px solid #000"> -->
+    <script>
+        function myFunction2() {
+            var y = document.getElementById("IDImage2");
+            var x= document.getElementById("IDImage");
+            if (y.style.display === "block") {
+                x.style.display = "block";
+                y.style.display = "none"
+            } else {
+                x.style.display = "none";
+                y.style.display = "block";
+            }
+        }
+    </script>
+</header>
+<img class="crop" src="{% static 'img/hero1.png'%}" draggable="false">

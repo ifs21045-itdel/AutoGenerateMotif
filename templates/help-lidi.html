@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
+    <title>Auto Generate</title>
+    <link rel="icon" href="{% static 'img/icon/Title4.ico'%}" type="image/x-icon">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    {% include "header.html" %}
+
+    <div class="container-fluid tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-12 tm-text-primary">
+                Lidi
+            </h2>
+        </div>
+        <div class="row tm-mb-74 tm-row-1640">            
+            <div class="col-lg-5 col-md-6 col-12 mb-3">
+                <video autoplay muted loop controls id="tm-video">
+                    <source src="{% static 'video/Help-Lidi.mp4'%}" style="margin-top: 50%;" type="video/mp4">
+                </video>
+            </div>
+            <div class="col-lg-7 col-md-6 col-12">
+                <div class="tm-about-img-text">
+                    <p>
+                        Karakterisitik inputan file gambar lidi yang diproses oleh aplikasi :
+                    </p>
+                    <ol>
+                        <li>Warna gambar terdiri dari dua warna, warna hitam (hexacode <a href="https://www.color-hex.com/color/000000" target="_parent" rel="sponsored">#00000</a>) dan warna putih (hexacode <a href="https://www.color-hex.com/color/ffffff" target="_parent" rel="sponsored">#ffffff</a>). Pengguna masih dapat menggunakan warna lain selain yang disediakan diatas dan menghasilkan motif baru, akan tetapi motif yang dihasilkan akan kurang maksimal jika dibandingkan dengan menggunakan dua karakteristik warna hitam dan putih diatas.</li>
+                        <li>Tinggi pixel yang diproses berkisar dari 6 piksel sampai 12 piksel</li>
+                        <li>Lebar pixel yang diproses berkisar dari 1 piksel sampai 140 piksel</li>
+                        <li>Format gambar yang diproses menggunakan bentuk format .jpg</li>
+                    </ol>
+                    <p>
+                        Contoh lidi yang dapat digunakan dapat didowload dari link berikut 
+                        <a href="{% static 'img/icon/Lidi_1.jpg'%}" download>Lidi 1</a>
+                        , <a href="{% static 'img/icon/Lidi_2.jpg'%}" download>Lidi 2</a>
+                        , <a href="{% static 'img/icon/Lidi_3.jpg'%}" download>Lidi 3</a>
+                    </p>
+                </div>                
+            </div>
+            <div class="text-center" style="margin-top: 30px;">
+                <a href="{% url 'help' %}" style="background-color: #009999; border: 0px; border-radius: 5px; padding: 12px 50px 14px; font-size: 1.2rem; color: #fff; text-decoration: none;"> Kembali </a>
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+
+    <script src="{% static 'plugins.js'%}"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+</html>
