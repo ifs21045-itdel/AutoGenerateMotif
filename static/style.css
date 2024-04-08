@@ -246,7 +246,7 @@ input::file-selector-button {
 }
 
 input[type="file"] {
-	background: url(/static/img/icon/icons8-upload.gif);
+	background: url(/static/img/icon/icons8-upload_1.gif);
     background-size:10%;
     background-position-x: center;
     background-position-y: center;
