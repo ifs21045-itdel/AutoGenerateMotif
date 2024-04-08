@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Auto Generate</title>
     {% load static %}
-    <link rel="icon" href="{% static 'img/icon/Title4.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'img/icon/NewTitle.ico'%}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
     <link rel="stylesheet" href="{% static 'style.css'%}">
     <link rel="stylesheet" href="{% static 'image.css'%}">
@@ -144,8 +144,8 @@
                         </div>
                     </div>
                     <div class="text-center mb-5">
-                        <a href="/{{ zip }}" class="btn btn-outline-success tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Download Motif </a>
-                        <a href="{{motif.imgBefore}}" class="btn btn-outline-success tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Download Lidi </a>
+                        <a href="/{{ zip }}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Download Motif </a>
+                        <a href="{{motif.imgBefore}}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Download Lidi </a>
                         {% if status %}
                         <form action="/delete/" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
@@ -166,7 +166,7 @@
                                     Apakah anda yakin mengambil tindakan untuk menghapus motif ini?
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-success tm-btn-big" style="width: 100%;" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-outline-primary tm-btn-big" style="width: 100%;" data-bs-dismiss="modal">Batal</button>
                                     <input type="submit" value="Hapus" id="DeleteForm">
                                 </div>
                                 </div>

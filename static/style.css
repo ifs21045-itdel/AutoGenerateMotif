@@ -28,7 +28,7 @@ p {
     font-size: 15px;
     line-height: 25px !important;
     font-weight: 500;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Roboto", Sans-serif;
 
 
 }
@@ -264,7 +264,7 @@ li{
     font-size: 15px;
     line-height: 25px !important;
     font-weight: 500;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: "Roboto", Sans-serif;
     margin-top: 0;
     margin-bottom: 1rem;
 }

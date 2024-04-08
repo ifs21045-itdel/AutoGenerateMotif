@@ -27,7 +27,7 @@ div {
 }
 .number::before {
   background-color: #009999;
-  background-image: radial-gradient(closest-side at 50% 50%, #328181 100%, rgba(0, 0, 0, 0)), radial-gradient(closest-side at 50% 50%, #4B7575 100%, rgba(0, 0, 0, 0));
+  background-image: radial-gradient(closest-side at 50% 50%, #3156e7 100%, rgba(0, 0, 0, 0)), radial-gradient(closest-side at 50% 50%, #4B7575 100%, rgba(0, 0, 0, 0));
   background-repeat: repeat-x;
   background-size: 40vmin 40vmin;
   background-position: -100vmin 20vmin, 100vmin -25vmin;
