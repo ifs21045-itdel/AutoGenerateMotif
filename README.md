@@ -19,7 +19,8 @@ Website ini dibangun menggunakan :
 8. [Python Library dj-static 0.0.6](https://github.com/heroku-python/dj-static).
 9. [Python Library django django django-session-timeout 0.1](https://pypi.org/project/django-session-timeout/).
 10. [Python Library django django-seeder](/#).
-11. etc
+11. [Python Library open_cv](/#).
+12. etc
 
 
 ### Cara menjalankan aplikasi
