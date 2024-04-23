@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_seed',
-    # 'data_seeder',
     'Website',
 ]
 
