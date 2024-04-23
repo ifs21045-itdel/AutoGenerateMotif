@@ -7,3 +7,4 @@ dj-static==0.0.6
 django-session-timeout==0.1
 django-seeder
 opencv-python
+django-seed
