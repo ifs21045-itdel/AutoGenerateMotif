@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_seed',
     'data_seeder',
-    # 'data_seeder', # saat melakukan deployment harusnya tidak dicomment
     'Website',
 ]
 
