@@ -37,14 +37,15 @@
             <div class="col-lg-7 col-md-6 col-12">
                 <div class="tm-about-img-text">
                     <p class="mb-4" style="color: black;">
-                        Aplikasi ini dapat dipergunakan oleh masyarakat umum, terutama masyarakat yang berprofesi sebagai Penenun di <a href="https://www.google.co.id/maps/place/Danau+Toba/@2.6114159,98.5557627,10z/data=!3m1!4b1!4m5!3m4!1s0x3031de07a843b6ad:0xc018edffa69c0d05!8m2!3d2.7860786!4d98.6160674" target="_parent" rel="sponsored">Kawasan Toba Samosir</a>. Aplikasi ini menciptakan motif yang sesuai dengan bagaimana cara penenun bekerja yaitu penggunaan lidi sebagai pembentuk motif Tenun. </p>
+                        Aplikasi ini dapat digunakan oleh masyarakat umum, terutama mereka yang berprofesi sebagai penenun di <a href="https://www.google.co.id/maps/place/Danau+Toba/@2.6114159,98.5557627,10z/data=!3m1!4b1!4m5!3m4!1s0x3031de07a843b6ad:0xc018edffa69c0d05!8m2!3d2.7860786!4d98.6160674" target="_parent" rel="sponsored">Kawasan Toba Samosir</a>. Aplikasi ini memungkinkan pembuatan motif secara otomatis, yang mencakup penyusunan urutan lidi motif yang digunakan sesuai dengan cara kerja penenun menggunakan lidi sebagai pembentuk motif Tenun. </p>
                     <p style="color: black;">
                         Beberapa fitur yang ada didalam aplikasi ini yang dapat digunakan diantaranya :</p> 
                     <p style="color: black;">
                     <ol>
                         <li style="color: black;">Pembuatan motif secara <b>otomatis</b> yang menghasilkan motif beserta <b>urutan lidi</b> motif yang digunakan</li>
                         <li style="color: black;">Pencarian motif berdasarkan Tanggal, Nama Pembuat, atau berdasarkan jumlah baris motif</li>
-                        <li style="color: black;"> Men-<i>Download</i> motif</li>
+                        {% comment %} <li style="color: black;"> Men-<i>Download</i> motif</li> {% endcomment %}
+                        <li style="color: black;">Kemampuan untuk mengunduh motif.</li>
                     </ol>
                     
                 </div>                
@@ -57,8 +58,7 @@
                         Cara penggunaan fitur generate motif
                     </h2>
                     <p class="mb-4" style="color: black;">
-                        Halaman ini akan menjelaskan mengenai cara penggunaan fitur yang terdapat ada aplikasi. Mulai dari tahap awal inputan yang digunakan, sampai ke hasil akhir dari motif yang akan didapat. 
-                    </p>
+                        Halaman ini akan menjelaskan tentang cara menggunakan fitur yang tersedia dalam aplikasi, mulai dari tahap awal input yang digunakan hingga hasil akhir motif yang dihasilkan.                    </p>
                     <div class="text-center">
                         <a href="{% url 'help-generator' %}" class="btn btn-primary">Selengkapnya</a>
                     </div>
@@ -67,10 +67,10 @@
             <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
-                        Gambar Lidi yang di support sistem
+                        Gambar Lidi yang Didukung oleh Sistem
                     </h2>
                     <p class="mb-4" style="color: black;">
-                        Halaman ini akan menjelaskan mengenai karakteristik inputan gambar lidi yang dapat diterima oleh sistem. Mulai dari kode warna yang diijinkan, ukuran gambar, dan beberapa batasan lainnya. 
+                        Halaman ini akan menjelaskan tentang karakteristik gambar lidi yang dapat diterima oleh sistem, termasuk kode warna yang diizinkan, ukuran gambar, dan batasan-batasan lainnya. 
                     </p>
                     <div class="text-center">
                         <a href="{% url 'help-lidi' %}" class="btn btn-primary">Selengkapnya</a>
@@ -83,7 +83,7 @@
                         Fitur Pencarian
                     </h2>
                     <p class="mb-4" style="color: black;">
-                        Halaman ini akan menjelaskan mengenai bagaimana mencari motif didalam aplikasi berdasarkan beberapa kriteria yang dapat digunakan untuk mempermudah pencarian.  
+                        Halaman ini akan menjelaskan cara mencari motif dalam aplikasi berdasarkan beberapa kriteria yang dapat mempermudah pencarian.  
                     </p>
                     <div class="text-center">
                         <a href="{% url 'help-search' %}" class="btn btn-primary">Selengkapnya</a>
@@ -93,10 +93,10 @@
             <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
-                        Fitur Download
+                        Fitur Unduh
                     </h2>
                     <p class="mb-4" style="color: black;">
-                        Halaman ini akan menjelaskan mengenai bagaimana menggunakan fitur <i>download</i> motif didalam aplikasi ke penyimpanan lokal komputer.  
+                        Halaman ini akan menjelaskan cara menggunakan fitur unduh motif dalam aplikasi untuk disimpan di penyimpanan lokal komputer.
                     </p>
                     <div class="text-center">
                         <a href="{% url 'help-download' %}" class="btn btn-primary">Selengkapnya</a>
