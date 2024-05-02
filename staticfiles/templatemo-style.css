@@ -262,12 +262,12 @@ a.tm-text-primary:hover { color:#666666; }
 }
 
 .tm-search-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #002BA3;
+    color: rgba(0,0,0,0.5);
     opacity: 1; /* Firefox */
 }
   
 .tm-search-input::-ms-input-placeholder { /* Microsoft Edge */
-    color: #002BA3;
+    color: rgba(0,0,0,0.5);
 }
 
 .tm-search-btn {
@@ -594,7 +594,7 @@ select:not([multiple]) {
 }
 
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color:  #002BA3;
+    color:  rgba(0,0,0,0.5);
     opacity: 1; /* Firefox */
 }
 
