@@ -1,20 +1,25 @@
+# Gunakan official Python image dari Docker Hub
 FROM python:3.9-slim
 
+# Set environment variabel yang mencegah Python membuat file .pyc
 ENV PYTHONDONTWRITEBYTECODE 1
+# Set environment variabel yang mencegah Python mem-buffer stdout dan stderr
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /code
+# Set direktori kerja di dalam container
+WORKDIR /app
 
-RUN apt-get update \
-    && apt-get install -y gcc libmysqlclient-dev libopencv-dev \
-    && apt-get clean
+# Instal gcc dan lainnya libraries yang dibutuhkan
+RUN apt-get update && apt-get install -y gcc libmysqlclient-dev
 
-COPY requirements.txt /code/
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
+# Salin file requirements.txt ke dalam container
+COPY ./requirements.txt /app/requirements.txt
 
-COPY . /code/
+# Instal dependencies Python
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
-EXPOSE 8000
+# Salin semua file project ke dalam container
+COPY . /app/
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "your_project.wsgi:application"]
+# CMD yang akan dijalankan ketika container di-start
+CMD ["gunicorn", "your_project_name.wsgi:application", "--bind", "0.0.0.0:8000"]

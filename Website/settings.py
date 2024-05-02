@@ -96,7 +96,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'GenerateMotif',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'root',
+        # 'HOST': 'mysql-db',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
