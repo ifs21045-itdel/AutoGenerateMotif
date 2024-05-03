@@ -385,6 +385,11 @@ li{
     border-radius: 10px;
 }
 
+.animated-gif {
+    width: 20%; /* Sesuaikan dengan kebutuhan */
+    transition: transform 0.3s; /* Efek transisi saat dihover */
+}
+
 /* tr:nth-child(even){background-color: #002BA3}
 tr:nth-child(even){background-color: #002BA3} */
 
@@ -392,4 +397,3 @@ th, td {
     text-align: left;
     padding: 8px;
   }
-  

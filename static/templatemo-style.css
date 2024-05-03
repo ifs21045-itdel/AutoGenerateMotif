@@ -224,28 +224,47 @@ a.tm-text-primary:hover { color:#666666; }
 .nav-link {
     color: #666666;
     border-bottom: 4px solid transparent;
-    font-size: 1.2rem;
+    font-size: 1.2rem;  
 }
-
-.nav-link-1.active,
+.nav-link-1.active{
+    color: #002BA3;
+}
 .nav-link-1:hover {
+    border-color: none;
+}
+/* .nav-link-1:hover {
     border-color: #33CCFF;
-}
+} */
 
-.nav-link-2.active,
+.nav-link-2.active{
+    color: #002BA3;
+}
 .nav-link-2:hover {
+    border-color: none;
+}
+/* .nav-link-2:hover {
     border-color: #FF6666;
-}
+} */
 
-.nav-link-3.active,
+.nav-link-3.active{
+    color: #002BA3;
+}
 .nav-link-3:hover {
+    border-color: none;
+}
+/* .nav-link-3:hover {
     border-color: #33CC66;
-}
+} */
 
-.nav-link-4.active,
-.nav-link-4:hover {
-    border-color: #CC66CC;
+.nav-link-4.active{
+    color: #002BA3;
 }
+.nav-link-4:hover {
+    border-color: none;
+}
+/* .nav-link-4:hover {
+    border-color: #CC66CC;
+} */
 
 .tm-search-input {
     width: 360px;
