@@ -50,18 +50,18 @@
                                         {% if jmlBaris %}
                                         <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Jumlah Baris</label>
                                             <input type="number" class="form-control" name ="jmlBaris" placeholder="contoh: 4" value="{{jmlBaris}}" required></div>
-                                            <p style="color: #F44336; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                            <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
                                         {% else %}
                                         <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Jumlah Baris</label>
                                             <input type="number" class="form-control" name ="jmlBaris" placeholder="contoh: 4" value="{{jmlBaris}}" required></div>
-                                            <p style="color: #F44336; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                            <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
                                         {% endif %}
 
                                         <div class="form-group "style="padding-top: 1px;"> <label for="Mobile-Number">Lidi</label>
                                             <input type="file" name="image" id="UploadImage" accept="image/*" onchange="previewImage();" required >
                                             <img style="width: 100%;" id="preview">
                                         </div>
-                                        <p style="color: #F44336; font-size: 12px; margin-top: -25px;"> Spesifikasi gambar dapat diihat di sini pada <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored"><u>Aturan Lidi</u></a> </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Spesifikasi gambar dapat diihat di sini pada <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored"><u>Aturan Lidi</u></a> </p>
                                         <input style="margin-top: 25px;" type="submit" value="Buat Motif" id="SubmitStyle">                                    
                                     </form>
 

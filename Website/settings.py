@@ -94,9 +94,9 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'GenerateMotif',
+        'NAME': 'AutoGenerateWebsite',
         'USER': 'root',
-        'PASSWORD': 'root',
+        'PASSWORD': '',
         # 'HOST': 'mysql-db',
         'HOST': 'localhost',
         'PORT': '3306',

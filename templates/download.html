@@ -39,17 +39,17 @@
                                     <form action="PostImage" method ="POST" class="post-form" id="FormStyle">
                                         {% csrf_token %}
                                         {% if raw_url1 or edit_url1 or Urutan or jenis or jmlBaris or user %}
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="imgBefore" value="{{raw_url1}}" /></div>
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="imgAfter" value="{{edit_url1}}"/></div>
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="urutanLidi"value="{{Urutan}}"/></div>
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="jenisGenerate"value="{{jenis}}"/></div>
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="jmlBaris"value="{{jmlBaris}}"/></div>
-                                            <div class="form-group" style="padding-top: 10px;">
+                                            <div class="form-group" style="padding-top: 0px;">
                                                 <input type="hidden" name="user"value="{{user}}"/></div>
                                         {% endif %}        
                                                 

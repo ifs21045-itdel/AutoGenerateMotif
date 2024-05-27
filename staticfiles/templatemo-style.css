@@ -163,7 +163,7 @@ a:hover { color:#002BA3; }
     min-width: 100px;
     background-color: #002BA3;
     border: 0;
-    border-radius: 5px;
+    border-radius: 500px;
     padding: 12px 50px 14px;
     font-size: 1.2rem;
 }
@@ -458,7 +458,7 @@ figure.effect-ming:hover img { opacity: 0.9; }
     margin-bottom: 5px;    
 }
 
-.tm-footer-links li a { color: #999999; }
+.tm--links li a { color: #999999; }
 .tm-footer-links li a:hover { color: #002BA3; }
 
 .tm-social-links li {
