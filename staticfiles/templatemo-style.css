@@ -260,7 +260,7 @@ a.tm-text-primary:hover { color:#666666; }
 .tm-search-input {
     width: 360px;
     border-radius: 0;
-    padding: 12px 15px;
+    padding: 11px 15px;
     color: #002BA3;
     border: none;
     z-index: 2;
@@ -300,7 +300,7 @@ a.tm-text-primary:hover { color:#666666; }
     margin-left: -1px;
 }
 
-p, .tm-text-gray { color: #999; }
+p, .tm-text-gray { color: #000; }
 .tm-text-gray-light { color: #CCC; }
 .tm-text-gray-dark { color: #666; }
 
@@ -544,7 +544,7 @@ select:not([multiple]) {
     -moz-appearance: none;
     background-position: right 15px center;
     background-repeat: no-repeat;
-    padding: 14px 20px;
+    padding: 11px 20px;
     padding-right: 20px;
     color: #666;
 }
@@ -600,7 +600,7 @@ select:not([multiple]) {
 .form-control,
 input:-internal-autofill-selected,
 select:not([multiple]) {
-    color: #002BA3 !important;
+    color: #000 !important;
 }
 
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

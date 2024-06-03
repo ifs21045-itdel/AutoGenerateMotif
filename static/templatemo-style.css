@@ -553,7 +553,7 @@ select:not([multiple]) {
     -moz-appearance: none;
     background-position: right 15px center;
     background-repeat: no-repeat;
-    padding: 14px 20px;
+    padding: 11px 20px;
     padding-right: 20px;
     color: #666;
 }

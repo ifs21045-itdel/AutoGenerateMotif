@@ -36,7 +36,7 @@
                                         {% if uname or email or pass1 or pass2 %}
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Username</label>
                                                 <input type="text" class="form-control" name ="username" placeholder="Username" value="{{uname}}"required></div>
-                                                <p style="color: #F44336; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan  karakter berupa simbol</p>
+                                                <p style="color: #000; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan  karakter berupa simbol</p>
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Email</label>
                                                 <input type="email" class="form-control" name ="email" placeholder="Email" value="{{email}}" required></div>
                                             
@@ -48,18 +48,21 @@
                                         {% else %}
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Username</label>
                                                 <input type="text" class="form-control" name ="username" placeholder="Username" value="{{uname}}"required></div>
-                                                <p style="color: #F44336; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan karakter berupa simbol</p>
+                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan karakter berupa simbol</p>
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Email</label>
                                                 <input type="email" class="form-control" name ="email" placeholder="Email" value="{{email}}" required></div>
+                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> cth: email@gmail.com</p>
                                             
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password1" placeholder="Kata Sandi" value="{{pass1}}" required></div>
+                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> minimal 8 karakter</p>
                                             
                                             <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Konfirmasi Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password2" placeholder="Konfirmasi Kata Sandi" value="{{pass2}}" required></div>
+                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> minimal 8 karakter</p>
                                         {% endif %}
                                         <input type="submit" value="Daftar" id="SubmitStyle">
-                                        </div><p class="text-center"><a href="{% url 'login' %}" target="_parent" rel="sponsored"><u>Sudah Punya Akun</u></a></p>
+                                        </div><p class="text-center"><a href="{% url 'login' %}" target="_parent" rel="sponsored"><u>Sudah Punya Akun? Klik Disini!</u></a></p>
                                     </form>
                                 </div>
                             </div>        
