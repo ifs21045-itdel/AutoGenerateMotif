@@ -16,6 +16,11 @@ body,html{
 .nav-link{
     font-size: 1.2rem !important;
 }
+
+.text-white {
+    color: #fff !important;
+}
+
 .crop{
     /* object-fit: cover;
     width: 100vw; */
@@ -260,7 +265,7 @@ input[type="file"] {
 }
 
 li{
-    color: #999;
+    color: #000;
     font-size: 15px;
     line-height: 25px !important;
     font-weight: 500;
