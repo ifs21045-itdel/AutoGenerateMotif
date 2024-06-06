@@ -1,32 +1,35 @@
+# # docker paling update 
 version: '3.8'
-
 services:
-  django-web:
-    build: .
-    command: gunicorn your_project_name.wsgi:application --bind 0.0.0.0:8000
+  mysql-db:
+    image: mysql:8
+    container_name: project_mysql
+    restart: always
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'GenerateMotif'
+      MYSQL_TCP_PORT: '3307'
+    ports:
+      - "3307:3307"
+  
+  django:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: project_django
+    command: sh -c "sleep 10 && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
+    restart: always
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "8002:8000"
+    env_file:
+      - .env
     depends_on:
       - mysql-db
-    environment:
-      MYSQL_HOST: mysql-db
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_DB: 'GenerateMotif'
-    
-  mysql-db:
-    image: mysql
-    environment:
-      MYSQL_DATABASE: 'GenerateMotif'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'root'
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
 
 volumes:
   mysql-data:
+    driver: local
