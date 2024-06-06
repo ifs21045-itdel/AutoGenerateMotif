@@ -627,7 +627,7 @@ select:not([multiple]) {
         left: 0px;
         border: solid;
         border-color: #002BA3;
-        width: 300px;
+        width: 200px;
         height: 100vh;
         padding: 15px;
     }
