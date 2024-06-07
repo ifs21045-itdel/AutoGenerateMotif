@@ -96,6 +96,22 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #     }
 # }
 
+# # DATABASE SERVER NANTINYA
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'GenerateMotif',
+#         'USER': 'root', 
+#         'PASSWORD': 'root',
+#         # 'HOST': 'mysql-db',
+#         'HOST': 'project_mysql',
+#         'PORT': '3308',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
 # database server
 DATABASES = {
     'default':{
@@ -104,28 +120,15 @@ DATABASES = {
         'USER': 'root', 
         'PASSWORD': 'root',
         # 'HOST': 'mysql-db',
-        'HOST': 'project_mysql',
-        'PORT': '3307',
+        'HOST': 'localhost',
+        'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
     }
 }
 
-# # Database and env
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('MYSQL_DATABASE'),
-#         'USER': config('MYSQL_USER'),
-#         'PASSWORD': config('MYSQL_PASSWORD'),
-#         'HOST': 'localhost',
-#         'PORT': '3308',
-#         'OPTIONS': {
-#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-#         }
-#     }
-# }
+
 
 
 # Password validation
