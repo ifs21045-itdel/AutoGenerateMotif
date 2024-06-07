@@ -234,28 +234,100 @@ def Search(request):
          return redirect('list1')
     return render(request,"search.html", context)
 
+# @login_required(login_url='login')
+# def show(request):
+#     user = request.user
+#     status = user.is_staff
+#     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2','nav-link nav-link-3 active','nav-link nav-link-4']
+#     if status == 0:
+#           status=None
+    
+#     motifForm = MotifForm1.objects.all().values().order_by('time').reverse()
+#     paginator = Paginator(motifForm, 15)
+
+#     page_number = request.GET.get('page')
+#     page = paginator.get_page(page_number)
+#     totalPage = page.paginator.num_pages
+
+#     try:
+#         page_obj = paginator.get_page(page_number)
+#     except EmptyPage:
+#         page_obj = paginator.get_page(totalPage)
+        
+
+#     context = {"motifForm":page_obj,'page_range':paginator.get_elided_page_range(page_obj.number,on_each_side=3, on_ends=2), "lastpage": totalPage, "status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]}
+
+#     return render(request, "ListMotif.html", context)
+
+# @login_required(login_url='login')
+# def show(request):
+#     user = request.user
+#     status = user.is_staff
+#     navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2', 'nav-link nav-link-3 active', 'nav-link nav-link-4']
+#     if status == 0:
+#         status = None
+    
+#     motifForm = MotifForm1.objects.all().values().order_by('time').reverse()
+#     paginator = Paginator(motifForm, 9)  # 9 gambar per halaman
+
+#     page_number = request.GET.get('page')
+#     page = paginator.get_page(page_number)
+#     totalPage = page.paginator.num_pages
+
+#     try:
+#         page_obj = paginator.get_page(page_number)
+#     except EmptyPage:
+#         page_obj = paginator.get_page(totalPage)
+    
+#     context = {
+#         "motifForm": page_obj,
+#         'page_range': paginator.get_elided_page_range(page_obj.number, on_each_side=1, on_ends=1),  # Menampilkan maksimal 3 halaman
+#         "lastpage": totalPage,
+#         "status": status,
+#         'navlink1': navlink[0],
+#         'navlink2': navlink[1],
+#         'navlink3': navlink[2],
+#         'navlink4': navlink[3]
+#     }
+
+#     return render(request, "ListMotif.html", context)
+
 @login_required(login_url='login')
 def show(request):
     user = request.user
     status = user.is_staff
-    navlink = ['nav-link nav-link-1 ','nav-link nav-link-2','nav-link nav-link-3 active','nav-link nav-link-4']
+    navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2', 'nav-link nav-link-3 active', 'nav-link nav-link-4']
     if status == 0:
-          status=None
+        status = None
     
     motifForm = MotifForm1.objects.all().values().order_by('time').reverse()
-    paginator = Paginator(motifForm, 15)
+    paginator = Paginator(motifForm, 9)  # 9 gambar per halaman
 
     page_number = request.GET.get('page')
-    page = paginator.get_page(page_number)
-    totalPage = page.paginator.num_pages
+    page_obj = paginator.get_page(page_number)
 
-    try:
-        page_obj = paginator.get_page(page_number)
-    except EmptyPage:
-        page_obj = paginator.get_page(totalPage)
-        
+    # Dapatkan jumlah halaman total
+    total_pages = paginator.num_pages
 
-    context = {"motifForm":page_obj,'page_range':paginator.get_elided_page_range(page_obj.number,on_each_side=3, on_ends=2), "lastpage": totalPage, "status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]}
+    # Hitung nomor halaman yang akan ditampilkan
+    start_page = max(page_obj.number - 1, 1)
+    end_page = min(start_page + 2, total_pages)
+
+    # Sesuaikan start_page jika end_page kurang dari 3 halaman dan total_pages lebih dari 3
+    if end_page - start_page < 2 and total_pages > 3:
+        start_page = max(end_page - 2, 1)
+
+    page_range = range(start_page, end_page + 1)
+
+    context = {
+        "motifForm": page_obj,
+        'page_range': page_range,
+        "status": status,
+        'navlink1': navlink[0],
+        'navlink2': navlink[1],
+        'navlink3': navlink[2],
+        'navlink4': navlink[3]
+    }
 
     return render(request, "ListMotif.html", context)
 
