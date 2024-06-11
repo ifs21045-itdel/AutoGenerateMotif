@@ -35,23 +35,22 @@
             <img class="imageBehind" src="{% static 'img/icon/Search.png'%}" draggable="false">
             <form action="search" method="post" enctype="multipart/form-data" class="d-flex tm-search-form">
                 {% csrf_token %}
-                <div class="dropdown" style="margin-right: 10px; height: 48px; color: #002BA3; z-index: 2;";>
-                    <select id="filter" name="filter" class="form-select"  style="border-radius: 0px;">
-                        <option name="filter" value="Nama">Filter</option>
-                        <option name="filter" value="Jumlah Baris">Jumlah Baris</option>
-                        <option name="filter" value="Nama">Nama</option>
-                        <option name="filter" value="Tanggal">Tanggal</option>
-                    </select>
-                </div>
+                <select id="filter" name="filter" style="border-width: 0px; margin-right: 10px; height: 48px; color: #002BA3; z-index: 2;">
+                    <option name="filter" value="Nama">Filter</option>
+                    <option name="filter" value="Jumlah Baris">Jumlah Baris</option>
+                    <option name="filter" value="Nama">Nama</option>
+                    <option name="filter" value="Tanggal">Tanggal</option>
+                </select>
                 <input name="SearchMotif" class="form-control tm-search-input" type="text" placeholder="Cari..." aria-label="Search">
-                <button class="btn btn-outline-primary tm-search-btn" value="" type="submit">
+                <button class="btn btn-outline-primary tm-search-btn" value=""type="submit">
                     <img src="{% static 'img/icon/search-interface-symbol.png'%}" style="height:80%;">
+                </button>
                 </button>
             </form>
         </div>
 
         
-        <div class="row tm-mb-90 tm-gallery" style=" margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
+        {% comment %} <div class="row tm-mb-90 tm-gallery" style=" margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
             {% for entries in motifForm %}
                 <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
                     <figure class="effect-ming tm-video-item">
@@ -69,9 +68,50 @@
                 </div>
             {% endfor %}
 
-        </div>
+        </div> {% endcomment %}
 
-        <div class="row tm-mb-90">
+        {% comment %}Test 2{% endcomment %}
+        {% comment %} <div class="row tm-mb-90 tm-gallery" style="margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
+            {% for entries in motifForm %}
+                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
+                    <figure class="effect-ming tm-video-item">
+                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
+                        <figcaption class="d-flex align-items-center justify-content-center">
+                            <h2><b>Detail</b></h2>
+                            <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
+                        </figcaption>                    
+                    </figure>
+                    <div class="d-flex justify-content-between tm-text-gray">
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
+                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div> {% endcomment %}
+
+        {% comment %} Test3 {% endcomment %}
+        <div class="row tm-mb-90 tm-gallery" style="margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
+            {% for entries in motifForm %}
+                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
+                    <figure class="effect-ming tm-video-item">
+                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
+                        <figcaption class="d-flex align-items-center justify-content-center">
+                            <h2><b>Detail</b></h2>
+                            <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
+                        </figcaption>                    
+                    </figure>
+                    <div class="d-flex justify-content-between tm-text-gray">
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
+                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
+                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+
+        {% comment %} <div class="row tm-mb-90">
             <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
 
                 {% if motifForm.has_previous is False %}
@@ -104,7 +144,78 @@
                     <a class="btn btn-primary tm-btn-prev mb-2 disabled">Selanjutnya</a>
                 {% endif %}
             </div>            
+        </div> {% endcomment %}
+        {% comment %} Test 2 {% endcomment %}
+        {% comment %} <div class="row tm-mb-90">
+            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if motifForm.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'list1' %}?page={{motifForm.previous_page_number}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo; Sebelumnya</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        
+                        <div class="tm-paging d-flex">
+                            {% for i in page_range %}
+                                {% if motifForm.number == i %}
+                                    <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{i}}">{{i}}</a></li>
+                                {% else %}
+                                    {% if i == motifForm.paginator.ELLIPSIS %}
+                                        <li class="page-item disabled"><span class="page-link">{{i}}</span></li>
+                                    {% else %}
+                                        <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{i}}">{{i}}</a></li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+        
+                        {% if motifForm.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'list1' %}?page={{motifForm.next_page_number}}" aria-label="Next">
+                                    <span aria-hidden="true">Selanjutnya &raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>            
+        </div> {% endcomment %}
+
+        {% comment %} Test 3 {% endcomment %}
+        <div class="row tm-mb-90">
+            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item {% if not motifForm.has_previous %}disabled{% endif %}">
+                            <a class="page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo; Sebelumnya</span>
+                            </a>
+                        </li>
+        
+                        <div class="tm-paging d-flex">
+                            {% for i in page_range %}
+                                {% if motifForm.number == i %}
+                                    <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+        
+                        <li class="page-item {% if not motifForm.has_next %}disabled{% endif %}">
+                            <a class="page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                                <span aria-hidden="true">Selanjutnya &raquo;</span>
+                                {% comment %} <span class="btn btn-primary" aria-hidden="true">Selanjutnya &raquo;</span> {% endcomment %}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
+
 
     {% else %}
         <div class="row d-flex justify-content-center">
