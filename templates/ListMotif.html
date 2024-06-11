@@ -35,14 +35,12 @@
             <img class="imageBehind" src="{% static 'img/icon/Search.png'%}" draggable="false">
             <form action="search" method="post" enctype="multipart/form-data" class="d-flex tm-search-form">
                 {% csrf_token %}
-                <div class="dropdown" style="margin-right: 10px; height: 48px; color: #002BA3; z-index: 2;";>
-                    <select id="filter" name="filter" class="form-select"  style="border-radius: 0px;">
-                        <option name="filter" value="Nama">Filter</option>
-                        <option name="filter" value="Jumlah Baris">Jumlah Baris</option>
-                        <option name="filter" value="Nama">Nama</option>
-                        <option name="filter" value="Tanggal">Tanggal</option>
-                    </select>
-                </div>
+                <select id="filter" name="filter" style="border-width: 0px; margin-right: 10px; height: 48px; color: #002BA3; z-index: 2;">
+                    <option name="filter" value="Nama">Filter</option>
+                    <option name="filter" value="Jumlah Baris">Jumlah Baris</option>
+                    <option name="filter" value="Nama">Nama</option>
+                    <option name="filter" value="Tanggal">Tanggal</option>
+                </select>
                 <input name="SearchMotif" class="form-control tm-search-input" type="text" placeholder="Cari..." aria-label="Search">
                 <button class="btn btn-outline-primary tm-search-btn" value="" type="submit">
                     <img src="{% static 'img/icon/search-interface-symbol.png'%}" style="height:80%;">
