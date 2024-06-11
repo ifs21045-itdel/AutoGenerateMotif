@@ -403,3 +403,24 @@ th, td {
     transition: transform 0.3s; /* Efek transisi saat dihover */
 }
   
+
+.tm-paging-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    color: #002BA3;
+    border: 1px solid #dee2e6;
+    padding: 5px 10px;
+}

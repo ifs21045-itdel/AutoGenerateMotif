@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+# # untuk mengakses via env tujuannya untuk keamanan
+# from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-r1dikf)xpbv#2$fln6e3t*^#e)sceifw-(d-mdbd0zpewh)vgr'
+
+# # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -44,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_seed',
+    'django_seed',
     'Website',
 ]
 
@@ -91,12 +96,29 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #     }
 # }
 
+# # DATABASE SERVER NANTINYA
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'GenerateMotif',
+#         'USER': 'root', 
+#         'PASSWORD': 'root',
+#         # 'HOST': 'mysql-db',
+#         'HOST': 'project_mysql',
+#         'PORT': '3308',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
+# database server
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'AutoGenerateWebsite',
-        'USER': 'root',
-        'PASSWORD': '',
+        'NAME': 'GenerateMotif',
+        'USER': 'root', 
+        'PASSWORD': 'root',
         # 'HOST': 'mysql-db',
         'HOST': 'localhost',
         'PORT': '3306',
@@ -105,6 +127,8 @@ DATABASES = {
         }
     }
 }
+
+
 
 
 # Password validation

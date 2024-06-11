@@ -205,7 +205,7 @@ button:focus {
 #SubmitStyle{
     background-color: #002BA3; 
     border: 0px; 
-    border-radius: 5px; 
+    border-radius: 0px; 
     padding: 12px 50px 14px; 
     font-size: 1.2rem; 
     color: #fff; 
@@ -385,11 +385,6 @@ li{
     border-radius: 10px;
 }
 
-.animated-gif {
-    width: 20%; /* Sesuaikan dengan kebutuhan */
-    transition: transform 0.3s; /* Efek transisi saat dihover */
-}
-
 /* tr:nth-child(even){background-color: #002BA3}
 tr:nth-child(even){background-color: #002BA3} */
 
@@ -397,3 +392,29 @@ th, td {
     text-align: left;
     padding: 8px;
   }
+
+.animated-gif {
+    width: 20%; /* Sesuaikan dengan kebutuhan */
+    transition: transform 0.3s; /* Efek transisi saat dihover */
+}
+
+.tm-paging-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    color: #002BA3;
+    border: 1px solid #dee2e6;
+    padding: 5px 10px;
+}

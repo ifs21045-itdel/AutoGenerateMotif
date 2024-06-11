@@ -1,9 +1,11 @@
 Django==4.1.1
 Pillow==9.2.0
-numpy==1.21.6
+numpy==1.21.1
 ACO-Pants==0.5.2
 mysqlclient==2.2.1
 dj-static==0.0.6
 django-session-timeout==0.1
 django-seeder
+django-seed
 opencv-python
+python-decouple
