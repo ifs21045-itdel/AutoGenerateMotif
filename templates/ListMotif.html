@@ -97,7 +97,7 @@
                     <figure class="effect-ming tm-video-item">
                         <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
                         <figcaption class="d-flex align-items-center justify-content-center">
-                            <h2><b>Detail</b></h2>
+                            <h2><b>Lihat Detail</b></h2>
                             <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
                         </figcaption>                    
                     </figure>
@@ -145,57 +145,20 @@
                 {% endif %}
             </div>            
         </div> {% endcomment %}
-        {% comment %} Test 2 {% endcomment %}
+
+        {% comment %} Test 3 {% endcomment %}
         {% comment %} <div class="row tm-mb-90">
             <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
-                        {% if motifForm.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="{% url 'list1' %}?page={{motifForm.previous_page_number}}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo; Sebelumnya</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        
-                        <div class="tm-paging d-flex">
-                            {% for i in page_range %}
-                                {% if motifForm.number == i %}
-                                    <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{i}}">{{i}}</a></li>
-                                {% else %}
-                                    {% if i == motifForm.paginator.ELLIPSIS %}
-                                        <li class="page-item disabled"><span class="page-link">{{i}}</span></li>
-                                    {% else %}
-                                        <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{i}}">{{i}}</a></li>
-                                    {% endif %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-        
-                        {% if motifForm.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="{% url 'list1' %}?page={{motifForm.next_page_number}}" aria-label="Next">
-                                    <span aria-hidden="true">Selanjutnya &raquo;</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </div>            
-        </div> {% endcomment %}
-
-        {% comment %} Test 3 {% endcomment %}
-        <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
                         <li class="page-item {% if not motifForm.has_previous %}disabled{% endif %}">
-                            <a class="page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo; Sebelumnya</span>
+                            <a class="page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous"> {% endcomment %}
+                                {% comment %} <span aria-hidden="true">&laquo; Sebelumnya</span> {% endcomment %}
+                                {% comment %} <span class="btn btn-primary" aria-hidden="true">&laquo; Sebelumnya</span>
                             </a>
-                        </li>
+                        </li> {% endcomment %}
         
-                        <div class="tm-paging d-flex">
+                        {% comment %} <div class="tm-paging d-flex">
                             {% for i in page_range %}
                                 {% if motifForm.number == i %}
                                     <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
@@ -203,18 +166,64 @@
                                     <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
                                 {% endif %}
                             {% endfor %}
+                        </div> {% endcomment %}
+                        {% comment %} <div class="tm-paging d-flex">
+                            {% for i in page_range %}
+                                {% if motifForm.number == i %}
+                                    <li class="page-item active"><span class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</span></li> {% endcomment %}
+                                    {% comment %} <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li> {% endcomment %}
+                                {% comment %} {% else %}
+                                    <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </div> {% endcomment %}
+                    
+        
+                        {% comment %} <li class="page-item {% if not motifForm.has_next %}disabled{% endif %}">
+                            <a class="page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                                {% comment %} <span aria-hidden="true">Selanjutnya &raquo;</span> {% endcomment %}
+                                {% comment %} <span class="btn btn-primary" aria-hidden="true">Selanjutnya &raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div> {% endcomment %}
+
+        <div class="row tm-mb-90">
+            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item {% if not motifForm.has_previous %}disabled{% endif %}">
+                            <a class="btn btn-primary page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo; Sebelumnya</span>
+                            </a>
+                        </li>
+        
+                        <div class="tm-paging d-flex">
+                            {% for i in page_range %}
+                                {% if motifForm.number == i %}
+                                    <li class="page-item active">
+                                        <span class="btn btn-primary page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</span>
+                                    </li>
+                                {% else %}
+                                    {% comment %} <li class="page-item">
+                                        <a class="btn btn-primary page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a>
+                                    </li> {% endcomment %}
+                                {% endif %}
+                            {% endfor %}
                         </div>
         
                         <li class="page-item {% if not motifForm.has_next %}disabled{% endif %}">
-                            <a class="page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
+                            <a class="btn btn-primary page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
                                 <span aria-hidden="true">Selanjutnya &raquo;</span>
-                                {% comment %} <span class="btn btn-primary" aria-hidden="true">Selanjutnya &raquo;</span> {% endcomment %}
                             </a>
                         </li>
                     </ul>
                 </nav>
             </div>
         </div>
+        
 
 
     {% else %}

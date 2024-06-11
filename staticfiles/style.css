@@ -419,3 +419,44 @@ th, td {
     border: 1px solid #dee2e6;
     padding: 5px 10px;
 }
+.btn-custom {
+    background-color: #0033cc; /* Blue background */
+    color: white; /* White text */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+}
+.btn-custom:hover {
+    background-color: #002699; /* Darker blue on hover */
+}
+.pagination .page-item .page-link {
+    background-color: #0033cc; /* Blue background */
+    color: white; /* White text */
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px; /* Rounded corners */
+}
+
+.pagination .page-item .btn-primary:hover {
+    background-color: #002699; /* Darker blue on hover */
+}
+
+.pagination .page-item.active .btn-primary {
+    background-color: #001a66; /* Even darker blue for active page */
+}
+
+.pagination .page-item.number .page-link {
+    font-size: 14px; /* Smaller font size */
+    padding: 5px 10px; /* Smaller padding */
+}
