@@ -10,33 +10,34 @@
     <link rel="icon" href="{% static 'img/icon/NewTitle.ico'%}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'style.css'%}">
     <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
-    <title>Auto Generate</title>
-    <link rel="icon" href="{% static 'img/icon/NewTitle.png'%}" type="image/x-icon">
 </head>
-<body>
-    <div id="loader-wrapper">
-        <div id="loader"></div>
+<body> 
+    
 
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
-    <div class="row d-flex justify-content-center">
-        
-        <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding-top: 250px;">
-            <div class="col-md-10 col"><h3 class="font-weight-bold ml-md-0 mx-auto text-center text-sm-left"> Auto Generate Motif Online </h3>
-                <p class="mt-md-4  ml-md-0 ml-2 text-center text-sm-left " style="color: #000;">Motif Berhasil dibuat</p>
+ <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Auto Generate Motif Online</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="lead">Motif berhasil dibuat</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'list1' %}" class="btn btn-primary">Lihat Motif</a>
+                </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding-top: 0px;">
-            <a style="width: 295px" href="{% url 'list1' %}" class="btn btn-primary"> Lihat Motif</a>
-        </div>
     </div>
+
     <script src="{% static 'plugins.js'%}"></script>
     <script>
-        $(window).on("load", function() {
-            $('body').addClass('loaded');
+        // Tambahkan script untuk menampilkan modal saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", function() {
+            var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+            myModal.show();
         });
     </script>
 </body>
-</html>
+</html> 

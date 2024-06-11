@@ -52,19 +52,35 @@
             </div>
         </div>
         <div class="row tm-mb-50">
-            <div class="col-md-3 col-12">
+            <!-- <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
                         Cara penggunaan fitur generate motif
                     </h2>
                     <p class="mb-4" style="color: black;">
                         Halaman ini akan menjelaskan tentang cara menggunakan fitur yang tersedia dalam aplikasi, mulai dari tahap awal input yang digunakan hingga hasil akhir motif yang dihasilkan.                    </p>
-                    <div class="text-center">
+                    <div class="tm-button-left">
                         <a href="{% url 'help-generator' %}" class="btn btn-primary">Selengkapnya</a>
                     </div>
                 </div>                
-            </div> 
+            </div>  -->
             <div class="col-md-3 col-12">
+                <div class="tm-about-2-col" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <h2 class="tm-text-primary mb-4">
+                            Cara penggunaan fitur generate motif
+                        </h2>
+                        <p class="mb-4" style="color: black;">
+                            Halaman ini akan menjelaskan tentang cara menggunakan fitur yang tersedia dalam aplikasi, mulai dari tahap awal input yang digunakan hingga hasil akhir motif yang dihasilkan.  
+                        </p>
+                    </div>
+                    <div class="tm-button-left" style="margin-top: auto;">
+                        <a href="{% url 'help-generator' %}" class="btn btn-primary">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
                         Gambar Lidi yang Didukung oleh Sistem
@@ -72,12 +88,27 @@
                     <p class="mb-4" style="color: black;">
                         Halaman ini akan menjelaskan tentang karakteristik gambar lidi yang dapat diterima oleh sistem, termasuk kode warna yang diizinkan, ukuran gambar, dan batasan-batasan lainnya. 
                     </p>
-                    <div class="text-center">
+                    <div class="tm-button-left">
                         <a href="{% url 'help-lidi' %}" class="btn btn-primary">Selengkapnya</a>
                     </div>
                 </div>                
-            </div>
+            </div> -->
             <div class="col-md-3 col-12">
+                <div class="tm-about-2-col" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <h2 class="tm-text-primary mb-4">
+                            Gambar Lidi yang Didukung oleh Sistem
+                        </h2>
+                        <p class="mb-4" style="color: black;">
+                            Halaman ini akan menjelaskan tentang karakteristik gambar lidi yang dapat diterima oleh sistem, termasuk kode warna yang diizinkan, ukuran gambar, dan batasan-batasan lainnya. 
+                        </p>
+                    </div>
+                    <div class="tm-button-left" style="margin-top: auto;">
+                        <a href="{% url 'help-lidi' %}" class="btn btn-primary">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
                         Fitur Pencarian
@@ -85,12 +116,27 @@
                     <p class="mb-4" style="color: black;">
                         Halaman ini akan menjelaskan cara mencari motif dalam aplikasi berdasarkan beberapa kriteria yang dapat mempermudah pencarian.  
                     </p>
-                    <div class="text-center">
+                    <div class="tm-button-left">
                         <a href="{% url 'help-search' %}" class="btn btn-primary">Selengkapnya</a>
                     </div>
                 </div>                
-            </div> 
+            </div>  -->
             <div class="col-md-3 col-12">
+                <div class="tm-about-2-col" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <h2 class="tm-text-primary mb-4">
+                            Fitur Pencarian
+                        </h2>
+                        <p class="mb-4" style="color: black;">
+                            Halaman ini akan menjelaskan cara mencari motif dalam aplikasi berdasarkan beberapa kriteria yang dapat mempermudah pencarian. 
+                        </p>
+                    </div>
+                    <div class="tm-button-left" style="margin-top: auto;">
+                        <a href="{% url 'help-search' %}" class="btn btn-primary">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-3 col-12">
                 <div class="tm-about-2-col">
                     <h2 class="tm-text-primary mb-4">
                         Fitur Unduh
@@ -98,11 +144,27 @@
                     <p class="mb-4" style="color: black;">
                         Halaman ini akan menjelaskan cara menggunakan fitur unduh motif dalam aplikasi untuk disimpan di penyimpanan lokal komputer.
                     </p>
-                    <div class="text-center">
+                    <div class="tm-button-left">
                         <a href="{% url 'help-download' %}" class="btn btn-primary">Selengkapnya</a>
                     </div>
                 </div>                
-            </div>      
+            </div>  -->
+            <div class="col-md-3 col-12">
+                <div class="tm-about-2-col" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                    <div>
+                        <h2 class="tm-text-primary mb-4">
+                            Fitur Unduh
+                        </h2>
+                        <p class="mb-4" style="color: black;">
+                            Halaman ini akan menjelaskan cara menggunakan fitur unduh motif dalam aplikasi untuk disimpan di penyimpanan lokal komputer.
+                        </p>
+                    </div>
+                    <div class="tm-button-left" style="margin-top: auto;">
+                        <a href="{% url 'help-download' %}" class="btn btn-primary">Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+            
         </div> <!-- row -->
     </div>
     {% include "footer.html" %}
