@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,38 +34,141 @@
                                             </div>
                                         {% endfor %}
                                         {% if uname or email or pass1 or pass2 %}
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Username</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Username</label>
                                                 <input type="text" class="form-control" name ="username" placeholder="Username" value="{{uname}}"required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan  karakter berupa simbol</p>
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Email</label>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Username tanpa spasi dan simbol</p>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Email</label>
                                                 <input type="email" class="form-control" name ="email" placeholder="Email" value="{{email}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Contoh: email@gmail.com</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Contoh: example@email.com</p>
                                             
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Kata Sandi</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password1" placeholder="Kata Sandi" value="{{pass1}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Minimal 8 karakter</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Minimal 8 karakter</p>
                                             
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Konfirmasi Kata Sandi</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Konfirmasi Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password2" placeholder="Konfirmasi Kata Sandi" value="{{pass2}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Minimal 8 karakter</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Minimal 8 karakter</p>
                                         {% else %}
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Username</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Username</label>
                                                 <input type="text" class="form-control" name ="username" placeholder="Username" value="{{uname}}"required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Username tidak menerima inputan spasi dan karakter berupa simbol</p>
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Email</label>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Username tidak menerima inputan spasi dan karakter berupa simbol</p>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Email</label>
                                                 <input type="email" class="form-control" name ="email" placeholder="Email" value="{{email}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Contoh: email@gmail.com</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Contoh: example@email.com</p>
                                             
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Kata Sandi</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password1" placeholder="Kata Sandi" value="{{pass1}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Minimal 8 karakter</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Minimal 8 karakter</p>
                                             
-                                            <div class="form-group" style="padding-top: 10px;"> <label for="Mobile-Number">Konfirmasi Kata Sandi</label>
+                                            <div class="form-group" style="padding-top: 13px;"> <label for="Mobile-Number">Konfirmasi Kata Sandi</label>
                                                 <input type="password" class="form-control" name ="password2" placeholder="Konfirmasi Kata Sandi" value="{{pass2}}" required></div>
-                                                <p style="color: #999; font-size: 10px; margin-top: -25px;"> Minimal 8 karakter</p>
+                                                <p style="color: #999; font-size: 13px; margin-top: -25px;"> Minimal 8 karakter</p>
                                         {% endif %}
                                         <input type="submit" value="Daftar" id="SubmitStyle">
                                         </div><p class="text-center"><a href="{% url 'login' %}" target="_parent" rel="sponsored">Sudah Punya Akun? Klik Disini!</a></p>
+                                    </form>
+                                   
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="{% static 'plugins.js'%}"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
+    <script>
+        function previewImage(){
+            var file = document.getElementById("UploadImage").files;
+            if(file.length > 0){
+                var fileReader = new FileReader();
+
+                fileReader.onload = function(event){
+                    document.getElementById("preview").setAttribute("src", event.target.result);
+                };
+
+                fileReader.readAsDataURL(file[0]);
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
+    
+</body>
+</html> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
+    <title>Auto Generate</title>
+    <link rel="icon" href="{% static 'img/icon/NewTitle.ico'%}" type="image/x-icon">
+</head>
+<body>
+    <div class="container card-0 justify-content-center " style="border-style: outset; border-width: 5px;">
+        <div class="card-body px-sm-4 px-0">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10 col"><h3 class="font-weight-bold ml-md-0 mx-auto text-center text-sm-left"> Daftar </h3></div>
+            </div>
+            <div class="row justify-content-center round">
+                <div class="col-lg-10 col-md-12 ">
+                    <div class="card shadow-lg card-1">
+                        <div class="card-body inner-card">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-5 col-md-6 col-sm-12">
+                                    <form action="" method="post" onsubmit="return validateFormOnSubmit()">
+                                        {% csrf_token %}
+                                        {% for msg in messages %}
+                                            <div class="alert alert-danger">
+                                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                                {{msg}}
+                                            </div>
+                                        {% endfor %}
+                                        <div class="form-group" style="padding-top: 13px;">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{uname}}" required>
+                                        </div>
+                                        <p style="color: #999; font-size: 13px; margin-top: -25px;">Username tanpa spasi atau simbol</p>
+                                        <p id="usernameError" style="color: red; font-size: 13px; display: none;">Username tidak boleh mengandung spasi atau simbol.</p>
+
+                                        <div class="form-group" style="padding-top: 13px;">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="{{email}}" required>
+                                        </div>
+                                        <p style="color: #999; font-size: 13px; margin-top: -25px;">Contoh: example@email.com</p>
+                                        <p id="emailError" style="color: red; font-size: 13px; display: none;">Email tidak valid.</p>
+
+                                        <div class="form-group" style="padding-top: 13px;">
+                                            <label for="password1">Kata Sandi</label>
+                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Kata Sandi" value="{{pass1}}" required>
+                                        </div>
+                                        <p style="color: #999; font-size: 13px; margin-top: -25px;">Minimal 8 karakter</p>
+                                        <p id="passwordError" style="color: red; font-size: 13px; display: none;">Kata sandi harus minimal 8 karakter.</p>
+
+                                        <div class="form-group" style="padding-top: 13px;">
+                                            <label for="password2">Konfirmasi Kata Sandi</label>
+                                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Konfirmasi Kata Sandi" value="{{pass2}}" required>
+                                        </div>
+                                        <p style="color: #999; font-size: 13px; margin-top: -25px;">Minimal 8 karakter</p>
+                                        <p id="confirmPasswordError" style="color: red; font-size: 13px; display: none;">Kata sandi dan konfirmasi kata sandi harus sama.</p>
+
+                                        <input type="submit" value="Daftar" class="btn btn-primary mt-3" id="SubmitStyle">
+                                        <p class="text-center"><a href="{% url 'login' %}" target="_parent" rel="sponsored">Sudah Punya Akun? Klik Disini!</a></p>
                                     </form>
                                 </div>
                             </div>        
@@ -76,6 +179,101 @@
         </div>
     </div>
 
+    <script>
+        document.getElementById("username").addEventListener("input", validateUsernameOnInput);
+        document.getElementById("email").addEventListener("input", validateEmailOnInput);
+        document.getElementById("password1").addEventListener("input", validatePasswordOnInput);
+        document.getElementById("password2").addEventListener("input", validateConfirmPasswordOnInput);
+
+        function validateUsernameOnInput() {
+            var username = document.getElementById("username").value;
+            var usernameError = document.getElementById("usernameError");
+            var regex = /^[a-zA-Z0-9_]*$/;
+
+            if (!regex.test(username)) {
+                usernameError.style.display = "block";
+            } else {
+                usernameError.style.display = "none";
+            }
+        }
+
+        function validateEmailOnInput() {
+            var email = document.getElementById("email").value;
+            var emailError = document.getElementById("emailError");
+            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!regex.test(email)) {
+                emailError.style.display = "block";
+            } else {
+                emailError.style.display = "none";
+            }
+        }
+
+        function validatePasswordOnInput() {
+            var password = document.getElementById("password1").value;
+            var passwordError = document.getElementById("passwordError");
+
+            if (password.length < 8) {
+                passwordError.style.display = "block";
+            } else {
+                passwordError.style.display = "none";
+            }
+        }
+
+        function validateConfirmPasswordOnInput() {
+            var password = document.getElementById("password1").value;
+            var confirmPassword = document.getElementById("password2").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.style.display = "block";
+            } else {
+                confirmPasswordError.style.display = "none";
+            }
+        }
+
+        function validateFormOnSubmit() {
+            var username = document.getElementById("username").value;
+            var usernameError = document.getElementById("usernameError");
+            var email = document.getElementById("email").value;
+            var emailError = document.getElementById("emailError");
+            var password = document.getElementById("password1").value;
+            var passwordError = document.getElementById("passwordError");
+            var confirmPassword = document.getElementById("password2").value;
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            var usernameValid = /^[a-zA-Z0-9_]*$/.test(username);
+            var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            var passwordValid = password.length >= 8;
+            var confirmPasswordValid = password === confirmPassword;
+
+            if (!usernameValid) {
+                usernameError.style.display = "block";
+            } else {
+                usernameError.style.display = "none";
+            }
+
+            if (!emailValid) {
+                emailError.style.display = "block";
+            } else {
+                emailError.style.display = "none";
+            }
+
+            if (!passwordValid) {
+                passwordError.style.display = "block";
+            } else {
+                passwordError.style.display = "none";
+            }
+
+            if (!confirmPasswordValid) {
+                confirmPasswordError.style.display = "block";
+            } else {
+                confirmPasswordError.style.display = "none";
+            }
+
+            return usernameValid && emailValid && passwordValid && confirmPasswordValid;
+        }
+    </script>
     <script src="{% static 'plugins.js'%}"></script>
     <script>
         $(window).on("load", function() {
