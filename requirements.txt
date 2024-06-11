@@ -6,5 +6,6 @@ mysqlclient==2.2.1
 dj-static==0.0.6
 django-session-timeout==0.1
 django-seeder
+django-seed
 opencv-python
 python-decouple
