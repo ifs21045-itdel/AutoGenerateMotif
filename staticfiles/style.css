@@ -260,7 +260,7 @@ input[type="file"] {
 }
 
 li{
-    color: #999;
+    color: #000;
     font-size: 15px;
     line-height: 25px !important;
     font-weight: 500;
@@ -317,6 +317,7 @@ li{
   }
 .info {
     padding: 20px;
+    margin: 5px 10px;
     background-color: #007bff;
     color: white;
     border-radius: 10px;
