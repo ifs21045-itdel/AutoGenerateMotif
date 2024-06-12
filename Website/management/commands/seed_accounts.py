@@ -22,6 +22,14 @@ class Command(BaseCommand):
                 'is_staff': 1,
                 'is_active': 1,
                 'is_superuser': 1
+            },
+            {
+                'username': 'guest',
+                'email': 'guest@gmail.com',
+                'password': 'guest2024',
+                'is_staff': 1,
+                'is_active': 1,
+                'is_superuser': 1
             }
         ]
         

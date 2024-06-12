@@ -146,7 +146,8 @@ https://templatemo.com/tm-556-catalog-z
         top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
-        color: #002BA3;
+        color: #ffffff;
+        /* color: #002BA3; */
         font-size: 32px;
       }
 p { line-height: 1.8; }
