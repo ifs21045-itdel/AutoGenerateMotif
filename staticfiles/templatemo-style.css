@@ -269,7 +269,7 @@ a.tm-text-primary:hover { color:#666666; }
 .tm-search-input {
     width: 360px;
     border-radius: 0;
-    padding: 11px 15px;
+    padding: 12px 15px;
     color: #002BA3;
     border: none;
     z-index: 2;
@@ -467,7 +467,7 @@ figure.effect-ming:hover img { opacity: 0.9; }
     margin-bottom: 5px;    
 }
 
-.tm--links li a { color: #999999; }
+.tm-footer-links li a { color: #999999; }
 .tm-footer-links li a:hover { color: #002BA3; }
 
 .tm-social-links li {
@@ -609,12 +609,11 @@ select:not([multiple]) {
 .form-control,
 input:-internal-autofill-selected,
 select:not([multiple]) {
-/*     color: #000 !important; */
     color: rgba(0,0,0,0.5) !important;
 }
 
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #999;
+    color:  #999;
     opacity: 1; /* Firefox */
 }
 

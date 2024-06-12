@@ -96,7 +96,22 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #     }
 # }
 
-# # DATABASE SERVER NANTINYA
+# DATABASE SERVER NANTINYA
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'GenerateMotif',
+        'USER': 'root', 
+        'PASSWORD': 'root',
+        'HOST': 'project_mysql',
+        'PORT': '3307',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+
+# # database server
 # DATABASES = {
 #     'default':{
 #         'ENGINE': 'django.db.backends.mysql',
@@ -104,29 +119,13 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #         'USER': 'root', 
 #         'PASSWORD': 'root',
 #         # 'HOST': 'mysql-db',
-#         'HOST': 'project_mysql',
-#         'PORT': '3308',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
 #         'OPTIONS': {
 #             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
 #         }
 #     }
 # }
-
-# database server
-DATABASES = {
-    'default':{
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'GenerateMotif',
-        'USER': 'root', 
-        'PASSWORD': 'root',
-        # 'HOST': 'mysql-db',
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
-    }
-}
 
 
 

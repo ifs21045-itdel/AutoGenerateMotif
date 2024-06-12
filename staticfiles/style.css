@@ -16,6 +16,11 @@ body,html{
 .nav-link{
     font-size: 1.2rem !important;
 }
+
+.text-white {
+    color: #fff !important;
+}
+
 .crop{
     /* object-fit: cover;
     width: 100vw; */
@@ -25,7 +30,7 @@ body,html{
     justify-content: center;
 }
 p {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 25px !important;
     font-weight: 500;
     font-family: "Roboto", Sans-serif;
@@ -47,7 +52,7 @@ p {
 
 
 .btn {
-    letter-spacing: 1px;
+    letter-spacing: 0px;
 }
 
 #IDImage2{
@@ -92,7 +97,7 @@ input:focus {
 
 label {
     margin-bottom: 2px;
-    font-weight: normal;
+    font-weight: bolder;
     font-size: 15px;
 }
 
@@ -242,7 +247,7 @@ input::file-selector-button {
     background-size: auto;
     background-color: #fff;
     padding: 10px 120px 10px 120px;
-    border-radius: 3px; 
+    border-radius: 3px;
 }
 
 input[type="file"] {
@@ -317,7 +322,6 @@ li{
   }
 .info {
     padding: 20px;
-    margin: 5px 10px;
     background-color: #007bff;
     color: white;
     border-radius: 10px;
@@ -398,6 +402,7 @@ th, td {
     width: 20%; /* Sesuaikan dengan kebutuhan */
     transition: transform 0.3s; /* Efek transisi saat dihover */
 }
+  
 
 .tm-paging-col {
     display: flex;
