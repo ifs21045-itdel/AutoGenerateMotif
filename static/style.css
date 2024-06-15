@@ -97,7 +97,8 @@ input:focus {
 
 label {
     margin-bottom: 2px;
-    font-weight: bolder;
+    font-weight: normal;
+    /* font-weight: bolder; */
     font-size: 15px;
 }
 

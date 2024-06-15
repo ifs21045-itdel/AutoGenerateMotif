@@ -104,7 +104,7 @@ DATABASES = {
         'USER': 'root', 
         'PASSWORD': 'root',
         'HOST': 'project_mysql',
-        'PORT': '3307',
+        'PORT': '3308',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
@@ -117,7 +117,7 @@ DATABASES = {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'GenerateMotif',
 #         'USER': 'root', 
-#         'PASSWORD': 'root',
+#         'PASSWORD': '',
 #         # 'HOST': 'mysql-db',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
