@@ -31,7 +31,8 @@ SECRET_KEY = 'django-insecure-r1dikf)xpbv#2$fln6e3t*^#e)sceifw-(d-mdbd0zpewh)vgr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['generatemotif.ditenun.com','172.21.169.28', 'localhost', '127.0.0.1', '[::1]']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
@@ -62,7 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',
+    # 'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'Website.urls'
@@ -103,8 +104,9 @@ DATABASES = {
         'NAME': 'GenerateMotif',
         'USER': 'root', 
         'PASSWORD': 'root',
-        'HOST': 'project_mysql',
-        'PORT': '3308',
+        # 'HOST': 'project_mysql',
+        'HOST': 'mysql-db',
+        'PORT': '3309',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
@@ -164,10 +166,19 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = 'staticfiles'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+# STATIC_URL = 'static/' #sebelumnya
+# STATIC_ROOT = 'staticfiles' #sebelumnya
+
+
+# STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')), ) # sebelumnya
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS = ((os.path.join(BASE_DIR, 'static')), )
