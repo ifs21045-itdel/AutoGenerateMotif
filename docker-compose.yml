@@ -1,34 +1,35 @@
-version: '3.8'
+version: '3.8'  # Menggunakan Docker Compose versi 3.8
+
 services:
   mysql-db:
-    image: mysql:8  
-    container_name: project_mysql
-    restart: unless-stopped
+    image: mysql:8  # Menggunakan image MySQL versi 8
+    container_name: project_mysql  # Nama container untuk MySQL
+    restart: unless-stopped  # Restart container kecuali dihentikan secara manual
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql  # Volume untuk menyimpan data MySQL
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_DATABASE: 'GenerateMotif'
-      MYSQL_TCP_PORT: '3309'
+      MYSQL_ROOT_PASSWORD: 'root'  # Password root untuk MySQL
+      MYSQL_DATABASE: 'GenerateMotif'  # Nama database yang akan dibuat
+      MYSQL_TCP_PORT: '3309'  # Port TCP MySQL yang digunakan
     ports:
-      - "3309:3309"
+      - "3309:3309"  # Memetakan port 3309 dari host ke port 3309 dalam container
   
   django:
     build: 
-      context: .
-      dockerfile: Dockerfile
-    container_name: project_django
-    command: sh -c "sleep 10 && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py seed_accounts && python manage.py runserver 0.0.0.0:8000"
-    restart: unless-stopped
+      context: .  # Menggunakan konteks dari direktori saat ini
+      dockerfile: Dockerfile  # Menggunakan Dockerfile untuk membangun image
+    container_name: project_django  # Nama container untuk Django
+    command: sh -c "sleep 10 && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py seed_accounts && python manage.py runserver 0.0.0.0:8000"  # Perintah untuk menjalankan Django
+    restart: unless-stopped  # Restart container kecuali dihentikan secara manual
     volumes:
-      - .:/app
+      - .:/app  # Mount direktori saat ini ke dalam container di /app
     ports:
-      - "8008:8000"
+      - "8008:8000"  # Memetakan port 8008 dari host ke port 8000 dalam container
     env_file:
-      - .env
+      - .env  # Menggunakan file lingkungan .env untuk variabel lingkungan
     depends_on:
-      - mysql-db
+      - mysql-db  # Layanan ini bergantung pada mysql-db
 
 volumes:
   mysql-data:
-    driver: local
+    driver: local  # Menetapkan driver volume sebagai lokal

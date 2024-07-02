@@ -466,3 +466,11 @@ th, td {
     font-size: 14px; /* Smaller font size */
     padding: 5px 10px; /* Smaller padding */
 }
+
+.form-group {
+    padding-top: 1px;
+}
+#preview {
+    width: 100%;
+    margin-top: 10px;
+}
