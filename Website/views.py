@@ -18,6 +18,7 @@ from .zipModule import ZIP
 from .deleteModule import Delete
 import sys, os, re
 
+from django.utils.datastructures import MultiValueDictKeyError
 
 
 @login_required(login_url='login')
@@ -70,6 +71,7 @@ def generator(request):
     navlink = ['nav-link nav-link-1 active ','nav-link nav-link-2','nav-link nav-link-3','nav-link nav-link-4']
     return render(request, 'started.html', {'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
 
+# external lama
 @login_required(login_url='login')
 def external(request):
     jmlBaris = request.POST.get('jmlBaris')
@@ -149,6 +151,45 @@ def external(request):
         jenisGenerate = ['Tabu Search', 'Greedy Serach', 'Random Search', 'ACO']
 
         return render(request, 'motif.html',{'user':username,'jmlBaris':jmlBaris, 'raw_url':templateurl, 'edit_url': URLEdit, 'urutan_lidi':UrutanLidi, 'edit_url2': URLEdit2, 'urutan_lidi2':UrutanLidi2, 'edit_url3': URLEdit3, 'urutan_lidi3':UrutanLidi3, 'edit_url4': URLEdit4, 'urutan_lidi4':UrutanLidi4, 'jenis1':jenisGenerate[3], 'jenis2':jenisGenerate[3], 'jenis3':jenisGenerate[3], 'jenis4':jenisGenerate[3],'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+
+# external paling baru
+# @login_required(login_url='login')
+# def external(request):
+#     jmlBaris = request.POST.get('jmlBaris')
+#     user = request.user
+#     username = user.username
+#     image_url = request.POST.get('lidiSelect')  # Ambil URL gambar dari select option
+    
+#     navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2 active', 'nav-link nav-link-3', 'nav-link nav-link-4']
+    
+#     # Validasi jumlah baris
+#     if not jmlBaris:
+#         messages.error(request, "Jumlah baris harus diisi.")
+#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
+    
+#     jmlBaris = int(jmlBaris)
+    
+#     # Unduh gambar dari URL
+#     response = requests.get(image_url)
+#     if response.status_code != 200:
+#         messages.error(request, "Gagal mengunduh gambar dari URL yang diberikan.")
+#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
+    
+#     # Simpan gambar ke dalam sistem penyimpanan
+#     fs = FileSystemStorage()
+#     filename = fs.save(user.username + '.jpg', ContentFile(response.content))
+#     fileurl = fs.url(filename)
+    
+#     # Lanjutkan proses seperti sebelumnya
+#     Object = Check(str(fileurl), jmlBaris)
+    
+#     if Object:
+#         # Lakukan sesuatu dengan Object yang diperoleh dari Check
+#         # Contoh: Menyimpan data ke dalam database atau menampilkan hasil
+#         return render(request, 'external.html', {'Object': Object, 'status': user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
+#     else:
+#         messages.error(request, "Gagal melakukan proses pembuatan motif.")
+#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
 
 @login_required(login_url='login')
 def save(request):
