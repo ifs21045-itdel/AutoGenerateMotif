@@ -101,11 +101,11 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'generatemotif',
+        'NAME': 'auto_generate_motif',
         'USER': 'root',
         'PASSWORD': 'root',  # Sesuaikan dengan password MariaDB Anda
-        'HOST': 'localhost',  # atau 'localhost'
-        'PORT': '3307',
+        'HOST': '127.0.0.1',  # atau 'localhost'
+        'PORT': '3306',
     }
 }
 
