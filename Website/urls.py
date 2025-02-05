@@ -21,10 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls,),
-    path('generator', views.image, name="generator"),
+    path('generator/', views.image, name="generator"),
     path('Monitoring', views.loading, name="Monitoring"),
     path('home/', views.generator, name="home"),
-    path('external', views.external),
+    path('generator/external', views.external),
+    path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save', views.save),
     path('PostImage', views.PostImage),
     path('post', views.createpost),
@@ -46,7 +47,7 @@ urlpatterns = [
     path('search', views.Search, name="search"),
     path('', views.LoginPage, name='login'),
     path('logout/', views.LogoutPage, name='logout'),
-    path('register/', views.SignupPage, name='signup')
+    path('register/', views.SignupPage, name='signup'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

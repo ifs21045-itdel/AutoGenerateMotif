@@ -83,7 +83,7 @@ def external(request):
     image=request.FILES['image']
     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2 active','nav-link nav-link-3','nav-link nav-link-4']
     path = os.getcwd()
-    # print("path now", path)
+    print("path now", path)
     # print("image is ", image)
     user = request.user
     status = user.is_staff
@@ -619,5 +619,8 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
+
+def gabungkan_motif(request):
+    return render(request, 'gabung-motif.html')
 
 

@@ -58,10 +58,10 @@
                                         <div class="text-center">
                                             {% if raw_url or edit_url %}
                                             <p style="text-align: center;"> Motif Asal </p>
-                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;">
+                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;" alt="motif asal">
                                             <br>
                                             <p style="text-align: center;"> Hasil Motif </p>
-                                            <img src={{edit_url}} id="Hasil1">
+                                            <img src={{edit_url}} id="Hasil1" alt="hasil1">
                                             {% endif %}
                                         </div>
                                         <div class="text-end" style="padding-top: 20px;">
@@ -92,10 +92,10 @@
                                         <div class="text-center">
                                             {% if raw_url or edit_url2 %}
                                             <p style="text-align: center;"> Motif Asal </p>
-                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;">
+                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;" alt="hasil">
                                             <br>
                                             <p style="text-align: center;"> Hasil Motif </p>
-                                            <img src={{edit_url2}} id="Hasil1">
+                                            <img src={{edit_url2}} id="Hasil1" alt="hasil2" >
                                             {% endif %}
                                         </div>
                                         <div class="text-end" style="padding-top: 20px;">
@@ -126,10 +126,10 @@
                                         <div class="text-center">
                                             {% if raw_url or edit_url3 %}
                                             <p style="text-align: center;"> Motif Asal </p>
-                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;">
+                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;" alt="asal">
                                             <br>
                                             <p style="text-align: center;"> Hasil Motif </p>
-                                            <img src={{edit_url3}} id="Hasil1">
+                                            <img src={{edit_url3}} id="Hasil1" alt="hasil3">
                                             {% endif %}
                                         </div>
                                         <div class="text-end" style="padding-top: 20px;">
@@ -160,24 +160,21 @@
                                         <div class="text-center">
                                             {% if raw_url or edit_url4 %}
                                             <p style="text-align: center;"> Motif Asal </p>
-                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;">
+                                            <img src={{raw_url}} id="Hasil" style="width: 100%; margin-bottom: 10px;" alt="asal">
                                             <br>
                                             <p style="text-align: center;"> Hasil Motif </p>
-                                            <img src={{edit_url4}} id="Hasil1">
+                                            <img src={{edit_url4}} id="Hasil1" alt="hasil1">
                                             {% endif %}
                                         </div>
                                         <div class="text-end" style="padding-top: 20px;">
-                                        <input type="submit" value="Pilih Lidi" id="SubmitStyle">
+                                            <input type="submit" value="Pilih Lidi" id="SubmitStyle">
+                                        </div>
                                         
                                         <div class="text-center">
                                             <img src="{{combined_motif_url}}" id="GabunganMotif" style="width: 100%; margin-bottom: 10px;">
-                                            <form action="save_combined" method="post" enctype="multipart/form-data" id="FormGabunganMotif">
-                                                {% csrf_token %}
-                                                <input type="hidden" class="form-control" name="combinedMotif" value="{{combined_motif_url}}" required>
-                                                <div class="text-end" style="padding-top: 20px;">
-                                                    <input type="submit" value="Gabungkan Motif" id="SubmitStyle" class="btn-custom">
-                                                </div>
-                                            </form>
+                                            <a href="{% url 'gabungkan_motif' %}" method="get" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 5px; padding: 12px 50px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: block; width: 100%;"> Gabungkan Motif </a>
+                                    
+                                                
                                         </div>
 
                                         <div class="text-center" style="margin-top: 30px;">

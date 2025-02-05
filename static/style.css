@@ -250,6 +250,19 @@ input::file-selector-button {
     padding: 10px 120px 10px 120px;
     border-radius: 3px;
 }
+#GabungkanMotifButton {
+    background-color: #002BA3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#GabungkanMotifButton:hover {
+    background-color: #0046D5;
+}
 
 input[type="file"] {
 	background: url(/static/img/icon/icons8-upload_1.gif);
