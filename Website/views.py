@@ -624,3 +624,74 @@ def gabungkan_motif(request):
     return render(request, 'gabung-motif.html')
 
 
+@login_required(login_url='login')
+def external(request):
+    jmlBaris = request.POST.get('jmlBaris')
+    Baris = "1"
+    user = request.user
+    username = user.username
+    image = request.FILES['image']
+    navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2 active', 'nav-link nav-link-3', 'nav-link nav-link-4']
+    
+    # Simpan gambar ke dalam sistem
+    fs = FileSystemStorage()
+    filename = fs.save(image.name, image)
+    fileurl = fs.open(filename)
+    templateurl = fs.url(filename)
+
+    # Validasi format file
+    Object = Check(str(fileurl), jmlBaris)
+    formatStatus = Object.checkformat()
+    
+    if formatStatus == "0":
+        messages.error(request, "Format file yang diproses hanya menerima jpg")
+        return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
+
+    # Validasi spesifikasi gambar
+    state, imgHeight = Object.checkSpecImage1()
+    if state == "0":
+        return render(request, 'failed.html', {'imgHeight': str(imgHeight)})
+
+    state, imgWidth = Object.checkSpecImage2()
+    if state == "0":
+        return render(request, 'failedWidth.html', {'imgWidth': str(imgWidth)})
+
+    # Generate 4 hasil motif
+    jmlBaris = str(jmlBaris)
+    Image = CreateImageMotif(str(fileurl), str(filename), jmlBaris, Baris, "4", username)
+
+    if int(jmlBaris) % 2 == 0:
+        URLEdit1, UrutanLidi1 = Image.imageEven()
+        URLEdit2, UrutanLidi2 = Image.imageEven()
+        URLEdit3, UrutanLidi3 = Image.imageEven()
+        URLEdit4, UrutanLidi4 = Image.imageEven()
+    else:
+        URLEdit1, UrutanLidi1 = Image.imageOdd()
+        URLEdit2, UrutanLidi2 = Image.imageOdd()
+        URLEdit3, UrutanLidi3 = Image.imageOdd()
+        URLEdit4, UrutanLidi4 = Image.imageOdd()
+
+    jenisGenerate = ['Tabu Search', 'Greedy Search', 'Random Search', 'ACO']
+
+    # Kirim data ke template
+    return render(request, 'gabung-motif.html', {
+        'user': username,
+        'jmlBaris': jmlBaris,
+        'raw_url': templateurl,
+        'edit_url1': URLEdit1,
+        'edit_url2': URLEdit2,
+        'edit_url3': URLEdit3,
+        'edit_url4': URLEdit4,
+        'urutan_lidi1': UrutanLidi1,
+        'urutan_lidi2': UrutanLidi2,
+        'urutan_lidi3': UrutanLidi3,
+        'urutan_lidi4': UrutanLidi4,
+        'jenis1': jenisGenerate[0],
+        'jenis2': jenisGenerate[1],
+        'jenis3': jenisGenerate[2],
+        'jenis4': jenisGenerate[3],
+        'navlink1': navlink[0],
+        'navlink2': navlink[1],
+        'navlink3': navlink[2],
+        'navlink4': navlink[3],
+    })
