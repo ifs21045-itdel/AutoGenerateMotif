@@ -1,6 +1,6 @@
 """Website URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The urlpatterns list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
 Function views
@@ -81,4 +81,3 @@ urlpatterns = [
 #     path('generate-motif/logout/',views.LogoutPage,name='logout'),
 #     path('generate-motif/sregister/',views.SignupPage,name='signup')
 # ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
