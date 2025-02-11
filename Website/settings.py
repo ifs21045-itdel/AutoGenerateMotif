@@ -35,8 +35,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['generatemotif.ditenun.com','172.21.169.28', 'localhost', '127.0.0.1', '[::1]']
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-MEDIA_ROOT = 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SESSION_EXPIRE_SECONDS = 3600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True

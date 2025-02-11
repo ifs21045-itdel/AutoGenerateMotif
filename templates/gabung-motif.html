@@ -38,57 +38,60 @@
         </div>
         <div class="row justify-content-center round">
           <div class="col-lg-10 col-md-12">
-            <div class="card shadow-lg card-1">
-              <div class="card-body inner-card">
-                <div class="row">
-                  <div class="col-md-6 text-center">
-                    <h5>Motif Asal</h5>
-                    <img
-                      src="{{ raw_url }}"
-                      class="img-fluid"
-                      alt="Motif Asal"
-                    />
-                    <h5 class="mt-4">Hasil Motif</h5>
-                    <img
-                      src="{{ edit_url }}"
-                      class="img-fluid"
-                      alt="Hasil Motif"
-                    />
+              <div class="card shadow-lg card-1">
+                  <div class="card-body inner-card">
+                      <div class="row">
+                          <!-- Motif Asal -->
+                        <div class="col-md-4 text-center">
+                            <h5>Motif Asal</h5>
+                            {% if raw_url %}
+                            <img src="{{ raw_url }}" class="img-fluid" alt="Motif Asal" style="width: 100%; margin-bottom: 10px;" />
+                            {% else %}
+                            <p>Gambar tidak tersedia</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 text-center">
+                            <h5>Hasil Motif</h5>
+                            {% if edit_url %}
+                            <img src="{{ edit_url }}" class="img-fluid" alt="Hasil Motif" style="width: 100%; margin-bottom: 10px;" />
+                            {% else %}
+                            <p>Gambar tidak tersedia</p>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="col-md-4 text-center">
+                            <h5>Penggabungan Motif</h5>
+                            {% if combined_motif_url %}
+                            <img src="{{ combined_motif_url }}" class="img-fluid" alt="Penggabungan Motif" style="width: 100%; margin-bottom: 10px;" />
+                            {% else %}
+                            <p>Gambar gabungan tidak tersedia</p>
+                            {% endif %}
+                        </div>                        
+                      </div>
+      
+                      <!-- Tombol Simpan dan Ubah Warna -->
+                      <div class="row mt-4 text-center">
+                          <div class="col-md-12">
+                              <button class="btn btn-primary">Simpan Motif</button>
+                          </div>
+                      </div>
+      
+                      <div class="row mt-3 text-center">
+                          <div class="col-md-12">
+                              <button class="btn btn-secondary">Ubah Warna</button>
+                          </div>
+                      </div>
+      
+                      <div class="row mt-4">
+                          <div class="col-md-12 text-center">
+                              <a href="{% url 'generator' %}" class="btn btn-outline-primary">Kembali</a>
+                          </div>
+                      </div>
                   </div>
-
-                  <!-- Menampilkan Penggabungan Motif di samping Motif Asal -->
-                  <div class="col-md-6 text-center">
-                    <h5>Penggabungan Motif</h5>
-                    <div class="border p-4" style="height: 200px"></div>
-                  </div>
-                </div>
-
-                <div class="row mt-4 text-center">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary">Simpan Motif</button>
-                  </div>
-                </div>
-
-                <!-- Ubah Warna button moved below Simpan Motif -->
-                <div class="row mt-3 text-center">
-                  <div class="col-md-12">
-                    <button class="btn btn-secondary">Ubah Warna</button>
-                  </div>
-                </div>
-
-                <div class="row mt-4">
-                  <div class="col-md-12 text-center">
-                    <a
-                      href="{% url 'generator' %}"
-                      class="btn btn-outline-primary"
-                      >Kembali</a
-                    >
-                  </div>
-                </div>
               </div>
-            </div>
           </div>
-        </div>
+      </div>
       </div>
     </div>
   </body>

@@ -68,8 +68,30 @@ def updaterecord(request, id):
 
 @login_required(login_url='login')
 def generator(request):
-    navlink = ['nav-link nav-link-1 active ','nav-link nav-link-2','nav-link nav-link-3','nav-link nav-link-4']
-    return render(request, 'started.html', {'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+    # Pengolahan gambar motif
+    if request.method == 'POST':
+        # Ambil data gambar dari form atau sumber lain
+        image = request.FILES.get('image')  # Misalnya gambar yang di-upload
+        jmlBaris = request.POST.get('jmlBaris')
+        user = request.user.username
+
+        # Proses gambar menggunakan modul CreateImageMotif
+        Image = CreateImageMotif(image, jmlBaris, user)  # Sesuaikan pemanggilan metode sesuai kebutuhan
+        URLEdit, UrutanLidi = Image.imageEven()  # Ambil URL gambar yang dihasilkan
+        URLEdit2, UrutanLidi2 = Image.imageEven()
+        URLEdit3, UrutanLidi3 = Image.imageEven()
+        URLEdit4, UrutanLidi4 = Image.imageEven()
+
+        # Menyimpan URL gambar dalam session untuk diteruskan ke halaman kedua
+        request.session['raw_url'] = URLEdit  # Simpan URL motif asal
+        request.session['edit_url'] = URLEdit2  # Simpan URL hasil motif
+        request.session['combined_motif_url'] = URLEdit3  # Simpan URL motif gabungan
+
+        return redirect('gabungkan_motif')  # Redirect ke halaman gabungan motif setelah gambar diproses
+
+    # Jika tidak ada pengolahan gambar, hanya tampilkan halaman awal
+    navlink = ['nav-link nav-link-1 active', 'nav-link nav-link-2', 'nav-link nav-link-3', 'nav-link nav-link-4']
+    return render(request, 'started.html', {'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
 
 # external lama
 @login_required(login_url='login')
@@ -95,9 +117,7 @@ def external(request):
     filename = fs.save(image.name, image)
     fileurl = fs.open(filename)
     templateurl = fs.url(filename)
-    # print("file raw url",filename)
-    # print("file full url", fileurl)
-    # print("template url ", templateurl)
+
 
     # Memanggil Object Check
     
@@ -150,46 +170,29 @@ def external(request):
 
         jenisGenerate = ['Tabu Search', 'Greedy Serach', 'Random Search', 'ACO']
 
-        return render(request, 'motif.html',{'user':username,'jmlBaris':jmlBaris, 'raw_url':templateurl, 'edit_url': URLEdit, 'urutan_lidi':UrutanLidi, 'edit_url2': URLEdit2, 'urutan_lidi2':UrutanLidi2, 'edit_url3': URLEdit3, 'urutan_lidi3':UrutanLidi3, 'edit_url4': URLEdit4, 'urutan_lidi4':UrutanLidi4, 'jenis1':jenisGenerate[3], 'jenis2':jenisGenerate[3], 'jenis3':jenisGenerate[3], 'jenis4':jenisGenerate[3],'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+        return render(request, 'gabung-motif.html', {
+    'user': username,
+    'jmlBaris': jmlBaris,
+    'raw_url': templateurl,
+    'edit_url': URLEdit,
+    'urutan_lidi': UrutanLidi,
+    'edit_url2': URLEdit2,
+    'urutan_lidi2': UrutanLidi2,
+    'edit_url3': URLEdit3,
+    'urutan_lidi3': UrutanLidi3,
+    'edit_url4': URLEdit4,
+    'urutan_lidi4': UrutanLidi4,
+    'jenis1': jenisGenerate[3],
+    'jenis2': jenisGenerate[3],
+    'jenis3': jenisGenerate[3],
+    'jenis4': jenisGenerate[3],
+    'navlink1': navlink[0],
+    'navlink2': navlink[1],
+    'navlink3': navlink[2],
+    'navlink4': navlink[3]
+})
 
-# external paling baru
-# @login_required(login_url='login')
-# def external(request):
-#     jmlBaris = request.POST.get('jmlBaris')
-#     user = request.user
-#     username = user.username
-#     image_url = request.POST.get('lidiSelect')  # Ambil URL gambar dari select option
-    
-#     navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2 active', 'nav-link nav-link-3', 'nav-link nav-link-4']
-    
-#     # Validasi jumlah baris
-#     if not jmlBaris:
-#         messages.error(request, "Jumlah baris harus diisi.")
-#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
-    
-#     jmlBaris = int(jmlBaris)
-    
-#     # Unduh gambar dari URL
-#     response = requests.get(image_url)
-#     if response.status_code != 200:
-#         messages.error(request, "Gagal mengunduh gambar dari URL yang diberikan.")
-#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
-    
-#     # Simpan gambar ke dalam sistem penyimpanan
-#     fs = FileSystemStorage()
-#     filename = fs.save(user.username + '.jpg', ContentFile(response.content))
-#     fileurl = fs.url(filename)
-    
-#     # Lanjutkan proses seperti sebelumnya
-#     Object = Check(str(fileurl), jmlBaris)
-    
-#     if Object:
-#         # Lakukan sesuatu dengan Object yang diperoleh dari Check
-#         # Contoh: Menyimpan data ke dalam database atau menampilkan hasil
-#         return render(request, 'external.html', {'Object': Object, 'status': user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
-#     else:
-#         messages.error(request, "Gagal melakukan proses pembuatan motif.")
-#         return render(request, 'home.html', {"status": user.is_staff, 'navlink1': navlink[0], 'navlink2': navlink[1], 'navlink3': navlink[2], 'navlink4': navlink[3]})
+
 
 @login_required(login_url='login')
 def save(request):
@@ -274,64 +277,6 @@ def Search(request):
     if(f == ''):
          return redirect('list1')
     return render(request,"search.html", context)
-
-# @login_required(login_url='login')
-# def show(request):
-#     user = request.user
-#     status = user.is_staff
-#     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2','nav-link nav-link-3 active','nav-link nav-link-4']
-#     if status == 0:
-#           status=None
-    
-#     motifForm = MotifForm1.objects.all().values().order_by('time').reverse()
-#     paginator = Paginator(motifForm, 15)
-
-#     page_number = request.GET.get('page')
-#     page = paginator.get_page(page_number)
-#     totalPage = page.paginator.num_pages
-
-#     try:
-#         page_obj = paginator.get_page(page_number)
-#     except EmptyPage:
-#         page_obj = paginator.get_page(totalPage)
-        
-
-#     context = {"motifForm":page_obj,'page_range':paginator.get_elided_page_range(page_obj.number,on_each_side=3, on_ends=2), "lastpage": totalPage, "status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]}
-
-#     return render(request, "ListMotif.html", context)
-
-# @login_required(login_url='login')
-# def show(request):
-#     user = request.user
-#     status = user.is_staff
-#     navlink = ['nav-link nav-link-1 ', 'nav-link nav-link-2', 'nav-link nav-link-3 active', 'nav-link nav-link-4']
-#     if status == 0:
-#         status = None
-    
-#     motifForm = MotifForm1.objects.all().values().order_by('time').reverse()
-#     paginator = Paginator(motifForm, 9)  # 9 gambar per halaman
-
-#     page_number = request.GET.get('page')
-#     page = paginator.get_page(page_number)
-#     totalPage = page.paginator.num_pages
-
-#     try:
-#         page_obj = paginator.get_page(page_number)
-#     except EmptyPage:
-#         page_obj = paginator.get_page(totalPage)
-    
-#     context = {
-#         "motifForm": page_obj,
-#         'page_range': paginator.get_elided_page_range(page_obj.number, on_each_side=1, on_ends=1),  # Menampilkan maksimal 3 halaman
-#         "lastpage": totalPage,
-#         "status": status,
-#         'navlink1': navlink[0],
-#         'navlink2': navlink[1],
-#         'navlink3': navlink[2],
-#         'navlink4': navlink[3]
-#     }
-
-#     return render(request, "ListMotif.html", context)
 
 @login_required(login_url='login')
 def show(request):
@@ -558,6 +503,22 @@ def help_download(request):
     navlink = ['nav-link nav-link-1 ','nav-link nav-link-2','nav-link nav-link-3','nav-link nav-link-4 active']
     return render(request, "help-download.html", {'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
 
+def gabungkan_motif(request):
+    raw_url = request.session.get('raw_url', None)
+    edit_url = request.session.get('edit_url', None)
+    combined_motif_url = request.session.get('combined_motif_url', None)
+
+    # Print data gambar di session untuk debugging
+    print(f"raw_url: {raw_url}")
+    print(f"edit_url: {edit_url}")
+    print(f"combined_motif_url: {combined_motif_url}")
+
+    return render(request, 'gabung-motif.html', {
+        'raw_url': raw_url,
+        'edit_url': edit_url,
+        'combined_motif_url': combined_motif_url
+    })
+
 def SignupPage(request):
     if request.user.is_authenticated:
          return redirect('home')
@@ -619,8 +580,5 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
-
-def gabungkan_motif(request):
-    return render(request, 'gabung-motif.html')
 
 
