@@ -5,251 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css'%}">
-    <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
-    <title>Modul Lidi</title>
-    <link rel="icon" href="{% static 'img/icon/NewTitle.ico'%}" type="image/x-icon">
+    <title>Pilih Motif untuk Digabungkan</title>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
 
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
+<div class="container mt-5">
+    <h2 class="text-center">Pilih Motif untuk Digabungkan</h2>
+    <p class="text-center">Pilih minimal 2 dan maksimal 4 motif dari hasil generate.</p>
 
-    </div>
-
-    {% include "header.html" %}
-    {% for msg in messages %}
-        <div class="info">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-            {{msg}}
-        </div>
-    {% endfor %}
-    {% if status %}
-        <div class="tm-hero d-flex justify-content-center align-items-center ">
-            <img class="imageBehind" src="{% static 'img/icon/Search.png'%}" draggable="false">
-            <form action="search" method="post" enctype="multipart/form-data" class="d-flex tm-search-form">
-                {% csrf_token %}
-                <select id="filter" name="filter" style="border-width: 0px; margin-right: 10px; height: 48px; color: #002BA3; z-index: 2;">
-                    <option name="filter" value="Nama">Filter</option>
-                    <option name="filter" value="Jumlah Baris">Jumlah Baris</option>
-                    <option name="filter" value="Nama">Nama</option>
-                    <option name="filter" value="Tanggal">Tanggal</option>
-                </select>
-                <input name="SearchMotif" class="form-control tm-search-input" type="text" placeholder="Cari..." aria-label="Search">
-                <button class="btn btn-outline-primary tm-search-btn" value=""type="submit">
-                    <img src="{% static 'img/icon/search-interface-symbol.png'%}" style="height:80%;">
-                </button>
-                </button>
-            </form>
-        </div>
-
-        
-        {% comment %} <div class="row tm-mb-90 tm-gallery" style=" margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
-            {% for entries in motifForm %}
-                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
-                    <figure class="effect-ming tm-video-item">
-                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
-                        <figcaption class="d-flex align-items-center justify-content-center">
-                            <h2><b>Detail</b></h2>
-                                <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
-                        </figcaption>                    
-                    </figure>
-                    <div class="d-flex justify-content-between tm-text-gray">
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
-                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
-                    </div>
-                </div>
-            {% endfor %}
-
-        </div> {% endcomment %}
-
-        {% comment %}Test 2{% endcomment %}
-        {% comment %} <div class="row tm-mb-90 tm-gallery" style="margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
-            {% for entries in motifForm %}
-                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
-                    <figure class="effect-ming tm-video-item">
-                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
-                        <figcaption class="d-flex align-items-center justify-content-center">
-                            <h2><b>Detail</b></h2>
-                            <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
-                        </figcaption>                    
-                    </figure>
-                    <div class="d-flex justify-content-between tm-text-gray">
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
-                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
-                    </div>
-                </div>
-            {% endfor %}
-        </div> {% endcomment %}
-
-        {% comment %} Test3 {% endcomment %}
-        <div class="row tm-mb-90 tm-gallery" style="margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
-            {% for entries in motifForm %}
-                <div class="col-xl-3 col-xl-4 col-md-6 col-sm-6 col-12 mb-5">
-                    <figure class="effect-ming tm-video-item">
-                        <img src="{{ entries.imgAfter }}" class="img-fluid imageScale" draggable="false">
-                        <figcaption class="d-flex align-items-center justify-content-center">
-                            <h2><b>Lihat Detail</b></h2>
-                            <a href="{% url 'list' entries.id %}" draggable="false"><img src="{{ entries.imgAfter }}" draggable="false"/>View more</a>   
-                        </figcaption>                    
-                    </figure>
-                    <div class="d-flex justify-content-between tm-text-gray">
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.time|date:"Y-m-d" }}</span>
-                        <span class="tm-text-primary " style="font-weight: bold; visibility: hidden;">{{ entries.jmlBaris }} Baris</span>
-                        <span class="tm-text-primary " style="font-weight: bold;">{{ entries.user }}</span>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        
-
-        {% comment %} <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
-
-                {% if motifForm.has_previous is False %}
-                    <a class="btn btn-primary tm-btn-prev mb-2 disabled">Sebelumnya</a>
-                {% endif %}
-                
-                {% if motifForm.has_previous %}
-                    <a href="{% url 'list1' %}?page={{motifForm.previous_page_number}}" class="btn btn-primary tm-btn-prev mb-2 ">Sebelumnya</a>
-                {% endif %}
-                
-                <div class="tm-paging d-flex">
-                    {% for i in page_range|default_if_none:motifForm.paginator.get_elided_page_range %}
-                        {% if motifForm.number == i %}
-                            <a href="{% url 'list1' %}?page={{i}}" class="active tm-paging-link">{{i}}</a>
-                        {% else %}
-                            {% if i == motifForm.paginator.ELLIPSIS %}
-                                <p class="tm-paging-link">{{i}}</p>
-                            {% else %}
-                                <a href="{% url 'list1' %}?page={{i}}" class="tm-paging-link">{{i}}</a>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                
-                {% if motifForm.has_next %}
-                    <a href="{% url 'list1' %}?page={{motifForm.next_page_number}}" class="btn btn-primary tm-btn-next">Selanjutnya</a>
-                {% endif %}
-
-                {% if motifForm.has_next is False %}
-                    <a class="btn btn-primary tm-btn-prev mb-2 disabled">Selanjutnya</a>
-                {% endif %}
-            </div>            
-        </div> {% endcomment %}
-
-        {% comment %} Test 3 {% endcomment %}
-        {% comment %} <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item {% if not motifForm.has_previous %}disabled{% endif %}">
-                            <a class="page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous"> {% endcomment %}
-                                {% comment %} <span aria-hidden="true">&laquo; Sebelumnya</span> {% endcomment %}
-                                {% comment %} <span class="btn btn-primary" aria-hidden="true">&laquo; Sebelumnya</span>
-                            </a>
-                        </li> {% endcomment %}
-        
-                        {% comment %} <div class="tm-paging d-flex">
-                            {% for i in page_range %}
-                                {% if motifForm.number == i %}
-                                    <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
-                                {% else %}
-                                    <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        </div> {% endcomment %}
-                        {% comment %} <div class="tm-paging d-flex">
-                            {% for i in page_range %}
-                                {% if motifForm.number == i %}
-                                    <li class="page-item active"><span class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</span></li> {% endcomment %}
-                                    {% comment %} <li class="page-item active"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li> {% endcomment %}
-                                {% comment %} {% else %}
-                                    <li class="page-item"><a class="page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a></li>
-                                {% endif %}
-                            {% endfor %}
-                        </div> {% endcomment %}
-                    
-        
-                        {% comment %} <li class="page-item {% if not motifForm.has_next %}disabled{% endif %}">
-                            <a class="page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
-                                {% comment %} <span aria-hidden="true">Selanjutnya &raquo;</span> {% endcomment %}
-                                {% comment %} <span class="btn btn-primary" aria-hidden="true">Selanjutnya &raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+    <form action="{% url 'gabungkan_motif' %}" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img src="{{ edit_url1 }}" class="img-fluid mb-2" alt="Hasil Motif 1">
+                <p>{{ jenis1 }}</p>
+                <input type="checkbox" name="selected_motifs" value="{{ edit_url1 }}">
             </div>
-        </div> {% endcomment %}
-
-        <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-center align-items-center tm-paging-col">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item {% if not motifForm.has_previous %}disabled{% endif %}">
-                            <a class="btn btn-primary page-link" href="{% if motifForm.has_previous %}{% url 'list1' %}?page={{ motifForm.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo; Sebelumnya</span>
-                            </a>
-                        </li>
-        
-                        <div class="tm-paging d-flex">
-                            {% for i in page_range %}
-                                {% if motifForm.number == i %}
-                                    <li class="page-item active">
-                                        <span class="btn btn-primary page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</span>
-                                    </li>
-                                {% else %}
-                                    {% comment %} <li class="page-item">
-                                        <a class="btn btn-primary page-link" href="{% url 'list1' %}?page={{ i }}">{{ i }}</a>
-                                    </li> {% endcomment %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-        
-                        <li class="page-item {% if not motifForm.has_next %}disabled{% endif %}">
-                            <a class="btn btn-primary page-link" href="{% if motifForm.has_next %}{% url 'list1' %}?page={{ motifForm.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
-                                <span aria-hidden="true">Selanjutnya &raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="col-md-3 text-center">
+                <img src="{{ edit_url2 }}" class="img-fluid mb-2" alt="Hasil Motif 2">
+                <p>{{ jenis2 }}</p>
+                <input type="checkbox" name="selected_motifs" value="{{ edit_url2 }}">
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{{ edit_url3 }}" class="img-fluid mb-2" alt="Hasil Motif 3">
+                <p>{{ jenis3 }}</p>
+                <input type="checkbox" name="selected_motifs" value="{{ edit_url3 }}">
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="{{ edit_url4 }}" class="img-fluid mb-2" alt="Hasil Motif 4">
+                <p>{{ jenis4 }}</p>
+                <input type="checkbox" name="selected_motifs" value="{{ edit_url4 }}">
             </div>
         </div>
-        
 
-
-    {% else %}
-        <div class="row d-flex justify-content-center">
-            
-            <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding-top: 10%;">
-                <div class="col-md-10 col"><h3 class="font-weight-bold ml-md-0 mx-auto text-center"> Akun Belum Diverifikasi oleh Admin </h3>
-                    <p class="mt-md-4  ml-md-0 ml-2 text-center"> Silahkan menghubungi admin terkait untuk dapat menggunakan fitur generate motif</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding: 5%;">
-                <a href="{% url 'generator' %}" class="btn btn-primary">Mulai</a>
-            </div>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary" disabled id="gabungBtn">Gabungkan Motif</button>
         </div>
-    {% endif %}
-
-    {% include "footer.html" %}
-
+    </form>
     
-<script src="{% static 'plugins.js'%}"></script>
-    <script>
-        $(window).on("load", function() {
-            $('body').addClass('loaded');
+    <div class="text-center mt-3">
+        <a href="{% url 'generator' %}" class="btn btn-secondary">Kembali</a>
+    </div>
+</div>
+
+<script>
+    const checkboxes = document.querySelectorAll('input[name="selected_motifs"]');
+    const gabungBtn = document.getElementById('gabungBtn');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            let checkedCount = document.querySelectorAll('input[name="selected_motifs"]:checked').length;
+            gabungBtn.disabled = (checkedCount < 2 || checkedCount > 4);
         });
-    </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script src="{% static 'script.js' %}"></script>
+    });
+</script>
+
 </body>
 </html>

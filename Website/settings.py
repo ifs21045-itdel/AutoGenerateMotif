@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-r1dikf)xpbv#2$fln6e3t*^#e)sceifw-(d-mdbd0zpewh)vgr
 # SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['generatemotif.ditenun.com','172.21.169.28', 'localhost', '127.0.0.1', '[::1]']
@@ -95,16 +95,17 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+#asqfudgqwjgdi
 
 # DATABASE SERVER NANTINYA
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'generatemotif',
+        'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD': 'root',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD': '',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
-        'PORT': '3307',
+        'PORT': '3306',
     }
 }
 
