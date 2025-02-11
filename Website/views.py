@@ -17,6 +17,7 @@ from .MotifModule import Motif
 from .zipModule import ZIP
 from .deleteModule import Delete
 import sys, os, re
+import logging
 
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -72,86 +73,85 @@ def generator(request):
     return render(request, 'started.html', {'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
 
 # external lama
+logger = logging.getLogger(__name__)
+
 @login_required(login_url='login')
 def external(request):
-    jmlBaris = request.POST.get('jmlBaris')
-    Baris = "1"
-    user = request.user
-    username = user.username
-    length = len(username)
-    # ModeGenerate = request.POST.get('ModeGenerate')
-    image=request.FILES['image']
-    navlink = ['nav-link nav-link-1 ','nav-link nav-link-2 active','nav-link nav-link-3','nav-link nav-link-4']
-    path = os.getcwd()
-    print("path now", path)
-    # print("image is ", image)
-    user = request.user
-    status = user.is_staff
-    
-    if status == 0:
-          status=None
-    
-    fs = FileSystemStorage()
-    filename = fs.save(image.name, image)
-    fileurl = fs.open(filename)
-    templateurl = fs.url(filename)
-    # print("file raw url",filename)
-    # print("file full url", fileurl)
-    # print("template url ", templateurl)
+    try:
+        jmlBaris = request.POST.get('jmlBaris')
+        if not jmlBaris:
+            messages.error(request, "Jumlah Baris tidak boleh kosong!")
+            return redirect('generator')
 
-    # Memanggil Object Check
-    
-    Object = Check(str(fileurl), jmlBaris)
+        jmlBaris = int(jmlBaris)  # Pastikan ini integer standar Python
+        user = request.user
+        username = user.username
+        image = request.FILES.get('image')
 
-    # Memanggil metode check format
-    formatStatus =  Object.checkformat()
-    
-    print(formatStatus, format)
-    if(formatStatus == "0"):
-         messages.success(request, "Format file yang diproses hanya menerima jpg")
-         return render(request, 'home.html', {"jmlBaris": jmlBaris, "status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+        if not image:
+            messages.error(request, "Harap upload gambar terlebih dahulu.")
+            return redirect('generator')
 
-    # Memanggil metode check format
-    isOverRow = Object.checkrow()
+        fs = FileSystemStorage()
+        filename = fs.save(image.name, image)
+        fileurl = fs.url(filename)
 
-    if(isOverRow == "0"):
-         messages.success(request, "Jumlah baris yang dapat dihasilkan berkisar dari 2 hingga 40")
-         return render(request, 'home.html', {"jmlBaris": jmlBaris, "status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+        # Cek format file
+        Object = Check(str(fileurl), jmlBaris)
+        formatStatus = Object.checkformat()
+        if formatStatus == "0":
+            messages.error(request, "Format file yang diproses hanya menerima jpg")
+            return redirect('generator')
 
-    
-    # # Memanggil metode check spesifikasi gambar
+        # Generate Motif
+        Image = CreateImageMotif(str(fileurl), str(filename), str(jmlBaris), "1", "4", username)
 
-    state, imgHeight = Object.checkSpecImage1()
-    
-    if state == "0":
-        return render(request,'failed.html',{'imgHeight':str(imgHeight)})
-    
-    state, imgWidth = Object.checkSpecImage2()
-    
-    jmlBaris = int(jmlBaris)
-    if state == "0":
-        return render(request,'failedWidth.html',{'imgWidth':str(imgWidth)})
-    else: 
-        if(jmlBaris %2 == 0):
-            jmlBaris = str(jmlBaris)
-            Image = CreateImageMotif(str(fileurl), str(filename), jmlBaris, Baris, "4", username)
+        if jmlBaris % 2 == 0:
             URLEdit, UrutanLidi = Image.imageEven()
             URLEdit2, UrutanLidi2 = Image.imageEven()
             URLEdit3, UrutanLidi3 = Image.imageEven()
             URLEdit4, UrutanLidi4 = Image.imageEven()
-
         else:
-            jmlBaris = str(jmlBaris)
-            Image = CreateImageMotif(str(fileurl), str(filename), jmlBaris, Baris, "4", username)
             URLEdit, UrutanLidi = Image.imageOdd()
             URLEdit2, UrutanLidi2 = Image.imageOdd()
             URLEdit3, UrutanLidi3 = Image.imageOdd()
             URLEdit4, UrutanLidi4 = Image.imageOdd()
 
-        jenisGenerate = ['Tabu Search', 'Greedy Serach', 'Random Search', 'ACO']
+        jenisGenerate = ['Tabu Search', 'Greedy Search', 'Random Search', 'ACO']
 
-        return render(request, 'motif.html',{'user':username,'jmlBaris':jmlBaris, 'raw_url':templateurl, 'edit_url': URLEdit, 'urutan_lidi':UrutanLidi, 'edit_url2': URLEdit2, 'urutan_lidi2':UrutanLidi2, 'edit_url3': URLEdit3, 'urutan_lidi3':UrutanLidi3, 'edit_url4': URLEdit4, 'urutan_lidi4':UrutanLidi4, 'jenis1':jenisGenerate[3], 'jenis2':jenisGenerate[3], 'jenis3':jenisGenerate[3], 'jenis4':jenisGenerate[3],'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+        # Simpan data ke session
+        request.session['motif_data'] = {
+            'user': username,
+            'jmlBaris': jmlBaris,
+            'raw_url': fileurl,
+            'edit_url': URLEdit,
+            'edit_url2': URLEdit2,
+            'edit_url3': URLEdit3,
+            'edit_url4': URLEdit4,
+            'urutan_lidi': UrutanLidi,
+            'urutan_lidi2': UrutanLidi2,
+            'urutan_lidi3': UrutanLidi3,
+            'urutan_lidi4': UrutanLidi4,
+            'jenis1': jenisGenerate[0],
+            'jenis2': jenisGenerate[1],
+            'jenis3': jenisGenerate[2],
+            'jenis4': jenisGenerate[3],
+        }
 
+        # Debug log untuk memastikan session tersimpan
+        logger.info(f"Session motif_data: {request.session['motif_data']}")
+
+        return render(request, 'motif.html', request.session['motif_data'])
+
+    except Exception as e:
+        logger.error(f"Error di fungsi external: {e}")
+        messages.error(request, f"Terjadi kesalahan di server: {str(e)}")
+        return render(request, '500.html', {"error_message": str(e)})
+
+    except Exception as e:
+        logger.error(f"Error di fungsi external: {e}")
+        messages.error(request, f"Terjadi kesalahan di server: {str(e)}")
+        return render(request, '500.html', {"error_message": str(e)})
 # external paling baru
 # @login_required(login_url='login')
 # def external(request):
@@ -620,5 +620,13 @@ def LogoutPage(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
 def gabungkan_motif(request):
-    return render(request, 'gabung-motif.html')
+    # Ambil data dari session
+    motif_data = request.session.get('motif_data', {})
+
+    if not motif_data:
+        messages.error(request, "Data motif tidak ditemukan. Silakan generate ulang.")
+        return redirect('generator')
+
+    return render(request, 'gabung-motif.html', motif_data)
