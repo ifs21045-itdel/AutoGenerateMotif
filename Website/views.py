@@ -18,6 +18,7 @@ from .zipModule import ZIP
 from .deleteModule import Delete
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
 import sys, os, re
 import logging
 import json
@@ -607,4 +608,8 @@ def save_combined_motif(request):
         return JsonResponse({"message": "Motif berhasil disimpan!"})
 
     return JsonResponse({"message": "Metode tidak diperbolehkan!"}, status=405)
+
+def ubah_warna(request):
+    combined_motif_url = request.session.get('combined_motifs', '')  # Mengambil motif yang sudah dipilih dari session
+    return render(request, 'ubah-warna.html', {'combined_motif_url': combined_motif_url})
 

@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import save_combined_motif
+from .views import ubah_warna
 
 urlpatterns = [
     path('admin/', admin.site.urls,),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('generator/external', views.external),
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
+    path('ubah_warna/', ubah_warna, name='ubah_warna'),
     path('save', views.save),
     path('PostImage', views.PostImage),
     path('post', views.createpost),
