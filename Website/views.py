@@ -16,8 +16,11 @@ from .SaveModule import Save
 from .MotifModule import Motif
 from .zipModule import ZIP
 from .deleteModule import Delete
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 import sys, os, re
 import logging
+import json
 
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -588,4 +591,20 @@ def gabungkan_motif(request):
         'edit_url3': edit_url3,
         'edit_url4': edit_url4
     })
+
+@csrf_exempt
+def save_combined_motif(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        selected_motifs = data.get('motifs', [])
+
+        if not selected_motifs:
+            return JsonResponse({"message": "Tidak ada motif yang dipilih!"}, status=400)
+
+        # Simpan ke dalam database atau session
+        request.session['combined_motifs'] = selected_motifs
+
+        return JsonResponse({"message": "Motif berhasil disimpan!"})
+
+    return JsonResponse({"message": "Metode tidak diperbolehkan!"}, status=405)
 

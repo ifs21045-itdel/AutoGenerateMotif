@@ -25,38 +25,35 @@
                     </p>
                 </div>
             </div>
+
             <div class="row justify-content-center round">
                 <div class="col-lg-10 col-md-12">
                     <div class="card shadow-lg card-1">
                         <div class="card-body inner-card">
                             <div class="row">
-                                <!-- Kolom untuk Motif Asal dan Hasil Motif -->
+                                <!-- Kolom untuk Memilih Motif Asal dan Hasil Motif -->
                                 <div class="col-md-6 text-center">
                                     <h5>Motif Asal</h5>
-                                    <img src="{{ raw_url }}" class="img-fluid mb-3" alt="Motif Asal">
-
+                                    <img src="{{ raw_url }}" class="img-fluid motif-item" alt="Motif Asal" onclick="addMotif(this)">
+                                    
                                     <h5>Hasil Motif 1</h5>
-                                    <img src="{{ edit_url }}" class="img-fluid mb-3" alt="Hasil Motif 1">
+                                    <img src="{{ edit_url }}" class="img-fluid motif-item" alt="Hasil Motif 1" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 2</h5>
-                                    <img src="{{ edit_url2 }}" class="img-fluid mb-3" alt="Hasil Motif 2">
+                                    <img src="{{ edit_url2 }}" class="img-fluid motif-item" alt="Hasil Motif 2" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 3</h5>
-                                    <img src="{{ edit_url3 }}" class="img-fluid mb-3" alt="Hasil Motif 3">
+                                    <img src="{{ edit_url3 }}" class="img-fluid motif-item" alt="Hasil Motif 3" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 4</h5>
-                                    <img src="{{ edit_url4 }}" class="img-fluid mb-3" alt="Hasil Motif 4">
+                                    <img src="{{ edit_url4 }}" class="img-fluid motif-item" alt="Hasil Motif 4" onclick="addMotif(this)">
                                 </div>
 
-                                <!-- Kolom untuk Penggabungan Motif -->
+                                <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
                                 <div class="col-md-6 text-center">
                                     <h5>Penggabungan Motif</h5>
-                                    <div class="border p-4" style="height: 400px">
-                                        {% if combined_motif_url %}
-                                            <img src="{{ combined_motif_url }}" class="img-fluid" alt="Penggabungan Motif">
-                                        {% else %}
-                                            <p class="text-muted">Belum ada motif yang digabungkan.</p>
-                                        {% endif %}
+                                    <div id="combinedMotifContainer" class="border p-4" style="height: 400px; overflow-y: auto; position: relative;">
+                                        <p class="text-muted">Belum ada motif yang dipilih.</p>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +61,7 @@
                             <!-- Tombol Simpan dan Ubah Warna -->
                             <div class="row mt-4 text-center">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary">Simpan Motif</button>
+                                    <button class="btn btn-primary" onclick="saveMotif()">Simpan Motif</button>
                                 </div>
                             </div>
 
@@ -85,5 +82,98 @@
             </div>
         </div>
     </div>
+
+    <!-- JavaScript untuk Interaksi -->
+    <script>
+        let motifIndex = 0;
+
+        function addMotif(imgElement) {
+            const combinedMotifContainer = document.getElementById('combinedMotifContainer');
+
+            // Jika belum ada motif yang dipilih, hapus teks default
+            if (combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")) {
+                combinedMotifContainer.innerHTML = "";
+            }
+
+            // Buat wrapper untuk motif
+            let motifWrapper = document.createElement('div');
+            motifWrapper.classList.add('position-relative', 'mb-2');
+            motifWrapper.style.display = "flex";
+            motifWrapper.style.alignItems = "center";
+
+            // Tambahkan nomor urut
+            let motifNumber = document.createElement('span');
+            motifNumber.classList.add('position-absolute', 'badge', 'bg-primary');
+            motifNumber.style.top = "5px";
+            motifNumber.style.left = "5px";
+            motifNumber.style.padding = "5px";
+            motifNumber.style.borderRadius = "50%";
+            motifNumber.innerText = motifIndex + 1; // Nomor urut
+            motifWrapper.appendChild(motifNumber);
+
+            // Duplikasi gambar yang dipilih
+            let newImg = document.createElement('img');
+            newImg.src = imgElement.src;
+            newImg.classList.add('img-fluid', 'mb-2');
+            newImg.style.marginLeft = "30px"; // Jarak dari nomor urut
+            newImg.style.width = "80%";
+            newImg.style.cursor = 'pointer';
+            motifWrapper.appendChild(newImg);
+
+            // Tambahkan tombol hapus
+            let deleteButton = document.createElement('input');
+            deleteButton.type = "radio";
+            deleteButton.classList.add('position-absolute');
+            deleteButton.style.top = "5px";
+            deleteButton.style.right = "5px";
+            deleteButton.onclick = function() {
+                motifWrapper.remove();
+                updateMotifNumbers();
+            };
+            motifWrapper.appendChild(deleteButton);
+
+            combinedMotifContainer.appendChild(motifWrapper);
+            motifIndex++;
+        }
+
+        function updateMotifNumbers() {
+            const motifs = document.querySelectorAll('#combinedMotifContainer .position-relative span');
+            motifIndex = 0;
+            motifs.forEach((motif, index) => {
+                motif.innerText = index + 1;
+                motifIndex++;
+            });
+
+            // Jika tidak ada motif tersisa, tampilkan teks default
+            if (motifs.length === 0) {
+                document.getElementById('combinedMotifContainer').innerHTML = "<p class='text-muted'>Belum ada motif yang dipilih.</p>";
+            }
+        }
+
+        function saveMotif() {
+            const selectedMotifs = [];
+            document.querySelectorAll('#combinedMotifContainer img').forEach(img => {
+                selectedMotifs.push(img.src);
+            });
+
+            if (selectedMotifs.length === 0) {
+                alert("Pilih setidaknya satu motif untuk disimpan.");
+                return;
+            }
+
+            fetch("{% url 'save_combined_motif' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({ motifs: selectedMotifs })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message))
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+
 </body>
 </html>
