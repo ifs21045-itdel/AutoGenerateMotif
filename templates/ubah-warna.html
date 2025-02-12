@@ -15,23 +15,32 @@
 <body>
     <div class="container card-0 justify-content-center">
         <div class="card-body px-sm-4 px-0">
-            <div class="row justify-content-center round"> 
-              <div class="col-lg-10 col-md-12"> 
-                <div class="card shadow-lg card-1"> 
-                  <div class="card-body inner-card"> 
-                    <div class="row"> 
-                      <!-- Kolom Pratinjau Motif --> 
-                       <div class="col-md-6 text-center"> 
-                        <h5>Hasil Motif</h5> 
-                        <canvas id="motifCanvas" class="border" width="400" height="600"></canvas> 
-                      </div>
-                      <!-- Kolom Alat Warna -->
-                      <div class="col-md-6 text-center">
-                        <h5>Alat Warna</h5>
-                        <div class="d-flex justify-content-center mb-3">
-                            <button id="pencilTool" class="btn btn-outline-primary mx-2">✏️</button>
-                            <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
-                        </div>
+            <div class="row justify-content-center round">
+                <div class="col-lg-10 col-md-12">
+                    <div class="card shadow-lg card-1">
+                        <div class="card-body inner-card">
+                            <div class="row">
+                                <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
+                                <div class="col-md-6 text-center">
+                                    <h5>Hasil Gabungan Motif</h5>
+                                    <div id="combinedMotifContainer" class="border p-4" style="height: 400px; overflow-y: auto; position: relative;">
+                                        {% if combined_motif_urls %}
+                                            {% for motif_url in combined_motif_urls %}
+                                                <img src="{{ motif_url }}" class="img-fluid mb-2" style="width: 80%;">
+                                            {% endfor %}
+                                        {% else %}
+                                            <p class="text-muted">Belum ada motif yang digabungkan.</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <!-- Kolom untuk Alat Ubah Warna -->
+                                <div class="col-md-6 text-center">
+                                    <h5>Alat Warna</h5>
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <button id="pencilTool" class="btn btn-outline-primary mx-2">✏</button>
+                                        <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
+                                    </div>
 
                                     <h5>Warna Dasar</h5>
                                     <input type="color" id="backgroundColorPicker" class="form-control mb-3" value="#ffffff">
@@ -41,82 +50,51 @@
                                 </div>
                             </div>
 
-                <!-- Tombol Simpan dan Kembali -->
-                <div class="row mt-4 text-center">
-                    <div class="col-md-12">
-                        <button class="btn btn-primary" onclick="downloadMotif()">Unduh Motif</button>
-                        <a href="{% url 'gabungkan_motif' %}" class="btn btn-outline-primary">Kembali</a>
+                            <!-- Tombol Simpan dan Kembali -->
+                            <div class="row mt-4 text-center">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" onclick="downloadMotif()">Unduh Motif</button>
+                                </div>
+                            </div>
+                            <div class="row mt-4 text-center">
+                                <div class="col-md-12">
+                                    <a href="{% url 'gabungkan_motif' %}" class="btn btn-outline-primary">Kembali</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 
-<!-- JavaScript untuk Interaksi -->
-<script>
-let canvas = document.getElementById("motifCanvas");
-let ctx = canvas.getContext("2d");
-let motifImage = new Image();
-motifImage.src = "{{ combined_motif_url }}";  // Mengambil motif yang sudah digabungkan dari backend
-let isDrawing = false;
-let isEraser = false;
-let motifColor = document.getElementById("motifColorPicker").value;
-let backgroundColor = document.getElementById("backgroundColorPicker").value;
+    <!-- JavaScript untuk Interaksi -->
+    <script>
+        // Fungsi untuk mengunduh motif yang digabungkan
+        function downloadMotif() {
+            const combinedMotifContainer = document.getElementById("combinedMotifContainer");
+            
+            // Mengonversi gambar-gambar motif menjadi canvas (jika perlu)
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            let offsetX = 0;
+            let offsetY = 0;
+            
+            const motifs = combinedMotifContainer.getElementsByTagName('img');
+            
+            // Menggambar sketiap gambar motif ke canvas
+            for (let i = 0; i < motifs.length; i++) {
+                const img = motifs[i];
+                ctx.drawImage(img, offsetX, offsetY);
+                offsetY += img.height;  // Update posisi vertikal setelah gambar digambar
+            }
 
-motifImage.onload = function () {
-ctx.drawImage(motifImage, 0, 0, canvas.width, canvas.height);
-};
-
-// Ubah warna dasar
-document.getElementById("backgroundColorPicker").addEventListener("input", function () {
-backgroundColor = this.value;
-ctx.fillStyle = backgroundColor;
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.drawImage(motifImage, 0, 0, canvas.width, canvas.height);
-});
-
-// Ubah warna motif
-document.getElementById("motifColorPicker").addEventListener("input", function () {
-motifColor = this.value;
-});
-
-// Fungsi menggambar di kanvas
-canvas.addEventListener("mousedown", function (e) {
-isDrawing = true;
-ctx.beginPath();
-});
-
-canvas.addEventListener("mousemove", function (e) {
-if (!isDrawing) return;
-let x = e.offsetX;
-let y = e.offsetY;
-ctx.fillStyle = isEraser ? backgroundColor : motifColor;
-ctx.fillRect(x, y, 10, 10);
-});
-
-canvas.addEventListener("mouseup", function () {
-isDrawing = false;
-});
-
-// Fungsi untuk memilih alat warna atau penghapus
-document.getElementById("pencilTool").addEventListener("click", function () {
-isEraser = false;
-});
-
-document.getElementById("eraserTool").addEventListener("click", function () {
-isEraser = true;
-});
-
-// Fungsi untuk mengunduh motif
-function downloadMotif() {
-let link = document.createElement('a');
-link.download = 'motif_ubah_warna.png';
-link.href = canvas.toDataURL();
-link.click();
-}
-</script>
-</body> 
+            // Mengunduh gambar yang sudah digabungkan
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'combined_motif.png';
+            link.click();
+        }
+    </script>
+</body>
 </html>
