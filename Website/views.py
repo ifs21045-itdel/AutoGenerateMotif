@@ -18,7 +18,10 @@ from .zipModule import ZIP
 from .deleteModule import Delete
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from PIL import Image
+import io
+import requests
 import sys, os, re
 import logging
 import json
@@ -572,6 +575,7 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
+
 def gabungkan_motif(request):
     # Ambil URL gambar dari session
     raw_url = request.session.get('raw_url')
