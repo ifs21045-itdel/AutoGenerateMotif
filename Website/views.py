@@ -572,6 +572,7 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
+# Fungsi untuk menampilkan halaman gabungkan motif
 def gabungkan_motif(request):
     # Ambil URL gambar dari session
     raw_url = request.session.get('raw_url')
@@ -593,6 +594,7 @@ def gabungkan_motif(request):
         'edit_url4': edit_url4
     })
 
+# Fungsi untuk menyimpan motif yang digabungkan ke session
 @csrf_exempt
 def save_combined_motif(request):
     if request.method == "POST":
@@ -602,14 +604,18 @@ def save_combined_motif(request):
         if not selected_motifs:
             return JsonResponse({"message": "Tidak ada motif yang dipilih!"}, status=400)
 
-        # Simpan ke dalam database atau session
+        # Simpan motif yang dipilih ke dalam session
         request.session['combined_motifs'] = selected_motifs
 
         return JsonResponse({"message": "Motif berhasil disimpan!"})
 
     return JsonResponse({"message": "Metode tidak diperbolehkan!"}, status=405)
 
+    # Fungsi untuk menampilkan halaman ubah warna dan memuat motif dari session
 def ubah_warna(request):
-    combined_motif_url = request.session.get('combined_motifs', '')  # Mengambil motif yang sudah dipilih dari session
-    return render(request, 'ubah-warna.html', {'combined_motif_url': combined_motif_url})
+    combined_motif_urls = request.session.get('combined_motifs', [])  # Mengambil motif yang sudah dipilih dari session
 
+    if not combined_motif_urls:
+        messages.error(request, "Motif tidak ditemukan!")
+
+    return render(request, 'ubah-warna.html', {'combined_motif_urls': combined_motif_urls})

@@ -1,18 +1,3 @@
-"""Website URL Configuration
-
-The urlpatterns list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from . import views
 from django.contrib import admin
 from django.urls import path
@@ -22,14 +7,14 @@ from .views import save_combined_motif
 from .views import ubah_warna
 
 urlpatterns = [
-    path('admin/', admin.site.urls,),
+    path('admin/', admin.site.urls),
     path('generator/', views.image, name="generator"),
     path('Monitoring', views.loading, name="Monitoring"),
     path('home/', views.generator, name="home"),
     path('generator/external', views.external),
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
-    path('ubah_warna/', ubah_warna, name='ubah_warna'),
+    path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
     path('save', views.save),
     path('PostImage', views.PostImage),
     path('post', views.createpost),
