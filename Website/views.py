@@ -89,6 +89,7 @@ def generator(request):
         URLEdit2, UrutanLidi2 = Image.imageEven()
         URLEdit3, UrutanLidi3 = Image.imageEven()
         URLEdit4, UrutanLidi4 = Image.imageEven()
+        
 
         # Menyimpan URL gambar dalam session untuk diteruskan ke halaman kedua
         request.session['raw_url'] = URLEdit  # Simpan URL motif asal
