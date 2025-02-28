@@ -11,6 +11,128 @@
     
     <title>Modul Lidi - Ubah Warna</title>
     <link rel="icon" href="{% static 'img/icon/NewTitle.ico' %}" type="image/x-icon">
+    
+    <style>
+        body {
+            background-color: #f4f7fc;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .inner-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-outline-primary, .btn-outline-danger {
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-outline-primary {
+            color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-outline-danger {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        /* Palet Warna - Grid Kotak (Ukuran Lebih Kecil dan Rapat) */
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(5, 32px);  /* 4 kotak per baris, ukuran lebih kecil */
+            grid-gap: 7px;  /* Jarak antar kotak lebih rapat */
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .color-box {
+            width: 37px;
+            height: 37px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .color-box:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .selected {
+            border: 3px solid #007bff; /* Border biru untuk warna yang dipilih */
+        }
+
+        .color-picker-container {
+            text-align: center;
+        }
+
+        .color-picker-container h5 {
+            font-size: 1.2rem;
+            margin-top: 20px; /* Menambahkan jarak di bawah judul */
+        }
+
+        /* Menambahkan margin untuk elemen */
+        .mb-4 {
+            margin-bottom: 20px;
+        }
+
+        /* Modifikasi untuk memperbesar ukuran tombol */
+        #pencilTool, #eraserTool {
+            font-size: 2rem; /* Menambah ukuran ikon agar lebih besar */
+            width: 60px; /* Menambahkan lebar untuk tombol */
+            height: 60px; /* Menambahkan tinggi untuk tombol */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px; /* Agar tombol tetap melengkung */
+            padding: 0; /* Menghilangkan padding agar tombol pas */
+        }
+
+        /* Agar ikon pensil dan penghapus tetap terpusat */
+        #pencilTool i, #eraserTool i {
+            font-size: 2rem; /* Mengubah ukuran font ikon */
+        }
+
+        /* Menghapus batasan tinggi dan menyesuaikan kontainer dengan tinggi otomatis */
+        #combinedMotifContainer {
+            min-height: 400px; /* Menjamin tinggi minimal */
+            height: auto; /* Menyesuaikan dengan konten gambar */
+            overflow-y: auto; /* Menambahkan scroll vertikal jika konten lebih panjang */
+        }
+
+        {% comment %} .col-md-6 {
+            margin-left: 20px;  /* Menambahkan jarak kiri */
+            margin-right: 20px; /* Menambahkan jarak kanan */
+        } {% endcomment %}
+
+        .card-body {
+            padding-left: 6px;  /* Menambahkan padding kiri */
+            padding-right: 0px; /* Menambahkan padding kanan */
+        }
+        
+        .row {
+            margin-left: 20px;  /* Menambahkan jarak kiri pada row */
+            margin-right: 20px; /* Menambahkan jarak kanan pada row */
+        }
+        
+
+
+    </style>
 </head>
 <body>
     <div class="container card-0 justify-content-center">
@@ -23,7 +145,7 @@
                                 <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
                                 <div class="col-md-6 text-center">
                                     <h5>Hasil Gabungan Motif</h5>
-                                    <div id="combinedMotifContainer" class="border p-4" style="height: 400px; overflow-y: auto; position: relative;">
+                                    <div id="combinedMotifContainer" class="border p-4" style="overflow-y: auto; position: relative;">
                                         {% if combined_motif_urls %}
                                             {% for motif_url in combined_motif_urls %}
                                                 <img src="{{ motif_url }}" class="img-fluid mb-2" style="width: 80%;">
@@ -42,33 +164,104 @@
                                         <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
                                     </div>
 
-                                    <h5>Warna Dasar</h5>
-                                    <input type="color" id="backgroundColorPicker" class="form-control mb-3" value="#ffffff">
+                                    <!-- Warna Dasar -->
+                                    <div class="color-picker-container">
+                                        <h5>Warna Dasar</h5>
+                                        <div class="color-palette" id="backgroundPalette">
+                                            <!-- Menambahkan lebih banyak warna -->
+                                            <div class="color-box" style="background-color: #ffffff;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #e6e6fa;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #f5deb3;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ffb6c1;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ff69b4;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #c71585;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ff0000;" onclick="selectColor('background', '#ff0000')"></div>
+                                            <div class="color-box" style="background-color: #ff00ff;" onclick="selectColor('background', '#ff00ff')"></div>
+                                            <div class="color-box" style="background-color: #ffff00;" onclick="selectColor('background', '#ffff00')"></div>
+                                            <div class="color-box" style="background-color: #00ffff;" onclick="selectColor('background', '#00ffff')"></div>
+                                            <div class="color-box" style="background-color: #0000ff;" onclick="selectColor('background', '#0000ff')"></div>
+                                            <div class="color-box" style="background-color: #00ff00;" onclick="selectColor('background', '#00ff00')"></div>
+                                            <div class="color-box" style="background-color: #000080;" onclick="selectColor('background', '#000080')"></div>
+                                            <div class="color-box" style="background-color: #008080;" onclick="selectColor('background', '#008080')"></div>
+                                            <div class="color-box" style="background-color: #808000;" onclick="selectColor('background', '#808000')"></div>
+                                            <div class="color-box" style="background-color: #808080;" onclick="selectColor('background', '#808080')"></div>
+                                            <div class="color-box" style="background-color: #800000;" onclick="selectColor('background', '#800000')"></div>
+                                            <div class="color-box" style="background-color: #d2691e;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #c0c0c0;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #000000;" onclick="selectColor('background', '#000000')"></div>
+                                        </div>
+                                    </div>
 
-                                    <h5>Warna Motif</h5>
-                                    <input type="color" id="motifColorPicker" class="form-control mb-3" value="#000000">
+                                    <!-- Warna Motif -->
+                                    <div class="color-picker-container mb-4">
+                                        <h5>Warna Motif</h5>
+                                        <div class="color-palette" id="motifPalette">
+                                            <!-- Menambahkan lebih banyak warna -->
+                                            <div class="color-box" style="background-color: #ffffff;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #e6e6fa;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #f5deb3;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ffb6c1;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ff69b4;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #c71585;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #ff0000;" onclick="selectColor('background', '#ff0000')"></div>
+                                            <div class="color-box" style="background-color: #ff00ff;" onclick="selectColor('background', '#ff00ff')"></div>
+                                            <div class="color-box" style="background-color: #ffff00;" onclick="selectColor('background', '#ffff00')"></div>
+                                            <div class="color-box" style="background-color: #00ffff;" onclick="selectColor('background', '#00ffff')"></div>
+                                            <div class="color-box" style="background-color: #0000ff;" onclick="selectColor('background', '#0000ff')"></div>
+                                            <div class="color-box" style="background-color: #00ff00;" onclick="selectColor('background', '#00ff00')"></div>
+                                            <div class="color-box" style="background-color: #000080;" onclick="selectColor('background', '#000080')"></div>
+                                            <div class="color-box" style="background-color: #008080;" onclick="selectColor('background', '#008080')"></div>
+                                            <div class="color-box" style="background-color: #808000;" onclick="selectColor('background', '#808000')"></div>
+                                            <div class="color-box" style="background-color: #808080;" onclick="selectColor('background', '#808080')"></div>
+                                            <div class="color-box" style="background-color: #800000;" onclick="selectColor('background', '#800000')"></div>
+                                            <div class="color-box" style="background-color: #d2691e;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #c0c0c0;" onclick="selectColor('background', '#c0c0c0')"></div>
+                                            <div class="color-box" style="background-color: #000000;" onclick="selectColor('background', '#000000')"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Tombol Simpan dan Kembali -->
-                            <div class="row mt-4 text-center">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary" onclick="downloadMotif()">Unduh Motif</button>
-                                </div>
-                            </div>
-                            <div class="row mt-4 text-center">
-                                <div class="col-md-12">
-                                    <a href="{% url 'gabungkan_motif' %}" class="btn btn-outline-primary">Kembali</a>
-                                </div>
+<div class="row mt-4 text-center">
+    <div class="col-md-12">
+        <button class="btn" onclick="downloadMotif()" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px;">Unduh Motif</button>
+    </div>
+</div>
+
+<div class="row mt-4 text-center">
+    <div class="col-md-12">
+        <a href="{% url 'gabungkan_motif' %}" class="btn" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Kembali</a>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- JavaScript untuk Interaksi -->
     <script>
+        let selectedBackgroundColor = '#ffffff';
+        let selectedMotifColor = '#000000';
+
+        function selectColor(type, color) {
+            if (type === 'background') {
+                selectedBackgroundColor = color;
+                document.getElementById("backgroundPalette").querySelectorAll('.color-box').forEach(box => box.classList.remove('selected'));
+                event.target.classList.add('selected');
+            } else if (type === 'motif') {
+                selectedMotifColor = color;
+                document.getElementById("motifPalette").querySelectorAll('.color-box').forEach(box => box.classList.remove('selected'));
+                event.target.classList.add('selected');
+            }
+        }
+
         // Fungsi untuk mengunduh motif yang digabungkan
         function downloadMotif() {
             const combinedMotifContainer = document.getElementById("combinedMotifContainer");
             
-            // Mengonversi gambar-gambar motif menjadi canvas (jika perlu)
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             let offsetX = 0;
@@ -76,14 +269,12 @@
             
             const motifs = combinedMotifContainer.getElementsByTagName('img');
             
-            // Menggambar sketiap gambar motif ke canvas
             for (let i = 0; i < motifs.length; i++) {
                 const img = motifs[i];
                 ctx.drawImage(img, offsetX, offsetY);
-                offsetY += img.height;  // Update posisi vertikal setelah gambar digambar
+                offsetY += img.height;
             }
 
-            // Mengunduh gambar yang sudah digabungkan //
             const link = document.createElement('a');
             link.href = canvas.toDataURL();
             link.download = 'combined_motif.png';

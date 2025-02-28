@@ -52,30 +52,31 @@
                                 <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
                                 <div class="col-md-6 text-center">
                                     <h5>Penggabungan Motif</h5>
-                                    <div id="combinedMotifContainer" class="border p-4" style="height: 400px; overflow-y: auto; position: relative;">
+                                    <div id="combinedMotifContainer" class="border p-4" style="height: 570px; overflow-y: auto; position: relative;">
                                         <p class="text-muted">Belum ada motif yang dipilih.</p>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Tombol Simpan dan Ubah Warna -->
-                            <div class="row mt-4 text-center">
+                            <div class="row mt-5 text-center">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary" onclick="saveMotif()">Simpan Motif</button>
+                                    <a href="#" onclick="saveMotif()" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px; text-align: center;">Simpan Motif</a>
                                 </div>
                             </div>
 
                             <div class="row mt-3 text-center">
-                              <div class="col-md-12">
-                                  <a href="{% url 'ubah_warna' %}" class="btn btn-secondary">Ubah Warna</a>
-                              </div>
-                          </div>
-
-                            <div class="row mt-4 text-center">
                                 <div class="col-md-12">
-                                    <a href="{% url 'generator' %}" class="btn btn-outline-primary">Kembali</a>
+                                    <a href="{% url 'ubah_warna' %}" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px; text-align: center;">Ubah Warna</a>
                                 </div>
                             </div>
+
+                            <div class="row mt-3 text-center">
+                                <div class="col-md-12">
+                                    <a href="{% url 'generator' %}" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Kembali</a>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
