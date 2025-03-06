@@ -11,6 +11,16 @@
 
     <title>Modul Lidi</title>
     <link rel="icon" href="{% static 'img/icon/NewTitle.ico' %}" type="image/x-icon">
+    
+    <style>
+        /* Menyesuaikan ukuran gambar motif */
+        .motif-size {
+            width: 100%; /* Lebar gambar menyesuaikan lebar kontainer */
+            height: auto; /* Menjaga rasio aspek gambar */
+            object-fit: contain; /* Menjaga gambar tetap utuh dan tidak terpotong */
+            margin-bottom: 10px; /* Menambahkan jarak antar gambar */
+        }
+    </style>
 </head>
 <body>
     <div class="container card-0 justify-content-center">
@@ -34,19 +44,19 @@
                                 <!-- Kolom untuk Memilih Motif Asal dan Hasil Motif -->
                                 <div class="col-md-6 text-center">
                                     <h5>Motif Asal</h5>
-                                    <img src="{{ raw_url }}" class="img-fluid motif-item" alt="Motif Asal" onclick="addMotif(this)">
+                                    <img src="{{ raw_url }}" class="img-fluid motif-item motif-size" alt="Motif Asal" onclick="addMotif(this)">
                                     
                                     <h5>Hasil Motif 1</h5>
-                                    <img src="{{ edit_url }}" class="img-fluid motif-item" alt="Hasil Motif 1" onclick="addMotif(this)">
+                                    <img src="{{ edit_url }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 1" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 2</h5>
-                                    <img src="{{ edit_url2 }}" class="img-fluid motif-item" alt="Hasil Motif 2" onclick="addMotif(this)">
+                                    <img src="{{ edit_url2 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 2" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 3</h5>
-                                    <img src="{{ edit_url3 }}" class="img-fluid motif-item" alt="Hasil Motif 3" onclick="addMotif(this)">
+                                    <img src="{{ edit_url3 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 3" onclick="addMotif(this)">
 
                                     <h5>Hasil Motif 4</h5>
-                                    <img src="{{ edit_url4 }}" class="img-fluid motif-item" alt="Hasil Motif 4" onclick="addMotif(this)">
+                                    <img src="{{ edit_url4 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 4" onclick="addMotif(this)">
                                 </div>
 
                                 <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
@@ -169,12 +179,10 @@
                     "X-CSRFToken": "{{ csrf_token }}"
                 },
                 body: JSON.stringify({ motifs: selectedMotifs })
-            })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => console.error("Error:", error));
+            }).then(response => response.json())
+              .then(data => alert("Motif berhasil disimpan!"))
+              .catch(error => alert("Terjadi kesalahan, coba lagi."));
         }
     </script>
-
 </body>
 </html>
