@@ -28,6 +28,7 @@ urlpatterns = [
     path('update/<int:id>', views.UpdateUser, name='update'),
     path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
     path('list1', views.showTest),
+    path('generator/save', views.save_combined_motif, name='save_combined_motif'),
     path('help', views.help, name="help"),
     path('help/generator', views.help_generate, name="help-generator"),
     path('help/lidi', views.help_lidi, name="help-lidi"),
