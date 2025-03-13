@@ -1,188 +1,404 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html> 
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
 
     <title>Modul Lidi</title>
-    <link rel="icon" href="{% static 'img/icon/NewTitle.ico' %}" type="image/x-icon">
-    
+    <link
+      rel="icon"
+      href="{% static 'img/icon/NewTitle.ico' %}"
+      type="image/x-icon"
+    />
+
     <style>
-        /* Menyesuaikan ukuran gambar motif */
-        .motif-size {
-            width: 100%; /* Lebar gambar menyesuaikan lebar kontainer */
-            height: auto; /* Menjaga rasio aspek gambar */
-            object-fit: contain; /* Menjaga gambar tetap utuh dan tidak terpotong */
-            margin-bottom: 10px; /* Menambahkan jarak antar gambar */
-        }
+      /* Menyesuaikan ukuran gambar motif */
+      .motif-size {
+        width: 100%; /* Lebar gambar menyesuaikan lebar kontainer */
+        height: auto; /* Menjaga rasio aspek gambar */
+        object-fit: contain; /* Menjaga gambar tetap utuh dan tidak terpotong */
+        margin-bottom: 10px; /* Menambahkan jarak antar gambar */
+      }
+
+      /* Styling untuk container Motif */
+      .motif-container {
+        margin-top: 0px;
+        border: 2px solid #000000;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f5f5f5;
+        height: 100%; /* Menambahkan tinggi agar kontainer setinggi kontainer lainnya */
+      }
+
+      /* Styling untuk judul container */
+      .motif-container h5 {
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+      }
+
+      /* Styling untuk container penggabungan motif */
+      .combined-motif-container {
+        height: 653px; /* Menentukan tinggi kontainer, Anda bisa menyesuaikan sesuai kebutuhan */
+        width: 100%; /* Lebar kontainer menyesuaikan ukuran container induk */
+        max-width: 500px; /* Anda bisa membatasi lebar maksimum jika diinginkan */
+        overflow-y: auto; /* Agar konten dapat digulir secara vertikal */
+        padding: 15px; /* Menambahkan padding untuk memberi ruang di dalam kontainer */
+        background-color: white;
+        border: 1px solid #ddd;
+        position: relative;
+        margin-top: 10px; /* Menambahkan jarak antar kontainer */
+      }
+
+      /* Menambahkan gaya pada flexbox container untuk memastikan keseragaman */
+      .row > .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+      }
+
+      /* Styling untuk judul utama modul */
+      .main-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 20px;
+      }
+
+      /* Styling untuk judul penggabungan motif */
+      .combined-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      /* Styling untuk judul motif asal dan hasil motif */
+      .motif-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      /* Styling untuk teks penjelasan */
+      .explanation-text {
+        font-size: 12px; /* Ukuran teks 12px */
+        color: #555;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 0px;
+        line-height: 1.1; /* Menurunkan jarak antar baris teks */
+        white-space: normal; /* Agar teks bisa mengalir ke bawah */
+        letter-spacing: -0.5px; /* Mengurangi jarak antar karakter */
+        text-align: center; /* Memastikan teks terpusat */
+      }
+
+      .explanation-text-combined {
+        font-size: 12px; /* Ukuran teks 12px */
+        color: #555;
+        margin-bottom: 0px;
+        margin-top: 0px;
+        padding: 0px;
+        line-height: 1.1; /* Menurunkan jarak antar baris teks */
+        white-space: normal; /* Agar teks bisa mengalir ke bawah */
+        letter-spacing: -0.5px; /* Mengurangi jarak antar karakter */
+        text-align: center; /* Memastikan teks terpusat */
+        margin-top: 10px; /* Jarak atas untuk memberi ruang */
+      }
+
+      <!-- Card untuk Motif Asal -->
+<div class="card motif-card">
+  <img
+    src="{{ raw_url }}"
+    class="card-img-top motif-size"
+    alt="Motif Asal"
+    onclick="addMotif(this)"
+  />
+</div>
+
+<!-- Card untuk Hasil Motif 1 -->
+<div class="card motif-card">
+  <img
+    src="{{ edit_url }}"
+    class="card-img-top motif-size"
+    alt="Hasil Motif 1"
+    onclick="addMotif(this)"
+  />
+</div>
+
+<!-- Card untuk Hasil Motif 2 -->
+<div class="card motif-card">
+  <img
+    src="{{ edit_url2 }}"
+    class="card-img-top motif-size"
+    alt="Hasil Motif 2"
+    onclick="addMotif(this)"
+  />
+</div>
+
+<!-- Card untuk Hasil Motif 3 -->
+<div class="card motif-card">
+  <img
+    src="{{ edit_url3 }}"
+    class="card-img-top motif-size"
+    alt="Hasil Motif 3"
+    onclick="addMotif(this)"
+  />
+</div>
+
+<!-- Card untuk Hasil Motif 4 -->
+<div class="card motif-card">
+  <img
+    src="{{ edit_url4 }}"
+    class="card-img-top motif-size"
+    alt="Hasil Motif 4"
+    onclick="addMotif(this)"
+  />
+</div>
+
+
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container card-0 justify-content-center">
-        <div class="card-body px-sm-4 px-0">
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-10">
-                    <h3 class="font-weight-bold text-center">Modul Lidi</h3>
-                    <p class="text-center text-white">
-                        Modul Lidi membantu penenun menghasilkan berbagai motif hanya dengan menggunakan sedikit Lidi.
-                        Motif yang dihasilkan telah teruji mampu menciptakan hingga ratusan motif dengan 8 jenis Lidi.
-                        Motif ini dapat diterapkan secara pasti pada kain tenun ulos.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row justify-content-center round">
-                <div class="col-lg-10 col-md-12">
-                    <div class="card shadow-lg card-1">
-                        <div class="card-body inner-card">
-                            <div class="row">
-                                <!-- Kolom untuk Memilih Motif Asal dan Hasil Motif -->
-                                <div class="col-md-6 text-center">
-                                    <h5>Motif Asal</h5>
-                                    <img src="{{ raw_url }}" class="img-fluid motif-item motif-size" alt="Motif Asal" onclick="addMotif(this)">
-                                    
-                                    <h5>Hasil Motif 1</h5>
-                                    <img src="{{ edit_url }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 1" onclick="addMotif(this)">
-
-                                    <h5>Hasil Motif 2</h5>
-                                    <img src="{{ edit_url2 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 2" onclick="addMotif(this)">
-
-                                    <h5>Hasil Motif 3</h5>
-                                    <img src="{{ edit_url3 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 3" onclick="addMotif(this)">
-
-                                    <h5>Hasil Motif 4</h5>
-                                    <img src="{{ edit_url4 }}" class="img-fluid motif-item motif-size" alt="Hasil Motif 4" onclick="addMotif(this)">
-                                </div>
-
-                                <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
-                                <div class="col-md-6 text-center">
-                                    <h5>Penggabungan Motif</h5>
-                                    <div id="combinedMotifContainer" class="border p-4" style="height: 570px; overflow-y: auto; position: relative;">
-                                        <p class="text-muted">Belum ada motif yang dipilih.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Tombol Simpan dan Ubah Warna -->
-                            <div class="row mt-5 text-center">
-                                <div class="col-md-12">
-                                    <a href="#" onclick="saveMotif()" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px; text-align: center;">Simpan Motif</a>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3 text-center">
-                                <div class="col-md-12">
-                                    <a href="{% url 'ubah_warna' %}" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px; text-align: center;">Ubah Warna</a>
-                                </div>
-                            </div>
-
-                            <div class="row mt-3 text-center">
-                                <div class="col-md-12">
-                                    <a href="{% url 'generator' %}" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Kembali</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="card-body px-sm-4 px-0">
+        <!-- Judul Utama Modul Lidi -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-10">
+            <h3 class="main-title">Modul Lidi</h3>
+            <p class="text-center text-white">
+              Modul Lidi membantu penenun menghasilkan berbagai motif hanya
+              dengan menggunakan sedikit Lidi. Motif yang dihasilkan telah
+              teruji mampu menciptakan hingga ratusan motif dengan 8 jenis Lidi.
+              Motif ini dapat diterapkan secara pasti pada kain tenun ulos.
+            </p>
+          </div>
         </div>
+
+        <div class="row justify-content-center round">
+          <div class="col-lg-10 col-md-12">
+            <div class="card shadow-lg card-1">
+              <div class="card-body inner-card">
+                <div class="row">
+                  <!-- Kolom untuk Menampilkan Motif Asal dan Hasil Motif -->
+                  <div class="col-md-6 text-center">
+                    <!-- Judul Motif Asal dan Hasil Motif -->
+                    <h5 class="motif-title">Motif</h5>
+                    <!-- Penjelasan -->
+                    <p class="explanation-text">
+                      Klik pada motif yang ingin dipilih. Anda dapat memilih
+                      lebih dari satu motif untuk digabungkan dalam motif yang
+                      sama.
+                    </p>
+                    <div class="motif-container">
+                      <h5>Motif Asal</h5>
+                      <img
+                        src="{{ raw_url }}"
+                        class="img-fluid motif-item motif-size"
+                        alt="Motif Asal"
+                        onclick="addMotif(this)"
+                      />
+
+                      <h5>Hasil Motif 1</h5>
+                      <img
+                        src="{{ edit_url }}"
+                        class="img-fluid motif-item motif-size"
+                        alt="Hasil Motif 1"
+                        onclick="addMotif(this)"
+                      />
+
+                      <h5>Hasil Motif 2</h5>
+                      <img
+                        src="{{ edit_url2 }}"
+                        class="img-fluid motif-item motif-size"
+                        alt="Hasil Motif 2"
+                        onclick="addMotif(this)"
+                      />
+
+                      <h5>Hasil Motif 3</h5>
+                      <img
+                        src="{{ edit_url3 }}"
+                        class="img-fluid motif-item motif-size"
+                        alt="Hasil Motif 3"
+                        onclick="addMotif(this)"
+                      />
+
+                      <h5>Hasil Motif 4</h5>
+                      <img
+                        src="{{ edit_url4 }}"
+                        class="img-fluid motif-item motif-size"
+                        alt="Hasil Motif 4"
+                        onclick="addMotif(this)"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
+                  <div class="col-md-6 text-center">
+                    <!-- Judul Penggabungan Motif -->
+                    <h5 class="combined-title">Penggabungan Motif</h5>
+                    <!-- Teks penjelasan sebelum kontainer penggabungan motif -->
+                    <p class="explanation-text">
+                      Setelah motif digabungkan, Anda bisa menghapusnya dengan mengklik gambar motif yang sudah dipilih.
+                    </p>
+                    <div class="motif-container">
+                      <div
+                        id="combinedMotifContainer"
+                        class="combined-motif-container"
+                      >
+                        <p class="text-muted">Belum ada motif yang dipilih.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tombol Simpan dan Ubah Warna -->
+                <div class="row mt-5 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="#"
+                      onclick="saveMotif()"
+                      class="btn btn-primary w-100"
+                      >Simpan Motif</a
+                    >
+                  </div>
+                </div>
+
+                <div class="row mt-3 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'ubah_warna' %}"
+                      class="btn btn-primary w-100"
+                      >Ubah Warna</a
+                    >
+                  </div>
+                </div>
+
+                <div class="row mt-3 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'generator' %}"
+                      class="btn btn-outline-primary w-100"
+                      >Kembali</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- JavaScript untuk Interaksi -->
     <script>
-        let motifIndex = 0;
+      let motifIndex = 0;
 
-        function addMotif(imgElement) {
-            const combinedMotifContainer = document.getElementById('combinedMotifContainer');
+      function addMotif(imgElement) {
+        const combinedMotifContainer = document.getElementById(
+          "combinedMotifContainer"
+        );
 
-            // Jika belum ada motif yang dipilih, hapus teks default
-            if (combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")) {
-                combinedMotifContainer.innerHTML = "";
-            }
-
-            // Buat wrapper untuk motif
-            let motifWrapper = document.createElement('div');
-            motifWrapper.classList.add('position-relative', 'mb-2');
-            motifWrapper.style.display = "flex";
-            motifWrapper.style.alignItems = "center";
-
-            // Tambahkan nomor urut
-            let motifNumber = document.createElement('span');
-            motifNumber.classList.add('position-absolute', 'badge', 'bg-primary');
-            motifNumber.style.top = "5px";
-            motifNumber.style.left = "5px";
-            motifNumber.style.padding = "5px";
-            motifNumber.style.borderRadius = "50%";
-            motifNumber.innerText = motifIndex + 1; // Nomor urut
-            motifWrapper.appendChild(motifNumber);
-
-            // Duplikasi gambar yang dipilih
-            let newImg = document.createElement('img');
-            newImg.src = imgElement.src;
-            newImg.classList.add('img-fluid', 'mb-2');
-            newImg.style.marginLeft = "30px"; // Jarak dari nomor urut
-            newImg.style.width = "80%";
-            newImg.style.cursor = 'pointer';
-            motifWrapper.appendChild(newImg);
-
-            // Tambahkan tombol hapus
-            let deleteButton = document.createElement('input');
-            deleteButton.type = "radio";
-            deleteButton.classList.add('position-absolute');
-            deleteButton.style.top = "5px";
-            deleteButton.style.right = "5px";
-            deleteButton.onclick = function() {
-                motifWrapper.remove();
-                updateMotifNumbers();
-            };
-            motifWrapper.appendChild(deleteButton);
-
-            combinedMotifContainer.appendChild(motifWrapper);
-            motifIndex++;
+        // Jika belum ada motif yang dipilih, hapus teks default
+        if (
+          combinedMotifContainer.querySelector(".text-muted") !== null
+        ) {
+          combinedMotifContainer.innerHTML = "";
         }
 
-        function updateMotifNumbers() {
-            const motifs = document.querySelectorAll('#combinedMotifContainer .position-relative span');
-            motifIndex = 0;
-            motifs.forEach((motif, index) => {
-                motif.innerText = index + 1;
-                motifIndex++;
-            });
+        // Membuat elemen div untuk setiap gambar motif yang dipilih
+        let motifWrapper = document.createElement("div");
+        motifWrapper.classList.add("position-relative", "mb-3");
+        motifWrapper.style.display = "flex";
+        motifWrapper.style.alignItems = "center";
 
-            // Jika tidak ada motif tersisa, tampilkan teks default
-            if (motifs.length === 0) {
-                document.getElementById('combinedMotifContainer').innerHTML = "<p class='text-muted'>Belum ada motif yang dipilih.</p>";
-            }
+        // Tambahkan nomor urut
+        let motifNumber = document.createElement("span");
+        motifNumber.classList.add("position-absolute", "badge", "bg-primary");
+        motifNumber.style.top = "5px";
+        motifNumber.style.left = "5px";
+        motifNumber.style.padding = "5px";
+        motifNumber.style.borderRadius = "50%";
+        motifNumber.innerText = motifIndex + 1; // Nomor urut
+        motifWrapper.appendChild(motifNumber);
+
+        // Duplikasi gambar yang dipilih
+        let newImg = document.createElement("img");
+        newImg.src = imgElement.src;
+        newImg.classList.add("img-fluid", "mb-2");
+        newImg.style.marginLeft = "30px"; // Jarak dari nomor urut
+        newImg.style.width = "80%";
+        newImg.style.cursor = "pointer";
+        motifWrapper.appendChild(newImg);
+
+        // Tambahkan tombol hapus
+        let deleteButton = document.createElement("input");
+        deleteButton.type = "radio";
+        deleteButton.classList.add("position-absolute");
+        deleteButton.style.top = "5px";
+        deleteButton.style.right = "5px";
+        deleteButton.onclick = function () {
+          motifWrapper.remove();
+          updateMotifNumbers();
+        };
+        motifWrapper.appendChild(deleteButton);
+
+        combinedMotifContainer.appendChild(motifWrapper);
+        motifIndex++;
+      }
+
+      function updateMotifNumbers() {
+        const motifs = document.querySelectorAll(
+          "#combinedMotifContainer .position-relative span"
+        );
+        motifIndex = 0;
+        motifs.forEach((motif, index) => {
+          motif.innerText = index + 1;
+          motifIndex++;
+        });
+
+        // Jika tidak ada motif tersisa, tampilkan teks default
+        if (motifs.length === 0) {
+          document.getElementById("combinedMotifContainer").innerHTML =
+            "<p class='text-muted'>Belum ada motif yang dipilih.</p>";
+        }
+      }
+
+      function saveMotif() {
+        const selectedMotifs = [];
+        document
+          .querySelectorAll("#combinedMotifContainer img")
+          .forEach((img) => {
+            selectedMotifs.push(img.src);
+          });
+
+        if (selectedMotifs.length === 0) {
+          alert("Pilih setidaknya satu motif untuk disimpan.");
+          return;
         }
 
-        function saveMotif() {
-            const selectedMotifs = [];
-            document.querySelectorAll('#combinedMotifContainer img').forEach(img => {
-                selectedMotifs.push(img.src);
-            });
-
-            if (selectedMotifs.length === 0) {
-                alert("Pilih setidaknya satu motif untuk disimpan.");
-                return;
-            }
-
-            fetch("{% url 'save_combined_motif' %}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRFToken": "{{ csrf_token }}"
-                },
-                body: JSON.stringify({ motifs: selectedMotifs })
-            }).then(response => response.json())
-              .then(data => alert("Motif berhasil disimpan!"))
-              .catch(error => alert("Terjadi kesalahan, coba lagi."));
-        }
+        fetch("{% url 'save_combined_motif' %}", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
+          body: JSON.stringify({ motifs: selectedMotifs }),
+        })
+          .then((response) => response.json())
+          .then((data) => alert("Motif berhasil disimpan!"))
+          .catch((error) => alert("Terjadi kesalahan, coba lagi."));
+      }
     </script>
-</body>
+  </body>
 </html>

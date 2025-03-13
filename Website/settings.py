@@ -70,7 +70,7 @@ ROOT_URLCONF = 'Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],  # Pastikan path ke templates benar
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +82,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'Website.wsgi.application'
 
@@ -109,8 +110,7 @@ DATABASES = {
     }
 }
 
-
-
+APPEND_SLASH = False
 
 AUTH_PASSWORD_VALIDATORS = [
     {

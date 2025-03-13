@@ -20,11 +20,13 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from PIL import Image
+from django.http import HttpResponse
 import io
 import requests
 import sys, os, re
 import logging
 import json
+
 
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -210,6 +212,14 @@ def save(request):
     image3 =  Objecthasil.SaveMotiHasil()
 
     return render(request, 'download.html',{'user':user,'jmlBaris':jmlBaris,'raw_url1':image2, 'edit_url1': image3, 'Urutan':str(Urutan), 'jenis': str(jenisGenerate),'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+
+@login_required(login_url='login')
+def save_generator(request):
+    if request.method == 'POST':
+        # Proses data POST di sini
+        return redirect('generator')  # Mengarahkan ke URL yang memiliki nama 'generator'
+    else:
+        return HttpResponse("Hanya menerima POST request")
 
 @login_required(login_url='login')
 def PostImage(request):
@@ -514,6 +524,7 @@ def gabungkan_motif(request):
         'edit_url': edit_url,
         'combined_motif_url': combined_motif_url
     })
+    
 
 def SignupPage(request):
     if request.user.is_authenticated:
