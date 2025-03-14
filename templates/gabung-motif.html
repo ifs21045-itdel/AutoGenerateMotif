@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -116,59 +116,17 @@
         margin-top: 10px; /* Jarak atas untuk memberi ruang */
       }
 
-      <!-- Card untuk Motif Asal -->
-<div class="card motif-card">
-  <img
-    src="{{ raw_url }}"
-    class="card-img-top motif-size"
-    alt="Motif Asal"
-    onclick="addMotif(this)"
-  />
-</div>
-
-<!-- Card untuk Hasil Motif 1 -->
-<div class="card motif-card">
-  <img
-    src="{{ edit_url }}"
-    class="card-img-top motif-size"
-    alt="Hasil Motif 1"
-    onclick="addMotif(this)"
-  />
-</div>
-
-<!-- Card untuk Hasil Motif 2 -->
-<div class="card motif-card">
-  <img
-    src="{{ edit_url2 }}"
-    class="card-img-top motif-size"
-    alt="Hasil Motif 2"
-    onclick="addMotif(this)"
-  />
-</div>
-
-<!-- Card untuk Hasil Motif 3 -->
-<div class="card motif-card">
-  <img
-    src="{{ edit_url3 }}"
-    class="card-img-top motif-size"
-    alt="Hasil Motif 3"
-    onclick="addMotif(this)"
-  />
-</div>
-
-<!-- Card untuk Hasil Motif 4 -->
-<div class="card motif-card">
-  <img
-    src="{{ edit_url4 }}"
-    class="card-img-top motif-size"
-    alt="Hasil Motif 4"
-    onclick="addMotif(this)"
-  />
-</div>
-
-
+      /* Card untuk Motif */
+      .motif-card {
+        margin-bottom: 15px;
+        border: 2px solid #000000;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
     </style>
   </head>
+
   <body>
     <div class="container card-0 justify-content-center">
       <div class="card-body px-sm-4 px-0">
@@ -202,44 +160,59 @@
                     </p>
                     <div class="motif-container">
                       <h5>Motif Asal</h5>
-                      <img
-                        src="{{ raw_url }}"
-                        class="img-fluid motif-item motif-size"
-                        alt="Motif Asal"
-                        onclick="addMotif(this)"
-                      />
+                      <!-- Card untuk Motif Asal -->
+                      <div class="card motif-card">
+                        <img
+                          src="{{ raw_url }}"
+                          class="card-img-top motif-size"
+                          alt="Motif Asal"
+                          onclick="addMotif(this)"
+                        />
+                      </div>
 
                       <h5>Hasil Motif 1</h5>
-                      <img
-                        src="{{ edit_url }}"
-                        class="img-fluid motif-item motif-size"
-                        alt="Hasil Motif 1"
-                        onclick="addMotif(this)"
-                      />
+                      <!-- Card untuk Hasil Motif 1 -->
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 1"
+                          onclick="addMotif(this)"
+                        />
+                      </div>
 
                       <h5>Hasil Motif 2</h5>
-                      <img
-                        src="{{ edit_url2 }}"
-                        class="img-fluid motif-item motif-size"
-                        alt="Hasil Motif 2"
-                        onclick="addMotif(this)"
-                      />
+                      <!-- Card untuk Hasil Motif 2 -->
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url2 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 2"
+                          onclick="addMotif(this)"
+                        />
+                      </div>
 
                       <h5>Hasil Motif 3</h5>
-                      <img
-                        src="{{ edit_url3 }}"
-                        class="img-fluid motif-item motif-size"
-                        alt="Hasil Motif 3"
-                        onclick="addMotif(this)"
-                      />
+                      <!-- Card untuk Hasil Motif 3 -->
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url3 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 3"
+                          onclick="addMotif(this)"
+                        />
+                      </div>
 
                       <h5>Hasil Motif 4</h5>
-                      <img
-                        src="{{ edit_url4 }}"
-                        class="img-fluid motif-item motif-size"
-                        alt="Hasil Motif 4"
-                        onclick="addMotif(this)"
-                      />
+                      <!-- Card untuk Hasil Motif 4 -->
+                      <div class="card motif-card">
+                        <img
+                          src="{{ edit_url4 }}"
+                          class="card-img-top motif-size"
+                          alt="Hasil Motif 4"
+                          onclick="addMotif(this)"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -263,141 +236,41 @@
                 </div>
 
                 <!-- Tombol Simpan dan Ubah Warna -->
-                <div class="row mt-5 text-center">
-                  <div class="col-md-12">
-                    <a
-                      href="#"
-                      onclick="saveMotif()"
-                      class="btn btn-primary w-100"
-                      >Simpan Motif</a
-                    >
-                  </div>
-                </div>
-
-                <div class="row mt-3 text-center">
-                  <div class="col-md-12">
-                    <a
-                      href="{% url 'ubah_warna' %}"
-                      class="btn btn-primary w-100"
-                      >Ubah Warna</a
-                    >
-                  </div>
-                </div>
-
-                <div class="row mt-3 text-center">
-                  <div class="col-md-12">
-                    <a
-                      href="{% url 'generator' %}"
-                      class="btn btn-outline-primary w-100"
-                      >Kembali</a
-                    >
-                  </div>
-                </div>
+              <div class="row mt-4 text-center">
+              <div class="col-md-12">
+              <button class="btn" onclick="saveMotif()" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px;">Simpan Motif</button>
               </div>
+              </div>
+
+              <div class="row mt-4 text-center">
+              <div class="col-md-12">
+              <a href="{% url 'ubah_warna' %}" class="btn" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Ubah Warna</a>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- JavaScript untuk Interaksi -->
+              <div class="row mt-4 text-center">
+              <div class="col-md-12">
+              <a href="{% url 'generator' %}" class="btn" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Kembali</a>
+            </div>
+          </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-      let motifIndex = 0;
-
-      function addMotif(imgElement) {
-        const combinedMotifContainer = document.getElementById(
-          "combinedMotifContainer"
-        );
-
-        // Jika belum ada motif yang dipilih, hapus teks default
-        if (
-          combinedMotifContainer.querySelector(".text-muted") !== null
-        ) {
-          combinedMotifContainer.innerHTML = "";
-        }
-
-        // Membuat elemen div untuk setiap gambar motif yang dipilih
-        let motifWrapper = document.createElement("div");
-        motifWrapper.classList.add("position-relative", "mb-3");
-        motifWrapper.style.display = "flex";
-        motifWrapper.style.alignItems = "center";
-
-        // Tambahkan nomor urut
-        let motifNumber = document.createElement("span");
-        motifNumber.classList.add("position-absolute", "badge", "bg-primary");
-        motifNumber.style.top = "5px";
-        motifNumber.style.left = "5px";
-        motifNumber.style.padding = "5px";
-        motifNumber.style.borderRadius = "50%";
-        motifNumber.innerText = motifIndex + 1; // Nomor urut
-        motifWrapper.appendChild(motifNumber);
-
-        // Duplikasi gambar yang dipilih
-        let newImg = document.createElement("img");
-        newImg.src = imgElement.src;
-        newImg.classList.add("img-fluid", "mb-2");
-        newImg.style.marginLeft = "30px"; // Jarak dari nomor urut
-        newImg.style.width = "80%";
-        newImg.style.cursor = "pointer";
-        motifWrapper.appendChild(newImg);
-
-        // Tambahkan tombol hapus
-        let deleteButton = document.createElement("input");
-        deleteButton.type = "radio";
-        deleteButton.classList.add("position-absolute");
-        deleteButton.style.top = "5px";
-        deleteButton.style.right = "5px";
-        deleteButton.onclick = function () {
-          motifWrapper.remove();
-          updateMotifNumbers();
+      // Fungsi untuk menambahkan motif yang dipilih ke dalam container penggabungan
+      function addMotif(imageElement) {
+        var img = document.createElement("img");
+        img.src = imageElement.src;
+        img.className = "motif-size";
+        img.onclick = function () {
+          removeMotif(this);
         };
-        motifWrapper.appendChild(deleteButton);
-
-        combinedMotifContainer.appendChild(motifWrapper);
-        motifIndex++;
+        document.getElementById("combinedMotifContainer").appendChild(img);
       }
 
-      function updateMotifNumbers() {
-        const motifs = document.querySelectorAll(
-          "#combinedMotifContainer .position-relative span"
-        );
-        motifIndex = 0;
-        motifs.forEach((motif, index) => {
-          motif.innerText = index + 1;
-          motifIndex++;
-        });
-
-        // Jika tidak ada motif tersisa, tampilkan teks default
-        if (motifs.length === 0) {
-          document.getElementById("combinedMotifContainer").innerHTML =
-            "<p class='text-muted'>Belum ada motif yang dipilih.</p>";
-        }
-      }
-
-      function saveMotif() {
-        const selectedMotifs = [];
-        document
-          .querySelectorAll("#combinedMotifContainer img")
-          .forEach((img) => {
-            selectedMotifs.push(img.src);
-          });
-
-        if (selectedMotifs.length === 0) {
-          alert("Pilih setidaknya satu motif untuk disimpan.");
-          return;
-        }
-
-        fetch("{% url 'save_combined_motif' %}", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": "{{ csrf_token }}",
-          },
-          body: JSON.stringify({ motifs: selectedMotifs }),
-        })
-          .then((response) => response.json())
-          .then((data) => alert("Motif berhasil disimpan!"))
-          .catch((error) => alert("Terjadi kesalahan, coba lagi."));
+      // Fungsi untuk menghapus motif yang telah dipilih
+      function removeMotif(imageElement) {
+        imageElement.remove();
       }
     </script>
   </body>
