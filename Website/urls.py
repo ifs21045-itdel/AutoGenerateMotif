@@ -12,6 +12,7 @@ urlpatterns = [
     path('Monitoring', views.loading, name="Monitoring"),
     path('home/', views.generator, name="home"),
     path('generator/external', views.external),
+    path('save', views.save),
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
     path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
