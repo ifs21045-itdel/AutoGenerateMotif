@@ -4,28 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-
     <title>Modul Lidi</title>
     <link
       rel="icon"
       href="{% static 'img/icon/NewTitle.ico' %}"
       type="image/x-icon"
     />
-
     <style>
       /* Menyesuaikan ukuran gambar motif */
       .motif-size {
         width: 100%; /* Lebar gambar menyesuaikan lebar kontainer */
         height: auto; /* Menjaga rasio aspek gambar */
-        object-fit: contain; /* Menjaga gambar tetap utuh dan tidak terpotong */
+        object-fit: cover; /* Menjaga gambar tetap utuh dan tidak terpotong */
         margin-bottom: 10px; /* Menambahkan jarak antar gambar */
+        position: relative; /* Agar angka bisa ditempatkan di posisi absolut */
+      }
+
+      /* Styling untuk angka yang ditampilkan di kiri atas gambar */
+      .motif-number {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background-color: blue; /* Warna biru */
+        color: white; /* Warna teks putih */
+        font-size: 14px; /* Ukuran font 14px */
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 0px; /* Membuat bentuk kotak */
+        width: 20px; /* Lebar kotak */
+        height: 20px; /* Tinggi kotak */
+        display: flex;
+        justify-content: center; /* Menyelaraskan teks ke tengah */
+        align-items: center; /* Menyelaraskan teks ke tengah */
       }
 
       /* Styling untuk container Motif */
@@ -35,7 +51,7 @@
         border-radius: 8px;
         padding: 10px;
         background-color: #f5f5f5;
-        height: 100%; /* Menambahkan tinggi agar kontainer setinggi kontainer lainnya */
+        height: 780px; /* Menambahkan tinggi agar kontainer setinggi kontainer lainnya */
       }
 
       /* Styling untuk judul container */
@@ -46,23 +62,25 @@
 
       /* Styling untuk container penggabungan motif */
       .combined-motif-container {
-        height: 653px; /* Menentukan tinggi kontainer, Anda bisa menyesuaikan sesuai kebutuhan */
-        width: 100%; /* Lebar kontainer menyesuaikan ukuran container induk */
-        max-width: 500px; /* Anda bisa membatasi lebar maksimum jika diinginkan */
-        overflow-y: auto; /* Agar konten dapat digulir secara vertikal */
-        padding: 15px; /* Menambahkan padding untuk memberi ruang di dalam kontainer */
+        min-height: 710px; /* Setel tinggi minimum agar konten tidak terpotong */
+        max-height: 500px; /* Menetapkan tinggi maksimum */
+        width: 100%;
+        max-width: 500px;
+        overflow-y: auto; /* Memungkinkan pengguliran jika konten lebih tinggi dari max-height */
+        padding: 15px;
         background-color: white;
         border: 1px solid #ddd;
         position: relative;
         margin-top: 10px; /* Menambahkan jarak antar kontainer */
       }
 
-      /* Menambahkan gaya pada flexbox container untuk memastikan keseragaman */
-      .row > .col-md-6 {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        height: 100%;
+      /* Card untuk Motif */
+      .motif-card {
+        margin-bottom: 5px;
+        border: 2px solid #000000;
+        border-radius: 0px;
+        padding: 5px;
+        background-color: #f9f9f9;
       }
 
       /* Styling untuk judul utama modul */
@@ -70,59 +88,25 @@
         font-size: 24px;
         font-weight: bold;
         text-align: center;
-        margin-top: 30px;
-        margin-bottom: 20px;
-      }
-
-      /* Styling untuk judul penggabungan motif */
-      .combined-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 10px;
+        margin-top: 0px;
         margin-bottom: 10px;
       }
 
-      /* Styling untuk judul motif asal dan hasil motif */
-      .motif-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-top: 15px;
-        margin-bottom: 5px;
+      /* Menambahkan margin untuk tombol agar lebih ke bawah */
+      .btn-container {
+        margin-top: 40px; /* Menambahkan margin untuk memberi jarak lebih banyak ke bawah */
       }
 
-      /* Styling untuk teks penjelasan */
-      .explanation-text {
-        font-size: 12px; /* Ukuran teks 12px */
-        color: #555;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        padding: 0px;
-        line-height: 1.1; /* Menurunkan jarak antar baris teks */
-        white-space: normal; /* Agar teks bisa mengalir ke bawah */
-        letter-spacing: -0.5px; /* Mengurangi jarak antar karakter */
-        text-align: center; /* Memastikan teks terpusat */
-      }
-
-      .explanation-text-combined {
-        font-size: 12px; /* Ukuran teks 12px */
-        color: #555;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        padding: 0px;
-        line-height: 1.1; /* Menurunkan jarak antar baris teks */
-        white-space: normal; /* Agar teks bisa mengalir ke bawah */
-        letter-spacing: -0.5px; /* Mengurangi jarak antar karakter */
-        text-align: center; /* Memastikan teks terpusat */
-        margin-top: 10px; /* Jarak atas untuk memberi ruang */
-      }
-
-      /* Card untuk Motif */
-      .motif-card {
-        margin-bottom: 15px;
-        border: 2px solid #000000;
-        border-radius: 8px;
-        padding: 10px;
-        background-color: #f9f9f9;
+      /* Menambahkan garis horizontal merah pada tengah container */
+      .combined-motif-container::before {
+        content: '';
+        position: absolute;
+        top: 50%; /* Menempatkan garis di tengah vertikal */
+        left: 0;
+        width: 100%; /* Garis memenuhi lebar container */
+        height: 3px; /* Lebar garis */
+        background-color: red; /* Warna merah */
+        transform: translateY(-50%); /* Memastikan garis berada tepat di tengah */
       }
     </style>
   </head>
@@ -150,9 +134,7 @@
                 <div class="row">
                   <!-- Kolom untuk Menampilkan Motif Asal dan Hasil Motif -->
                   <div class="col-md-6 text-center">
-                    <!-- Judul Motif Asal dan Hasil Motif -->
                     <h5 class="motif-title">Motif</h5>
-                    <!-- Penjelasan -->
                     <p class="explanation-text">
                       Klik pada motif yang ingin dipilih. Anda dapat memilih
                       lebih dari satu motif untuk digabungkan dalam motif yang
@@ -160,7 +142,6 @@
                     </p>
                     <div class="motif-container">
                       <h5>Motif Asal</h5>
-                      <!-- Card untuk Motif Asal -->
                       <div class="card motif-card">
                         <img
                           src="{{ raw_url }}"
@@ -171,7 +152,6 @@
                       </div>
 
                       <h5>Hasil Motif 1</h5>
-                      <!-- Card untuk Hasil Motif 1 -->
                       <div class="card motif-card">
                         <img
                           src="{{ edit_url }}"
@@ -182,7 +162,6 @@
                       </div>
 
                       <h5>Hasil Motif 2</h5>
-                      <!-- Card untuk Hasil Motif 2 -->
                       <div class="card motif-card">
                         <img
                           src="{{ edit_url2 }}"
@@ -193,7 +172,6 @@
                       </div>
 
                       <h5>Hasil Motif 3</h5>
-                      <!-- Card untuk Hasil Motif 3 -->
                       <div class="card motif-card">
                         <img
                           src="{{ edit_url3 }}"
@@ -204,7 +182,6 @@
                       </div>
 
                       <h5>Hasil Motif 4</h5>
-                      <!-- Card untuk Hasil Motif 4 -->
                       <div class="card motif-card">
                         <img
                           src="{{ edit_url4 }}"
@@ -218,60 +195,148 @@
 
                   <!-- Kolom untuk Menampilkan Motif yang Digabungkan -->
                   <div class="col-md-6 text-center">
-                    <!-- Judul Penggabungan Motif -->
                     <h5 class="combined-title">Penggabungan Motif</h5>
-                    <!-- Teks penjelasan sebelum kontainer penggabungan motif -->
                     <p class="explanation-text">
-                      Setelah motif digabungkan, Anda bisa menghapusnya dengan mengklik gambar motif yang sudah dipilih.
+                      Jika Anda ingin menghapus motif yang telah dipilih, Anda dapat mengklik motif yang ingin dihapus.
                     </p>
                     <div class="motif-container">
-                      <div
-                        id="combinedMotifContainer"
-                        class="combined-motif-container"
-                      >
+                      <div id="combinedMotifContainer" class="combined-motif-container">
                         <p class="text-muted">Belum ada motif yang dipilih.</p>
                       </div>
                     </div>
+                    <p class="text-muted" style="margin-top: 15px; text-align: center; margin-left: auto; margin-right: auto; word-wrap: break-word;">
+                      Garis merah menunjukkan area cermin untuk menampilkan hasil desain yang simetris.
+                    </p>
                   </div>
                 </div>
 
-                <!-- Tombol Simpan dan Ubah Warna -->
-              <div class="row mt-4 text-center">
-              <div class="col-md-12">
-              <button class="btn" onclick="saveMotif()" style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px;">Simpan Motif</button>
-              </div>
-              </div>
+                <!-- Tombol Simpan dan Ubah Warna, Letakkan di bawah dengan margin lebih besar -->
+                <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <button
+                      class="btn"
+                      onclick="saveMotif()"
+                      style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px;"
+                    >
+                      Simpan Motif
+                    </button>
+                  </div>
+                </div>
 
-              <div class="row mt-4 text-center">
-              <div class="col-md-12">
-              <a href="{% url 'ubah_warna' %}" class="btn" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Ubah Warna</a>
+                <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'ubah_warna' %}"
+                      class="btn"
+                      style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;"
+                    >
+                      Ubah Warna
+                    </a>
+                  </div>
+                </div>
+
+                <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'generator' %}"
+                      class="btn"
+                      style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;"
+                    >
+                      Kembali
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-              <div class="row mt-4 text-center">
-              <div class="col-md-12">
-              <a href="{% url 'generator' %}" class="btn" style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;">Kembali</a>
-            </div>
-          </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-      // Fungsi untuk menambahkan motif yang dipilih ke dalam container penggabungan
-      function addMotif(imageElement) {
-        var img = document.createElement("img");
-        img.src = imageElement.src;
-        img.className = "motif-size";
-        img.onclick = function () {
-          removeMotif(this);
-        };
-        document.getElementById("combinedMotifContainer").appendChild(img);
-      }
-
-      // Fungsi untuk menghapus motif yang telah dipilih
-      function removeMotif(imageElement) {
-        imageElement.remove();
-      }
-    </script>
+      <script>
+        let motifCounter = 1; // Untuk melacak urutan gambar
+      
+        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
+        function addMotif(imageElement) {
+          var combinedMotifContainer = document.getElementById("combinedMotifContainer");
+      
+          // Cek apakah ada pesan "Belum ada motif yang dipilih", jika ada, hapus
+          if (combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")) {
+            combinedMotifContainer.innerHTML = ''; // Hapus pesan tersebut
+          }
+      
+          // Menentukan posisi berdasarkan urutan
+          var numberOfMotifs = combinedMotifContainer.children.length / 2; // Menghitung jumlah motif yang ada
+          var topPosition = `calc(50% - ${50 + (numberOfMotifs * 100)}px)`; // Menggeser gambar ke atas
+          var bottomPosition = `calc(50% + ${50 + (numberOfMotifs * 100)}px)`; // Menggeser gambar ke bawah
+      
+          // Membuat elemen gambar pertama (untuk gambar baru)
+          var img = document.createElement("img");
+          img.src = imageElement.src;
+          img.className = "motif-size";
+          img.dataset.index = motifCounter; // Menambahkan atribut untuk urutan gambar
+          img.onclick = function () {
+            removeMotif(this);
+          };
+      
+          // Membuat elemen angka untuk ditampilkan di gambar
+          var numberLabel = document.createElement("span");
+          numberLabel.className = "motif-number";
+          numberLabel.textContent = motifCounter; // Menambahkan angka
+      
+          // Membuat elemen container untuk gambar pertama dan angka
+          var imgContainer = document.createElement("div");
+          imgContainer.style.position = "absolute"; // Menggunakan absolute positioning
+          imgContainer.style.top = topPosition; // Menempatkan gambar pertama di atas
+          imgContainer.style.left = "50%"; // Menempatkan gambar di tengah horizontal
+          imgContainer.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
+          imgContainer.appendChild(img);
+          imgContainer.appendChild(numberLabel);
+      
+          // Menambahkan gambar pertama ke dalam kontainer penggabungan
+          combinedMotifContainer.appendChild(imgContainer);
+      
+          // Membuat elemen gambar kedua (untuk gambar baru)
+          var imgDouble = document.createElement("img");
+          imgDouble.src = imageElement.src;
+          imgDouble.className = "motif-size";
+          imgDouble.dataset.index = motifCounter; // Memberikan angka yang sama
+          imgDouble.onclick = function () {
+            removeMotif(this);
+          };
+      
+          var numberLabelDouble = document.createElement("span");
+          numberLabelDouble.className = "motif-number";
+          numberLabelDouble.textContent = motifCounter; // Menambahkan angka yang sama untuk gambar kedua
+      
+          // Membuat elemen container untuk gambar kedua dan angka
+          var imgContainerDouble = document.createElement("div");
+          imgContainerDouble.style.position = "absolute"; // Menggunakan absolute positioning
+          imgContainerDouble.style.top = bottomPosition; // Menempatkan gambar kedua di bawah
+          imgContainerDouble.style.left = "50%"; // Menempatkan gambar di tengah horizontal
+          imgContainerDouble.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
+          imgContainerDouble.appendChild(imgDouble);
+          imgContainerDouble.appendChild(numberLabelDouble);
+      
+          // Menambahkan gambar kedua ke dalam kontainer penggabungan
+          combinedMotifContainer.appendChild(imgContainerDouble);
+      
+          motifCounter++; // Menambah urutan gambar hanya 1 kali
+        }
+      
+        // Fungsi untuk menghapus motif yang telah dipilih
+        function removeMotif(motifElement) {
+          motifElement.parentElement.remove();
+        }
+      
+        // Fungsi untuk menyimpan motif
+        function saveMotif() {
+          // Logika untuk menyimpan motif, dapat diadaptasi
+          alert("Motif disimpan!");
+        }
+      </script>
+      
+    </div>
   </body>
 </html>
