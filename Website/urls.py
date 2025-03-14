@@ -39,8 +39,12 @@ urlpatterns = [
     path('', views.LoginPage, name='login'),
     path('logout/', views.LogoutPage, name='logout'),
     path('register/', views.SignupPage, name='signup'),
+    path('generator/save', views.save_generator, name='save_generator'),
+    path('motif/', views.motif, name='motif'),
+    path('save/', views.save_generator, name='save_generator'),
+    path('gabungkan_motif/', views.gabungkan_motif, name='gabungkan_motif'),
+    path('generator/', views.generator, name='generator'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
 
 
 # urlpatterns = [

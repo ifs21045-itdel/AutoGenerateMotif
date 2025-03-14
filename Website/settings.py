@@ -70,7 +70,7 @@ ROOT_URLCONF = 'Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],  # Pastikan path ke templates benar
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +82,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'Website.wsgi.application'
 
@@ -103,14 +104,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD': '',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD':'',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
         'PORT': '3306',
     }
 }
 
-
-
+APPEND_SLASH = False
 
 AUTH_PASSWORD_VALIDATORS = [
     {
