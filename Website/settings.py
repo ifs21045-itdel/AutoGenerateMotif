@@ -29,13 +29,14 @@ SECRET_KEY = 'django-insecure-r1dikf)xpbv#2$fln6e3t*^#e)sceifw-(d-mdbd0zpewh)vgr
 # SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['generatemotif.ditenun.com','172.21.169.28', 'localhost', '127.0.0.1', '[::1]']
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = 'media'
 
 SESSION_EXPIRE_SECONDS = 3600
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'Website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Pastikan path ke templates benar
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,7 +83,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 WSGI_APPLICATION = 'Website.wsgi.application'
 
@@ -96,21 +96,42 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-#asqfudgqwjgdi
 
 # DATABASE SERVER NANTINYA
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'auto_generate_motif',
+         'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD': 'root',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
-        'PORT': '3306',
+        'PORT': '3307',
     }
 }
 
-APPEND_SLASH = False
+
+
+# # database server
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'GenerateMotif',
+#         'USER': 'root', 
+#         'PASSWORD': '',
+#         # 'HOST': 'mysql-db',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
+
+
+
+# Password validation
+# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

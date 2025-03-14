@@ -19,11 +19,11 @@
     <style>
       /* Menyesuaikan ukuran gambar motif */
       .motif-size {
-        width: 100%; /* Lebar gambar menyesuaikan lebar kontainer */
+        width: 100%; /* Memastikan gambar memenuhi lebar kontainer */
         height: auto; /* Menjaga rasio aspek gambar */
-        object-fit: cover; /* Menjaga gambar tetap utuh dan tidak terpotong */
-        margin-bottom: 10px; /* Menambahkan jarak antar gambar */
-        position: relative; /* Agar angka bisa ditempatkan di posisi absolut */
+        object-fit: contain; /* Menjaga gambar agar tidak terpotong */
+        margin-bottom: 5px; /* Menambahkan jarak antar gambar */
+        position: relative; /* Agar angka dapat ditempatkan di posisi absolut */
       }
 
       /* Styling untuk angka yang ditampilkan di kiri atas gambar */
@@ -33,12 +33,12 @@
         left: 0px;
         background-color: blue; /* Warna biru */
         color: white; /* Warna teks putih */
-        font-size: 14px; /* Ukuran font 14px */
+        font-size: 16px; /* Ukuran font yang lebih besar */
         font-weight: bold;
         padding: 5px;
         border-radius: 0px; /* Membuat bentuk kotak */
-        width: 20px; /* Lebar kotak */
-        height: 20px; /* Tinggi kotak */
+        width: 30px; /* Lebar kotak yang lebih besar */
+        height: 30px; /* Tinggi kotak yang lebih besar */
         display: flex;
         justify-content: center; /* Menyelaraskan teks ke tengah */
         align-items: center; /* Menyelaraskan teks ke tengah */
@@ -60,12 +60,20 @@
         font-weight: bold;
       }
 
-      /* Styling untuk container penggabungan motif */
+      /* Menyesuaikan ukuran gambar di dalam container penggabungan motif */
+      .combined-motif-container img {
+        width: 460px; /* Menetapkan lebar gambar menjadi 310px */
+        height: auto; /* Menjaga rasio aspek gambar */
+        object-fit: contain; /* Menjaga gambar agar tetap utuh dan tidak terpotong */
+        margin-bottom: 10px; /* Memberikan jarak antar gambar */
+        position: relative; /* Agar angka bisa ditempatkan di posisi absolut */
+      }
+
+      /* Jika Anda ingin menambah ruang pada container untuk menyesuaikan ukuran gambar */
       .combined-motif-container {
-        min-height: 710px; /* Setel tinggi minimum agar konten tidak terpotong */
-        max-height: 500px; /* Menetapkan tinggi maksimum */
-        width: 100%;
-        max-width: 500px;
+        min-height: 710px; /* Menetapkan tinggi minimum agar konten tidak terpotong */
+        max-height: 1000px; /* Menambah tinggi maksimum sesuai dengan gambar besar */
+        width: 100%; /* Memastikan lebar kontainer mengikuti ukuran */
         overflow-y: auto; /* Memungkinkan pengguliran jika konten lebih tinggi dari max-height */
         padding: 15px;
         background-color: white;
@@ -99,14 +107,16 @@
 
       /* Menambahkan garis horizontal merah pada tengah container */
       .combined-motif-container::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%; /* Menempatkan garis di tengah vertikal */
         left: 0;
-        width: 100%; /* Garis memenuhi lebar container */
+        width: 100%; /* Garis memenuhi lebar kontainer */
         height: 3px; /* Lebar garis */
         background-color: red; /* Warna merah */
-        transform: translateY(-50%); /* Memastikan garis berada tepat di tengah */
+        transform: translateY(
+          -50%
+        ); /* Memastikan garis berada tepat di tengah */
       }
     </style>
   </head>
@@ -197,15 +207,29 @@
                   <div class="col-md-6 text-center">
                     <h5 class="combined-title">Penggabungan Motif</h5>
                     <p class="explanation-text">
-                      Jika Anda ingin menghapus motif yang telah dipilih, Anda dapat mengklik motif yang ingin dihapus.
+                      Jika Anda ingin menghapus motif yang telah dipilih, Anda
+                      dapat mengklik motif yang ingin dihapus.
                     </p>
                     <div class="motif-container">
-                      <div id="combinedMotifContainer" class="combined-motif-container">
+                      <div
+                        id="combinedMotifContainer"
+                        class="combined-motif-container"
+                      >
                         <p class="text-muted">Belum ada motif yang dipilih.</p>
                       </div>
                     </div>
-                    <p class="text-muted" style="margin-top: 15px; text-align: center; margin-left: auto; margin-right: auto; word-wrap: break-word;">
-                      Garis merah menunjukkan area cermin untuk menampilkan hasil desain yang simetris.
+                    <p
+                      class="text-muted"
+                      style="
+                        margin-top: 15px;
+                        text-align: center;
+                        margin-left: auto;
+                        margin-right: auto;
+                        word-wrap: break-word;
+                      "
+                    >
+                      Garis merah menunjukkan area cermin untuk menampilkan
+                      hasil desain yang simetris.
                     </p>
                   </div>
                 </div>
@@ -216,7 +240,17 @@
                     <button
                       class="btn"
                       onclick="saveMotif()"
-                      style="background-color: #002BA3; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #FFFFFF; text-decoration: none; display: inline-block; width: 320px;"
+                      style="
+                        background-color: #002ba3;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #ffffff;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 320px;
+                      "
                     >
                       Simpan Motif
                     </button>
@@ -228,7 +262,17 @@
                     <a
                       href="{% url 'ubah_warna' %}"
                       class="btn"
-                      style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;"
+                      style="
+                        background-color: transparent;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #002ba3;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 320px;
+                      "
                     >
                       Ubah Warna
                     </a>
@@ -240,7 +284,17 @@
                     <a
                       href="{% url 'generator' %}"
                       class="btn"
-                      style="background-color: transparent; border: 2px solid #002BA3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1.0rem; color: #002BA3; text-decoration: none; display: inline-block; width: 320px;"
+                      style="
+                        background-color: transparent;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #002ba3;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 320px;
+                      "
                     >
                       Kembali
                     </a>
@@ -256,35 +310,42 @@
 
       <script>
         let motifCounter = 1; // Untuk melacak urutan gambar
-      
+
+        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
         // Fungsi untuk menambahkan motif yang dipilih ke dalam container
         function addMotif(imageElement) {
-          var combinedMotifContainer = document.getElementById("combinedMotifContainer");
-      
+          var combinedMotifContainer = document.getElementById(
+            "combinedMotifContainer"
+          );
+
           // Cek apakah ada pesan "Belum ada motif yang dipilih", jika ada, hapus
-          if (combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")) {
-            combinedMotifContainer.innerHTML = ''; // Hapus pesan tersebut
+          if (
+            combinedMotifContainer.innerHTML.includes(
+              "Belum ada motif yang dipilih"
+            )
+          ) {
+            combinedMotifContainer.innerHTML = ""; // Hapus pesan tersebut
           }
-      
+
           // Menentukan posisi berdasarkan urutan
           var numberOfMotifs = combinedMotifContainer.children.length / 2; // Menghitung jumlah motif yang ada
-          var topPosition = `calc(50% - ${50 + (numberOfMotifs * 100)}px)`; // Menggeser gambar ke atas
-          var bottomPosition = `calc(50% + ${50 + (numberOfMotifs * 100)}px)`; // Menggeser gambar ke bawah
-      
+          var topPosition = `calc(50% - ${50 + numberOfMotifs * 100}px)`; // Menggeser gambar ke atas
+          var bottomPosition = `calc(50% + ${50 + numberOfMotifs * 100}px)`; // Menggeser gambar ke bawah
+
           // Membuat elemen gambar pertama (untuk gambar baru)
           var img = document.createElement("img");
           img.src = imageElement.src;
-          img.className = "motif-size";
+          img.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
           img.dataset.index = motifCounter; // Menambahkan atribut untuk urutan gambar
           img.onclick = function () {
             removeMotif(this);
           };
-      
+
           // Membuat elemen angka untuk ditampilkan di gambar
           var numberLabel = document.createElement("span");
           numberLabel.className = "motif-number";
           numberLabel.textContent = motifCounter; // Menambahkan angka
-      
+
           // Membuat elemen container untuk gambar pertama dan angka
           var imgContainer = document.createElement("div");
           imgContainer.style.position = "absolute"; // Menggunakan absolute positioning
@@ -293,23 +354,23 @@
           imgContainer.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
           imgContainer.appendChild(img);
           imgContainer.appendChild(numberLabel);
-      
+
           // Menambahkan gambar pertama ke dalam kontainer penggabungan
           combinedMotifContainer.appendChild(imgContainer);
-      
+
           // Membuat elemen gambar kedua (untuk gambar baru)
           var imgDouble = document.createElement("img");
           imgDouble.src = imageElement.src;
-          imgDouble.className = "motif-size";
+          imgDouble.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
           imgDouble.dataset.index = motifCounter; // Memberikan angka yang sama
           imgDouble.onclick = function () {
             removeMotif(this);
           };
-      
+
           var numberLabelDouble = document.createElement("span");
           numberLabelDouble.className = "motif-number";
           numberLabelDouble.textContent = motifCounter; // Menambahkan angka yang sama untuk gambar kedua
-      
+
           // Membuat elemen container untuk gambar kedua dan angka
           var imgContainerDouble = document.createElement("div");
           imgContainerDouble.style.position = "absolute"; // Menggunakan absolute positioning
@@ -318,25 +379,24 @@
           imgContainerDouble.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
           imgContainerDouble.appendChild(imgDouble);
           imgContainerDouble.appendChild(numberLabelDouble);
-      
+
           // Menambahkan gambar kedua ke dalam kontainer penggabungan
           combinedMotifContainer.appendChild(imgContainerDouble);
-      
+
           motifCounter++; // Menambah urutan gambar hanya 1 kali
         }
-      
+
         // Fungsi untuk menghapus motif yang telah dipilih
         function removeMotif(motifElement) {
           motifElement.parentElement.remove();
         }
-      
+
         // Fungsi untuk menyimpan motif
         function saveMotif() {
           // Logika untuk menyimpan motif, dapat diadaptasi
           alert("Motif disimpan!");
         }
       </script>
-      
     </div>
   </body>
 </html>
