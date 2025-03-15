@@ -386,16 +386,30 @@
           motifCounter++; // Menambah urutan gambar hanya 1 kali
         }
 
-        // Fungsi untuk menghapus motif yang telah dipilih
         function removeMotif(motifElement) {
-          motifElement.parentElement.remove();
-        }
+  // Ambil nilai dataset index dari motif yang diklik
+  let indexToRemove = motifElement.dataset.index;
+  let combinedMotifContainer = document.getElementById("combinedMotifContainer");
 
-        // Fungsi untuk menyimpan motif
-        function saveMotif() {
-          // Logika untuk menyimpan motif, dapat diadaptasi
-          alert("Motif disimpan!");
-        }
+  // Ambil seluruh container di dalam combinedMotifContainer
+  let motifContainers = Array.from(combinedMotifContainer.children);
+
+  // Hapus semua container yang memiliki gambar dengan dataset index yang sama
+  motifContainers.forEach(container => {
+    let img = container.querySelector("img");
+    if (img && img.dataset.index === indexToRemove) {
+      container.remove();
+    }
+  });
+
+  // Jika kontainer gabungan sudah kosong, tampilkan notifikasi kembali
+  if (combinedMotifContainer.children.length === 0) {
+    let notif = document.createElement("p");
+    notif.className = "text-muted";
+    notif.textContent = "Belum ada motif yang dipilih.";
+    combinedMotifContainer.appendChild(notif);
+  }
+}
       </script>
     </div>
   </body>
