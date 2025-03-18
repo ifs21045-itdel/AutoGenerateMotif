@@ -9,3 +9,4 @@ django-seeder
 django-seed
 opencv-python
 python-decouple
+requests==2.32.2
