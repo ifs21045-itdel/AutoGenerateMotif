@@ -16,7 +16,6 @@ urlpatterns = [
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
     path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
-    path('save', views.save),
     path('PostImage', views.PostImage),
     path('post', views.createpost),
     path('tes', views.tes),
@@ -29,7 +28,7 @@ urlpatterns = [
     path('update/<int:id>', views.UpdateUser, name='update'),
     path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
     path('list1', views.showTest),
-    path('generator/save', views.save_combined_motif, name='save_combined_motif'),
+    path('generator/save', views.save, name='save'),
     path('help', views.help, name="help"),
     path('help/generator', views.help_generate, name="help-generator"),
     path('help/lidi', views.help_lidi, name="help-lidi"),
@@ -39,9 +38,9 @@ urlpatterns = [
     path('', views.LoginPage, name='login'),
     path('logout/', views.LogoutPage, name='logout'),
     path('register/', views.SignupPage, name='signup'),
-    path('generator/save', views.save_generator, name='save_generator'),
+    path('generator/save', views.save, name='save'),
     path('motif/', views.motif, name='motif'),
-    path('save/', views.save_generator, name='save_generator'),
+    # path('save/', views.save_generator, name='save_generator'),
     path('gabungkan_motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('generator/', views.generator, name='generator'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

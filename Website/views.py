@@ -214,14 +214,6 @@ def save(request):
     return render(request, 'download.html',{'user':user,'jmlBaris':jmlBaris,'raw_url1':image2, 'edit_url1': image3, 'Urutan':str(Urutan), 'jenis': str(jenisGenerate),'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
 
 @login_required(login_url='login')
-def save_generator(request):
-    if request.method == 'POST':
-        # Proses data POST di sini
-        return redirect('generator')  # Mengarahkan ke URL yang memiliki nama 'generator'
-    else:
-        return HttpResponse("Hanya menerima POST request")
-
-@login_required(login_url='login')
 def PostImage(request):
         if request.method == 'POST':
             if request.POST.get('imgBefore') and request.POST.get('imgAfter') and request.POST.get('urutanLidi') and request.POST.get('jenisGenerate') and request.POST.get('jmlBaris') and request.POST.get('user'):
@@ -283,6 +275,7 @@ def Search(request):
     if(f == ''):
          return redirect('list1')
     return render(request,"search.html", context)
+
 
 @login_required(login_url='login')
 def show(request):
@@ -392,10 +385,10 @@ def motif(request, id):
     UrutanLidi_odd = []
 
     for i in range(len(Urutan_Lidi)):
-         if i % 2 == 0:
-              UrutanLidi_even.append(Urutan_Lidi[i])
-         else:
-              UrutanLidi_odd.append(Urutan_Lidi[i]) 
+        if i % 2 == 0:
+            UrutanLidi_even.append(Urutan_Lidi[i])
+        else:
+            UrutanLidi_odd.append(Urutan_Lidi[i]) 
     
     image = image[1:-1]
 
