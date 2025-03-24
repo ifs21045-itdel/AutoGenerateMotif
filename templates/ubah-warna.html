@@ -281,5 +281,35 @@
             link.click();
         } 
     </script>
+
+<script>
+    let selectedColor = null;
+
+    // Event listener untuk memilih warna
+    function selectColor(type, color) {
+        selectedColor = color;
+        document.getElementById(`${type}Color`).style.backgroundColor = color;  // Perbarui UI palet warna
+    }
+
+    // Event listener untuk pewarnaan grid
+    function colorGrid(event, gridType) {
+        if (!selectedColor) return; // Pastikan warna sudah dipilih
+        if (gridType === 'black') {
+            event.target.style.backgroundColor = selectedColor;
+        } else if (gridType === 'white') {
+            // Pewarnaan seluruh grid dengan satu klik
+            document.querySelectorAll(`.white-grid`).forEach((grid) => {
+                grid.style.backgroundColor = selectedColor;
+            });
+        }
+    }
+
+    // Tambahkan event listener ke grid secara dinamis
+    document.querySelectorAll('.grid').forEach(grid => {
+        grid.addEventListener('click', (e) => colorGrid(e, grid.dataset.type));
+    });
+</script>
+
+
 </body>
 </html>
