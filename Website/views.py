@@ -627,3 +627,42 @@ def ubah_warna(request):
         messages.error(request, "Motif tidak ditemukan!")
 
     return render(request, 'ubah-warna.html', {'combined_motif_urls': combined_motif_urls})
+
+@login_required(login_url='login')
+def ubah_warna(request, id):
+    motif = MotifForm1.objects.get(id=id)
+    # Ambil gambar motif yang akan diubah warnanya
+    img_url = motif.imgAfter  # Misalnya, kamu ingin mengubah warna dari imgAfter
+    
+    if request.method == 'POST':
+        warna = request.POST.get('warna')
+        # Proses perubahan warna (misalnya menggunakan Python Image Library atau metode lain)
+        # Di sini kamu bisa menambahkan logika untuk mengubah warna motif sesuai pilihan pengguna
+        
+        # Simpan gambar yang sudah diubah warna, misalnya:
+        # motif.imgAfter = img_url_with_new_color
+        motif.save()
+        
+        return render(request, 'ubah_warna_success.html', {'motif': motif, 'warna': warna})
+
+    return render(request, 'ubah_warna.html', {'motif': motif, 'img_url': img_url})
+
+@login_required(login_url='login')
+def ubah_warna(request, id):
+    motif = MotifForm1.objects.get(id=id)
+    
+    # Jika menggunakan gambar yang digabungkan, bisa menggunakan combined_motif_urls atau motif.imgAfter
+    combined_motif_urls = [motif.imgAfter]  # Misalnya hanya satu gambar motif yang digabungkan
+    
+    if request.method == 'POST':
+        warna_motif = request.POST.get('warnaMotif')
+        # Lakukan pemrosesan untuk mewarnai motif sesuai dengan warna yang dipilih
+        # Setelah pewarnaan, simpan gambar baru dan tampilkan hasilnya
+        
+        motif.imgAfter = 'path_to_new_colored_image'  # Ganti dengan path gambar yang sudah diwarnai
+        motif.save()
+        
+        return render(request, 'ubah_warna_success.html', {'motif': motif, 'warna': warna_motif})
+    
+    return render(request, 'ubah-warna.html', {'combined_motif_urls': combined_motif_urls})
+

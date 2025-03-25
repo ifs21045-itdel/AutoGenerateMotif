@@ -40,6 +40,11 @@ urlpatterns = [
     path('register/', views.SignupPage, name='signup'),
     path('generator/save', views.save, name='save'),
     path('motif/', views.motif, name='motif'),
+    # warnai halaman lihat motif
+    # Tambahkan path untuk mengubah warna motif
+    path('ubah-warna/<str:id>', views.ubah_warna, name='ubah_warna'),
+    
+    
     # path('save/', views.save_generator, name='save_generator'),
     path('gabungkan_motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('generator/', views.generator, name='generator'),
