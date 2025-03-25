@@ -16,7 +16,7 @@ urlpatterns = [
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
     path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
-    path('PostImage', views.PostImage),
+    path('generator/PostImage', views.PostImage),
     path('post', views.createpost),
     path('tes', views.tes),
     path('list', views.show, name="list1"),
