@@ -156,6 +156,12 @@
                     <div class="text-center mb-5">
                         <a href="/{{ zip }}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Unduh Motif </a>
                         <a href="{{motif.imgBefore}}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Unduh Lidi </a>
+                        <div class="text-center">
+                            <a href="{% url 'ubah_warna' motif.id %}" class="btn btn-primary mt-3">
+                                Warnai Motif
+                            </a>
+                        </div>
+                        </div>
                         {% if status %}
                         <form action="/delete/" method="post" enctype="multipart/form-data">
                             {% csrf_token %}

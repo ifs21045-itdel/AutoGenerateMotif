@@ -1,0 +1,276 @@
+[33mcommit 28eec7063d6de53838a570032d974f0f55b2ad85[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Merge: 13392bc 1cc33ab
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Tue Mar 25 10:24:32 2025 +0700
+
+    Remove .pyc files and update .gitignore
+
+[33mcommit 13392bc49ab5aad0b3133feb3cb57e371eae462c[m
+Merge: 60e12e3 9645c1b
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Tue Mar 25 10:19:26 2025 +0700
+
+    pewarnaan
+
+[33mcommit 1cc33abad384c837ae74d9f3c0728077a3508c45[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Tue Mar 25 10:18:45 2025 +0700
+
+    tarik lihat motif ke warna
+
+[33mcommit 60e12e39ef3b2796c5103693e4944393753f7371[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Tue Mar 25 09:30:22 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit 9645c1bb1e572a67a982dbd2216546e93ab9c287[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Tue Mar 25 09:24:26 2025 +0700
+
+    perbaikan lihatMotif
+
+[33mcommit 8dec158486db78e5e37eacd2880ea4d75e5b05d1[m
+Merge: 185097d 92e6f16
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Mon Mar 24 15:28:01 2025 +0700
+
+    perbaikan gabungkan motif
+
+[33mcommit 185097d2574f7aff3572dd0004d5526a68d1c94a[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Mon Mar 24 15:23:15 2025 +0700
+
+    Perbaikan penggabungan motif
+
+[33mcommit 92e6f1650ee656365cdfb1baa295d76197aff380[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Mon Mar 24 09:04:21 2025 +0700
+
+    perbaikan kedua pilih lidi
+
+[33mcommit a568b3ba179768d9b9e82fe384b9899e0d6d0cdb[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Mon Mar 24 08:56:17 2025 +0700
+
+    perbaikan pilih lidi
+
+[33mcommit 53864ed119044a1a44c3845ce85e6d9c05b4499a[m
+Merge: 10ff286 915fdf2
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Mar 18 19:20:24 2025 +0700
+
+    Merge branch 'main' of https://github.com/ifs21045-itdel/AutoGenerateMotif
+
+[33mcommit 10ff286e5a35e78b1592acc1168983fbff925272[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Mar 18 19:20:04 2025 +0700
+
+    Perbaikan penggabungan motif
+
+[33mcommit 915fdf2201b93ee22bafabf17f8775edfc17cede[m
+Author: RiskiaNaomiSitorus <144434380+RiskiaNaomiSitorus@users.noreply.github.com>
+Date:   Mon Mar 17 14:50:15 2025 +0700
+
+    Update requirements.txt
+
+[33mcommit ba39a2217a133688fa95e37b7d8cbc8ee3f41130[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Sat Mar 15 14:01:11 2025 +0700
+
+    Agar pesan muncul ketika field kosong, serta hapus motif sekali dua
+
+[33mcommit e4e7051456be8fcd857605012df14cbe4ecf1aca[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Fri Mar 14 14:24:57 2025 +0700
+
+    Perbaikan penggabungan motif
+
+[33mcommit c167c88297850ba8e8a681e9cc6e54139822c927[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Fri Mar 14 11:58:03 2025 +0700
+
+    cermin motif
+
+[33mcommit 69349d74ad3efbe5fcff574bd23e6311e11e5adf[m
+Merge: 4107a46 0d3351a
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Fri Mar 14 07:21:24 2025 +0700
+
+    perbaikan fitur motif
+
+[33mcommit 4107a46c2913bc1d928e6fecf32f02d6a99d2b23[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Fri Mar 14 07:15:55 2025 +0700
+
+    fitur perbaikan motif
+
+[33mcommit 0d3351aad6271ada20f285bfac8e5a7411e3c15e[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Fri Mar 14 07:13:48 2025 +0700
+
+    gabung motif
+
+[33mcommit 5f863dc3b705ca3734a97be013370e3bae052db3[m
+Merge: eb6c8c5 bc2bc18
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Thu Mar 13 22:37:34 2025 +0700
+
+    gabungkan motif
+
+[33mcommit eb6c8c5d83fbc49041696a91dcb9dce297e4a5c0[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Thu Mar 13 22:36:36 2025 +0700
+
+    gabungkan motif
+
+[33mcommit bc2bc18371d8cfdc758977359df9f49aaf9ef944[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Fri Mar 7 22:18:52 2025 +0700
+
+    hapus jumlah motif
+
+[33mcommit ba6a87100930a3b1b007d690584aee268af79f20[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Thu Mar 6 15:43:33 2025 +0700
+
+    (gabung motif)
+
+[33mcommit 232c9b72e9642c07944d0cd5a6074a6b73ea1047[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Fri Feb 28 14:16:23 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit 6cf335cdb79807c954741e7a0e30d5a3ff4f91cc[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 25 19:57:32 2025 +0700
+
+    Tes
+
+[33mcommit fd8a1069fb3ee56d8b274ff24d8da6ea06a08628[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 18 20:04:33 2025 +0700
+
+    Tambah input
+
+[33mcommit 0a39bd99726694c07a2ddcfb05e6fffac1d94057[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Mon Feb 17 13:57:50 2025 +0700
+
+    Ubah warna Button
+
+[33mcommit bec59d6b047c5fb0a742391242acde616e790492[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 21:09:52 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit e698f26609d20fa0adac64e4abbd35531861617a[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 20:59:00 2025 +0700
+
+    update ubah-warna.html
+
+[33mcommit 835cd93e8a17f33cab1daaf768c460aaf8fe1fca[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 20:50:59 2025 +0700
+
+    hasil gabungan motif warna
+
+[33mcommit 9fdccf1571a011365e763b6c99fc6b667f55cda1[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 20:45:32 2025 +0700
+
+    hasil gabungan motif ubah warna new
+
+[33mcommit 6494512491a29d9351c78c50a32d14ae6c16f3a5[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 20:28:07 2025 +0700
+
+    hasil gabungan motif ubah warna
+
+[33mcommit 45b2a392841e0a7c8c2836b8fdacedf069d5d748[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 20:23:38 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit 445838fbd81b65330eb2dd1c093396b240007c9b[m
+Merge: 928410d e5e9dc4
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 19:56:00 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit 928410d5a7fac1f8fa0153eb00c595f2157787ea[m
+Author: ifs21046-itdel <riskianaomi17@gmail.com>
+Date:   Wed Feb 12 19:54:09 2025 +0700
+
+    hasil gabungan motif
+
+[33mcommit e5e9dc4af64a185fb1e64857ea5e06b8cbc99ac9[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Wed Feb 12 11:54:08 2025 +0700
+
+    test
+
+[33mcommit f544014390b9ff9d885aad3db59a8eb80eda797f[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 11 23:54:52 2025 +0700
+
+    frontend pewarnaan
+
+[33mcommit 371e1462540e5ab53491798dbf671b47a8ba2c27[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 11 23:30:16 2025 +0700
+
+    menggabungkan motif berhasil
+
+[33mcommit 066bcadc5a9625f104bc80eae0cd8e8bb43a93e2[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 11 23:08:48 2025 +0700
+
+    berhasil menampilkan motif asal dan hasil motif
+
+[33mcommit 06a2ea011b93901622d44aad21ef13d553c633ec[m
+Merge: 32a5f21 6876e7c
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 11 22:46:23 2025 +0700
+
+    Merge branch 'main' of https://github.com/ifs21045-itdel/AutoGenerateMotif
+
+[33mcommit 32a5f214e6c5ac7c999448229eff700b72bb3ef6[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Tue Feb 11 21:27:53 2025 +0700
+
+    Menambahkan perubahan lokal sebelum pull
+
+[33mcommit 6876e7c2691e6f7bbf31f1e3412b2cf9fc9b03a4[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Tue Feb 11 21:24:11 2025 +0700
+
+    menampilkan motif hasil dan asal
+
+[33mcommit 63f969e08fdeea2d06070671de65685ae06d96d2[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Mon Feb 10 13:56:40 2025 +0700
+
+    test
+
+[33mcommit 8736cd26299dec10f1ec7bcc1aa3215824ace056[m
+Author: thaCla23 <itharigan23@gmail.com>
+Date:   Mon Feb 10 09:36:11 2025 +0700
+
+    penambahan motif asal
+
+[33mcommit 054795f8ae4fd87f81c011c772d2b5e020d83105[m
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Fri Feb 7 16:36:06 2025 +0700
+
+    Push halaman baru
+
+[33mcommit 04f1a7c0c193e8440388d241a1efcae54ac4c6c1[m
+Merge: c1b10a1 f20e3b9
+Author: ifs21045-itdel <ifs21045@student.del.ac.id>
+Date:   Wed Feb 5 15:31:5
