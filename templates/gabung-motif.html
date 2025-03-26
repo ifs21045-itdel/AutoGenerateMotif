@@ -58,29 +58,49 @@
         font-weight: bold;
       }
 
+      .mirror-line {
+        /* Garis merah pembatas cermin */
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background-color: red;
+        z-index: 1;
+      }
+
       .combined-motif-container img {
-        width: 100%; /* Ensure the image fills the container width */
+        width: 100%; /* Menyesuaikan ukuran gambar */
+        max-width: 500px; /* Membatasi lebar maksimal agar lebih terkontrol */
         height: auto;
         object-fit: contain;
-        margin-bottom: 15px; /* More space between images */
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+
+      .image-container {
+        position: relative;
+        width: 100%;
       }
 
       .combined-motif-container {
-        height: 2160px; /* Make it take up full height */
+        height: auto;
+        min-height: 2160px; /* Make it take up full height */
         width: 100%;
         overflow-y: auto;
         padding: 20px; /* Increase padding to give more space */
         background-color: white;
         border: 1px solid #ddd;
         padding-top: 40px; /* Increase top padding */
-        align-items: flex-start;
+        align-items: center;
+        max-height: 100%;
         position: relative;
         margin-top: 20px;
         display: flex; /* Use grid layout */
-        grid-template-columns: repeat(
-          auto-fill,
-          minmax(350px, 1fr)
-        ); /* Make sure columns take more space */
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        grid-auto-rows: minmax(150px, auto);
+        /* Make sure columns take more space */
         gap: 20px; /* Add more space between images */
         justify-items: center; /* Center the items within the grid cells */
       }
@@ -116,6 +136,14 @@
         margin-top: 60px; /* More space between buttons */
       }
 
+      .motif-item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Jarak antara gambar atas dan bawah */
+        position: relative;
+        cursor: pointer;
+      }
+
       .container {
         max-width: 100%; /* Ensure the container takes full width */
         padding-left: 20px; /* Add space to the left */
@@ -130,6 +158,28 @@
       /* Adjust the column width inside the container */
       .row {
         width: 100%;
+      }
+
+      .motif-pair-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* Jarak antara gambar atas dan bawah */
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 80px;
+      }
+
+      .motif-pair {
+        position: relative;
+        width: 100%;
+      }
+
+      .motif-pair img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 1px solid #ddd;
       }
 
       /* Menambahkan garis horizontal merah pada tengah container */
@@ -327,8 +377,6 @@
         let motifCounter = 1; // Untuk melacak urutan gambar
 
         // Fungsi untuk menambahkan motif yang dipilih ke dalam container
-        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
-        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
         function addMotif(imageElement) {
           var combinedMotifContainer = document.getElementById(
             "combinedMotifContainer"
@@ -348,26 +396,48 @@
 
           // Menentukan posisi untuk gambar pertama (di atas)
           var positionOffset = totalMotifs * 100;
-          var topPosition = `calc(50% - ${50 + positionOffset + 20}px)`; // Menambah jarak pada posisi atas
-          var bottomPosition = `calc(50% + ${50 + positionOffset}px)`; // Posisi bawah tetap
+          var topPosition = `calc(50% - ${50 + positionOffset + 40}px)`; // Menambah jarak pada posisi atas
+          var bottomPosition = `calc(50% + ${50 + positionOffset + 60}px)`; // Posisi bawah tetap
 
           // Membuat elemen gambar pertama
           var img = document.createElement("img");
           img.src = imageElement.src;
           img.className = "motif-size";
+          img.style.maxWidth = "500px";
           img.dataset.index = motifCounter;
           img.onclick = function () {
             removeMotif(this);
           };
+
+          // Fungsi addMotif yang diperbaiki:
+          const bottomImg = document.createElement("img");
+          bottomImg.src = imageElement.src;
+          bottomImg.className = "motif-size";
+          bottomImg.style.transform = "scaleY(-1)"; // Efek cermin yang benar
+          bottomImg.dataset.index = motifCounter;
 
           // Membuat elemen angka untuk ditampilkan di gambar
           var numberLabel = document.createElement("span");
           numberLabel.className = "motif-number";
           numberLabel.textContent = motifCounter;
 
+          const motifItem = document.createElement("div");
+          motifItem.className = "motif-item";
+          motifItem.dataset.index = motifCounter;
+
+          // Fungsi pembantu untuk membuat elemen
+          const createImage = (src, transform) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.className = "motif-size";
+            img.style.transform = transform || "";
+            return img;
+          };
+
           // Membuat elemen container untuk gambar pertama
           var imgContainer = document.createElement("div");
           imgContainer.style.position = "absolute";
+          imgContainer.style.marginBottom = "20px";
           imgContainer.style.left = "50%";
           imgContainer.style.transform = "translateX(-50%)"; // Center the image horizontally
           imgContainer.style.top = topPosition;
@@ -431,12 +501,10 @@
             var totalMotifs = combinedMotifContainer.children.length / 2; // Membagi 2 karena ada 2 gambar per motif (atas dan bawah)
 
             // Menentukan posisi untuk gambar pertama (gambar yang akan tampil di atas)
-            var positionOffset = totalMotifs * 100; // Menghitung offset untuk posisi gambar berdasarkan urutan
+            var positionOffset = totalMotifs * 150; // Menambah jarak vertikal antar gambar
 
-            // Posisi gambar pertama di atas
-            var topPosition = `calc(50% - ${50 + positionOffset}px)`;
-            // Posisi gambar kedua di bawah
-            var bottomPosition = `calc(50% + ${50 + positionOffset}px)`;
+            var topPosition = `${positionOffset}px`; // Jarak posisi atas
+            var bottomPosition = `${positionOffset + 150}px`; // Jarak posisi bawah
 
             // Membuat elemen gambar pertama (untuk gambar baru)
             var img = document.createElement("img");
