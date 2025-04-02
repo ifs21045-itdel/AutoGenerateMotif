@@ -49,6 +49,18 @@
             </form>
         </div>
 
+                <!-- Di file lihatMotif.html, tambahkan di bagian atas konten utama -->
+        {% if error_messages %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for message in error_messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'regenerate_motif' motif.id %}" class="btn btn-primary">Regenerate Motif</a>
+        </div>
+        {% endif %}
+
         
         {% comment %} <div class="row tm-mb-90 tm-gallery" style=" margin-left: 20px; margin-right: 20px; align-items: flex-end; margin-top: 50px;">
             {% for entries in motifForm %}

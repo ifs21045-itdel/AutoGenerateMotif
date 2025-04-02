@@ -185,7 +185,6 @@
       /* Menambahkan garis horizontal merah pada tengah container */
     </style>
   </head>
-
   <body>
     <div class="container card-0 justify-content-center">
       <div class="card-body px-sm-4 px-0">
@@ -636,8 +635,50 @@
             });
           }
 
+          // Fungsi untuk mendapatkan CSRF token
+          function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+              const cookies = document.cookie.split(";");
+              for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === name + "=") {
+                  cookieValue = decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                  );
+                  break;
+                }
+              }
+            }
+            return cookieValue;
+          }
+
           // Proses menggabungkan gambar
           async function combineMotifs() {
+            // Dalam fungsi combineMotifs(), ubah pengaturan ukuran canvas:
+            var canvasWidth = 400; // Tetapkan lebar tetap yang wajar
+            var canvasHeight = 0;
+
+            // Hitung tinggi total, namun tetapkan batas maksimal
+            for (let container of motifContainers) {
+              var img = container.querySelector("img");
+              if (img) {
+                var imgElement = new Image();
+                imgElement.src = img.src;
+                var ratio = imgElement.height / imgElement.width;
+                canvasHeight += Math.ceil(canvasWidth * ratio) + 10;
+              }
+            }
+
+            // Tetapkan batas maksimal tinggi
+            var maxHeight = 800;
+            if (canvasHeight > maxHeight) {
+              canvasHeight = maxHeight;
+            }
+
+            // Pastikan tinggi adalah kelipatan dari 10 (ukuran grid)
+            canvasHeight = Math.ceil(canvasHeight / 10) * 10;
+            
             try {
               // Ambil semua kontainer gambar yang berisi gambar
               var motifContainers = Array.from(
@@ -652,9 +693,9 @@
                 const img = container.querySelector("img");
                 // Pisahkan gambar berdasarkan posisi top
                 if (container.style.top.includes("-")) {
-                  bottomImages.push(img);
-                } else {
                   topImages.push(img);
+                } else {
+                  bottomImages.push(img);
                 }
               });
 
@@ -685,11 +726,14 @@
               // Total tinggi canvas disesuaikan dengan motif
               const canvasHeight = topImagesHeight + bottomImagesHeight + 40; // Tambah sedikit margin
 
+              // Pastikan tinggi canvas adalah kelipatan 10 untuk grid yang tepat
+              const adjustedCanvasHeight = Math.ceil(canvasHeight / 10) * 10;
+
               // Buat canvas dengan ukuran yang tepat
-              var canvas = document.createElement("canvas");
+              let canvas = document.createElement("canvas");
               canvas.width = canvasWidth;
-              canvas.height = canvasHeight;
-              var ctx = canvas.getContext("2d");
+              canvas.height = adjustedCanvasHeight;
+              let ctx = canvas.getContext("2d");
 
               // Warnai background canvas dengan putih
               ctx.fillStyle = "white";
@@ -732,27 +776,293 @@
               // Gambar bagian bawah dalam urutan terbalik
               await drawImages(bottomImages, true);
 
-              // Buat link download
-              var link = document.createElement("a");
-              link.download = "motif_gabungan.png";
-              link.href = canvas.toDataURL("image/png");
-              link.click();
-
-              // Tampilkan modal sukses
-              var successModal = new bootstrap.Modal(
-                document.getElementById("successModal")
+              // Konversi ke hitam-putih dengan kontras tinggi untuk mendapatkan hasil yang jelas
+              const imgData = ctx.getImageData(
+                0,
+                0,
+                canvas.width,
+                canvas.height
               );
-              successModal.show();
+              const data = imgData.data;
+
+              // Proses setiap piksel untuk konversi ke hitam-putih
+              for (let i = 0; i < data.length; i += 4) {
+                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                // Threshold yang lebih agresif untuk binarisasi yang jelas
+                const threshold = 200; // Nilai lebih tinggi menghasilkan lebih banyak area putih
+                const newVal = avg > threshold ? 255 : 0;
+
+                data[i] = newVal; // R
+                data[i + 1] = newVal; // G
+                data[i + 2] = newVal; // B
+                // Alpha tetap sama
+              }
+
+              // Pasang kembali data yang sudah diproses
+              ctx.putImageData(imgData, 0, 0);
+
+              // Dapatkan data URL dari canvas
+              const dataURL = canvas.toDataURL("image/png");
+
+              // Hitung jumlah baris berdasarkan tinggi canvas
+              // Gunakan grid size 10px seperti di kode asli
+              const pixelsPerRow = 10; // Sesuai dengan grid di kode asli
+              const rowCount = Math.max(
+                Math.floor(adjustedCanvasHeight / pixelsPerRow),
+                8
+              ); // Minimal 8 baris
+
+              // Buat urutan lidi dasar
+              let basicLidiSequence = [];
+              for (let i = 1; i <= rowCount; i++) {
+                basicLidiSequence.push(i);
+              }
+
+              // Terapkan pola urutan seperti di CreateImageModule.py
+              let lidiSequence = [];
+              if (rowCount % 2 === 0) {
+                // Pola untuk jumlah baris genap (seperti di imageEven)
+                const c = [...basicLidiSequence];
+                const reversed = c.reverse();
+                lidiSequence = [...basicLidiSequence, ...reversed];
+              } else {
+                // Pola untuk jumlah baris ganjil (seperti di imageOdd)
+                const temp = basicLidiSequence.pop();
+                const c = [...basicLidiSequence];
+                const reversed = c.reverse();
+                lidiSequence = [...basicLidiSequence, temp, ...reversed];
+              }
+
+              // Konversi ke string untuk dikirim ke server
+              const lidiString = lidiSequence.join(",");
+
+              // PERBAIKAN: Gunakan FormData untuk mengirim gambar
+              const formDataUpload = new FormData();
+              formDataUpload.append(
+                "file",
+                dataURLtoBlob(dataURL),
+                "combined_motif.png"
+              );
+              formDataUpload.append(
+                "csrfmiddlewaretoken",
+                getCookie("csrftoken")
+              );
+
+              // PERBAIKAN: Mengubah dataURL menjadi Blob
+              function dataURLtoBlob(dataURL) {
+                const arr = dataURL.split(",");
+                const mime = arr[0].match(/:(.*?);/)[1];
+                const bstr = atob(arr[1]);
+                let n = bstr.length;
+                const u8arr = new Uint8Array(n);
+                while (n--) {
+                  u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], { type: mime });
+              }
+
+              // PERBAIKAN: Upload gambar menggunakan FormData
+              const imageUploadResponse = await fetch("/upload_image/", {
+                method: "POST",
+                body: formDataUpload,
+                headers: {
+                  "X-CSRFToken": getCookie("csrftoken"),
+                  // PERBAIKAN: Hapus Content-Type agar browser mengatur boundary dengan benar
+                },
+              });
+
+              if (!imageUploadResponse.ok) {
+                const errorData = await imageUploadResponse.text();
+                throw new Error("Gagal mengupload gambar: " + errorData);
+              }
+
+              // Ambil data path dari respons server
+              const imageData = await imageUploadResponse.json();
+              const imagePath = imageData.imageUrl; // PERBAIKAN: Menggunakan nama properti yang benar
+
+              // Gunakan data username jika tersedia, jika tidak gunakan nilai default
+              const username =
+                document.body.getAttribute("data-username") ||
+                "{{ request.user.username }}" ||
+                "anonymous";
+
+              // Kini gunakan path gambar dan urutan lidi untuk menyimpan motif
+              const formData = new FormData();
+              formData.append(
+                "imgBefore",
+                document.querySelector(".motif-card img").src
+              );
+              formData.append("imgAfter", imagePath);
+              formData.append("urutanLidi", lidiString);
+              formData.append("jenisGenerate", "combine");
+              formData.append("jmlBaris", rowCount.toString()); // Jumlah baris asli, bukan panjang lidiSequence
+              formData.append("user", username);
+
+              // Menampilkan debug data
+              console.log("Mengirim data ke server:");
+              console.log("imgAfter:", imagePath);
+              console.log("urutanLidi:", lidiString);
+              console.log("jmlBaris:", rowCount.toString());
+
+              // Kirim data ke server
+              const response = await fetch("/generator/PostImage", {
+                method: "POST",
+                body: formData,
+                headers: {
+                  "X-CSRFToken": getCookie("csrftoken"),
+                },
+              });
+
+              if (response.ok) {
+                var successModal = new bootstrap.Modal(
+                  document.getElementById("successModal")
+                );
+                successModal.show();
+              } else {
+                const errorText = await response.text();
+                throw new Error("Gagal menyimpan motif: " + errorText);
+              }
             } catch (error) {
-              console.error("Gagal menggabungkan motif:", error);
-              alert("Gagal mendownload motif. Silakan coba lagi.");
+              console.error("Error:", error);
+              alert("Gagal menyimpan motif: " + error.message);
             }
           }
 
           // Jalankan proses penggabungan
           combineMotifs();
         }
+        function combineMotifs() {
+          try {
+            // Ambil semua kontainer gambar
+            var motifContainers = Array.from(
+              combinedMotifContainer.children
+            ).filter((container) => container.querySelector("img"));
 
+            if (motifContainers.length === 0) {
+              alert("Pilih motif terlebih dahulu!");
+              return;
+            }
+
+            // Hitung tinggi total yang dibutuhkan
+            var canvasWidth = 400; // Lebar tetap
+            var canvasHeight = 0;
+
+            // Hitung tinggi total berdasarkan gambar yang dipilih
+            for (let container of motifContainers) {
+              var img = container.querySelector("img");
+              if (img) {
+                // Estimasi tinggi berdasarkan rasio aspek
+                var imgElement = new Image();
+                imgElement.src = img.src;
+                var ratio = imgElement.height / imgElement.width;
+                canvasHeight += Math.ceil(canvasWidth * ratio) + 10; // Tambah sedikit ruang
+              }
+            }
+
+            // Pastikan tinggi adalah kelipatan dari 10 (ukuran grid)
+            canvasHeight = Math.ceil(canvasHeight / 10) * 10;
+
+            // Buat canvas
+            var canvas = document.createElement("canvas");
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+            var ctx = canvas.getContext("2d");
+
+            // Warnai background putih
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Fungsi untuk memuat dan menggambar gambar ke canvas
+            function loadAndDrawImage(imgSrc, yPosition) {
+              return new Promise((resolve, reject) => {
+                var img = new Image();
+                img.crossOrigin = "Anonymous";
+                img.onload = function () {
+                  // Hitung ukuran yang proporsional
+                  var aspect = img.height / img.width;
+                  var drawWidth = canvas.width;
+                  var drawHeight = Math.floor(drawWidth * aspect);
+
+                  // Gambar ke canvas
+                  ctx.drawImage(img, 0, yPosition, drawWidth, drawHeight);
+                  resolve(drawHeight);
+                };
+                img.onerror = function () {
+                  console.error("Failed to load image:", imgSrc);
+                  reject(new Error("Failed to load image"));
+                };
+                img.src = imgSrc;
+              });
+            }
+
+            // Gambar semua gambar ke canvas secara berurutan
+            async function drawAllImages() {
+              var yOffset = 0;
+
+              for (var i = 0; i < motifContainers.length; i++) {
+                var container = motifContainers[i];
+                var img = container.querySelector("img");
+                if (img) {
+                  var imgHeight = await loadAndDrawImage(img.src, yOffset);
+                  yOffset += imgHeight + 2; // Tambah sedikit jarak
+                }
+              }
+
+              // Konversi ke hitam-putih
+              var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+              var data = imgData.data;
+
+              for (var i = 0; i < data.length; i += 4) {
+                var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                var threshold = 128;
+                var value = avg > threshold ? 255 : 0;
+
+                data[i] = value; // R
+                data[i + 1] = value; // G
+                data[i + 2] = value; // B
+                // Alpha tidak berubah
+              }
+
+              ctx.putImageData(imgData, 0, 0);
+
+              // Dapatkan data URL
+              var dataURL = canvas.toDataURL("image/png");
+
+              // Kirim ke server
+              var formData = new FormData();
+              formData.append("imgCombined", dataURL);
+              formData.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+
+              // Kirim data ke server
+              fetch("/save_combined_motif/", {
+                method: "POST",
+                body: formData,
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.status === "success") {
+                    // Tampilkan modal sukses
+                    var successModal = new bootstrap.Modal(
+                      document.getElementById("successModal")
+                    );
+                    successModal.show();
+                  } else {
+                    alert("Gagal menyimpan motif: " + data.message);
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                  alert("Gagal menyimpan motif");
+                });
+            }
+
+            // Jalankan proses menggambar
+            drawAllImages();
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Gagal menggabungkan motif: " + error.message);
+          }
+        }
       </script>
     </div>
   </body>

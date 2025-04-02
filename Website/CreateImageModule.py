@@ -247,4 +247,3 @@ class CreateImageMotif:
         img.save(image_save_path)
 
         return f"/media/{folderUser}/{unique_file_name}.png", b
-

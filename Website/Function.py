@@ -185,4 +185,3 @@ def ACO(solver, world, jmlBaris):
         temp.append(p)
 
     return temp
-

@@ -14,7 +14,9 @@ urlpatterns = [
     path('generator/external', views.external),
     path('save', views.save),
     path('gabungkan-motif/', views.gabungkan_motif, name='gabungkan_motif'),
+    path('upload_image/', views.upload_image, name='upload_image'),
     path('save_combined_motif/', save_combined_motif, name='save_combined_motif'),
+    path('regenerate_motif/<int:id>/', views.regenerate_motif, name='regenerate_motif'),
     path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
     path('generator/PostImage', views.PostImage),
     path('post', views.createpost),
@@ -22,7 +24,7 @@ urlpatterns = [
     path('list', views.show, name="list1"),
     path('list/<str:id>', views.motif, name="list"),
     path('list/Nama/<str:user>', views.tagName, name="tagUser"),
-    path('list/JumlahBaris/<str:jmlBaris>', views.tagJmlBaris, name="tagJmlBaris"),
+    path('list/JumlahBaris/<path:jmlBaris>/', views.tagJmlBaris, name='tagJmlBaris'),
     path('list/waktu/<str:time>', views.tagWaktu, name="tagTime"),
     path('delete/', views.deleteMotif, name="delete"),
     path('update/<int:id>', views.UpdateUser, name='update'),

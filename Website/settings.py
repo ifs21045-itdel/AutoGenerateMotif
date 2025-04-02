@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-r1dikf)xpbv#2$fln6e3t*^#e)sceifw-(d-mdbd0zpewh)vgr
 # SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['generatemotif.ditenun.com','172.21.169.28', 'localhost', '127.0.0.1', '[::1]']
@@ -103,10 +103,29 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD':'',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
         'PORT': '3307',
     }
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
 }
 
 

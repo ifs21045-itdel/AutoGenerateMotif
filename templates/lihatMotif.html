@@ -12,34 +12,107 @@
     <link rel="stylesheet" href="{% static 'image.css'%}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <style>
+        /* Perbaikan tampilan gambar grid */
+        .motif-grid {
+            display: block;
+            image-rendering: pixelated !important;
+            image-rendering: -moz-crisp-edges !important;
+            image-rendering: crisp-edges !important;
+            border: 1px solid #ddd;
+            background-color: white;
+            max-width: 100%;
+            max-height: 400px;
+            margin: 15px auto;
+        }
+        
+        /* Container untuk gambar */
+        .motif-container {
+            text-align: center;
+            margin: 20px auto;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            max-width: 800px;
+        }
+        
+        /* Debugging info */
+        .debug-path {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+            display: inline-block;
+        }
+        
+        /* Alternatif jika gambar tidak muncul */
+        .error-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            background-color: #f8f9fa;
+            border: 1px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px auto;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
     <!-- Page Loader -->
     <div id="loader-wrapper">
         <div id="loader"></div>
-
         <div class="loader-section section-left"></div>
         <div class="loader-section section-right"></div>
-
     </div>
 
     {% include "header.html" %}
     
     {% if status1 %}
+    <div style="background-color: #f8d7da; padding: 10px; margin: 10px; border: 1px solid #f5c6cb; border-radius: 5px;">
+        <h4>Debug Info:</h4>
+        <p>Lidi Path: {{ Lidi }}</p>
+        <p>RedLine Path: {{ RedLine }}</p>
+        <p>First Slice: {% if SliceLidi.0.0 %}{{ SliceLidi.0.0 }}{% else %}Not available{% endif %}</p>
+        <p>GridHelp Path: {{ GridHelp }}</p>
+    </div>
+    {% if error_messages %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for message in error_messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'regenerate_motif' motif.id %}" class="btn btn-primary">Regenerate Motif</a>
+    </div>
+    {% endif %}
+
+    <!-- Tambahkan keterangan jika ini adalah motif gabungan -->
+    {% if motif.jenisGenerate == "combine" %}
+    <div class="alert alert-info">
+        <p><strong>Info:</strong> Ini adalah motif gabungan. Urutan lidi dan grid telah dihasilkan otomatis berdasarkan tinggi motif.</p>
+    </div>
+    {% endif %}
+
     <h2 class="tm-text-primary text-center" style="margin-bottom: -70px;">Motif Asal</h2>
     <div class="container" style="max-width: 100vw;">
         <div style="display: flex; flex-wrap: wrap; align-items: stretch; width: 98vw; margin: 0; padding: 0;">
             {% for item1,item2, item3, item4 in SliceLidi %}
             <div class="image-container" style="display: flex; flex-wrap: wrap; align-items: stretch; width: 95%; margin: 0; padding: 0;">
-                <img src="/{{item1}}" data-nama-gambar="Lidi {{item2}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0;  padding: 0; object-fit: cover;">
-            </div>
+                <img src="{{item1}}" data-nama-gambar="Lidi {{item2}}" onclick="openModal(this);" style="width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover; border: 1px solid #ddd;">
             <div style="width: 5%; margin: 0; padding: 0;">
                 Lidi {{item2}}
             </div>
             {% if item3 %}
             <div class="image-container" style="display: flex; flex-wrap: wrap; align-items: stretch; width: 95%; margin: 0; padding: 0;">
-                <img id="{{item3}}" src="/{{item3}}" data-nama-gambar="Lidi {{item4}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0;  padding: 0; object-fit: cover;">
+                <img id="{{item3}}" src="{{item3}}" data-nama-gambar="Lidi {{item4}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0;  padding: 0; object-fit: cover;">
             </div>
             <div style="width: 5%; margin: 0; padding: 0;">
                 Lidi {{item4}}
@@ -47,36 +120,29 @@
             {% endif %}
             {% endfor %}
         </div>  
- 
-
-        
-        
-        
-        
     </div>
+    
     <div id="myModal" class="modal">
         <span class="close" onclick="closeModal();">&times;</span>
         <img class="modal-content" src="/{{GridHelp}}" style="border-radius: 0px;">
         <img class="modal-content" id="img01" style="border-radius: 0px;">
         <img class="modal-content" src="/{{GridHelp}}" style="border-radius: 0px;">
-        <p class="modal-content1 text-center"style="position: absolute; color: black; font-size: 30px; ">Helllo World</p>
-      </div>
-
-
+        <p class="modal-content1 text-center" style="position: absolute; color: black; font-size: 30px; ">Helllo World</p>
+    </div>
 
     <h2 class="tm-text-primary text-center mt-4" style="margin-bottom: -70px;">Hasil Motif</h2>
     <div class="container" style="max-width: 100vw;">
         <div style="display: flex; flex-wrap: wrap; align-items: stretch; width: 98vw; margin: 0; padding: 0;">
             {% for Motif1,Motif2, Motif3, Motif4 in SliceMotif %}
             <div class="image-container" style="display: flex; flex-wrap: wrap; align-items: stretch; width: 95%; margin: 0; padding: 0;">
-                <img src="/{{Motif1}}" data-nama-gambar="Lidi {{Motif2}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0;  padding: 0; object-fit: cover;">
+                <img src="{{Motif1}}" data-nama-gambar="Lidi {{Motif2}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover;">
             </div>
             <div style="width: 5%; margin: 0; padding: 0;">
                 Lidi {{Motif2}}
             </div>
             {% if Motif3 %}
             <div class="image-container" style="display: flex; flex-wrap: wrap; align-items: stretch; width: 95%; margin: 0; padding: 0;">
-                <img src="/{{Motif3}}" data-nama-gambar="Lidi {{Motif4}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0;  padding: 0; object-fit: cover;">
+                <img src="{{Motif3}}" data-nama-gambar="Lidi {{Motif4}}" onclick="openModal(this);" style=" width: 100%; height: 100%; margin: 0; padding: 0; object-fit: cover;">
             </div>
             <div style="width: 5%; margin: 0; padding: 0;">
                 Lidi {{Motif4}}
@@ -89,40 +155,61 @@
             <div style="width: 100vw;">
                 <p style="margin-top: 30px;">Keterangan</p>
             </div>
-            <div style=" width: 10vw">
+            <div style="width: 10vw">
                 <div style="border: 5px solid rgba(255, 0, 0, 0.9)"></div> 
             </div>
-            <div class="text-center" style=" width: 5vw">
+            <div class="text-center" style="width: 5vw">
                 <p>:</p>
             </div>
             <div style="width: 50vw;">
                 <p>Garis merah merupakan garis bantu yang menunjukkan garis tengah pada motif</p>
             </div>
-            {% comment %} <div style="width: 50vw;">
-                <p>Lidi: Dalam konteks gambar, lidi menunjukkan baris dari motif yang sedang dikerjakan.</p>
-                <p>Setiap baris lidi merujuk pada urutan pengerjaan motif tersebut.</p>
-            </div> {% endcomment %}
         </div>     
-        
     </div> 
     
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row tm-mb-90">                      
             <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12">
                 <h2 class="tm-text-primary text-center">Motif Asal</h2>
-                <img src="/{{ Lidi }}" alt="Image" class="img-fluid mb-4" style="image-rendering: pixelated; width: 100%; margin-top: 10px; margin-bottom: 10px;">
+                <div class="motif-container">
+                    <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
+                    <img id="lidiImage" class="motif-grid" alt="Motif Asal">
+                    <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div>
+                    
+                    <!-- Tampilkan urutan lidi -->
+                    <div class="mt-2">
+                        {% if UrutanLidi %}
+                            <small class="text-muted">Urutan Lidi: {{ urutanAsliLidi }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Fallback jika gambar tidak ada -->
+                    <div id="lidiError" class="error-placeholder" style="display: none;">
+                        <div>Gambar motif tidak dapat dimuat</div>
+                    </div>
+                </div>
                 
                 <h2 class="tm-text-primary text-center mt-4">Hasil Motif</h2>
-                <img src="/{{ RedLine }}" alt="Image" class="img-fluid" style="margin-top: 1px; width: 100%; margin-bottom: 10px;">
-               
-                
+                <div class="motif-container">
+                    <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
+                    <img id="redLineImage" class="motif-grid" alt="Hasil Motif">
+                    <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div>
+                    
+                    <!-- Tampilkan garis tengah -->
+                    <div class="mt-2">
+                        <div style="display: inline-block; width: 50px; border-top: 2px solid red; vertical-align: middle;"></div>
+                        <small class="text-muted ml-2" style="vertical-align: middle;"> : Garis tengah motif</small>
+                    </div>
+                    
+                    <!-- Fallback jika gambar tidak ada -->
+                    <div id="redLineError" class="error-placeholder" style="display: none;">
+                        <div>Gambar motif tidak dapat dimuat</div>
+                    </div>
+                </div>
             </div> 
             
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
                 <div class="tm-bg-gray tm-video-details">
-                    <!-- <p class="mb-4">
-                        Motif ini dibuat pada tanggal {{ motif.time|date:"j F Y" }} dengan akun {{ motif.user }}.
-                    </p>  -->
                     <div class="mb-4">
                         <h3 class="text-center tm-text-gray-dark mb-3">Urutan lidi motif asal</h3>
                         <p class="text-center">{{urutanAsliLidi}}</p>
@@ -154,86 +241,163 @@
                         </div>
                     </div>
                     <div class="text-center mb-5">
-                        <a href="/{{ zip }}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Unduh Motif </a>
-                        <a href="{{motif.imgBefore}}" class="btn btn-outline-primary tm-btn-big mb-4"download style="margin-bottom: 10px; width: 100%;"> Unduh Lidi </a>
+                        <a href="/{{ zip }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Motif </a>
+                        <a href="{{motif.imgBefore}}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Lidi </a>
                         <div class="text-center">
                             <a href="{% url 'ubah_warna' motif.id %}" class="btn btn-primary mt-3">
                                 Warnai Motif
                             </a>
                         </div>
-                        </div>
-                        {% if status %}
-                        <form action="/delete/" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            
-                            <div class="text-center">
-                                <div class="form-group" style="padding-top: 10px;"> 
-                                    <input type="hidden" class="form-control" name ="DeleteImage" value="{{ motif.id}}" required></div>
+                    </div>
+                    {% if status %}
+                    <form action="/delete/" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <div class="text-center">
+                            <div class="form-group" style="padding-top: 10px;"> 
+                                <input type="hidden" class="form-control" name="DeleteImage" value="{{ motif.id}}" required>
                             </div>
-                            <button type="button" class="btn btn-outline-danger tm-btn-big" data-bs-toggle="modal" data-bs-target="#ModalDelete" style="width: 100%;">Hapus</button>
-                            <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        </div>
+                        <button type="button" class="btn btn-outline-danger tm-btn-big" data-bs-toggle="modal" data-bs-target="#ModalDelete" style="width: 100%;">Hapus</button>
+                        <div class="modal fade" id="ModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" style="top: 50%;">
                                 <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Konfirmasi hapus</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Apakah anda yakin mengambil tindakan untuk menghapus motif ini?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary tm-btn-big" style="width: 100%;" data-bs-dismiss="modal">Batal</button>
-                                    <input type="submit" value="Hapus" id="DeleteForm">
-                                </div>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Konfirmasi hapus</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah anda yakin mengambil tindakan untuk menghapus motif ini?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-primary tm-btn-big" style="width: 100%;" data-bs-dismiss="modal">Batal</button>
+                                        <input type="submit" value="Hapus" id="DeleteForm">
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                        </form>
-                        {% endif %}
-                    </div>
+                        </div>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
-            <div class="text-center" style="margin-top: 30px;">
-                <a href="{% url 'list1' %}" style="background-color: #002BA3; border: 0px; border-radius: 5px; padding: 12px 50px 14px; font-size: 1.2rem; color: #fff; text-decoration: none;"> Kembali </a>
-            </div>
         </div>
+        <div class="text-center" style="margin-top: 30px;">
+            <a href="{% url 'list1' %}" style="background-color: #002BA3; border: 0px; border-radius: 5px; padding: 12px 50px 14px; font-size: 1.2rem; color: #fff; text-decoration: none;"> Kembali </a>
+        </div>
+    </div>
     
     {% else %}
     <div class="row d-flex justify-content-center">
-        
         <div class="d-flex justify-content-center bd-highlight mb-3 example-parent" style="padding-top: 10%;">
             <div class="col-md-10 col"><h3 class="font-weight-bold ml-md-0 mx-auto text-center"> Akun Belum Diverifikasi oleh Admin </h3>
-                <p class="mt-md-4  ml-md-0 ml-2 text-center"> Silahkan menghubungi admin terkait untuk dapat menggunakan fitur generate motif</p>
+                <p class="mt-md-4 ml-md-0 ml-2 text-center"> Silahkan menghubungi admin terkait untuk dapat menggunakan fitur generate motif</p>
             </div>
         </div>
     </div>
     <br>
     {% endif %}
     
-        
     {% include "footer.html" %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="{% static 'plugins.js'%}"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');
+            
+            // Inisialisasi path gambar
+            initializeImages();
         });
-    </script>
-    <script>
+        
+        function initializeImages() {
+            // Ambil path dari template
+            var lidiPath = "{{ Lidi }}";
+            var redLinePath = "{{ RedLine }}";
+            
+            // Log untuk debugging
+            console.log("Original Lidi Path:", lidiPath);
+            console.log("Original RedLine Path:", redLinePath);
+            
+            // Coba beberapa variasi path untuk lidi
+            tryImagePaths("lidiImage", lidiPath, "lidiError");
+            
+            // Coba beberapa variasi path untuk redline
+            tryImagePaths("redLineImage", redLinePath, "redLineError");
+        }
+        
+        function tryImagePaths(imgId, originalPath, errorId) {
+            var img = document.getElementById(imgId);
+            var errorDiv = document.getElementById(errorId);
+            
+            // Daftar kemungkinan path untuk dicoba
+            var pathVariations = [
+                originalPath,               // Path asli
+                "/" + originalPath,         // Tambah slash di depan
+                originalPath.replace(/^\//, ""), // Hapus slash di depan jika ada
+                "/media" + originalPath,    // Coba dengan /media di depan
+                "/media/" + originalPath.replace(/^\//, ""), // Gabungan /media/ + path tanpa slash awal
+                "{% get_media_prefix %}" + originalPath.replace(/^\//, ""), // Coba dengan media prefix
+                "/static" + originalPath,   // Coba dengan /static
+                "/static/" + originalPath.replace(/^\//, "") // Coba dengan /static/
+            ];
+            
+            // Set variabel untuk menandai jika sudah berhasil
+            var success = false;
+            var currentPathIndex = 0;
+            
+            // Fungsi untuk mencoba path berikutnya
+            function tryNextPath() {
+                if (currentPathIndex >= pathVariations.length) {
+                    // Semua path sudah dicoba, tampilkan error
+                    console.error("Failed to load image after trying all path variations");
+                    errorDiv.style.display = "flex";
+                    img.style.display = "none";
+                    return;
+                }
+                
+                var currentPath = pathVariations[currentPathIndex];
+                console.log("Trying path variation", currentPathIndex + 1, ":", currentPath);
+                
+                // Set path gambar
+                img.src = currentPath;
+                currentPathIndex++;
+            }
+            
+            // Event handler untuk success
+            img.onload = function() {
+                console.log("Success loading image:", img.src);
+                success = true;
+                errorDiv.style.display = "none";
+                img.style.display = "block";
+                
+                // Tambahkan kelas CSS agar grid terlihat
+                img.classList.add("loaded");
+            };
+            
+            // Event handler untuk error
+            img.onerror = function() {
+                console.error("Failed to load image with path:", img.src);
+                // Coba path berikutnya
+                tryNextPath();
+            };
+            
+            // Mulai mencoba path pertama
+            tryNextPath();
+        }
+        
         function openModal(img) {
-  var modal = document.getElementById("myModal");
-  var modalImg = document.getElementById("img01");
-  var namaGambar = img.dataset.namaGambar;
-  modal.style.display = "block";
-  modalImg.src = img.src;
-  var teksLama = document.querySelector("#myModal p");
-  teksLama.textContent = namaGambar;
-}
-
-function closeModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-}
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            var namaGambar = img.dataset.namaGambar;
+            modal.style.display = "block";
+            modalImg.src = img.src;
+            var teksLama = document.querySelector("#myModal p");
+            teksLama.textContent = namaGambar;
+        }
+        
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
     </script>
 </body>
 </html>

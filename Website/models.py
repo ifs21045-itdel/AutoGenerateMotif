@@ -1,5 +1,18 @@
 from django.db import models
 
+class Motif(models.Model):
+    user = models.CharField(max_length=100)
+    raw_url = models.CharField(max_length=255)
+    edit_url = models.CharField(max_length=255)
+    Urutan = models.CharField(max_length=255)
+    jenis = models.CharField(max_length=50)
+    jmlBaris = models.CharField(max_length=20)
+    time = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Motif by {self.user} - {self.time}"
+
+
 #Create Model Here
 class MotifForm(models.Model):
     imgBefore = models.TextField()
@@ -8,12 +21,15 @@ class MotifForm(models.Model):
 
 class MotifForm1(models.Model):
     imgBefore = models.TextField()
-    imgAfter  = models.TextField()
+    imgAfter = models.TextField()
     urutanLidi = models.TextField()
     jenisGenerate = models.TextField()
     jmlBaris = models.TextField()
     user = models.TextField()
     time = models.DateTimeField(auto_now_add= True)
+    
+    def __str__(self):
+        return f"Motif by {self.user} - {self.time}"
 
     
 
