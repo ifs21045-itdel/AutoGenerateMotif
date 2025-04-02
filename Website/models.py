@@ -29,7 +29,7 @@ class MotifForm1(models.Model):
     time = models.DateTimeField(auto_now_add= True)
     
     def __str__(self):
-        return f"Motif by {self.user} - {self.time}"
+        return f"Motif by {self.user} - {self.time}" 
 
     
 

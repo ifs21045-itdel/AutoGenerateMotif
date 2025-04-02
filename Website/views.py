@@ -396,6 +396,7 @@ def create_grid_image_from_combined_motif(image_path, output_path):
     except Exception as e:
         print(f"Error creating grid image: {e}")
         return None
+    
 @login_required(login_url='login')
 def motif(request, id):
     try:
@@ -631,8 +632,8 @@ def motif(request, id):
         error_detail = traceback.format_exc()
         print(f"Error in motif view: {error_detail}")
         messages.error(request, f"Error: {str(e)}")
-        return redirect('list1')
-    
+        return redirect('list1')     
+
 @login_required(login_url='login')
 def regenerate_motif(request, id):
     try:
@@ -857,6 +858,7 @@ def gabungkan_motif(request):
         'edit_url3': edit_url3 if edit_url3 else edit_url,
         'edit_url4': edit_url4 if edit_url4 else edit_url
     })
+
 @csrf_exempt
 def save_combined_motif(request):
     if request.method == 'POST':
