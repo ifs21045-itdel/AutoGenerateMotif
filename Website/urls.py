@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import save_combined_motif
 from .views import ubah_warna
+from .views import PostColoredMotifImage
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,6 +20,9 @@ urlpatterns = [
     path('regenerate_motif/<int:id>/', views.regenerate_motif, name='regenerate_motif'),
     path('ubah_warna/', ubah_warna, name='ubah_warna'),  # URL untuk halaman ubah warna
     path('generator/PostImage', views.PostImage),
+    path('download/PostImage', views.PostImage),
+    path('save_image_to_session/', views.save_image_to_session, name='save_image_to_session'),
+    path('download/', views.download, name='download_page'),
     path('post', views.createpost),
     path('tes', views.tes),
     path('list', views.show, name="list1"),
@@ -42,14 +46,18 @@ urlpatterns = [
     path('register/', views.SignupPage, name='signup'),
     path('generator/save', views.save, name='save'),
     path('motif/', views.motif, name='motif'),
+    path('generator/PostImageGabungan', views.PostImageGabungan),
     # warnai halaman lihat motif
     # Tambahkan path untuk mengubah warna motif
-    path('ubah-warna/<str:id>', views.ubah_warna, name='ubah_warna'),
-    
-    
+    path('ubah-warna/<int:id>/', views.ubah_warna, name='ubah_warna'),
+    path('ubah_warna_combined/<int:id>/', views.ubah_warna_combined, name='ubah_warna_combined'),
+    path('motif_colored/preview/<int:motif_id>', views.newMotifColoredGabunganPreview, name='motif_colored_preview'),
+    # Ensure the preview page retains the colored state on refresh
+    path('motif_colored/preview/<int:motif_id>/refresh', views.newMotifColoredGabunganPreview, name='motif_colored_preview_refresh'),
     # path('save/', views.save_generator, name='save_generator'),
     path('gabungkan_motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('generator/', views.generator, name='generator'),
+    path('colored_motif/post-image/', PostColoredMotifImage, name='post_colored_motif_image'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

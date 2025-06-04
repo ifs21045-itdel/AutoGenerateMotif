@@ -182,6 +182,8 @@
         border: 1px solid #ddd;
       }
 
+      
+
       /* Menambahkan garis horizontal merah pada tengah container */
     </style>
   </head>
@@ -214,13 +216,18 @@
                       lebih dari satu motif untuk digabungkan dalam motif yang
                       sama.
                     </p>
+
                     <div class="motif-container">
                       <h5>Motif Asal</h5>
+                      <p>Urutan Asal: {{ urutanasal }}</p>
                       <div class="card motif-card">
                         <img
                           src="{{ raw_url }}"
                           class="card-img-top motif-size"
                           alt="Motif Asal"
+                          data-jenis="asal"
+                          data-urutanasal="{{ urutanasal }}"
+                          data-mirror="true"
                           onclick="addMotif(this)"
                         />
                       </div>
@@ -231,6 +238,8 @@
                           src="{{ edit_url }}"
                           class="card-img-top motif-size"
                           alt="Hasil Motif 1"
+                          data-urutanasal="{{ urutan }}"
+                          data-mirror="true"
                           onclick="addMotif(this)"
                         />
                       </div>
@@ -241,6 +250,8 @@
                           src="{{ edit_url2 }}"
                           class="card-img-top motif-size"
                           alt="Hasil Motif 2"
+                          data-urutanasal="{{ urutan1 }}"
+                          data-mirror="true"
                           onclick="addMotif(this)"
                         />
                       </div>
@@ -251,6 +262,8 @@
                           src="{{ edit_url3 }}"
                           class="card-img-top motif-size"
                           alt="Hasil Motif 3"
+                          data-urutanasal="{{ urutan2 }}"
+                          data-mirror="true"
                           onclick="addMotif(this)"
                         />
                       </div>
@@ -261,6 +274,8 @@
                           src="{{ edit_url4 }}"
                           class="card-img-top motif-size"
                           alt="Hasil Motif 4"
+                          data-urutanasal="{{ urutan3 }}"
+                          data-mirror="true"
                           onclick="addMotif(this)"
                         />
                       </div>
@@ -395,226 +410,439 @@
         function redirectToList() {
           window.location.href = "{% url 'list1' %}";
         }
+        let allMotifImages = [];
+        let urutanAsalArray = [];
+        let urutanGabunganArray = [];
 
-        let motifCounter = 1; // Untuk melacak urutan gambar
+        function updateMotifNumbers() {
+          const labels = document.querySelectorAll(".motif-number");
+          const totalMotifs = allMotifImages.length;
 
-        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
-        function addMotif(imageElement) {
-          var combinedMotifContainer = document.getElementById(
-            "combinedMotifContainer"
-          );
-
-          // Menghapus pesan "Belum ada motif yang dipilih"
-          if (
-            combinedMotifContainer.innerHTML.includes(
-              "Belum ada motif yang dipilih"
-            )
-          ) {
-            combinedMotifContainer.innerHTML = "";
+          for (let i = 0; i < totalMotifs; i++) {
+            labels[i].textContent = totalMotifs - i;
           }
 
-          // Menghitung jumlah total motif yang sudah ditambahkan
-          var totalMotifs = combinedMotifContainer.children.length / 2;
-
-          // Menentukan posisi untuk gambar pertama (di atas)
-          var positionOffset = totalMotifs * 100;
-          var topPosition = `calc(50% - ${50 + positionOffset + 40}px)`; // Menambah jarak pada posisi atas
-          var bottomPosition = `calc(50% + ${50 + positionOffset + 60}px)`; // Posisi bawah tetap
-
-          // Membuat elemen gambar pertama
-          var img = document.createElement("img");
-          img.src = imageElement.src;
-          img.className = "motif-size";
-          img.style.maxWidth = "500px";
-          img.dataset.index = motifCounter;
-          img.onclick = function () {
-            removeMotif(this);
-          };
-
-          // Fungsi addMotif yang diperbaiki:
-          const bottomImg = document.createElement("img");
-          bottomImg.src = imageElement.src;
-          bottomImg.className = "motif-size";
-          bottomImg.style.transform = "scaleY(-1)"; // Efek cermin yang benar
-          bottomImg.dataset.index = motifCounter;
-
-          // Membuat elemen angka untuk ditampilkan di gambar
-          var numberLabel = document.createElement("span");
-          numberLabel.className = "motif-number";
-          numberLabel.textContent = motifCounter;
-
-          const motifItem = document.createElement("div");
-          motifItem.className = "motif-item";
-          motifItem.dataset.index = motifCounter;
-
-          // Fungsi pembantu untuk membuat elemen
-          const createImage = (src, transform) => {
-            const img = document.createElement("img");
-            img.src = src;
-            img.className = "motif-size";
-            img.style.transform = transform || "";
-            return img;
-          };
-
-          // Membuat elemen container untuk gambar pertama
-          var imgContainer = document.createElement("div");
-          imgContainer.style.position = "absolute";
-          imgContainer.style.marginBottom = "20px";
-          imgContainer.style.left = "50%";
-          imgContainer.style.transform = "translateX(-50%)"; // Center the image horizontally
-          imgContainer.style.top = topPosition;
-
-          imgContainer.appendChild(img);
-          imgContainer.appendChild(numberLabel);
-
-          // Menambahkan gambar pertama ke dalam kontainer penggabungan
-          combinedMotifContainer.appendChild(imgContainer);
-
-          // Membuat elemen gambar kedua (untuk gambar kedua)
-          var imgDouble = document.createElement("img");
-          imgDouble.src = imageElement.src;
-          imgDouble.className = "motif-size";
-          imgDouble.dataset.index = motifCounter;
-          imgDouble.onclick = function () {
-            removeMotif(this);
-          };
-
-          var numberLabelDouble = document.createElement("span");
-          numberLabelDouble.className = "motif-number";
-          numberLabelDouble.textContent = motifCounter;
-
-          // Membuat elemen container untuk gambar kedua
-          var imgContainerDouble = document.createElement("div");
-          imgContainerDouble.style.position = "absolute";
-          imgContainerDouble.style.left = "50%";
-          imgContainerDouble.style.transform = "translateX(-50%)";
-          imgContainerDouble.style.top = bottomPosition;
-
-          imgContainerDouble.appendChild(imgDouble);
-          imgContainerDouble.appendChild(numberLabelDouble);
-
-          // Menambahkan gambar kedua ke dalam kontainer penggabungan
-          combinedMotifContainer.appendChild(imgContainerDouble);
-
-          motifCounter++;
+          for (let i = totalMotifs; i < labels.length; i++) {
+            labels[i].textContent = i - totalMotifs + 1;
+          }
         }
 
-        function removeMotif(motifElement) {
-          // Ambil nilai dataset index dari motif yang diklik
-          let indexToRemove = motifElement.dataset.index;
-          let motifCounter = 1; // Untuk melacak urutan gambar
-
-          // Fungsi untuk menambahkan motif yang dipilih ke dalam container
-          function addMotif(imageElement) {
-            var combinedMotifContainer = document.getElementById(
-              "combinedMotifContainer"
-            );
-
-            // Cek apakah ada pesan "Belum ada motif yang dipilih", jika ada, hapus
-            if (
-              combinedMotifContainer.innerHTML.includes(
-                "Belum ada motif yang dipilih"
-              )
-            ) {
-              combinedMotifContainer.innerHTML = ""; // Hapus pesan tersebut
-            }
-
-            // Menghitung jumlah total motif yang sudah ditambahkan
-            var totalMotifs = combinedMotifContainer.children.length / 2; // Membagi 2 karena ada 2 gambar per motif (atas dan bawah)
-
-            // Menentukan posisi untuk gambar pertama (gambar yang akan tampil di atas)
-            var positionOffset = totalMotifs * 150; // Menambah jarak vertikal antar gambar
-
-            var topPosition = `${positionOffset}px`; // Jarak posisi atas
-            var bottomPosition = `${positionOffset + 150}px`; // Jarak posisi bawah
-
-            // Membuat elemen gambar pertama (untuk gambar baru)
-            var img = document.createElement("img");
-            img.src = imageElement.src;
-            img.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
-            img.dataset.index = motifCounter; // Menambahkan atribut untuk urutan gambar
-            img.onclick = function () {
-              removeMotif(this);
-            };
-
-            // Membuat elemen angka untuk ditampilkan di gambar
-            var numberLabel = document.createElement("span");
-            numberLabel.className = "motif-number";
-            numberLabel.textContent = motifCounter; // Menambahkan angka
-
-            // Membuat elemen container untuk gambar pertama dan angka
-            var imgContainer = document.createElement("div");
-            imgContainer.style.position = "absolute"; // Menggunakan absolute positioning
-            imgContainer.style.left = "50%"; // Menempatkan gambar di tengah horizontal
-            imgContainer.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
-
-            // Menempatkan gambar pertama di bagian atas
-            imgContainer.style.top = topPosition;
-            imgContainer.appendChild(img);
-            imgContainer.appendChild(numberLabel);
-
-            // Menambahkan gambar pertama ke dalam kontainer penggabungan (untuk bagian atas)
-            combinedMotifContainer.appendChild(imgContainer);
-
-            // Membuat elemen gambar kedua (untuk gambar baru)
-            var imgDouble = document.createElement("img");
-            imgDouble.src = imageElement.src;
-            imgDouble.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
-            imgDouble.dataset.index = motifCounter; // Memberikan angka yang sama
-            imgDouble.onclick = function () {
-              removeMotif(this);
-            };
-
-            var numberLabelDouble = document.createElement("span");
-            numberLabelDouble.className = "motif-number";
-            numberLabelDouble.textContent = motifCounter; // Menambahkan angka yang sama untuk gambar kedua
-
-            // Membuat elemen container untuk gambar kedua dan angka
-            var imgContainerDouble = document.createElement("div");
-            imgContainerDouble.style.position = "absolute"; // Menggunakan absolute positioning
-            imgContainerDouble.style.left = "50%"; // Menempatkan gambar di tengah horizontal
-            imgContainerDouble.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
-
-            // Menempatkan gambar kedua di bagian bawah
-            imgContainerDouble.style.top = bottomPosition;
-            imgContainerDouble.appendChild(imgDouble);
-            imgContainerDouble.appendChild(numberLabelDouble);
-
-            // Menambahkan gambar kedua ke dalam kontainer penggabungan (untuk bagian bawah)
-            combinedMotifContainer.appendChild(imgContainerDouble);
-
-            motifCounter++; // Menambah urutan gambar hanya 1 kali
-          }
-          let combinedMotifContainer = document.getElementById(
+        function renderMotifs() {
+          const combinedMotifContainer = document.getElementById(
             "combinedMotifContainer"
           );
+          combinedMotifContainer.innerHTML = "";
 
-          // Ambil seluruh container di dalam combinedMotifContainer
-          let motifContainers = Array.from(combinedMotifContainer.children);
-
-          // Hapus semua container yang memiliki gambar dengan dataset index yang sama
-          motifContainers.forEach((container) => {
-            let img = container.querySelector("img");
-            if (img && img.dataset.index === indexToRemove) {
-              container.remove();
-            }
-          });
-
-          // Jika kontainer gabungan sudah kosong, tampilkan notifikasi kembali
-          if (combinedMotifContainer.children.length === 0) {
-            let notif = document.createElement("p");
+          if (allMotifImages.length === 0) {
+            const notif = document.createElement("p");
             notif.className = "text-muted";
             notif.textContent = "Belum ada motif yang dipilih.";
             combinedMotifContainer.appendChild(notif);
+            return;
+          }
+
+          const motifPair = document.createElement("div");
+          motifPair.className = "motif-pair";
+          motifPair.style.display = "flex";
+          motifPair.style.flexDirection = "column";
+          motifPair.style.alignItems = "center";
+
+          function createMotifImage(src, index, isMirror = false) {
+            const wrapper = document.createElement("div");
+            wrapper.style.marginBottom = "20px";
+            wrapper.style.textAlign = "center";
+            wrapper.style.position = "relative";
+
+            const label = document.createElement("span");
+            label.className = "motif-number";
+            label.textContent = index + 1;
+            label.style.position = "absolute";
+            label.style.top = "5px";
+            label.style.left = "5px";
+            label.style.backgroundColor = "blue";
+            label.style.color = "white";
+            label.style.padding = "2px 6px";
+            label.style.fontWeight = "bold";
+            label.style.fontSize = "12px";
+            label.style.zIndex = "1";
+
+            const img = document.createElement("img");
+            img.src =
+              src === "motif kosong"
+                ? "https://via.placeholder.com/150?text=Kosong"
+                : src;
+            img.className = "motif-size";
+            img.style.maxWidth = "500px";
+            if (isMirror) img.style.transform = "scaleY(-1)";
+            img.dataset.index = index;
+
+            // Pasang ulang atribut untuk mirror dan urutanAsal
+            img.setAttribute(
+              "data-urutanasal",
+              JSON.stringify(urutanAsalArray[index] || [])
+            );
+            img.setAttribute("data-mirror", isMirror ? "true" : "false");
+
+            img.onclick = function () {
+              removeMotif(index);
+            };
+
+            wrapper.appendChild(img);
+            wrapper.appendChild(label);
+            return wrapper;
+          }
+
+          // Gambar normal
+          for (let i = allMotifImages.length - 1; i >= 0; i--) {
+            motifPair.appendChild(
+              createMotifImage(allMotifImages[i], i, false)
+            );
+          }
+
+          const spacer = document.createElement("div");
+          spacer.style.height = "20px";
+          motifPair.appendChild(spacer);
+
+          // Gambar mirror
+          for (let i = 0; i < allMotifImages.length; i++) {
+            motifPair.appendChild(createMotifImage(allMotifImages[i], i, true));
+          }
+
+          combinedMotifContainer.appendChild(motifPair);
+          updateMotifNumbers();
+          tampilkanUrutanGabungan(); // Update teks urutan
+        }
+
+        // function addMotif(imageElement) {
+        //   const urutanArray = JSON.parse(imageElement.getAttribute('data-urutanasal'));
+        //   const src = imageElement.src;
+
+        //   allMotifImages.push(src);
+        //   urutanAsalArray.push(urutanArray);
+
+        //   tampilkanUrutanGabungan(); // Gabungan nanti kita mirror di sini
+        //   renderMotifs();
+        // }
+        function addMotif(imageElement) {
+          const urutanArray = JSON.parse(
+            imageElement.getAttribute("data-urutanasal")
+          );
+          const src = imageElement.src;
+          const jumlahAktif = allMotifImages.filter(
+            (item) => item !== "motif kosong"
+          ).length;
+          if (jumlahAktif >= 11) {
+            alert("Motif yang ditambahkan maksimal 11!");
+            return;
+          }
+          const kosongIndex = allMotifImages.findIndex(
+            (item) => item === "motif kosong"
+          );
+          if (kosongIndex !== -1) {
+            allMotifImages[kosongIndex] = src;
+            urutanAsalArray[kosongIndex] = urutanArray;
+          } else {
+            allMotifImages.push(src);
+            urutanAsalArray.push(urutanArray);
+          }
+
+          tampilkanUrutanGabungan();
+          renderMotifs();
+        }
+        function removeMotif(indexToRemove) {
+          if (
+            indexToRemove >= 0 &&
+            indexToRemove < allMotifImages.length &&
+            indexToRemove < urutanAsalArray.length
+          ) {
+            if (allMotifImages[indexToRemove] === "motif kosong") {
+              // Hapus permanen jika sudah kosong
+              allMotifImages.splice(indexToRemove, 1);
+              urutanAsalArray.splice(indexToRemove, 1);
+            } else {
+              // Tandai sebagai kosong sementara
+              allMotifImages[indexToRemove] = "motif kosong";
+              urutanAsalArray[indexToRemove] = [];
+            }
+
+            renderMotifs();
+            tampilkanUrutanGabungan();
           }
         }
+        function tampilkanUrutanGabungan() {
+          const normal = urutanAsalArray.flat();
+          const mirror = urutanAsalArray
+            .slice() // amanin array
+            .reverse()
+            .map((arr) => [...arr].reverse())
+            .flat();
+
+          const gabungan = normal.concat(mirror);
+          urutanGabunganArray = gabungan;
+          console.log("Gabungan urutan:", gabungan);
+
+          // Optional tampilkan ke UI
+          const el = document.getElementById("urutanGabungan");
+          if (el) el.textContent = `Gabungan urutan: [${gabungan.join(", ")}]`;
+        }
+        // function addMotif(imageElement) {
+        //   const src = imageElement.src;
+        //   const fileName = src.split('/').pop();
+
+        //   const jenis = imageElement.getAttribute('data-jenis');
+        //   const emptyIndex = allMotifImages.findIndex(motif => motif === "motif kosong");
+
+        //   if (emptyIndex !== -1) {
+        //     allMotifImages[emptyIndex] = src;
+        //   } else {
+        //     allMotifImages.push(src);
+        //   }
+
+        //   renderMotifs();
+        // }
+        // function removeMotif(indexToRemove) {
+        //   if (allMotifImages[indexToRemove] === "motif kosong") {
+        //     allMotifImages.splice(indexToRemove, 1);
+        //   } else {
+        //     allMotifImages[indexToRemove] = "motif kosong";
+        //   }
+        //   renderMotifs();
+        // }
+
+        // Fungsi untuk menambahkan motif yang dipilih ke dalam container
+        // function addMotif(imageElement) {
+        //   var combinedMotifContainer = document.getElementById(
+        //     "combinedMotifContainer"
+        //   );
+
+        //   // Menghapus pesan "Belum ada motif yang dipilih"
+        //   if (
+        //     combinedMotifContainer.innerHTML.includes(
+        //       "Belum ada motif yang dipilih"
+        //     )
+        //   ) {
+        //     combinedMotifContainer.innerHTML = "";
+        //   }
+
+        //   // Menghitung jumlah total motif yang sudah ditambahkan
+        //   var totalMotifs = combinedMotifContainer.children.length / 2;
+
+        //   // Menentukan posisi untuk gambar pertama (di atas)
+        //   var positionOffset = totalMotifs * 100;
+        //   var topPosition = `calc(50% - ${50 + positionOffset + 40}px)`; // Menambah jarak pada posisi atas
+        //   var bottomPosition = `calc(50% + ${50 + positionOffset + 60}px)`; // Posisi bawah tetap
+
+        //   // Membuat elemen gambar pertama
+        //   var img = document.createElement("img");
+        //   img.src = imageElement.src;
+        //   img.className = "motif-size";
+        //   img.style.maxWidth = "500px";
+        //   img.dataset.index = motifCounter;
+        //   img.onclick = function () {
+        //     removeMotif(this);
+        //   };
+
+        //   // Fungsi addMotif yang diperbaiki:
+        //   const bottomImg = document.createElement("img");
+        //   bottomImg.src = imageElement.src;
+        //   bottomImg.className = "motif-size";
+        //   bottomImg.style.transform = "scaleY(-1)"; // Efek cermin yang benar
+        //   bottomImg.dataset.index = motifCounter;
+
+        //   // Membuat elemen angka untuk ditampilkan di gambar
+        //   var numberLabel = document.createElement("span");
+        //   numberLabel.className = "motif-number";
+        //   numberLabel.textContent = motifCounter;
+
+        //   const motifItem = document.createElement("div");
+        //   motifItem.className = "motif-item";
+        //   motifItem.dataset.index = motifCounter;
+
+        //   // Fungsi pembantu untuk membuat elemen
+        //   const createImage = (src, transform) => {
+        //     const img = document.createElement("img");
+        //     img.src = src;
+        //     img.className = "motif-size";
+        //     img.style.transform = transform || "";
+        //     return img;
+        //   };
+
+        //   // Membuat elemen container untuk gambar pertama
+        //   var imgContainer = document.createElement("div");
+        //   imgContainer.style.position = "absolute";
+        //   imgContainer.style.marginBottom = "20px";
+        //   imgContainer.style.left = "50%";
+        //   imgContainer.style.transform = "translateX(-50%)"; // Center the image horizontally
+        //   imgContainer.style.top = topPosition;
+
+        //   imgContainer.appendChild(img);
+        //   imgContainer.appendChild(numberLabel);
+
+        //   // Menambahkan gambar pertama ke dalam kontainer penggabungan
+        //   combinedMotifContainer.appendChild(imgContainer);
+
+        //   // Membuat elemen gambar kedua (untuk gambar kedua)
+        //   var imgDouble = document.createElement("img");
+        //   imgDouble.src = imageElement.src;
+        //   imgDouble.className = "motif-size";
+        //   imgDouble.dataset.index = motifCounter;
+        //   imgDouble.onclick = function () {
+        //     removeMotif(this);
+        //   };
+
+        //   var numberLabelDouble = document.createElement("span");
+        //   numberLabelDouble.className = "motif-number";
+        //   numberLabelDouble.textContent = motifCounter;
+
+        //   // Membuat elemen container untuk gambar kedua
+        //   var imgContainerDouble = document.createElement("div");
+        //   imgContainerDouble.style.position = "absolute";
+        //   imgContainerDouble.style.left = "50%";
+        //   imgContainerDouble.style.transform = "translateX(-50%)";
+        //   imgContainerDouble.style.top = bottomPosition;
+
+        //   imgContainerDouble.appendChild(imgDouble);
+        //   imgContainerDouble.appendChild(numberLabelDouble);
+
+        //   // Menambahkan gambar kedua ke dalam kontainer penggabungan
+        //   combinedMotifContainer.appendChild(imgContainerDouble);
+
+        //   updateMotifNumbers();
+        // }
+
+        //         function removeMotif(motifElement) {
+        //           // Ambil nilai dataset index dari motif yang diklik
+        //           let indexToRemove = motifElement.dataset.index;
+        //           let motifCounter = 1; // Untuk melacak urutan gambar
+
+        //           // Fungsi untuk menambahkan motif yang dipilih ke dalam container
+        //           function addMotif(imageElement) {
+        //             var combinedMotifContainer = document.getElementById(
+        //               "combinedMotifContainer"
+        //             );
+
+        //             // Cek apakah ada pesan "Belum ada motif yang dipilih", jika ada, hapus
+        //             if (
+        //               combinedMotifContainer.innerHTML.includes(
+        //                 "Belum ada motif yang dipilih"
+        //               )
+        //             ) {
+        //               combinedMotifContainer.innerHTML = ""; // Hapus pesan tersebut
+        //             }
+
+        //             // Menghitung jumlah total motif yang sudah ditambahkan
+        //             var totalMotifs = combinedMotifContainer.children.length / 2; // Membagi 2 karena ada 2 gambar per motif (atas dan bawah)
+
+        //             // Menentukan posisi untuk gambar pertama (gambar yang akan tampil di atas)
+        //             var positionOffset = totalMotifs * 150; // Menambah jarak vertikal antar gambar
+
+        //             var topPosition = `${positionOffset}px`; // Jarak posisi atas
+        //             var bottomPosition = `${positionOffset + 150}px`; // Jarak posisi bawah
+
+        //             // Membuat elemen gambar pertama (untuk gambar baru)
+        //             var img = document.createElement("img");
+        //             img.src = imageElement.src;
+        //             img.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
+        //             img.dataset.index = motifCounter; // Menambahkan atribut untuk urutan gambar
+        //             img.onclick = function () {
+        //               removeMotif(this);
+        //             };
+
+        //             // Membuat elemen angka untuk ditampilkan di gambar
+        //             var numberLabel = document.createElement("span");
+        //             numberLabel.className = "motif-number";
+        //             numberLabel.textContent = motifCounter; // Menambahkan angka
+
+        //             // Membuat elemen container untuk gambar pertama dan angka
+        //             var imgContainer = document.createElement("div");
+        //             imgContainer.style.position = "absolute"; // Menggunakan absolute positioning
+        //             imgContainer.style.left = "50%"; // Menempatkan gambar di tengah horizontal
+        //             imgContainer.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
+
+        //             // Menempatkan gambar pertama di bagian atas
+        //             imgContainer.style.top = topPosition;
+        //             // imgContainer.appendChild(img);
+        //             // imgContainer.appendChild(numberLabel);
+        //             // Tambahkan label text
+        // const motifLabel = document.createElement("div");
+        // motifLabel.className = "motif-label";
+        // motifLabel.textContent = `Motif ${motifCounter}`; // Isi awal
+
+        // motifLabel.style.fontWeight = "bold";
+        // motifLabel.style.textAlign = "center";
+        // motifLabel.style.marginBottom = "4px";
+
+        // imgContainer.appendChild(motifLabel);
+        // imgContainer.appendChild(img);
+        // imgContainer.appendChild(numberLabel);
+
+        //             // Menambahkan gambar pertama ke dalam kontainer penggabungan (untuk bagian atas)
+        //             combinedMotifContainer.appendChild(imgContainer);
+
+        //             // Membuat elemen gambar kedua (untuk gambar baru)
+        //             var imgDouble = document.createElement("img");
+        //             imgDouble.src = imageElement.src;
+        //             imgDouble.className = "motif-size"; // Gambar dengan kelas yang sudah disesuaikan
+        //             imgDouble.dataset.index = motifCounter; // Memberikan angka yang sama
+        //             imgDouble.onclick = function () {
+        //               removeMotif(this);
+        //             };
+
+        //             var numberLabelDouble = document.createElement("span");
+        //             numberLabelDouble.className = "motif-number";
+        //             numberLabelDouble.textContent = motifCounter; // Menambahkan angka yang sama untuk gambar kedua
+
+        //             // Membuat elemen container untuk gambar kedua dan angka
+        //             var imgContainerDouble = document.createElement("div");
+        //             imgContainerDouble.style.position = "absolute"; // Menggunakan absolute positioning
+        //             imgContainerDouble.style.left = "50%"; // Menempatkan gambar di tengah horizontal
+        //             imgContainerDouble.style.transform = "translateX(-50%)"; // Menjaga agar gambar tetap berada di tengah
+
+        //             // Menempatkan gambar kedua di bagian bawah
+        //             imgContainerDouble.style.top = bottomPosition;
+        //             imgContainerDouble.appendChild(imgDouble);
+        //             imgContainerDouble.appendChild(numberLabelDouble);
+
+        //             // Menambahkan gambar kedua ke dalam kontainer penggabungan (untuk bagian bawah)
+        //             combinedMotifContainer.appendChild(imgContainerDouble);
+
+        //             motifCounter++; // Menambah urutan gambar hanya 1 kali
+        //           }
+        //           let combinedMotifContainer = document.getElementById(
+        //             "combinedMotifContainer"
+        //           );
+
+        //           // Ambil seluruh container di dalam combinedMotifContainer
+        //           let motifContainers = Array.from(combinedMotifContainer.children);
+
+        //           // Hapus semua container yang memiliki gambar dengan dataset index yang sama
+        //           motifContainers.forEach((container) => {
+        //             let img = container.querySelector("img");
+        //             if (img && img.dataset.index === indexToRemove) {
+        //               container.remove();
+        //             }
+        //           });
+
+        //           // Jika kontainer gabungan sudah kosong, tampilkan notifikasi kembali
+        //           // if (combinedMotifContainer.children.length === 0) {
+        //           //   let notif = document.createElement("p");
+        //           //   notif.className = "text-muted";
+        //           //   notif.textContent = "Belum ada motif yang dipilih.";
+        //           //   combinedMotifContainer.appendChild(notif);
+        //           if (combinedMotifContainer.querySelectorAll(".row").length === 0) {
+        //   let notif = document.createElement("p");
+        //   notif.className = "text-muted";
+        //   notif.textContent = "Belum ada motif yang dipilih.";
+        //   combinedMotifContainer.appendChild(notif);
+
+        //   motifCounter = 1;
+        //           }
+        //         }
         function saveMotif() {
-          // Ambil container motif yang digabungkan
-          var combinedMotifContainer = document.getElementById(
+          const combinedMotifContainer = document.getElementById(
             "combinedMotifContainer"
           );
 
-          // Cek apakah ada motif yang dipilih
           if (
             combinedMotifContainer.children.length === 0 ||
             combinedMotifContainer.innerHTML.includes(
@@ -625,17 +853,16 @@
             return;
           }
 
-          // Fungsi untuk memuat gambar
           function loadImage(src) {
             return new Promise((resolve, reject) => {
-              var img = new Image();
+              const img = new Image();
+              img.crossOrigin = "anonymous"; // Tambahkan ini jika load gambar dari sumber berbeda
               img.onload = () => resolve(img);
               img.onerror = reject;
               img.src = src;
             });
           }
 
-          // Fungsi untuk mendapatkan CSRF token
           function getCookie(name) {
             let cookieValue = null;
             if (document.cookie && document.cookie !== "") {
@@ -653,244 +880,82 @@
             return cookieValue;
           }
 
-          // Proses menggabungkan gambar
           async function combineMotifs() {
             try {
-              // Ambil semua kontainer gambar yang berisi gambar
-              var motifContainers = Array.from(
-                combinedMotifContainer.children
-              ).filter((container) => container.querySelector("img"));
+              const motifImages = Array.from(
+                combinedMotifContainer.querySelectorAll("img")
+              );
 
-              // Kelompokkan gambar berdasarkan posisi (atas/bawah)
-              const topImages = [];
-              const bottomImages = [];
-
-              motifContainers.forEach((container) => {
-                const img = container.querySelector("img");
-                // Pisahkan gambar berdasarkan posisi top
-                if (container.style.top.includes("-")) {
-                  topImages.push(img);
-                } else {
-                  bottomImages.push(img);
-                }
-              });
-
-              // Hitung total tinggi yang dibutuhkan
-              async function calculateTotalHeight(images, containerWidth) {
-                let totalHeight = 0;
-                for (let img of images) {
-                  const loadedImg = await loadImage(img.src);
-                  const scale = containerWidth / loadedImg.width;
-                  totalHeight += loadedImg.height * scale + 20; // Tambah sedikit jarak
-                }
-                return totalHeight;
+              if (motifImages.length === 0) {
+                alert("Tidak ada gambar ditemukan.");
+                return;
               }
 
-              // Tentukan lebar canvas
-              const canvasWidth = 800; // Lebar tetap
+              const canvasWidth = 800;
+              let totalHeight = 0;
+              const loadedImages = [];
 
-              // Hitung total tinggi gambar
-              const topImagesHeight = await calculateTotalHeight(
-                topImages,
-                canvasWidth
-              );
-              const bottomImagesHeight = await calculateTotalHeight(
-                bottomImages,
-                canvasWidth
-              );
+              // Load semua gambar dan hitung total tinggi
+              for (let img of motifImages) {
+                const loaded = await loadImage(img.src);
+                const scale = canvasWidth / loaded.width;
+                const scaledHeight = loaded.height * scale;
+                loadedImages.push({ image: loaded, height: scaledHeight });
+                totalHeight += scaledHeight;
+              }
 
-              // Total tinggi canvas disesuaikan dengan motif
-              const canvasHeight = topImagesHeight + bottomImagesHeight + 40; // Tambah sedikit margin
-
-              // Pastikan tinggi canvas adalah kelipatan 10 untuk grid yang tepat
-              const adjustedCanvasHeight = Math.ceil(canvasHeight / 10) * 10;
-
-              // Buat canvas dengan ukuran yang tepat
-              let canvas = document.createElement("canvas");
+              // Buat canvas sesuai ukuran
+              const canvas = document.createElement("canvas");
               canvas.width = canvasWidth;
-              canvas.height = adjustedCanvasHeight;
-              let ctx = canvas.getContext("2d");
-
-              // Warnai background canvas dengan putih
+              canvas.height = totalHeight;
+              const ctx = canvas.getContext("2d");
               ctx.fillStyle = "white";
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-              // Mulai dari atas
-              let yOffset = 20; // Sedikit margin dari atas
-
-              // Fungsi untuk menggambar gambar
-              async function drawImages(images, reverse = false) {
-                const imagesToDraw = reverse
-                  ? images.slice().reverse()
-                  : images;
-
-                for (let img of imagesToDraw) {
-                  var loadedImg = await loadImage(img.src);
-
-                  // Hitung skala agar gambar muat di canvas
-                  var scale = canvas.width / loadedImg.width;
-                  var scaledHeight = loadedImg.height * scale;
-
-                  // Gambar di tengah canvas dengan skala persis seperti di grid
-                  var xPosition = 0;
-                  ctx.drawImage(
-                    loadedImg,
-                    xPosition,
-                    yOffset,
-                    canvas.width,
-                    scaledHeight
-                  );
-
-                  // Geser posisi untuk gambar selanjutnya sesuai posisi di grid
-                  yOffset += scaledHeight + 20; // Tambah sedikit jarak antar gambar
-                }
+              ctx.fillRect(0, 0, canvasWidth, totalHeight);
+              let yOffset = 0;
+              for (let { image, height } of loadedImages) {
+                const scale = canvasWidth / image.width;
+                ctx.drawImage(image, 0, yOffset, canvasWidth, height);
+                yOffset += height;
               }
+              const jumlahAsal = "{{ jumlahasal }}";
 
-              // Gambar bagian atas
-              await drawImages(topImages);
-
-              // Gambar bagian bawah dalam urutan terbalik
-              await drawImages(bottomImages, true);
-
-              // Konversi ke hitam-putih dengan kontras tinggi untuk mendapatkan hasil yang jelas
-              const imgData = ctx.getImageData(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-              const data = imgData.data;
-
-              // Proses setiap piksel untuk konversi ke hitam-putih
-              for (let i = 0; i < data.length; i += 4) {
-                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-                // Threshold yang lebih agresif untuk binarisasi yang jelas
-                const threshold = 200; // Nilai lebih tinggi menghasilkan lebih banyak area putih
-                const newVal = avg > threshold ? 255 : 0;
-
-                data[i] = newVal; // R
-                data[i + 1] = newVal; // G
-                data[i + 2] = newVal; // B
-                // Alpha tetap sama
-              }
-
-              // Pasang kembali data yang sudah diproses
-              ctx.putImageData(imgData, 0, 0);
-
-              // Dapatkan data URL dari canvas
               const dataURL = canvas.toDataURL("image/png");
+              const a = document.createElement("a");
 
-              // Hitung jumlah baris berdasarkan tinggi canvas
-              // Gunakan grid size 10px seperti di kode asli
-              const pixelsPerRow = 10; // Sesuai dengan grid di kode asli
-              const rowCount = Math.max(
-                Math.floor(adjustedCanvasHeight / pixelsPerRow),
-                8
-              ); // Minimal 8 baris
-
-              // Buat urutan lidi dasar
-              let basicLidiSequence = [];
-              for (let i = 1; i <= rowCount; i++) {
-                basicLidiSequence.push(i);
-              }
-
-              // Terapkan pola urutan seperti di CreateImageModule.py
-              let lidiSequence = [];
-              if (rowCount % 2 === 0) {
-                // Pola untuk jumlah baris genap (seperti di imageEven)
-                const c = [...basicLidiSequence];
-                const reversed = c.reverse();
-                lidiSequence = [...basicLidiSequence, ...reversed];
-              } else {
-                // Pola untuk jumlah baris ganjil (seperti di imageOdd)
-                const temp = basicLidiSequence.pop();
-                const c = [...basicLidiSequence];
-                const reversed = c.reverse();
-                lidiSequence = [...basicLidiSequence, temp, ...reversed];
-              }
-
-              // Konversi ke string untuk dikirim ke server
-              const lidiString = lidiSequence.join(",");
-
-              // PERBAIKAN: Gunakan FormData untuk mengirim gambar
+              const blob = await (await fetch(dataURL)).blob();
+              const downloadLink = document.createElement("a");
+              // downloadLink.href = dataURL;
+              // downloadLink.download = "motif_gabung.png";
+              // document.body.appendChild(downloadLink);
+              // downloadLink.click();
+              const imgAsal = document.querySelector('img[data-jenis="asal"]');
+              const imgBeforeSrc = imgAsal ? imgAsal.src : "";
+              // document.body.removeChild(downloadLink);
               const formDataUpload = new FormData();
+              formDataUpload.append("file", blob, "motif_gabung.png");
+              formDataUpload.append("imgBefore", imgBeforeSrc);
+              formDataUpload.append("imgAfter", "/media/uploads/itha.png");
               formDataUpload.append(
-                "file",
-                dataURLtoBlob(dataURL),
-                "combined_motif.png"
+                "urutanLidi",
+                urutanGabunganArray.join(",")
               );
+              formDataUpload.append("jenisGenerate", "otomatis");
+              formDataUpload.append("user", "itha");
               formDataUpload.append(
                 "csrfmiddlewaretoken",
                 getCookie("csrftoken")
               );
-
-              // PERBAIKAN: Mengubah dataURL menjadi Blob
-              function dataURLtoBlob(dataURL) {
-                const arr = dataURL.split(",");
-                const mime = arr[0].match(/:(.*?);/)[1];
-                const bstr = atob(arr[1]);
-                let n = bstr.length;
-                const u8arr = new Uint8Array(n);
-                while (n--) {
-                  u8arr[n] = bstr.charCodeAt(n);
-                }
-                return new Blob([u8arr], { type: mime });
-              }
-
-              // PERBAIKAN: Upload gambar menggunakan FormData
-              const imageUploadResponse = await fetch("/upload_image/", {
+              formDataUpload.append("jmlBaris", urutanGabunganArray.join(","));
+              const response = await fetch("/generator/PostImageGabungan", {
                 method: "POST",
                 body: formDataUpload,
-                headers: {
-                  "X-CSRFToken": getCookie("csrftoken"),
-                  // PERBAIKAN: Hapus Content-Type agar browser mengatur boundary dengan benar
-                },
-              });
-
-              if (!imageUploadResponse.ok) {
-                const errorData = await imageUploadResponse.text();
-                throw new Error("Gagal mengupload gambar: " + errorData);
-              }
-
-              // Ambil data path dari respons server
-              const imageData = await imageUploadResponse.json();
-              const imagePath = imageData.imageUrl; // PERBAIKAN: Menggunakan nama properti yang benar
-
-              // Gunakan data username jika tersedia, jika tidak gunakan nilai default
-              const username =
-                document.body.getAttribute("data-username") ||
-                "{{ request.user.username }}" ||
-                "anonymous";
-
-              // Kini gunakan path gambar dan urutan lidi untuk menyimpan motif
-              const formData = new FormData();
-              formData.append(
-                "imgBefore",
-                document.querySelector(".motif-card img").src
-              );
-              formData.append("imgAfter", imagePath);
-              formData.append("urutanLidi", lidiString);
-              formData.append("jenisGenerate", "combine");
-              formData.append("jmlBaris", rowCount.toString()); // Jumlah baris asli, bukan panjang lidiSequence
-              formData.append("user", username);
-
-              // Menampilkan debug data
-              console.log("Mengirim data ke server:");
-              console.log("imgAfter:", imagePath);
-              console.log("urutanLidi:", lidiString);
-              console.log("jmlBaris:", rowCount.toString());
-
-              // Kirim data ke server
-              const response = await fetch("/generator/PostImage", {
-                method: "POST",
-                body: formData,
                 headers: {
                   "X-CSRFToken": getCookie("csrftoken"),
                 },
               });
 
               if (response.ok) {
-                var successModal = new bootstrap.Modal(
+                const successModal = new bootstrap.Modal(
                   document.getElementById("successModal")
                 );
                 successModal.show();
@@ -904,7 +969,6 @@
             }
           }
 
-          // Jalankan proses penggabungan
           combineMotifs();
         }
       </script>
