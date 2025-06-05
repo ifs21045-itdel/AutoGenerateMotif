@@ -30,7 +30,6 @@
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
-            overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -61,42 +60,35 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            margin: 0;
             position: relative;
         }
 
         #backgroundCanvas, #motifCanvas {
             display: block;
             width: 100%;
-            height: auto; /* Tinggi menyesuaikan berdasarkan rasio aspek gambar */
+            height: auto;
         }
 
         .col-lg-6 {
             display: flex;
             flex-direction: column;
             align-items: center;
-            height: auto; /* Biarkan tinggi menyesuaikan dengan konten */
             padding: 10px;
-            min-height: 300px; /* Kurangi min-height agar lebih fleksibel */
+            min-height: 300px;
         }
 
         #backgroundCanvasContainer, #motifCanvasContainer {
             flex: 1;
             width: 100%;
-            background: rgba(0, 0, 0, 0.1);
-            padding: 0;
             display: flex;
             flex-direction: column;
-            height: auto; /* Biarkan tinggi menyesuaikan */
         }
 
         .color-picker-container {
-            text-align: center;
-            margin-top: 10px; /* Kurangi margin untuk menghilangkan ruang kosong */
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0;
         }
 
         .color-palette {
@@ -124,17 +116,6 @@
             border: 3px solid #007bff;
         }
 
-        #pencilTool, #eraserTool {
-            font-size: 1.5rem;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 5px;
-            margin: 5px;
-        }
-
         .tools-container {
             display: flex;
             align-items: center;
@@ -148,38 +129,43 @@
             align-items: center;
         }
 
-        /* Aturan untuk layar besar (mode 2 layar) */
-        @media (min-width: 769px) {
-            .col-lg-6 {
-                height: auto;
-                min-height: 300px;
-            }
+        .gradient-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 10px;
         }
 
-        /* Aturan untuk layar kecil (mode 1 layar) */
-        @media (max-width: 768px) {
-            .col-md-6 {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
+        .gradient-canvas {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-            .col-lg-6 {
+        .laser-pointer {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: black;
+            border-radius: 50%;
+            pointer-events: none;
+            top: -5px;
+            left: -5px;
+            transform: translate(-50%, -50%);
+            transition: left 0.1s ease-out, top 0.1s ease-out;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-6, .col-lg-6 {
                 flex: 0 0 100%;
                 max-width: 100%;
-                height: auto;
-                min-height: 300px;
             }
 
             .canvas-wrapper {
-                min-width: 300px; /* Lebar minimum */
+                min-width: 300px;
                 max-width: 100%;
-                height: auto; /* Biarkan tinggi menyesuaikan */
-            }
-
-            #pencilTool, #eraserTool {
-                font-size: 1.2rem;
-                width: 40px;
-                height: 40px;
             }
 
             .color-box {
@@ -189,17 +175,23 @@
 
             .tools-container {
                 flex-direction: column;
-                gap: 5px; /* Kurangi jarak antar elemen */
+                gap: 5px;
+            }
+
+            .gradient-canvas {
+                width: 150px;
+                height: 75px;
+            }
+
+            .laser-pointer {
+                width: 8px;
+                height: 8px;
             }
         }
 
         @media (max-width: 576px) {
             .container {
                 padding: 10px;
-            }
-
-            .color-palette {
-                grid-template-columns: repeat(auto-fit, minmax(24px, 1fr));
             }
 
             .color-box {
@@ -217,41 +209,43 @@
                     <div class="card shadow-lg card-1">
                         <div class="card-body inner-card">
                             <div class="row justify-content-center">
-                                <!-- Bagian Pewarnaan Dasar Kain -->
+                                <!-- Pewarnaan Dasar Kain -->
                                 <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Dasar Kain</h5>
                                     <div id="backgroundCanvasContainer" class="border" style="flex: 1; display: flex;">
-                                        <div class="canvas-wrapper" style="flex: 1;">
+                                        <div class="canvas-wrapper">
                                             <canvas id="backgroundCanvas"></canvas>
                                         </div>
                                     </div>
-                                    <div class="color-picker-container mt-4">
+                                    <div class="color-picker-container">
                                         <h5>Warna Dasar Kain</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna motif, lalu gunakan alat di samping untuk mewarnai setiap pixel. Anda bisa menggunakan lebih dari satu warna</p>
-                                        <div class="color-palette" id="backgroundPalette">
-                                            <!-- Pilihan warna background akan diisi oleh JavaScript -->
+                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna untuk latar belakang kain.</p>
+                                        <div class="color-palette" id="backgroundPalette"></div>
+                                        <div class="gradient-wrapper">
+                                            <canvas id="backgroundGradient" class="gradient-canvas"></canvas>
+                                            <div class="laser-pointer" id="backgroundLaser"></div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Bagian Pewarnaan Motif -->
+                                <!-- Pewarnaan Motif -->
                                 <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Motif</h5>
                                     <div id="motifCanvasContainer" class="border" style="flex: 1; display: flex;">
-                                        <div class="canvas-wrapper" style="flex: 1;">
+                                        <div class="canvas-wrapper">
                                             <canvas id="motifCanvas"></canvas>
                                         </div>
                                     </div>
-                                    <div class="color-picker-container mt-4">
+                                    <div class="color-picker-container">
                                         <h5>Warna Motif</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih satu warna dasar untuk latar belakang motif. Warna dasar ini akan diterapkan pada bagian putih pada motif</p>
-                                        <div class="color-palette" id="motifPalette">
-                                            <!-- Pilihan warna motif akan diisi oleh JavaScript -->
+                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna untuk motif dan gunakan alat untuk mewarnai.</p>
+                                        <div class="color-palette" id="motifPalette"></div>
+                                        <div class="gradient-wrapper">
+                                            <canvas id="motifGradient" class="gradient-canvas"></canvas>
+                                            <div class="laser-pointer" id="motifLaser"></div>
                                         </div>
                                         <div class="tools-container">
-                                            <div id="brushSizeContainer">
-                                                <!-- Ukuran Kuas akan diisi oleh JavaScript -->
-                                            </div>
+                                            <div id="brushSizeContainer"></div>
                                             <div class="d-flex">
                                                 <button id="pencilTool" class="btn btn-outline-primary mx-2">✏</button>
                                                 <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
@@ -277,58 +271,49 @@
     </div>
 
     <script>
-        const pencilTool = document.getElementById('pencilTool');
-        const eraserTool = document.getElementById('eraserTool');
         const backgroundCanvas = document.getElementById('backgroundCanvas');
         const motifCanvas = document.getElementById('motifCanvas');
         const backgroundCtx = backgroundCanvas.getContext('2d');
         const motifCtx = motifCanvas.getContext('2d');
+        const pencilTool = document.getElementById('pencilTool');
+        const eraserTool = document.getElementById('eraserTool');
 
         let isPencilActive = false;
         let isEraserActive = false;
         let selectedMotifColor = '#000000';
         let selectedBackgroundColor = '#FFFFFF';
-        const gridSize = 20;
+        let brushSize = 10;
 
-        // Load images for background and motif
         const motifImage = new Image();
         motifImage.crossOrigin = "anonymous";
         motifImage.src = "/{{ motif_path }}";
-        console.log("Motif Image URL:", motifImage.src);
 
         const backgroundImage = new Image();
         backgroundImage.crossOrigin = "anonymous";
         backgroundImage.src = "/{{ background_path }}";
-        console.log("Background Image URL:", backgroundImage.src);
 
         const overlayCanvas = document.createElement('canvas');
         const overlayCtx = overlayCanvas.getContext('2d');
 
         motifImage.onload = () => {
-            // Mengatur ukuran kanvas motif agar sesuai dengan gambar motif
             motifCanvas.width = motifImage.width;
             motifCanvas.height = motifImage.height;
             overlayCanvas.width = motifImage.width;
             overlayCanvas.height = motifImage.height;
-
-            // Mengatur ukuran kanvas latar belakang agar sesuai dengan gambar motif
             backgroundCanvas.width = motifImage.width;
             backgroundCanvas.height = motifImage.height;
 
-            // Atur gaya kanvas untuk mengisi lebar kontainer
             backgroundCanvas.style.width = '100%';
             motifCanvas.style.width = '100%';
             backgroundCanvas.style.height = 'auto';
             motifCanvas.style.height = 'auto';
 
-            // Sesuaikan rasio aspek canvas-wrapper berdasarkan dimensi motifImage
             const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
             const aspectRatio = motifImage.width / motifImage.height;
             canvasWrappers.forEach(wrapper => {
                 wrapper.style.aspectRatio = aspectRatio;
             });
 
-            // Menggambar gambar awal
             motifCtx.drawImage(motifImage, 0, 0);
             backgroundCtx.fillStyle = selectedBackgroundColor;
             backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
@@ -338,33 +323,19 @@
             backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
         };
 
-        motifImage.onerror = () => {
-            console.error("Failed to load motif image from:", motifImage.src);
-        };
-
-        backgroundImage.onerror = () => {
-            console.error("Failed to load background image from:", backgroundImage.src);
-        };
-
-        let brushSize = 10; 
+        motifImage.onerror = () => console.error("Failed to load motif image from:", motifImage.src);
+        backgroundImage.onerror = () => console.error("Failed to load background image from:", backgroundImage.src);
 
         function createBrushSizeSelector() {
             const brushSizeContainer = document.getElementById('brushSizeContainer');
-
             const label = document.createElement('label');
             label.innerText = 'Ukuran Kuas: ';
             label.style.marginRight = '10px';
             label.style.fontWeight = 'bold';
-            label.style.fontSize = '16px';
 
             const select = document.createElement('select');
             select.id = 'brushSizeSelector';
-            select.style.padding = '5px 10px';
-            select.style.borderRadius = '5px';
-            select.style.border = '1px solid #ccc';
-            select.style.fontSize = '14px';
-            select.style.cursor = 'pointer';
-
+            select.style.padding = '5px';
             [5, 10, 20, 30, 50].forEach(size => {
                 const option = document.createElement('option');
                 option.value = size;
@@ -411,7 +382,6 @@
                 }
 
                 overlayCtx.restore();
-
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
                 ctx.drawImage(overlayCanvas, 0, 0);
@@ -431,83 +401,19 @@
                 }
 
                 overlayCtx.restore();
-
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
                 ctx.drawImage(overlayCanvas, 0, 0);
             }
         }
 
-        function floodFillOptimized(canvas, ctx, overlayCtx, startX, startY, fillColor) {
-            const width = canvas.width;
-            const height = canvas.height;
-            const imageData = overlayCtx.getImageData(0, 0, width, height);
-            const data = imageData.data;
-
-            const stack = [[startX, startY]];
-            const startIdx = (startY * width + startX) * 4;
-            const startColor = [data[startIdx], data[startIdx + 1], data[startIdx + 2], data[startIdx + 3]];
-
-            function colorsMatch(color1, color2) {
-                const tolerance = 20;
-                return Math.abs(color1[0] - color2[0]) <= tolerance &&
-                       Math.abs(color1[1] - color2[1]) <= tolerance &&
-                       Math.abs(color1[2] - color2[2]) <= tolerance &&
-                       color1[3] === color2[3];
-            }
-
-            if (!colorsMatch(startColor, [0, 0, 0, 255])) return;
-
-            while (stack.length) {
-                const [x, y] = stack.pop();
-                const idx = (y * width + x) * 4;
-
-                if (x < 0 || y < 0 || x >= width || y >= height) continue;
-
-                const motifData = motifCtx.getImageData(x, y, 1, 1).data;
-                const isMotifArea = motifData[0] < 20 && motifData[1] < 20 && motifData[2] < 20 && motifData[3] > 0;
-
-                if (!isMotifArea) continue;
-
-                data[idx] = fillColor[0];
-                data[idx + 1] = fillColor[1];
-                data[idx + 2] = fillColor[2];
-                data[idx + 3] = fillColor[3];
-
-                stack.push([x + 1, y]);
-                stack.push([x - 1, y]);
-                stack.push([x, y + 1]);
-                stack.push([x, y - 1]);
-            }
-
-            overlayCtx.putImageData(imageData, 0, 0);
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
-            ctx.drawImage(overlayCanvas, 0, 0);
-        }
-
         motifCanvas.addEventListener('click', (event) => {
             handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
-        });
-
-        backgroundCanvas.addEventListener('click', (event) => {
-            handleCanvasClick(backgroundCanvas, backgroundCtx, overlayCtx, event, selectedBackgroundColor);
         });
 
         backgroundCanvas.addEventListener('click', () => {
             backgroundCtx.fillStyle = selectedBackgroundColor;
             backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-        });
-
-        motifCanvas.addEventListener('dblclick', (event) => {
-            const rect = motifCanvas.getBoundingClientRect();
-            const x = Math.floor(event.clientX - rect.left);
-            const y = Math.floor(event.clientY - rect.top);
-
-            const fillColor = selectedMotifColor.match(/#([0-9a-f]{6})/i)[1].match(/.{2}/g).map(hex => parseInt(hex, 16));
-            fillColor.push(255);
-
-            floodFillOptimized(motifCanvas, motifCtx, overlayCtx, x, y, fillColor);
         });
 
         let isDrawing = false;
@@ -523,13 +429,8 @@
             }
         });
 
-        motifCanvas.addEventListener('mouseup', () => {
-            isDrawing = false;
-        });
-
-        motifCanvas.addEventListener('mouseleave', () => {
-            isDrawing = false;
-        });
+        motifCanvas.addEventListener('mouseup', () => isDrawing = false);
+        motifCanvas.addEventListener('mouseleave', () => isDrawing = false);
 
         function populatePalette(paletteId, colors, onSelect) {
             const palette = document.getElementById(paletteId);
@@ -546,22 +447,115 @@
             });
         }
 
-        populatePalette('motifPalette', ['#ffffff', '#e6e6fa', '#f0f8ff', '#faebd7', '#00ffff', '#7fffd4', '#f0ffff', '#8a2be2', '#a52a2a', '#deb887', '#5f9ea0', '#7fff00', '#d2691e', '#ff7f50', '#6495ed', '#fff8dc', '#dc143c', '#00bfff', '#696969', '#8b0000', '#b22222', '#ff1493', '#c71585', '#f4a460', '#2e8b57', '#008b8b'], (color) => {
+        function hsvToRgb(h, s, v) {
+            let r, g, b;
+            const i = Math.floor(h * 6);
+            const f = h * 6 - i;
+            const p = v * (1 - s);
+            const q = v * (1 - f * s);
+            const t = v * (1 - (1 - f) * s);
+            switch (i % 6) {
+                case 0: r = v, g = t, b = p; break;
+                case 1: r = q, g = v, b = p; break;
+                case 2: r = p, g = v, b = t; break;
+                case 3: r = p, g = q, b = v; break;
+                case 4: r = t, g = p, b = v; break;
+                case 5: r = v, g = p, b = q; break;
+            }
+            return {
+                r: Math.round(r * 255),
+                g: Math.round(g * 255),
+                b: Math.round(b * 255)
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+        }
+
+        function createGradient(gradientCanvasId, paletteId, laserId, onSelect) {
+            const gradientCanvas = document.getElementById(gradientCanvasId);
+            const ctx = gradientCanvas.getContext('2d');
+            const laser = document.getElementById(laserId);
+
+            gradientCanvas.width = 200;
+            gradientCanvas.height = 100;
+
+            const imageData = ctx.createImageData(gradientCanvas.width, gradientCanvas.height);
+            const data = imageData.data;
+
+            for (let x = 0; x < gradientCanvas.width; x++) {
+                for (let y = 0; y < gradientCanvas.height; y++) {
+                    const hue = x / gradientCanvas.width;
+                    const saturation = 1;
+                    const value = 1 - (y / gradientCanvas.height);
+                    const { r, g, b } = hsvToRgb(hue, saturation, value);
+                    const idx = (y * gradientCanvas.width + x) * 4;
+                    data[idx] = r;
+                    data[idx + 1] = g;
+                    data[idx + 2] = b;
+                    data[idx + 3] = 255;
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
+            function pickColor(event) {
+                const rect = gradientCanvas.getBoundingClientRect();
+                const x = Math.max(0, Math.min(event.clientX - rect.left, gradientCanvas.width - 1));
+                const y = Math.max(0, Math.min(event.clientY - rect.top, gradientCanvas.height - 1));
+                const imageData = ctx.getImageData(x, y, 1, 1).data;
+                const color = rgbToHex(imageData[0], imageData[1], imageData[2]);
+                onSelect(color);
+                document.querySelectorAll(`#${paletteId} .color-box`).forEach(box => box.classList.remove('selected'));
+            }
+
+            function updateLaserPosition(event) {
+                const rect = gradientCanvas.getBoundingClientRect();
+                const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width - 1));
+                const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height - 1));
+                laser.style.left = `${x}px`;
+                laser.style.top = `${y}px`;
+            }
+
+            gradientCanvas.addEventListener('mouseenter', () => {
+                laser.style.display = 'block';
+            });
+
+            gradientCanvas.addEventListener('mousemove', updateLaserPosition);
+            gradientCanvas.addEventListener('click', pickColor);
+
+            gradientCanvas.addEventListener('mouseleave', () => {
+                laser.style.display = 'none';
+            });
+        }
+
+        const additionalColors = [
+            '#FFFFFF', '#E6E6FA', '#F0F8FF', '#FAEBD7', '#00FFFF', '#7FFFD4', '#F0FFFF', '#8A2BE2',
+            '#CD5C5C', '#F08080', '#20B2AA', '#87CEEB', '#98FB98', '#DDA0DD', '#FF69B4', '#CD853F'
+        ];
+
+        populatePalette('motifPalette', additionalColors, (color) => {
             selectedMotifColor = color;
         });
 
-        populatePalette('backgroundPalette', ['#FFFFFF', '#E6E6FA', '#F0E68C', '#ADD8E6', '#90EE90', '#FF69B4', '#A52A2A'], (color) => {
+        populatePalette('backgroundPalette', additionalColors, (color) => {
+            selectedBackgroundColor = color;
+        });
+
+        createGradient('motifGradient', 'motifPalette', 'motifLaser', (color) => {
+            selectedMotifColor = color;
+        });
+
+        createGradient('backgroundGradient', 'backgroundPalette', 'backgroundLaser', (color) => {
             selectedBackgroundColor = color;
         });
 
         async function saveAndSubmitCanvasImages() {
             try {
-                const backgroundCanvas = document.getElementById('backgroundCanvas');
-                const motifCanvas = document.getElementById('motifCanvas');
-
                 const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
                 if (!csrfToken) {
-                    alert('CSRF token tidak ditemukan. Pastikan elemen CSRF token ada di dalam form.');
+                    alert('CSRF token tidak ditemukan.');
                     return;
                 }
 
@@ -577,9 +571,6 @@
                 formData.append('motif_id', String('{{ motif.id }}'));
                 formData.append('csrfmiddlewaretoken', csrfToken.value);
 
-                console.log('Motif ID:', '{{ motif.id }}');
-                console.log('FormData:', formData);
-
                 const response = await fetch(`/colored_motif/post-image/`, {
                     method: 'POST',
                     body: formData,
@@ -592,18 +583,15 @@
                     document.close();
                 } else {
                     const errorText = await response.text();
-                    console.error('Error occurred at line 35: ', errorText);
                     throw new Error('Gagal mengirim gambar: ' + errorText);
                 }
             } catch (error) {
-                console.error('Error occurred at line 42: ', error);
-                alert('Terjadi kesalahan saat menyimpan dan mengirim gambar: ' + error.message);
+                alert('Terjadi kesalahan: ' + error.message);
             }
         }
 
         document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
 
-        // Toggle tools
         pencilTool.addEventListener('click', () => {
             isPencilActive = !isPencilActive;
             isEraserActive = false;
