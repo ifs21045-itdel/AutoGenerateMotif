@@ -1295,18 +1295,18 @@ def gabungkan_motif(request):
     })
 
 @csrf_exempt
-def save_combined_motif(request):  # menangani request post yg mengandung data gambar dlm base64
+def save_combined_motif(request):
     if request.method == 'POST':
         try:
             # Ambil data gambar dari request
-            img_data = request.POST.get('imgCombined') # mengambil data gambar dari form yg dikirim melalui post
+            img_data = request.POST.get('imgCombined')
             
             if not img_data:
                 return JsonResponse({'status': 'error', 'message': 'Data gambar tidak ditemukan'}, status=400)
             
             # Proses data gambar (base64)
-            format, imgstr = img_data.split(';base64,') # string yg berisi data gmbr dlm format base64
-            ext = format.split('/')[-1] # mengekstrak ekstentsi file dari formate base64
+            format, imgstr = img_data.split(';base64,')
+            ext = format.split('/')[-1]
             
             # Buat nama file unik
             file_name = f"combined_motif_{uuid.uuid4()}.png"
@@ -1326,15 +1326,15 @@ def save_combined_motif(request):  # menangani request post yg mengandung data g
                 max_height = 800
                 
                 # Hitung ukuran baru dengan mempertahankan rasio aspek
-                width, height = img.size # mengambil lebar warna 
+                width, height = img.size
                 if width > max_width:
                     ratio = max_width / width
                     new_width = max_width
-                    new_height = int(height * ratio) #jika lebar gambar lebih besar dari batas yg diizinkan , kita menghitung rasio skala dgn membaginya dgn lebar gmbr asli
+                    new_height = int(height * ratio)
                     
                     # Pastikan tinggi tidak melebihi batas
-                    if new_height > max_height: # menghitung tinggi gmbr yg baru 
-                        ratio = max_height / new_height # jika lebar gmbr diperkecil, tinggi gmbr jga diperkecil secara proporsional 
+                    if new_height > max_height:
+                        ratio = max_height / new_height
                         new_height = max_height
                         new_width = int(new_width * ratio)
                 elif height > max_height:
@@ -1346,7 +1346,7 @@ def save_combined_motif(request):  # menangani request post yg mengandung data g
                     new_width, new_height = width, height
                 
                 # Resize gambar
-                img_resized = img.resize((new_width, new_height), Image.LANCZOS) # mengkonversi gmbr yg sudah di-resize 
+                img_resized = img.resize((new_width, new_height), Image.LANCZOS)
                 
                 # Binarisasi dengan kualitas yang lebih baik
                 img_gray = img_resized.convert('L')
@@ -1367,21 +1367,21 @@ def save_combined_motif(request):  # menangani request post yg mengandung data g
                     row_count = 2  # Minimal 2 baris
                 
                 # Buat grid untuk motif
-                grid_filename = f"grid_{file_name}" # menentukan nama file dlm grid
+                grid_filename = f"grid_{file_name}"
                 grid_path = os.path.join(settings.MEDIA_ROOT, 'grids', grid_filename)
                 os.makedirs(os.path.dirname(grid_path), exist_ok=True)
                 
                 # Buat gambar grid
-                grid_img = img.copy().convert('RGB') 
+                grid_img = img.copy().convert('RGB')
                 draw = ImageDraw.Draw(grid_img)
                 
                 width, height = grid_img.size
                 
                 # Gambar garis vertikal dan horizontal grid
-                for x in range(0, width, grid_size): # perulangan unk menggambar garis vertikal. mulai x = 0 hingga mencapai lebar gmbr
+                for x in range(0, width, grid_size):
                     draw.line((x, 0, x, height), fill=(100, 100, 100), width=1)
                 
-                for y in range(0, height, grid_size): # menggambar garis bertikal dari titik x,0 atas gambar ke x, height bawah gmbr pda posisi x yg ditentukan dlm perulangan dgn warna abu2
+                for y in range(0, height, grid_size):
                     draw.line((0, y, width, y), fill=(100, 100, 100), width=1)
                 
                 # Simpan grid

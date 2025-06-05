@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -78,14 +78,14 @@
             margin-top: 20px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Center align the palette */
         }
 
         .color-palette {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
+            justify-content: flex-start;
+            gap: 7px;
             margin-top: 15px;
         }
 
@@ -117,37 +117,8 @@
             margin: 5px;
         }
 
-        .col-lg-6 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #backgroundCanvasContainer, #motifCanvasContainer {
-            flex: 1;
-            width: 100%;
-        }
-
-        .tools-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-            gap: 15px;
-        }
-
-        #brushSizeContainer {
-            display: flex;
-            align-items: center;
-        }
-
         @media (max-width: 768px) {
             .col-md-6 {
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-
-            .col-lg-6 {
                 flex: 0 0 100%;
                 max-width: 100%;
             }
@@ -161,11 +132,6 @@
             .color-box {
                 width: 30px;
                 height: 30px;
-            }
-
-            .tools-container {
-                flex-direction: column;
-                gap: 10px;
             }
         }
 
@@ -193,61 +159,65 @@
                     <div class="card shadow-lg card-1">
                         <div class="card-body inner-card">
                             <div class="row justify-content-center">
-                                <!-- Bagian Pewarnaan Dasar Kain -->
+                                <!-- Bagian Hasil Gabungan Motif -->
                                 <div class="col-lg-6 col-md-12 text-center">
-                                    <h5 style="font-weight: bold;">Pewarnaan Dasar Kain</h5>
+                                    <h5 style="font-weight: bold;">Canvas Pewarnaan Dasar Kain</h5>
                                     <div id="backgroundCanvasContainer" class="border p-4">
                                         <div class="canvas-wrapper">
                                             <canvas id="backgroundCanvas"></canvas>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-12 text-center">
+                                    <h5 style="font-weight: bold;">Canvas Pewarnaan Motif</h5>
+                                    <div id="motifCanvasContainer" class="border p-4">
+                                        <div class="canvas-wrapper">
+                                            <canvas id="motifCanvas"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bagian Alat Warna -->
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="text-center mt-4">
+                                        <h5>Alat Warna</h5>
+                                        <div class="d-flex justify-content-center mb-3">
+                                            <button id="pencilTool" class="btn btn-outline-primary mx-2">✏</button>
+                                            <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Palet Warna Motif -->
+                                    <div class="color-picker-container">
+                                        <h5>Warna Motif</h5>
+                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih satu warna dasar untuk latar belakang motif. Warna dasar ini akan diterapkan pada bagian putih pada motif</p>
+                                        <div class="color-palette" id="motifPalette">
+                                            <!-- Pilihan warna motif akan diisi oleh JavaScript -->
+                                        </div>
+                                    </div>
+
                                     <!-- Palet Warna Background -->
                                     <div class="color-picker-container mt-4">
-                                        <h5>Warna Dasar Kain</h5>
+                                        <h5>Warna Background</h5>
                                         <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna motif, lalu gunakan alat di samping untuk mewarnai setiap pixel. Anda bisa menggunakan lebih dari satu warna</p>
                                         <div class="color-palette" id="backgroundPalette">
                                             <!-- Pilihan warna background akan diisi oleh JavaScript -->
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Bagian Pewarnaan Motif -->
-                                <div class="col-lg-6 col-md-12 text-center">
-                                    <h5 style="font-weight: bold;">Pewarnaan Motif</h5>
-                                    <div id="motifCanvasContainer" class="border p-4">
-                                        <div class="canvas-wrapper">
-                                            <canvas id="motifCanvas"></canvas>
-                                        </div>
-                                    </div>
-                                    <!-- Palet Warna Motif dan Alat -->
-                                    <div class="color-picker-container mt-4">
-                                        <h5>Warna Motif</h5>
-                                        <p style="color: #6c757d; font-size: 0.9rem;">Pilih satu warna dasar untuk latar belakang motif. Warna dasar ini akan diterapkan pada bagian putih pada motif</p>
-                                        <div class="color-palette" id="motifPalette">
-                                            <!-- Pilihan warna motif akan diisi oleh JavaScript -->
-                                        </div>
-                                        <!-- Bagian Alat Warna dan Ukuran Kuas -->
-                                        <div class="tools-container">
-                                            <div id="brushSizeContainer">
-                                                <!-- Ukuran Kuas akan diisi oleh JavaScript -->
-                                            </div>
-                                            <div class="d-flex">
-                                                <button id="pencilTool" class="btn btn-outline-primary mx-2">✏</button>
-                                                <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
-                            <form method="POST" enctype="multipart/form-data" action="/motif_colored/preview/{{ motif.id }}/">
+                            <form method="POST" enctype="multipart/form-data" action="/motif_colored/preview/{{ motif.id }}/"> <!--  Form untuk kirim data dan file ke `/motif_colored/preview/` metode POST -->
                                 {% csrf_token %}
                                 <div class="row mt-4 text-center">
                                     <div class="col-md-12">
                                         <button class="btn" type="button" onclick="submitCanvasImages()" style="background-color: #002BA3; color: white;">Lihat Motif Preview</button>
+                                    <!-- Tombol biru yang memanggil fungsi submitCanvasImages() saat diklik untuk memproses data. -->
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -335,10 +305,13 @@
         let brushSize = 10; 
 
         function createBrushSizeSelector() {
-            const brushSizeContainer = document.getElementById('brushSizeContainer');
+            const brushSizeContainer = document.createElement('div');
+            brushSizeContainer.id = 'brushSizeContainer';
+            brushSizeContainer.style.marginTop = '20px';
+            brushSizeContainer.style.textAlign = 'center';
 
             const label = document.createElement('label');
-            label.innerText = 'Ukuran Kuas: ';
+            label.innerText = 'Brush Size: ';
             label.style.marginRight = '10px';
             label.style.fontWeight = 'bold';
             label.style.fontSize = '16px';
@@ -365,14 +338,16 @@
 
             brushSizeContainer.appendChild(label);
             brushSizeContainer.appendChild(select);
+
+            document.querySelector('.color-picker-container').appendChild(brushSizeContainer);
         }
 
         createBrushSizeSelector();
 
         function handleCanvasClick(canvas, ctx, overlayCtx, event, color) {
             const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
+            const scaleX = canvas.width / rect.width; // Scale factor for X
+            const scaleY = canvas.height / rect.height; // Scale factor for Y
             const x = Math.floor((event.clientX - rect.left) * scaleX);
             const y = Math.floor((event.clientY - rect.top) * scaleY);
 
@@ -386,11 +361,11 @@
                         const pixelY = y + j;
 
                         if (pixelX >= 0 && pixelY >= 0 && pixelX < canvas.width && pixelY < canvas.height) {
-                            const motifData = motifCtx.getImageData(pixelX, pixelY, 1, 1).data;
-                            const isMotifArea = motifData[0] < 50 && motifData[1] < 50 && motifData[2] < 50 && motifData[3] > 0;
+                            const motifData = motifCtx.getImageData(pixelX, pixelY, 1, 1).data; // Use motifCtx to check motif area
+                            const isMotifArea = motifData[0] < 50 && motifData[1] < 50 && motifData[2] < 50 && motifData[3] > 0; // Increase tolerance for thin edges
 
                             if (isMotifArea) {
-                                overlayCtx.fillRect(pixelX, pixelY, 1, 1);
+                                overlayCtx.fillRect(pixelX, pixelY, 1, 1); // Color only motif pixels
                             }
                         }
                     }
@@ -399,8 +374,8 @@
                 overlayCtx.restore();
 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0);
-                ctx.drawImage(overlayCanvas, 0, 0);
+                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0); 
+                ctx.drawImage(overlayCanvas, 0, 0); 
             } else if (isEraserActive) {
                 overlayCtx.save();
                 overlayCtx.globalCompositeOperation = 'destination-out';
@@ -451,9 +426,9 @@
                 if (x < 0 || y < 0 || x >= width || y >= height) continue;
 
                 const motifData = motifCtx.getImageData(x, y, 1, 1).data;
-                const isMotifArea = motifData[0] < 20 && motifData[1] < 20 && motifData[2] < 20 && motifData[3] > 0;
+                const isMotifArea = motifData[0] < 20 && motifData[1] < 20 && motifData[2] < 20 && motifData[3] > 0; // Check if pixel is part of the motif
 
-                if (!isMotifArea) continue;
+                if (!isMotifArea) continue; 
 
                 data[idx] = fillColor[0];
                 data[idx + 1] = fillColor[1];
@@ -468,8 +443,8 @@
 
             overlayCtx.putImageData(imageData, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0);
-            ctx.drawImage(overlayCanvas, 0, 0);
+            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0); // Redraw original image
+            ctx.drawImage(overlayCanvas, 0, 0); // Redraw overlay
         }
 
         motifCanvas.addEventListener('click', (event) => {
@@ -480,9 +455,10 @@
             handleCanvasClick(backgroundCanvas, backgroundCtx, overlayCtx, event, selectedBackgroundColor);
         });
 
+        // Pewarnaan background secara keseluruhan dengan klik
         backgroundCanvas.addEventListener('click', () => {
-            backgroundCtx.fillStyle = selectedBackgroundColor;
-            backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+            backgroundCtx.fillStyle = selectedBackgroundColor; // Gunakan warna yang dipilih
+            backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height); // Isi seluruh canvas
         });
 
         motifCanvas.addEventListener('dblclick', (event) => {
@@ -560,10 +536,12 @@
                 const formData = new FormData();
                 formData.append('background_warna', backgroundFile);
                 formData.append('motif_warna', motifFile);
-                formData.append('motif_id', String('{{ motif.id }}'));
+                formData.append('motif_id', String('{{ motif.id }}')); // Convert motif_id to a string explicitly
                 formData.append('csrfmiddlewaretoken', csrfToken.value);
 
                 console.log('Motif ID:', '{{ motif.id }}');
+                console.log('FormData:', formData);
+                console.log('FormData:', formData);
                 console.log('FormData:', formData);
 
                 const response = await fetch(`/colored_motif/post-image/`, {
