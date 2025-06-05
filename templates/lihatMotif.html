@@ -220,7 +220,7 @@
     
     {% if error_messages %}
     <div class="alert alert-danger">
-        <ul>
+        <ul>wai
             {% for message in error_messages %}
                 <li>{{ message }}</li>
             {% endfor %}
@@ -311,7 +311,7 @@
                 <div class="motif-container">
                     <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
                     <img id="lidiImage" class="motif-grid" alt="Motif Asal">
-                    {% comment %} <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div> {% endcomment %}
+                    <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div>
                     
                     <!-- Tampilkan urutan lidi -->
                     <div class="mt-2">
@@ -337,7 +337,7 @@
                 <div class="motif-container">
                     <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
                     <img id="redLineImage" class="motif-grid" alt="Hasil Motif">
-                    {% comment %} <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div> {% endcomment %}
+                    <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div>
                     <div class="mt-2">
                         <small class="text-muted" class="text-center">Urutan Lidi: {{motif.urutanLidi}}</small>
                     </div>
@@ -398,15 +398,15 @@
                         <a href="{{ motif.imgAfter|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Motif </a>
                         <a href="{{ motif.imgBefore|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Lidi </a>
                         <div class="text-center">
-                            <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-primary mt-3" style="background-color: #002BA3; width: 100%;">
-                            Warnai Motif
-                        </a>
+                            <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-primary mt-3" style="background-color: #002BA3;">
+                                Warnai Motif
+                            </a>
                         </div>
                     </div>
                     {% if status %}
                     <form action="/delete/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                 
+                        
                         <div class="text-center">
                             <div class="form-group" style="padding-top: 10px;"> 
                                 <input type="hidden" class="form-control" name="DeleteImage" value="{{ motif.id}}" required>

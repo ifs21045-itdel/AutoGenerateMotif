@@ -2972,6 +2972,7 @@ Watching for file changes with StatReloader
 Not Found: /favicon.ico
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 D:\TA Update\AutoGenerateMotif\Website\settings.py changed, reloading.
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
@@ -3367,5 +3368,62 @@ Traceback (most recent call last):
     raise self.error(
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 176: 'endif'. Did you forget to register or load this tag?
 D:\TA Update\AutoGenerateMotif\Website\urls.py changed, reloading.
+=======
+<<<<<<< Updated upstream
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\CreateImageModule.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\deleteModule.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\Function.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\MotifModule.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\ProcessImage.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\SaveModule.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\wsgi.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\zipModule.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+=======
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+>>>>>>> Stashed changes
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\settings.py changed, reloading.
+>>>>>>> 40c13b66d383bfce82685125fd8763b8b607edd3
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader

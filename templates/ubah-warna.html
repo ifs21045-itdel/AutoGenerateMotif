@@ -60,25 +60,43 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
             width: 100%;
-            max-width: 100%;
-            margin: 0 auto;
+            margin: 0;
+            position: relative;
         }
 
-        #drawingCanvas {
+        #backgroundCanvas, #motifCanvas {
             display: block;
-            max-width: 100%;
-            height: auto;
-            border: 1px solid black;
+            width: 100%;
+            height: auto; /* Tinggi menyesuaikan berdasarkan rasio aspek gambar */
+        }
+
+        .col-lg-6 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: auto; /* Biarkan tinggi menyesuaikan dengan konten */
+            padding: 10px;
+            min-height: 300px; /* Kurangi min-height agar lebih fleksibel */
+        }
+
+        #backgroundCanvasContainer, #motifCanvasContainer {
+            flex: 1;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: auto; /* Biarkan tinggi menyesuaikan */
         }
 
         .color-picker-container {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 10px; /* Kurangi margin untuk menghilangkan ruang kosong */
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0;
         }
 
         .color-palette {
@@ -117,17 +135,6 @@
             margin: 5px;
         }
 
-        .col-lg-6 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #backgroundCanvasContainer, #motifCanvasContainer {
-            flex: 1;
-            width: 100%;
-        }
-
         .tools-container {
             display: flex;
             align-items: center;
@@ -141,6 +148,15 @@
             align-items: center;
         }
 
+        /* Aturan untuk layar besar (mode 2 layar) */
+        @media (min-width: 769px) {
+            .col-lg-6 {
+                height: auto;
+                min-height: 300px;
+            }
+        }
+
+        /* Aturan untuk layar kecil (mode 1 layar) */
         @media (max-width: 768px) {
             .col-md-6 {
                 flex: 0 0 100%;
@@ -150,6 +166,14 @@
             .col-lg-6 {
                 flex: 0 0 100%;
                 max-width: 100%;
+                height: auto;
+                min-height: 300px;
+            }
+
+            .canvas-wrapper {
+                min-width: 300px; /* Lebar minimum */
+                max-width: 100%;
+                height: auto; /* Biarkan tinggi menyesuaikan */
             }
 
             #pencilTool, #eraserTool {
@@ -165,7 +189,7 @@
 
             .tools-container {
                 flex-direction: column;
-                gap: 10px;
+                gap: 5px; /* Kurangi jarak antar elemen */
             }
         }
 
@@ -194,14 +218,13 @@
                         <div class="card-body inner-card">
                             <div class="row justify-content-center">
                                 <!-- Bagian Pewarnaan Dasar Kain -->
-                                <div class="col-lg-6 col-md-12 text-center">
+                                <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Dasar Kain</h5>
-                                    <div id="backgroundCanvasContainer" class="border p-4">
-                                        <div class="canvas-wrapper">
+                                    <div id="backgroundCanvasContainer" class="border" style="flex: 1; display: flex;">
+                                        <div class="canvas-wrapper" style="flex: 1;">
                                             <canvas id="backgroundCanvas"></canvas>
                                         </div>
                                     </div>
-                                    <!-- Palet Warna Background -->
                                     <div class="color-picker-container mt-4">
                                         <h5>Warna Dasar Kain</h5>
                                         <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna motif, lalu gunakan alat di samping untuk mewarnai setiap pixel. Anda bisa menggunakan lebih dari satu warna</p>
@@ -212,21 +235,19 @@
                                 </div>
 
                                 <!-- Bagian Pewarnaan Motif -->
-                                <div class="col-lg-6 col-md-12 text-center">
+                                <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Motif</h5>
-                                    <div id="motifCanvasContainer" class="border p-4">
-                                        <div class="canvas-wrapper">
+                                    <div id="motifCanvasContainer" class="border" style="flex: 1; display: flex;">
+                                        <div class="canvas-wrapper" style="flex: 1;">
                                             <canvas id="motifCanvas"></canvas>
                                         </div>
                                     </div>
-                                    <!-- Palet Warna Motif dan Alat -->
                                     <div class="color-picker-container mt-4">
                                         <h5>Warna Motif</h5>
                                         <p style="color: #6c757d; font-size: 0.9rem;">Pilih satu warna dasar untuk latar belakang motif. Warna dasar ini akan diterapkan pada bagian putih pada motif</p>
                                         <div class="color-palette" id="motifPalette">
                                             <!-- Pilihan warna motif akan diisi oleh JavaScript -->
                                         </div>
-                                        <!-- Bagian Alat Warna dan Ukuran Kuas -->
                                         <div class="tools-container">
                                             <div id="brushSizeContainer">
                                                 <!-- Ukuran Kuas akan diisi oleh JavaScript -->
@@ -269,29 +290,6 @@
         let selectedBackgroundColor = '#FFFFFF';
         const gridSize = 20;
 
-        // Set canvas width to 100% of its container
-        backgroundCanvas.style.width = '100%';
-        motifCanvas.style.width = '100%';
-
-        // Set canvas height to 100% of its container
-        backgroundCanvas.style.height = '100%';
-        motifCanvas.style.height = '100%';
-
-        // Toggle tools
-        pencilTool.addEventListener('click', () => {
-            isPencilActive = !isPencilActive;
-            isEraserActive = false;
-            pencilTool.classList.toggle('active', isPencilActive);
-            eraserTool.classList.remove('active');
-        });
-
-        eraserTool.addEventListener('click', () => {
-            isEraserActive = !isEraserActive;
-            isPencilActive = false;
-            eraserTool.classList.toggle('active', isEraserActive);
-            pencilTool.classList.remove('active');
-        });
-
         // Load images for background and motif
         const motifImage = new Image();
         motifImage.crossOrigin = "anonymous";
@@ -307,21 +305,37 @@
         const overlayCtx = overlayCanvas.getContext('2d');
 
         motifImage.onload = () => {
+            // Mengatur ukuran kanvas motif agar sesuai dengan gambar motif
             motifCanvas.width = motifImage.width;
             motifCanvas.height = motifImage.height;
             overlayCanvas.width = motifImage.width;
             overlayCanvas.height = motifImage.height;
 
-            motifCtx.drawImage(motifImage, 0, 0);
-
+            // Mengatur ukuran kanvas latar belakang agar sesuai dengan gambar motif
             backgroundCanvas.width = motifImage.width;
             backgroundCanvas.height = motifImage.height;
+
+            // Atur gaya kanvas untuk mengisi lebar kontainer
+            backgroundCanvas.style.width = '100%';
+            motifCanvas.style.width = '100%';
+            backgroundCanvas.style.height = 'auto';
+            motifCanvas.style.height = 'auto';
+
+            // Sesuaikan rasio aspek canvas-wrapper berdasarkan dimensi motifImage
+            const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
+            const aspectRatio = motifImage.width / motifImage.height;
+            canvasWrappers.forEach(wrapper => {
+                wrapper.style.aspectRatio = aspectRatio;
+            });
+
+            // Menggambar gambar awal
+            motifCtx.drawImage(motifImage, 0, 0);
+            backgroundCtx.fillStyle = selectedBackgroundColor;
+            backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
         };
 
         backgroundImage.onload = () => {
-            backgroundCanvas.width = backgroundImage.width;
-            backgroundCanvas.height = backgroundImage.height;
-            backgroundCtx.drawImage(backgroundImage, 0, 0);
+            backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
         };
 
         motifImage.onerror = () => {
@@ -399,7 +413,7 @@
                 overlayCtx.restore();
 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0);
+                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
                 ctx.drawImage(overlayCanvas, 0, 0);
             } else if (isEraserActive) {
                 overlayCtx.save();
@@ -419,7 +433,7 @@
                 overlayCtx.restore();
 
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0);
+                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
                 ctx.drawImage(overlayCanvas, 0, 0);
             }
         }
@@ -468,7 +482,7 @@
 
             overlayCtx.putImageData(imageData, 0, 0);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0);
+            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
             ctx.drawImage(overlayCanvas, 0, 0);
         }
 
@@ -588,6 +602,21 @@
         }
 
         document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
+
+        // Toggle tools
+        pencilTool.addEventListener('click', () => {
+            isPencilActive = !isPencilActive;
+            isEraserActive = false;
+            pencilTool.classList.toggle('active', isPencilActive);
+            eraserTool.classList.remove('active');
+        });
+
+        eraserTool.addEventListener('click', () => {
+            isEraserActive = !isEraserActive;
+            isPencilActive = false;
+            eraserTool.classList.toggle('active', isEraserActive);
+            pencilTool.classList.remove('active');
+        });
     </script>
 </body>
 </html>
