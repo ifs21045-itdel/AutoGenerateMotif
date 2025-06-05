@@ -311,7 +311,7 @@
                 <div class="motif-container">
                     <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
                     <img id="lidiImage" class="motif-grid" alt="Motif Asal">
-                    <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div>
+                    {% comment %} <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div> {% endcomment %}
                     
                     <!-- Tampilkan urutan lidi -->
                     <div class="mt-2">
@@ -337,7 +337,7 @@
                 <div class="motif-container">
                     <!-- PERBAIKAN UTAMA: Periksa dan perbaiki path gambar -->
                     <img id="redLineImage" class="motif-grid" alt="Hasil Motif">
-                    <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div>
+                    {% comment %} <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div> {% endcomment %}
                     <div class="mt-2">
                         <small class="text-muted" class="text-center">Urutan Lidi: {{motif.urutanLidi}}</small>
                     </div>
@@ -395,14 +395,18 @@
                         </div>
                     </div>
                     <div class="text-center mb-5">
-                        <a href="{{ motif.imgAfter|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Motif </a>
-                        <a href="{{ motif.imgBefore|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;"> Unduh Lidi </a>
-                        <div class="text-center">
-                            <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-primary mt-3" style="background-color: #002BA3;">
-                                Warnai Motif
-                            </a>
-                        </div>
-                    </div>
+    <a href="{{ motif.imgAfter|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;">
+        Unduh Hasil Motif
+    </a>
+    <a href="{{ motif.imgBefore|default:'' }}" class="btn btn-outline-primary tm-btn-big mb-4" download style="margin-bottom: 10px; width: 100%;">
+        Unduh Motif Asal
+    </a>
+    <div class="text-center">
+        <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-primary tm-btn-big mt-3 mb-4" style="background-color: #002BA3; width: 100%;">
+            Warnai Motif
+        </a>
+    </div>
+</div>
                     {% if status %}
                     <form action="/delete/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
