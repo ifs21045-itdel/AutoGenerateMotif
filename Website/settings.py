@@ -103,7 +103,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD':'',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
         'PORT': '3306',
     }

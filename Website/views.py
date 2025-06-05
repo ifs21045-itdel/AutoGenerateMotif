@@ -321,25 +321,26 @@ def enhance_image(uploaded_file): #Gambar yang diunggah akan diubah menjadi arra
 #         logger.error(f"Gagal menyimpan motif: {str(e)}")
 #         raise
 
-
 def save(request):
     if request.method == "POST":
         try:
             jumlahasal = request.session.get("jumlahasal")
-            imgBefore = request.session.get("raw_url")
-            imgAfter = request.session.get("edit_url")
-            urutanLidi = request.POST.get("urutan")
+            
+            # Ambil data dari form POST (bukan dari session statis)
+            imgBefore = request.POST.get("image2")  # Motif asal
+            imgAfter = request.POST.get("image3")   # Motif hasil yang dipilih
+            urutanLidi = request.POST.get("urutan") # Urutan lidi yang dipilih
             jenisGenerate = request.POST.get("JenisGenerate")
             jmlBaris = request.POST.get("jmlBaris")
             user = request.POST.get("user")
 
-            if not imgBefore:
+            if not imgBefore or not imgAfter:
                 return JsonResponse({
                     "status": "error",
-                    "message": "imgBefore is missing from session"
+                    "message": "Data motif tidak lengkap"
                 })
 
-            
+            # Simpan motif ke database
             motif = MotifForm1(
                 imgBefore=imgBefore,
                 imgAfter=imgAfter,
@@ -350,13 +351,14 @@ def save(request):
             )
             motif.save()
 
+            # Update session dengan data motif yang dipilih
             request.session['img_before'] = imgBefore
             request.session['img_after'] = imgAfter
             request.session['urutan'] = urutanLidi
             request.session['jenis'] = jenisGenerate
             request.session['jml_baris'] = jmlBaris
             request.session['user'] = user
-            request.session['jumlahasal']=jumlahasal
+            request.session['jumlahasal'] = jumlahasal
            
             return redirect('download_page')
 
