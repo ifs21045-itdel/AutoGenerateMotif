@@ -254,6 +254,8 @@
         color: #333; /* Warna teks yang lebih jelas */
         margin-top: 10px; /* Jarak dari gambar */
     }
+
+
     </style>
 </head>
 <body>
@@ -269,7 +271,7 @@
     
     {% if error_messages %}
     <div class="alert alert-danger">
-        <ul>wai
+        <ul>
             {% for message in error_messages %}
                 <li>{{ message }}</li>
             {% endfor %}
@@ -292,19 +294,7 @@
     <h2 class="tm-text-primary text-center">Motif Asal</h2>
     <div class="motif-container">
         <img id="lidiImage" class="motif-grid" alt="Motif Asal">
-        <div class="mt-2">
-            {% if UrutanLidi %}
-                <span class="lidi-text">Urutan Lidi: 
-                    {% for item1 in list_lidi_path %}
-                        {% if forloop.last %}
-                            {{ forloop.counter }}
-                        {% else %}
-                            {{ forloop.counter }},
-                        {% endif %}
-                    {% endfor %}
-                </span>
-            {% endif %}
-        </div>
+        <!-- Urutan lidi dihapus dari sini -->
         <div id="lidiError" class="error-placeholder" style="display: none;">
             <div>Gambar motif tidak dapat dimuat</div>
         </div>
@@ -313,9 +303,7 @@
     <h2 class="tm-text-primary text-center mt-4">Hasil Motif</h2>
     <div class="motif-container">
         <img id="redLineImage" class="motif-grid" alt="Hasil Motif">
-        <div class="mt-2">
-            <span class="lidi-text">Urutan Lidi: {{motif.urutanLidi}}</span>
-        </div>
+        <!-- Urutan lidi dihapus dari sini -->
         <div class="mt-2">
             <div style="display: inline-block; width: 50px; border-top: 2px solid red; vertical-align: middle;"></div>
             <small class="text-muted ml-2" style="vertical-align: middle;"> : Garis tengah motif</small>
@@ -327,6 +315,31 @@
 </div>
           <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
     <div class="tm-bg-gray tm-video-details">
+        <!-- Bagian Urutan Lidi dipindahkan ke sini -->
+        <div class="mb-4">
+            <div class="text-center mb-3">
+                <h5 class="tm-text-primary">Urutan Lidi Motif Asal</h5>
+                {% if UrutanLidi %}
+                    <p class="tm-text-gray-dark">
+                        {% for item1 in list_lidi_path %}
+                            {% if forloop.last %}
+                                {{ forloop.counter }}
+                            {% else %}
+                                {{ forloop.counter }},
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                {% else %}
+                    <p class="tm-text-gray-dark">Tidak tersedia</p>
+                {% endif %}
+            </div>
+            
+            <div class="text-center mb-3">
+                <h5 class="tm-text-primary">Urutan Lidi Hasil Motif</h5>
+                <p class="tm-text-gray-dark">{{motif.urutanLidi}}</p>
+            </div>
+        </div>
+
         <div class="mb-4 d-flex flex-wrap">
             <div class="mr-4 mb-2">
                 <span class="tm-text-gray-dark">Nama Pembuat: </span>
