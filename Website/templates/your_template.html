@@ -27,9 +27,32 @@
             text-align: center;
             margin: 20px auto;
             background-color: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-title {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .info-content {
+            font-size: 14px;
+            color: #6c757d;
+            line-height: 1.5;
+            word-break: break-all;
         }
 
         .error-placeholder {
@@ -89,6 +112,58 @@
         body {
             overflow-x: hidden;
         }
+
+        .btn-download {
+            margin: 5px;
+            min-width: 140px;
+        }
+
+        .section-title {
+            color: #007bff;
+            font-weight: bold;
+            margin: 30px 0 20px 0;
+            text-align: center;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .motif-display {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .motif-section {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .info-panel {
+            flex: 0 0 300px;
+            min-width: 280px;
+        }
+
+        @media (max-width: 768px) {
+            .motif-display {
+                flex-direction: column;
+            }
+            
+            .info-panel {
+                flex: 1;
+                min-width: 100%;
+            }
+
+            .motif-section {
+                min-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -117,7 +192,8 @@
     </div>
     {% endif %}
 
-    <h2 class="tm-text-primary text-center">Motif Asal</h2>
+    <!-- Individual Lidi Display Section -->
+    <h2 class="section-title">Motif Asal</h2>
     <div class="container" style="max-width: 50%;">
         <div class="d-flex flex-wrap align-items-stretch">
             {% for item1 in list_lidi_path %}
@@ -136,7 +212,7 @@
         <p class="modal-content1 text-center">Hello World</p>
     </div>
 
-    <h2 class="tm-text-primary text-center mt-4">Hasil Motif</h2>
+    <h2 class="section-title">Hasil Motif</h2>
     <div class="container" style="max-width: 50%;">
         <div class="d-flex flex-wrap align-items-stretch">
             {% for Motif1, Motif2 in slice %}
@@ -149,40 +225,68 @@
         </div>
     </div>
 
-    <div class="container-fluid tm-container-content tm-mt-60">
-        <div class="row tm-mb-90">
-            <div class="col-xl-8 col-lg-7 col-md-6 col-sm-12">
-                <h2 class="tm-text-primary text-center">Motif Asal</h2>
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <div class="motif-display">
+            <!-- Motif Images Section -->
+            <div class="motif-section">
+                <h2 class="section-title">Motif Asal</h2>
                 <div class="motif-container">
                     <img id="lidiImage" class="motif-grid" alt="Motif Asal">
-                    <div class="debug-path" id="lidiPath">Path: {{ Lidi }}</div>
+                    <div class="debug-path" id="lidiPath" style="display: none;">Path: {{ Lidi }}</div>
                     <div id="lidiError" class="error-placeholder" style="display: none;">Gambar motif tidak dapat dimuat</div>
                 </div>
 
-                <h2 class="tm-text-primary text-center mt-4">Hasil Motif</h2>
+                <h2 class="section-title">Hasil Motif</h2>
                 <div class="motif-container">
                     <img id="redLineImage" class="motif-grid" alt="Hasil Motif">
-                    <div class="debug-path" id="redLinePath">Path: {{ RedLine }}</div>
+                    <div class="debug-path" id="redLinePath" style="display: none;">Path: {{ RedLine }}</div>
                     <div id="redLineError" class="error-placeholder" style="display: none;">Gambar motif tidak dapat dimuat</div>
                 </div>
             </div>
 
-            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
-                <div class="tm-bg-gray tm-video-details">
-                    <h3 class="text-center tm-text-gray-dark">Urutan lidi motif asal</h3>
-                    <p class="text-center">{{ urutanAsliLidi }}</p>
-                    <h3 class="text-center tm-text-gray-dark">Urutan lidi hasil motif</h3>
-                    <p class="text-center">{{ motif.urutanLidi }}</p>
-                    <div class="text-center">
-                        <a href="{{ motif.imgAfter|default:'' }}" class="btn btn-outline-primary" download>Unduh Motif</a>
-                        <a href="{{ motif.imgBefore|default:'' }}" class="btn btn-outline-primary" download>Unduh Lidi</a>
-                        <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-primary mt-3">Warnai Motif</a>
-                    </div>
+            <!-- Information Panel -->
+            <div class="info-panel">
+                <!-- Urutan Lidi Information -->
+                <div class="info-card">
+                    <div class="info-title">Urutan Lidi Motif Asal</div>
+                    <div class="info-content">{{ urutanAsliLidi|default:"Tidak tersedia" }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Urutan Lidi Hasil Motif</div>
+                    <div class="info-content">{{ motif.urutanLidi|default:"Tidak tersedia" }}</div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="info-card">
+                    <div class="info-title">Nama Pembuat</div>
+                    <div class="info-content">{{ motif.nama|default:"icha" }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Tanggal</div>
+                    <div class="info-content">{{ motif.tanggal|date:"d-m-Y"|default:"16-04-2025" }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Jumlah Baris</div>
+                    <div class="info-content">{{ motif.jumlah_baris|default:"191 Baris" }}</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Format</div>
+                    <div class="info-content">PNG</div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="text-center mt-4">
+                    <a href="{{ motif.imgAfter|default:'' }}" class="btn btn-primary btn-download" download>Unduh Motif</a>
+                    <a href="{{ motif.imgBefore|default:'' }}" class="btn btn-outline-primary btn-download" download>Unduh Lidi</a>
+                    <a href="{% url 'ubah_warna_combined' motif.id %}" class="btn btn-success btn-download">Warnai Motif</a>
+                    <a href="{% url 'list1' %}" class="btn btn-secondary btn-download">Kembali</a>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-            <a href="{% url 'list1' %}" class="btn btn-primary">Kembali</a>
         </div>
     </div>
 

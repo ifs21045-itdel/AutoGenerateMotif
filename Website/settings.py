@@ -96,16 +96,15 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 # DATABASE SERVER NANTINYA
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'generatemotif',
         'USER': 'root',
-        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
+        'PASSWORD':'',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
-        'PORT': '3307',
+        'PORT': '3306',
     }
 }
 
