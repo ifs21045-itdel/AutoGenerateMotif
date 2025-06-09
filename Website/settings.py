@@ -96,17 +96,32 @@ WSGI_APPLICATION = 'Website.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# DATABASE SERVER NANTINYA
+# DATABASE SERVER NANTINYA\\
+
+from dotenv import load_dotenv
+load_dotenv()  # baca .env file
+
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'generatemotif',
-        'USER': 'root',
-        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
-        'HOST': 'localhost',  # atau 'localhost'
-        'PORT': '3307',
+        'NAME': os.getenv('generatemotif'),
+        'USER': os.getenv('root'),
+        'PASSWORD': os.getenv('root'),
+        'HOST': os.getenv('127.0.0.1'),
+        'PORT': os.getenv('3307', '3306'),  # fallback ke 3306
     }
 }
+
+#DATABASES = {
+#        'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'generatemotif',
+#        'USER': 'root',
+#        'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
+#        'HOST': '127.0.0.1',  # atau 'localhost'
+#        'PORT': '3307',
+#    }
+#}
 
 LOGGING = {
     'version': 1,
