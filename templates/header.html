@@ -26,7 +26,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" id="Logout" href="{% url 'logout' %}"> 
                         <img class="animated-gif" src="{% static 'img/icon/icons8-logout-rounded-64.png' %}" alt="Keluar">
-                        &nbsp; Keluar
+                          Keluar
                     </a>           
                 </li>
                 
@@ -52,6 +52,22 @@
                 y.style.display = "block";
             }
         }
+
+        // Notifikasi konfirmasi untuk tombol Keluar
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoutButton = document.getElementById('Logout');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const confirmLogout = confirm('Apakah Anda yakin ingin keluar? Perubahan mungkin tidak disimpan.');
+                    if (confirmLogout) {
+                        window.location.href = logoutButton.href;
+                    }
+                });
+            } else {
+                console.warn('Tombol logout dengan id="Logout" tidak ditemukan.');
+            }
+        });
     </script>
 </header>
 <img class="crop" src="{% static 'img/hero1.png'%}" draggable="false">
