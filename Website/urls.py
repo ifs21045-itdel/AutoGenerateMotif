@@ -30,6 +30,7 @@ urlpatterns = [
     path('list/Nama/<str:user>', views.tagName, name="tagUser"),
     path('list/JumlahBaris/<path:jmlBaris>/', views.tagJmlBaris, name='tagJmlBaris'),
     path('list/waktu/<str:time>', views.tagWaktu, name="tagTime"),
+    
     path('delete/', views.deleteMotif, name="delete"),
     path('update/<int:id>', views.UpdateUser, name='update'),
     path('update/updaterecord/<int:id>', views.updaterecord, name='updaterecord'),
@@ -46,6 +47,7 @@ urlpatterns = [
     path('register/', views.SignupPage, name='signup'),
     path('generator/save', views.save, name='save'),
     path('motif/', views.motif, name='motif'),
+    path('post-image/', views.PostImage, name='PostImage'),
     path('generator/PostImageGabungan', views.PostImageGabungan),
     # warnai halaman lihat motif
     # Tambahkan path untuk mengubah warna motif

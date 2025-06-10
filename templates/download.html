@@ -57,91 +57,108 @@
                 <div class="row justify-content-center">
                   <div class="col-lg-5 col-md-6 col-sm-12">
                     <form
-                      action="PostImage"
+                      action="{% url 'PostImage' %}"
                       method="POST"
                       class="post-form"
                       id="FormStyle"
                     >
-                      {% csrf_token %} {% if raw_url1 or edit_url1 or Urutan or jenis or jmlBaris or user %}
+                      {% csrf_token %}
+                      {% if raw_url1 or edit_url1 or Urutan or jenis or jmlBaris or user %}
                       <input
                         type="hidden"
                         name="imgBefore"
-                        value="{{raw_url1}}"
+                        value="{{ raw_url1 }}"
                       />
                       <input
                         type="hidden"
                         name="imgAfter"
-                        value="{{edit_url1}}"
+                        value="{{ edit_url1 }}"
                       />
                       <input
                         type="hidden"
                         name="urutanLidi"
-                        value="{{Urutan}}"
+                        value="{{ Urutan }}"
                       />
                       <input
                         type="hidden"
                         name="jenisGenerate"
-                        value="{{jenis}}"
+                        value="{{ jenis }}"
                       />
                       <input
                         type="hidden"
                         name="jmlBaris"
-                        value="{{jmlBaris}}"
+                        value="{{ jmlBaris }}"
                       />
-                      <input type="hidden" name="user" value="{{user}}" />
+                      <input
+                        type="hidden"
+                        name="user"
+                        value="{{ user }}"
+                      />
                       {% endif %}
                       <div class="text-center">
                         {% if raw_url1 or edit_url1 or Urutan %}
                         <p>Motif Asal</p>
                         <img
-                          src="{{raw_url1}}"
+                          src="{{ raw_url1 }}"
                           id="Hasil"
                           style="width: 100%; margin-bottom: 10px"
+                          alt="Motif Asal"
                         />
-                        <p>{{raw_lidi}}</p>
+                        <p>{{ raw_lidi }}</p>
                         <p>Hasil Motif</p>
-                        <img src="{{edit_url1}}" id="Hasil1" />
-                        <p>{{Urutan}}</p>
+                        <img
+                          src="{{ edit_url1 }}"
+                          id="Hasil1"
+                          alt="Hasil Motif"
+                        />
+                        <p>{{ Urutan }}</p>
                         {% endif %}
                       </div>
-                      <div style="display: flex; justify-content: center;">
-  <div class="button-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
-  <button
-    type="button"
-    class="btn"
-    onclick="saveMotif()"
-    style="
-      background-color: #002ba3;
-      border: 2px solid #002ba3;
-      border-radius: 5px;
-      padding: 12px 30px 14px;
-      font-size: 1rem;
-      color: #ffffff;
-      width: 320px;
-      text-align: center;
-    "
-  >
-    Simpan Motif
-  </button>
-  
-  <a
-    href="javascript:history.back()"
-    style="
-      background-color: transparent;
-      border: 2px solid #002ba3;
-      border-radius: 5px;
-      padding: 12px 30px 14px;
-      font-size: 1rem;
-      color: #002ba3;
-      text-decoration: none;
-      width: 320px;
-      text-align: center;
-      display: inline-block;
-    "
-  >
-    Kembali
-  </a>
-</div>
+                      <div style="display: flex; justify-content: center">
+                        <div
+                          class="button-container"
+                          style="
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 15px;
+                          "
+                        >
+                          <button
+                            type="button"
+                            class="btn"
+                            onclick="saveMotif()"
+                            style="
+                              background-color: #002ba3;
+                              border: 2px solid #002ba3;
+                              border-radius: 5px;
+                              padding: 12px 30px 14px;
+                              font-size: 1rem;
+                              color: #ffffff;
+                              width: 320px;
+                              text-align: center;
+                            "
+                          >
+                            Simpan Motif
+                          </button>
+                          <a
+                            href="javascript:history.back()"
+                            style="
+                              background-color: transparent;
+                              border: 2px solid #002ba3;
+                              border-radius: 5px;
+                              padding: 12px 30px 14px;
+                              font-size: 1rem;
+                              color: #002ba3;
+                              text-decoration: none;
+                              width: 320px;
+                              text-align: center;
+                              display: inline-block;
+                            "
+                          >
+                            Kembali
+                          </a>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -158,10 +175,10 @@
       class="modal fade"
       id="successModal"
       tabindex="-1"
-      aria-labelledby="exampleModalLabel"
+      aria-labelledby="successModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-sm">
+      <div class="modal-dialog modal-sm modal-dialog-centered">
         <div class="modal-content" style="border: none">
           <div
             class="modal-header d-flex justify-content-center flex-column align-items-center"
@@ -176,19 +193,19 @@
               class="modal-body text-center"
               style="border-bottom: none; padding: 0; margin-top: 0"
             >
-              Motif Berhasil Dibuat
+              Motif Berhasil Disimpan
             </div>
           </div>
           <div
             class="modal-footer d-flex justify-content-center"
-            style="border-top: none; padding-top: 1"
+            style="border-top: none; padding-top: 1rem"
           >
             <button
               type="button"
               class="btn btn-primary"
               onclick="redirectToList()"
             >
-              Lihat Motif
+              Lihat Detail Motif
             </button>
           </div>
         </div>
@@ -196,62 +213,68 @@
     </div>
 
     {% include "footer.html" %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static 'plugins.js' %}"></script>
     <script>
       $(window).on("load", function () {
         $("body").addClass("loaded");
       });
-    
+
       document.addEventListener("DOMContentLoaded", function () {
-        
         const form = document.getElementById("FormStyle");
-    
-       
       });
-    
+
       function saveMotif() {
         const form = document.getElementById("FormStyle");
-    
-        const namaInput = form.querySelector('input[name="nama"]');
-        if (namaInput && namaInput.value.trim() === "") {
-          alert("Nama tidak boleh kosong!");
-          namaInput.focus();
-          return;
-        }
-    
+
         fetch(form.action, {
           method: "POST",
           body: new FormData(form),
+          headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+          },
         })
           .then((response) => {
-            if (response.ok) {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.status === "success" && data.motif_id) {
+              window.savedMotifId = data.motif_id;
               var successModal = new bootstrap.Modal(
                 document.getElementById("successModal")
               );
               successModal.show();
             } else {
-              alert("Terjadi kesalahan saat menyimpan motif.");
+              alert(
+                "Terjadi kesalahan saat menyimpan motif: " +
+                  (data.message || "Unknown error")
+              );
             }
           })
           .catch((error) => {
             console.error("Error:", error);
-            alert("Gagal mengirim data.");
+            alert("Gagal mengirim data: " + error.message);
           });
       }
-    
+
       function redirectToList() {
-        window.location.href = "{% url 'list1' %}";
+        if (window.savedMotifId) {
+          window.location.href = `/list/${window.savedMotifId}`;
+        } else {
+          window.location.href = "{% url 'list1' %}";
+        }
       }
-    
+
       let allMotifImages = [];
     </script>
-    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
       crossorigin="anonymous"
     ></script>
-    
     <script src="{% static 'script.js' %}"></script>
   </body>
 </html>

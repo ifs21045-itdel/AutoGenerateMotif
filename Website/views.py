@@ -381,8 +381,7 @@ def download(request):
         'user': request.session.get('user'),
     }
     return render(request, 'download.html', context)
-
-# #@login_required(login_url='login')
+@csrf_exempt
 def PostImage(request):
     if request.method == 'POST':
         print("DEBUG: POST received")
@@ -446,9 +445,8 @@ def PostImage(request):
 
             postImageSlice = "@@".join(hasil_slice_paths) if hasil_slice_paths else ""
 
-            # Buat dan isi objek
-
-            post.slice = "@@".join(hasil_slice_paths) if hasil_slice_paths else ""  # pastikan ini TextField di models.py
+            # Simpan slice ke database
+            post.slice = postImageSlice
             post.save()
 
             request.session['url_image_slice'] = postImageSlice
@@ -456,7 +454,7 @@ def PostImage(request):
             # Upload ulang gambar jika dikirim lewat FILES (opsional)
             if 'file' in request.FILES:
                 image = request.FILES['file']
-                upload_dir = os.path.join(settings.MEDIA_ROOT, 'uploads')
+                upload_dir = os.path.join(settings.MEDIA_ROOT, 'Uploads')
                 os.makedirs(upload_dir, exist_ok=True)
 
                 filename = image.name
@@ -466,16 +464,27 @@ def PostImage(request):
                     for chunk in image.chunks():
                         destination.write(chunk)
 
-                image_url = os.path.join(settings.MEDIA_URL, 'uploads', filename).replace('\\', '/')
+                image_url = os.path.join(settings.MEDIA_URL, 'Uploads', filename).replace('\\', '/')
                 post.imgBefore = image_url
                 post.imgAfter = image_url
-
+                post.save()
 
             print("DEBUG: Sukses simpan post dan slice.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'success',
+                'motif_id': post.id  # Kembalikan ID motif yang baru disimpan
+            })
         else:
             print("DEBUG: Ada field POST yang kosong.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Ada field yang kosong.'
+            }, status=400)
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Metode tidak diizinkan.'
+        }, status=405)
 
 
 @csrf_exempt

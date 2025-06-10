@@ -3593,3 +3593,529 @@ Watching for file changes with StatReloader
 C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
 Watching for file changes with StatReloader
 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 505, in parse
+    compile_func = self.tags[command]
+KeyError: 'endif'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 383, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 507, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 568, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 93: 'endif'. Did you forget to register or load this tag?
+Not Found: /favicon.ico
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 383, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImage' not found. 'PostImage' is not a valid view function or pattern name.
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /generator/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 56, in image
+    return render(request, 'home.html',{"status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 322, in render
+    return nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'help-lidi' not found. 'help-lidi' is not a valid view function or pattern name.
+Internal Server Error: /generator/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 56, in image
+    return render(request, 'home.html',{"status":status,'navlink1':navlink[0],'navlink2':navlink[1],'navlink3':navlink[2],'navlink4':navlink[3]})
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 322, in render
+    return nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'help-lidi' not found. 'help-lidi' is not a valid view function or pattern name.
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /generator/save
+Not Found: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1291, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Not Found: /favicon.ico
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1291, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 1292, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'PostImageGabungan' not found. 'PostImageGabungan' is not a valid view function or pattern name.
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
