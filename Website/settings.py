@@ -106,6 +106,7 @@ DATABASES = {
         'HOST': 'localhost',  # atau 'localhost'
         'PORT':'3306',
 }
+}
 
 LOGGING = {
     'version': 1,
