@@ -1,57 +1,183 @@
-<header style="border-bottom: solid; border-bottom-color: #002BA3;">
-    {% load static %}
-    <nav class="navbar navbar-expand-lg" style="background:linear-gradient(to right, #EEEEEE, #EEEEEE, #EEEEEE);">
-        <div class="container-fluid" >
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static 'img/icon/logobaru.png'%}" >
+{% load static %}
+<header style="border-bottom: solid; border-bottom-color: #002ba3; padding: 0;">
+  <nav
+    class="navbar navbar-expand-lg"
+    style="background: linear-gradient(to right, #eeeeee, #eeeeee, #eeeeee); padding: 10px 0;"
+  >
+    <div class="container-fluid" style="padding: 0 15px;">
+      <a class="navbar-brand" href="{% url 'home' %}" style="padding: 0;">
+        <img src="{% static 'img/icon/logobaru.png' %}" style="padding: 5px;" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        onclick="myFunction2()"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        style="padding: 5px;"
+      >
+        <img
+          src="{% static 'img/icon/icons8-four-squares.png' %}"
+          id="IDImage"
+          style="padding: 2px;"
+        />
+        <img
+          src="{% static 'img/icon/icons8-four-squares1.png' %}"
+          id="IDImage2"
+          style="padding: 2px;"
+        />
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding: 0 15px;">
+        <ul
+          class="navbar-nav mb-2 mb-lg-0 tm-footer-links"
+          style="margin-left: auto; padding: 0;"
+        >
+          <li class="nav-item" style="padding: 0 10px;">
+            <a class="{{navlink1}}" aria-current="page" href="{% url 'home' %}" style="padding: 5px 0;">
+              Beranda
             </a>
-            <button class="navbar-toggler" type="button" onclick="myFunction2()" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="{% static 'img/icon/icons8-four-squares.png'%}" id="IDImage">
-                <img src="{% static 'img/icon/icons8-four-squares1.png'%}" id="IDImage2">
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mb-2 mb-lg-0 tm-footer-links " style="margin-left: auto;">
-                <li class="nav-item">
-                    <a class="{{navlink1}}" aria-current="page" href="{% url 'home' %}">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="{{navlink2}}" href="{% url 'generator' %}">Generator</a>
-                </li>
-                <li class="nav-item">
-                    <a class="{{navlink3}}"href="{% url 'list1' %}">Motif</a>
-                </li>
-                <li class="nav-item">
-                    <a class="{{navlink4}}" href="{% url 'help' %}">Bantuan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" id="Logout" href="{% url 'logout' %}"> 
-                        <img class="animated-gif" src="{% static 'img/icon/icons8-logout-rounded-64.png' %}" alt="Keluar">
-                        &nbsp; Keluar
-                    </a>           
-                </li>
-                
-                   
-                {% comment %} <a class="nav-link text-white" id="Logout" href="{% url 'logout' %}">
-                    <img style="width: 20%;" src="{% static 'img/icon/icons8-logout-rounded-64-1.png'%}" alt=""> Keluar </a> {% endcomment %}
-               
-            </ul>
-            </div>
+          </li>
+          <li class="nav-item" style="padding: 0 10px;">
+            <a class="{{navlink2}}" href="{% url 'generator' %}" style="padding: 5px 0;">
+              Generator
+            </a>
+          </li>
+          <li class="nav-item" style="padding: 0 10px;">
+            <a class="{{navlink3}}" href="{% url 'list1' %}" style="padding: 5px 0;">
+              Motif
+            </a>
+          </li>
+          <li class="nav-item" style="padding: 0 10px;">
+            <a class="{{navlink4}}" href="{% url 'help' %}" style="padding: 5px 0;">
+              Bantuan
+            </a>
+          </li>
+          <li class="nav-item" style="padding: 0 10px;">
+            <a
+              class="nav-link text-white"
+              id="Logout"
+              href="{% url 'logout' %}"
+              style="padding: 5px 0;"
+            >
+              <img
+                class="animated-gif"
+                src="{% static 'img/icon/icons8-logout-rounded-64.png' %}"
+                alt="Keluar"
+                style="padding: 2px; vertical-align: middle;"
+              />
+              Keluar
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Logout Confirmation Modal -->
+  <div
+    class="modal fade"
+    id="logoutModal"
+    tabindex="-1"
+    aria-labelledby="logoutModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="border: none; padding: 10px;">
+        <div
+          class="modal-header d-flex justify-content-center flex-column align-items-center"
+          style="border-bottom: none; position: relative; padding: 15px 0;"
+        >
+          <img
+            {% comment %} src="{% static 'img/icon/icons8-logout-rounded-64.png' %}"
+            alt="Logout" {% endcomment %}
+            style="
+              width: 140px;
+              margin-bottom: 5px;
+              filter: hue-rotate(0deg) saturate(100%) brightness(50%);
+              padding: 3px;
+            "
+          />
+          <div
+            class="modal-body text-center"
+            style="border-bottom: none; padding: 10px 20px 20px;" /* Increased bottom padding */
+          >
+            Apakah Anda yakin ingin keluar?
+          </div>
         </div>
-        
-    </nav>
-    <!-- <hr style="border: 3px solid #000"> -->
-    <script>
-        function myFunction2() {
-            var y = document.getElementById("IDImage2");
-            var x= document.getElementById("IDImage");
-            if (y.style.display === "block") {
-                x.style.display = "block";
-                y.style.display = "none"
-            } else {
-                x.style.display = "none";
-                y.style.display = "block";
-            }
+        <div
+          class="modal-footer d-flex justify-content-center"
+          style="border-top: none; padding: 10px 0;"
+        >
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="confirmLogout"
+            style="
+              width: 120px;
+              padding: 10px 20px;
+              font-size: 1rem;
+              margin-right: 10px;
+            "
+          >
+            Keluar
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            id="cancelLogout"
+            style="width: 120px; padding: 10px 20px; font-size: 1rem;"
+          >
+            Batal
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function myFunction2() {
+      var y = document.getElementById("IDImage2");
+      var x = document.getElementById("IDImage");
+      if (y.style.display === "block") {
+        x.style.display = "block";
+        y.style.display = "none";
+      } else {
+        x.style.display = "none";
+        y.style.display = "block";
+      }
+    }
+
+    // Logout modal handling
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutButton = document.getElementById('Logout');
+        if (logoutButton) {
+            logoutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                var logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+                logoutModal.show();
+            });
+        } else {
+            console.warn('Tombol logout dengan id="Logout" tidak ditemukan.');
         }
-    </script>
+
+        const confirmLogoutButton = document.getElementById('confirmLogout');
+        if (confirmLogoutButton) {
+            confirmLogoutButton.addEventListener('click', function() {
+                window.location.href = logoutButton.href;
+            });
+        }
+
+        const cancelLogoutButton = document.getElementById('cancelLogout');
+        if (cancelLogoutButton) {
+            cancelLogoutButton.addEventListener('click', function() {
+                var logoutModal = bootstrap.Modal.getInstance(document.getElementById('logoutModal'));
+                logoutModal.hide();
+            });
+        } else {
+            console.warn('Tombol batal dengan id="cancelLogout" tidak ditemukan.');
+        }
+    });
+  </script>
 </header>
 <img class="crop" src="{% static 'img/hero1.png'%}" draggable="false">
