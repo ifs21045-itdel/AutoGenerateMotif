@@ -12,6 +12,76 @@
     <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
     <title>Modul Lidi</title>
     <link rel="icon" href="{% static 'img/icon/NewTitle.ico'%}" type="image/x-icon">
+    <style>
+        /* Styling untuk bagian search */
+        /* Styling untuk bagian search */
+        .tm-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .imageBehind {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5; /* Mengurangi kejelasan gambar latar belakang */
+            z-index: 0;
+        }
+        .tm-search-form {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.2); /* Overlay putih semi-transparan */
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Jarak antar elemen */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #filter {
+            border: 1px solid #ccc;
+            border-width: 0px;
+            height: 40px;
+            color: #002BA3;
+            padding: 0 10px;
+            border-radius: 4px;
+            background-color: #fff;
+            flex: 0 0 120px; /* Lebar tetap untuk select */
+            
+        }
+
+        .tm-search-input {
+            border: 1px solid #020303;
+            color: #141414;
+            background-color: #fff;
+            height: 40px;
+            flex: 1; /* Mengisi sisa ruang */
+            padding: 0 10px;
+            border-radius: 4px;
+        }
+
+        .tm-search-btn {
+            border: none;
+            background-color: #002BA3;
+            color: #fff;
+            height: 40px;
+            padding: 0 15px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tm-search-btn img {
+            height: 20px; /* Ukuran ikon disesuaikan */
+        }
+    </style>
 </head>
 <body>
     <!-- Page Loader -->
