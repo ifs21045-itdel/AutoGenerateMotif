@@ -36,6 +36,7 @@ import requests
 import sys, os, re
 import logging
 import json
+import shutil
 from django.utils.timezone import now
 from django.utils.crypto import get_random_string
 from django.utils.text import get_valid_filename
@@ -381,8 +382,7 @@ def download(request):
         'user': request.session.get('user'),
     }
     return render(request, 'download.html', context)
-
-# #@login_required(login_url='login')
+@csrf_exempt
 def PostImage(request):
     if request.method == 'POST':
         print("DEBUG: POST received")
@@ -446,9 +446,8 @@ def PostImage(request):
 
             postImageSlice = "@@".join(hasil_slice_paths) if hasil_slice_paths else ""
 
-            # Buat dan isi objek
-
-            post.slice = "@@".join(hasil_slice_paths) if hasil_slice_paths else ""  # pastikan ini TextField di models.py
+            # Simpan slice ke database
+            post.slice = postImageSlice
             post.save()
 
             request.session['url_image_slice'] = postImageSlice
@@ -456,7 +455,7 @@ def PostImage(request):
             # Upload ulang gambar jika dikirim lewat FILES (opsional)
             if 'file' in request.FILES:
                 image = request.FILES['file']
-                upload_dir = os.path.join(settings.MEDIA_ROOT, 'uploads')
+                upload_dir = os.path.join(settings.MEDIA_ROOT, 'Uploads')
                 os.makedirs(upload_dir, exist_ok=True)
 
                 filename = image.name
@@ -466,16 +465,27 @@ def PostImage(request):
                     for chunk in image.chunks():
                         destination.write(chunk)
 
-                image_url = os.path.join(settings.MEDIA_URL, 'uploads', filename).replace('\\', '/')
+                image_url = os.path.join(settings.MEDIA_URL, 'Uploads', filename).replace('\\', '/')
                 post.imgBefore = image_url
                 post.imgAfter = image_url
-
+                post.save()
 
             print("DEBUG: Sukses simpan post dan slice.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'success',
+                'motif_id': post.id  # Kembalikan ID motif yang baru disimpan
+            })
         else:
             print("DEBUG: Ada field POST yang kosong.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Ada field yang kosong.'
+            }, status=400)
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Metode tidak diizinkan.'
+        }, status=405)
 
 
 @csrf_exempt
@@ -498,8 +508,7 @@ def PostImageGabungan(request):
             try:
                 if 'file' in request.FILES:
                     image = request.FILES['file']
-                    # Simpan gambar gabungan dulu ke hasilfix/
-                   # Simpan gambar gabungan ke hasilfix/
+                    # Simpan gambar gabungan ke hasilfix/
                     hasilfix_dir = os.path.join(settings.MEDIA_ROOT, 'hasilfix')
                     os.makedirs(hasilfix_dir, exist_ok=True)
 
@@ -544,17 +553,18 @@ def PostImageGabungan(request):
 
                     image_url = os.path.join(settings.MEDIA_URL, 'hasilfix', filename).replace('\\', '/')
                 else:
-                    return render(request, 'error.html', {'error': 'File gambar motif gabungan tidak ditemukan.'})
+                    return JsonResponse({'status': 'error', 'message': 'File gambar motif gabungan tidak ditemukan.'}, status=400)
 
             except Exception as e:
                 print("ERROR saat proses gambar gabungan:", str(e))
-                return render(request, 'error.html', {'error': str(e)})
+                return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
+
             img_before_full = request.POST.get('imgBefore', '')
             img_before_rel = img_before_full.replace(request.build_absolute_uri('/'), '/') if img_before_full.startswith('http') else img_before_full
             # Simpan ke database
             post = MotifForm1()
             post.imgBefore = img_before_rel
-            post.imgAfter = image_url  # ← dari file motif_gabung.png
+            post.imgAfter = image_url
             post.urutanLidi = urutlidi
             post.jenisGenerate = request.POST.get('jenisGenerate')
             post.jmlBaris = request.POST.get('jmlBaris', '0')
@@ -563,10 +573,21 @@ def PostImageGabungan(request):
 
             post.save()
             print("DEBUG: Sukses simpan post gabungan dan slice.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'success',
+                'motif_id': post.id  # Kembalikan ID motif
+            })
         else:
             print("DEBUG: Ada field POST yang kosong.")
-            return render(request, 'success.html')
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Ada field yang kosong.'
+            }, status=400)
+    else:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Metode tidak diizinkan.'
+        }, status=405)
 
 
 def save_image_to_session(request, image):
@@ -752,181 +773,127 @@ def create_grid_image_from_combined_motif(image_path, output_path):
     
 #@login_required(login_url='login')
 def motif(request, id):
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info(f"Accessing motif detail for ID: {id}")
+
     try:
         motif = MotifForm1.objects.get(id=id)
         user = request.user
-        status = user.is_superuser
-        status1 = user.is_staff
-        navlink = ['nav-link nav-link-1 ','nav-link nav-link-2','nav-link nav-link-3 active','nav-link nav-link-4']
-        
-        list_lidi_path = request.session.get('list_lidi_path')
-        session_name = request.session.get('session_name')
-        postImageurl = request.session.get('url_image_slice')
+        status = user.is_superuser or None
+        status1 = user.is_staff or None
+        navlink = ['nav-link nav-link-1', 'nav-link nav-link-2', 'nav-link nav-link-3 active', 'nav-link nav-link-4']
 
-        print(f"List Lidi Path: {list_lidi_path}")
-        print(f"Session Name: {session_name}")
-        print(f"postImageurl: {postImageurl}")
+        # Ambil data dari sesi
+        list_lidi_path = request.session.get('list_lidi_path', [])
+        session_name = request.session.get('session_name', '')
+        postImageurl = request.session.get('url_image_slice', '')
 
-        if status1 == 0:
-            status1 = None
-        if status == 0:
-            status = None
-        
-        # Periksa apakah ini adalah motif gabungan
+        logger.debug(f"Session data - list_lidi_path: {list_lidi_path}, session_name: {session_name}, postImageurl: {postImageurl}")
+
+        # Periksa apakah ini motif gabungan
         is_combined = motif.jenisGenerate == "combine"
-        
+        logger.debug(f"Motif ID {id} is_combined: {is_combined}")
+
         # Dapatkan path file gambar
         img_path = os.path.join(settings.MEDIA_ROOT, motif.imgAfter.lstrip('/'))
         if not os.path.exists(img_path):
             img_path = os.path.join(settings.BASE_DIR, motif.imgAfter.lstrip('/'))
-        
-        # Siapkan direktori untuk grid dan lainnya
+            if not os.path.exists(img_path):
+                logger.error(f"Image not found at: {img_path}")
+                raise FileNotFoundError(f"Image not found: {motif.imgAfter}")
+
+        logger.debug(f"Image path: {img_path}, imgBefore: {motif.imgBefore}")
+
+        # Siapkan direktori untuk grid dan slice
         grid_dir = os.path.join(settings.MEDIA_ROOT, 'grids')
         slice_dir = os.path.join(settings.MEDIA_ROOT, f'slices/motif_{motif.id}')
-        
         os.makedirs(grid_dir, exist_ok=True)
         os.makedirs(slice_dir, exist_ok=True)
 
-        print(f"gambar_asal: {motif.imgBefore}")
-        
-        # Buat atau dapatkan grid dan red line image
+        # Resize gambar jika terlalu besar
+        if os.path.exists(img_path):
+            with Image.open(img_path) as img:
+                width, height = img.size
+                if width > 600 or height > 800:
+                    logger.info(f"Resizing image {img_path} from {width}x{height}")
+                    backup_path = img_path.replace('.png', '_original.png')
+                    shutil.copy2(img_path, backup_path)
+                    max_width, max_height = 600, 800
+                    ratio = min(max_width / width, max_height / height)
+                    new_width, new_height = int(width * ratio), int(height * ratio)
+                    img_resized = img.resize((new_width, new_height), Image.LANCZOS)
+                    img_resized.save(img_path)
+                    logger.info(f"Resized to {new_width}x{new_height}")
+
+        # Buat grid dan red line
         grid_filename = f"grid_motif_{motif.id}.png"
         red_filename = f"red_motif_{motif.id}.png"
         grid_path = os.path.join(grid_dir, grid_filename)
         red_path = os.path.join(grid_dir, red_filename)
-        
-        # Periksa ukuran gambar dan lakukan penyesuaian jika terlalu besar
-        if os.path.exists(img_path):
-            try:
-                with Image.open(img_path) as img:
-                    width, height = img.size
-                    
-                    # Jika gambar terlalu besar, resize
-                    if width > 600 or height > 800:
-                        # Simpan gambar asli sebagai backup
-                        backup_path = img_path.replace('.png', '_original.png')
-                        shutil.copy2(img_path, backup_path)
-                        
-                        # Hitung ukuran baru dengan mempertahankan rasio aspek
-                        max_width = 600
-                        max_height = 800
-                        
-                        if width > max_width:
-                            ratio = max_width / width
-                            new_width = max_width
-                            new_height = int(height * ratio)
-                            
-                            if new_height > max_height:
-                                ratio = max_height / new_height
-                                new_height = max_height
-                                new_width = int(new_width * ratio)
-                        elif height > max_height:
-                            ratio = max_height / height
-                            new_height = max_height
-                            new_width = int(width * ratio)
-                        
-                        # Resize gambar
-                        img_resized = img.resize((new_width, new_height), Image.LANCZOS)
-                        img_resized.save(img_path)
-                        
-                        # Perlu regenerasi grid dan red line
-                        if os.path.exists(grid_path):
-                            os.remove(grid_path)
-                        if os.path.exists(red_path):
-                            os.remove(red_path)
-            except Exception as e:
-                print(f"Error processing image size: {str(e)}")
-        
-        # Cek jika file grid sudah ada, jika tidak, buat baru
+
         if not os.path.exists(grid_path) and os.path.exists(img_path):
             with Image.open(img_path) as img:
-                # Buat grid
                 grid_img = img.copy().convert('RGB')
                 draw = ImageDraw.Draw(grid_img)
-                
                 width, height = grid_img.size
                 grid_size = 10
-                
-                # Gambar garis grid
                 for x in range(0, width, grid_size):
                     draw.line((x, 0, x, height), fill=(100, 100, 100), width=1)
-                
                 for y in range(0, height, grid_size):
                     draw.line((0, y, width, y), fill=(100, 100, 100), width=1)
-                
-                # Simpan grid
                 grid_img.save(grid_path)
-        
-        # Cek jika file red line sudah ada, jika tidak, buat baru
+                logger.info(f"Created grid image: {grid_path}")
+
         if not os.path.exists(red_path) and os.path.exists(grid_path):
             with Image.open(grid_path) as img:
                 red_img = img.copy()
                 draw = ImageDraw.Draw(red_img)
-                
                 width, height = red_img.size
                 y_mid = height // 2
-                
-                # Gambar garis merah
                 draw.line((0, y_mid, width, y_mid), fill=(255, 0, 0), width=3)
-                
-                # Simpan red line
                 red_img.save(red_path)
-        
-        # Ambil urutan lidi
-        print(f"Urutan Lidi dari DB: {motif.urutanLidi}")
-        print(f"Urutan Lidi dari DB: {type(motif.urutanLidi)}")
-        
+                logger.info(f"Created red line image: {red_path}")
+
+        # Proses urutan lidi
         try:
             if motif.urutanLidi and motif.urutanLidi.strip():
-                # Sanitize and split the urutanLidi string
                 lidi_sequence = re.findall(r'\d+', motif.urutanLidi)
                 Urutan_Lidi = [int(x) for x in lidi_sequence]
                 if not Urutan_Lidi:
                     raise ValueError("Parsed urutanLidi is empty")
-                print(f"Urutan Lidi dari DB: {Urutan_Lidi}")
             else:
-                # Jika tidak ada urutan lidi, buat default
-                row_count = int(motif.jmlBaris)
+                row_count = int(motif.jmlBaris) if motif.jmlBaris.isdigit() else 10
                 Urutan_Lidi = list(range(1, row_count + 1))
         except Exception as e:
-            print(f"Error processing urutanLidi: {e}")
-            # Handle error dengan membuat urutan default
-            row_count = int(motif.jmlBaris) if motif.jmlBaris else 10
+            logger.warning(f"Error processing urutanLidi: {e}")
+            row_count = int(motif.jmlBaris) if motif.jmlBaris.isdigit() else 10
             Urutan_Lidi = list(range(1, row_count + 1))
+        logger.debug(f"Urutan Lidi: {Urutan_Lidi}")
 
-        print(f"Urutan Lidi: {Urutan_Lidi}")
-        
-        # Buat slice jika belum ada
+        # Buat slice
         Slice = []
         if os.path.exists(img_path):
             with Image.open(img_path) as img:
                 width, height = img.size
                 row_count = len(Urutan_Lidi)
                 slice_height = height // row_count
-                
                 for i in range(row_count):
                     slice_filename = f"slice_{i+1}.png"
                     slice_path = os.path.join(slice_dir, slice_filename)
-                    
-                    # Buat slice jika belum ada
                     if not os.path.exists(slice_path):
                         y_top = i * slice_height
                         y_bottom = min((i + 1) * slice_height, height)
-                        
-                        # Potong gambar
                         slice_img = img.crop((0, y_top, width, y_bottom))
                         slice_img.save(slice_path)
-                    
-                    # Tambahkan ke list
+                        logger.info(f"Created slice: {slice_path}")
                     Slice.append(f"/media/slices/motif_{motif.id}/{slice_filename}")
-        
-        # Buat ZIP file untuk download
+
+        # Buat ZIP
         zip_dir = os.path.join(settings.MEDIA_ROOT, 'zips')
         os.makedirs(zip_dir, exist_ok=True)
-        
         zip_filename = f"motif_{motif.id}.zip"
         zip_path = os.path.join(zip_dir, zip_filename)
-        
         if not os.path.exists(zip_path):
             with zipfile.ZipFile(zip_path, 'w') as zf:
                 if os.path.exists(img_path):
@@ -935,68 +902,33 @@ def motif(request, id):
                     zf.write(grid_path, arcname="motif_grid.png")
                 if os.path.exists(red_path):
                     zf.write(red_path, arcname="motif_red_line.png")
-                
-                # Tambahkan slice
                 for i in range(len(Slice)):
                     slice_path = os.path.join(slice_dir, f"slice_{i+1}.png")
                     if os.path.exists(slice_path):
                         zf.write(slice_path, arcname=f"slice_{i+1}.png")
+            logger.info(f"Created ZIP file: {zip_path}")
 
-        
-        print(f"slice {list(zip_longest(Slice, Urutan_Lidi))}")
-
+        # Siapkan data untuk template
         mySlice = list(zip_longest(Slice, Urutan_Lidi))
-
-        print(f"mySlice: {mySlice}")
-        
-        # Pisahkan urutan lidi untuk tampilan
-        UrutanLidi_even = []
-        UrutanLidi_odd = []
-        
-        for i in range(len(Urutan_Lidi)):
-            if i % 2 == 0:
-                UrutanLidi_even.append(Urutan_Lidi[i])
-            else:
-                UrutanLidi_odd.append(Urutan_Lidi[i])
-        
-        # Buat Slice2 untuk grid yang sama dengan Slice
+        UrutanLidi_even = [Urutan_Lidi[i] for i in range(0, len(Urutan_Lidi), 2)]
+        UrutanLidi_odd = [Urutan_Lidi[i] for i in range(1, len(Urutan_Lidi), 2)]
         Slice2 = Slice.copy()
-        
-        # Pisahkan slice untuk tampilan
-        Slice_even = []
-        Slice_odd = []
-        Slice2_even = []
-        Slice2_odd = []
-        
-        for i in range(len(Slice)):
-            if i % 2 == 0:
-                Slice_even.append(Slice[i])
-                Slice2_even.append(Slice2[i])
-            else:
-                Slice_odd.append(Slice[i])
-                Slice2_odd.append(Slice2[i])
-        
-        # Buat UrutanMotif sama dengan Urutan_Lidi
+        Slice_even = [Slice[i] for i in range(0, len(Slice), 2)]
+        Slice_odd = [Slice[i] for i in range(1, len(Slice), 2)]
+        Slice2_even = [Slice2[i] for i in range(0, len(Slice2), 2)]
+        Slice2_odd = [Slice2[i] for i in range(1, len(Slice2), 2)]
         UrutanMotif = Urutan_Lidi.copy()
         UrutanMotif_even = UrutanLidi_even.copy()
         UrutanMotif_odd = UrutanLidi_odd.copy()
-        
-        # Buat data untuk template
         myList = list(zip_longest(Slice_even, UrutanLidi_even, Slice_odd, UrutanLidi_odd))
         myList2 = list(zip_longest(Slice2_even, UrutanMotif_even, Slice2_odd, UrutanMotif_odd))
 
-        # print(f"mySlice: {mySlice}")
-
-        print(f"myList: {myList}")
-        print(f"test: {Slice2_even, UrutanMotif_even, Slice2_odd, UrutanMotif_odd}")
-        
-        # URL relatif untuk template
+        # URL untuk template
         grid_url = f"/media/grids/{grid_filename}"
         red_url = f"/media/grids/{red_filename}"
         zip_url = f"/media/zips/{zip_filename}"
-        
 
-        a = {
+        context = {
             'motif': motif,
             'Lidi': grid_url,
             'RedLine': red_url,
@@ -1019,37 +951,17 @@ def motif(request, id):
             'motif_asal': motif.imgBefore,
         }
 
-        print(f"a => {a}")
-        
-        return render(request, 'lihatMotif.html', {
-            'motif': motif,
-            'Lidi': grid_url,
-            'RedLine': red_url,
-            'zip': zip_url,
-            'UrutanLidi': Urutan_Lidi,
-            'urutanAsliLidi': motif.urutanLidi,
-            'GridHelp': grid_url,
-            'SliceLidi': myList,
-            'SliceMotif': myList2,
-            'status': status,
-            'status1': status1,
-            'navlink1': navlink[0],
-            'navlink2': navlink[1],
-            'navlink3': navlink[2],
-            'navlink4': navlink[3],
-            'list_lidi_path': list_lidi_path,
-            'session_name': session_name,
-            'slice': mySlice,
-            'postImageurl': postImageurl,
-            'motif_asal': motif.imgBefore,
-        })
-        
+        logger.debug(f"Rendering lihatMotif.html with context: {context}")
+        return render(request, 'lihatMotif.html', context)
+
+    except MotifForm1.DoesNotExist:
+        logger.error(f"Motif with ID {id} not found")
+        messages.error(request, "Motif tidak ditemukan.")
+        return redirect('list1')
     except Exception as e:
-        import traceback
-        error_detail = traceback.format_exc()
-        print(f"Error in motif view: {error_detail}")
-        messages.error(request, f"Error: {str(e)}")
-        return redirect('list1')     
+        logger.error(f"Error in motif view: {str(e)}", exc_info=True)
+        messages.error(request, f"Terjadi kesalahan: {str(e)}")
+        return redirect('list1')    
 
 #@login_required(login_url='login')
 def regenerate_motif(request, id):
