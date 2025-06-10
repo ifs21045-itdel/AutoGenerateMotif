@@ -58,7 +58,7 @@
         border-radius: 10px; /* Increase border radius for rounder corners */
         padding: 20px; /* Increase padding inside the container */
         background-color: #f5f5f5;
-        height: 2250px; /* Increase height */
+        flex: 1;
       }
       /* Styling untuk judul container */
       .motif-container h5 {
@@ -66,6 +66,11 @@
         font-weight: bold;
       }
 
+      .motif-container,
+    .combined-motif-container {
+      margin-top: 0;
+      padding-top: 0;
+    }
       .mirror-line {
         /* Garis merah pembatas cermin */
         position: absolute;
@@ -79,7 +84,6 @@
 
       .combined-motif-container {
         height: auto;
-        min-height: 2160px; /* Make it take up full height */
         width: 100%;
         overflow-y: auto;
         padding: 20px; /* Increase padding to give more space */
@@ -89,7 +93,7 @@
         align-items: center;
         max-height: 100%;
         position: relative;
-        margin-top: 20px;
+        margin-top: 45px !important;
         display: flex; /* Use grid layout */
         flex-direction: column;
         grid-template-columns: 1fr;
@@ -97,6 +101,7 @@
         /* Make sure columns take more space */
         gap: 20px; /* Add more space between images */
         justify-items: center; /* Center the items within the grid cells */
+        flex: 1;
       }
 
       .combined-motif-container div {
@@ -143,6 +148,20 @@
         padding-left: 20px; /* Add space to the left */
         padding-right: 20px; /* Add space to the right */
       }
+
+      /* Menyamakan tinggi kedua kolom */
+      .inner-card > .row {
+        display: flex;
+        align-items: flex-start;
+      }
+
+
+      .inner-card > .row > .col-md-6 {
+        display: flex;
+        flex-direction: column;
+      }
+
+
 
       .card-1 {
         padding: 20px; /* Increase padding inside the card */
@@ -208,9 +227,7 @@
                   <div class="col-md-6 text-center">
                     <h5 class="motif-title">Motif</h5>
                     <p class="explanation-text">
-                      Klik pada motif yang ingin dipilih. Anda dapat memilih
-                      lebih dari satu motif untuk digabungkan dalam motif yang
-                      sama.
+                      Silakan pilih motif yang Anda inginkan. Anda bisa memilih lebih dari satu motif untuk digabungkan.
                     </p>
 
                     <div class="motif-container">
@@ -282,8 +299,7 @@
                   <div class="col-md-6 text-center">
                     <h5 class="combined-title">Penggabungan Motif</h5>
                     <p class="explanation-text">
-                      Jika Anda ingin menghapus motif yang telah dipilih, Anda
-                      dapat mengklik motif yang ingin dihapus.
+                      Untuk menghapus motif yang sudah dipilih, silakan pilih motif yang ingin dihapus.
                     </p>
                     <div class="motif-container">
                       <div
@@ -400,6 +416,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="{% static 'script.js' %}"></script>
     <script>
+
+      window.addEventListener("load", function () {
+          const kiri = document.querySelector(".motif-container");
+          const kanan = document.querySelector(".combined-motif-container");
+          const maxHeight = Math.max(kiri.offsetHeight, kanan.offsetHeight);
+          kiri.style.height = kanan.style.height = maxHeight + "px";
+        });
+
       function redirectToList() {
         window.location.href = "{% url 'list1' %}";
       }
