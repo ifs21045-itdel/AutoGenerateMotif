@@ -241,19 +241,15 @@
             return response.json();
           })
           .then((data) => {
-            if (data.status === "success" && data.motif_id) {
-              window.savedMotifId = data.motif_id;
-              var successModal = new bootstrap.Modal(
-                document.getElementById("successModal")
-              );
-              successModal.show();
-            } else {
-              alert(
-                "Terjadi kesalahan saat menyimpan motif: " +
-                  (data.message || "Unknown error")
-              );
-            }
-          })
+        console.log("Response data:", data);
+        if (data.status === 'success' && data.motif_id) {
+          window.savedMotifId = data.motif_id;
+          var successModal = new bootstrap.Modal(document.getElementById("successModal"));
+          successModal.show();
+        } else {
+          alert("Terjadi kesalahan saat menyimpan motif: " + (data.message || "Unknown error"));
+        }
+      })
           .catch((error) => {
             console.error("Error:", error);
             alert("Gagal mengirim data: " + error.message);

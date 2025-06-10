@@ -239,7 +239,7 @@
                     </p>
 
                     <div class="motif-container">
-                      <br>
+                      <br />
                       <h5 class="text-center">Motif Asal</h5>
                       <p class="text-center">Urutan Asal: {{ urutanasal }}</p>
                       <div class="card motif-card">
@@ -390,7 +390,6 @@
                     </div>
                   </div>
                 </div>
-
                 <!-- Modal Error -->
                 <div
                   class="modal fade"
@@ -408,13 +407,11 @@
                           padding: 0;
                         "
                       >
-                      
-
                         <div
                           class="modal-body text-center"
                           style="border-bottom: none; padding: 0; margin-top: 0"
                         >
-                        <div style="font-size: 64px; color: red;">❌</div>
+                          <div style="font-size: 64px; color: red">❌</div>
                           <span id="errorModalMessage"
                             >Pilih motif terlebih dahulu!</span
                           >
@@ -487,9 +484,14 @@
     ></script>
     <script src="{% static 'script.js' %}"></script>
     <script>
-      function redirectToList() {
-        window.location.href = "{% url 'list1' %}";
-      }
+     function redirectToList() {
+    if (window.savedMotifId) {
+      window.location.href = `/list/${window.savedMotifId}`;
+    } else {
+      console.error("Motif ID tidak tersedia.");
+      window.location.href = "{% url 'list1' %}"; // Fallback ke halaman daftar motif
+    }
+  }
       let allMotifImages = [];
       let urutanAsalArray = [];
       let urutanGabunganArray = [];
@@ -710,7 +712,6 @@
             const motifImages = Array.from(
               combinedMotifContainer.querySelectorAll("img")
             );
-
             if (motifImages.length === 0) {
               alert("Tidak ada gambar ditemukan.");
               return;
@@ -758,6 +759,7 @@
               getCookie("csrftoken")
             );
             formDataUpload.append("jmlBaris", urutanGabunganArray.join(","));
+
             const response = await fetch("/generator/PostImageGabungan", {
               method: "POST",
               body: formDataUpload,
@@ -767,10 +769,13 @@
             });
 
             if (response.ok) {
+              const responseData = await response.json(); // Ambil respons JSON
+              const motifId = responseData.motif_id; // Ambil ID motif dari respons
               const successModal = new bootstrap.Modal(
                 document.getElementById("successModal")
               );
               successModal.show();
+              window.savedMotifId = motifId; // Simpan ID motif untuk redirect
             } else {
               const errorText = await response.text();
               throw new Error("Gagal menyimpan motif: " + errorText);
@@ -780,7 +785,6 @@
             alert("Gagal menyimpan motif: " + error.message);
           }
         }
-
         combineMotifs();
       }
     </script>

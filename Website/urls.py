@@ -26,7 +26,7 @@ urlpatterns = [
     path('post', views.createpost),
     path('tes', views.tes),
     path('list', views.show, name="list1"),
-    path('list/<str:id>', views.motif, name="list"),
+    path('list/<int:id>', views.motif, name="list"),
     path('list/Nama/<str:user>', views.tagName, name="tagUser"),
     path('list/JumlahBaris/<path:jmlBaris>/', views.tagJmlBaris, name='tagJmlBaris'),
     path('list/waktu/<str:time>', views.tagWaktu, name="tagTime"),

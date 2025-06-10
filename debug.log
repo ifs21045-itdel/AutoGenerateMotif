@@ -4119,3 +4119,484 @@ Watching for file changes with StatReloader
 C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
 Watching for file changes with StatReloader
 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 218
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_iGwWiW.png from 800x338
+Error in motif view: name 'shutil' is not defined
+Traceback (most recent call last):
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 820, in motif
+    shutil.copy2(img_path, backup_path)
+NameError: name 'shutil' is not defined
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 219
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_lpNR3k.png from 800x338
+Resized to 600x253
+Created slice: media\slices/motif_219\slice_25.png
+Created slice: media\slices/motif_219\slice_26.png
+Created slice: media\slices/motif_219\slice_27.png
+Created slice: media\slices/motif_219\slice_28.png
+Created slice: media\slices/motif_219\slice_29.png
+Created slice: media\slices/motif_219\slice_30.png
+Created slice: media\slices/motif_219\slice_31.png
+Created slice: media\slices/motif_219\slice_32.png
+Created slice: media\slices/motif_219\slice_33.png
+Created slice: media\slices/motif_219\slice_34.png
+Created slice: media\slices/motif_219\slice_35.png
+Created slice: media\slices/motif_219\slice_36.png
+Created slice: media\slices/motif_219\slice_37.png
+Created slice: media\slices/motif_219\slice_38.png
+Created slice: media\slices/motif_219\slice_39.png
+Created slice: media\slices/motif_219\slice_40.png
+Created slice: media\slices/motif_219\slice_41.png
+Created slice: media\slices/motif_219\slice_42.png
+Created slice: media\slices/motif_219\slice_43.png
+Created slice: media\slices/motif_219\slice_44.png
+Accessing motif detail for ID: 220
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_90q135.png from 800x246
+Resized to 600x184
+Created grid image: media\grids\grid_motif_220.png
+Created red line image: media\grids\red_motif_220.png
+Created slice: media\slices/motif_220\slice_1.png
+Created slice: media\slices/motif_220\slice_2.png
+Created slice: media\slices/motif_220\slice_3.png
+Created slice: media\slices/motif_220\slice_4.png
+Created slice: media\slices/motif_220\slice_5.png
+Created slice: media\slices/motif_220\slice_6.png
+Created slice: media\slices/motif_220\slice_7.png
+Created slice: media\slices/motif_220\slice_8.png
+Created slice: media\slices/motif_220\slice_9.png
+Created slice: media\slices/motif_220\slice_10.png
+Created slice: media\slices/motif_220\slice_11.png
+Created slice: media\slices/motif_220\slice_12.png
+Created slice: media\slices/motif_220\slice_13.png
+Created slice: media\slices/motif_220\slice_14.png
+Created slice: media\slices/motif_220\slice_15.png
+Created slice: media\slices/motif_220\slice_16.png
+Created slice: media\slices/motif_220\slice_17.png
+Created slice: media\slices/motif_220\slice_18.png
+Created slice: media\slices/motif_220\slice_19.png
+Created slice: media\slices/motif_220\slice_20.png
+Created slice: media\slices/motif_220\slice_21.png
+Created slice: media\slices/motif_220\slice_22.png
+Created slice: media\slices/motif_220\slice_23.png
+Created slice: media\slices/motif_220\slice_24.png
+Created slice: media\slices/motif_220\slice_25.png
+Created slice: media\slices/motif_220\slice_26.png
+Created slice: media\slices/motif_220\slice_27.png
+Created slice: media\slices/motif_220\slice_28.png
+Created slice: media\slices/motif_220\slice_29.png
+Created slice: media\slices/motif_220\slice_30.png
+Created slice: media\slices/motif_220\slice_31.png
+Created slice: media\slices/motif_220\slice_32.png
+Created ZIP file: media\zips\motif_220.zip
+Accessing motif detail for ID: 215
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_FjnB8X.png from 800x369
+Resized to 600x276
+Accessing motif detail for ID: 221
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_KwR4LH.png from 800x338
+Resized to 600x253
+Created grid image: media\grids\grid_motif_221.png
+Created red line image: media\grids\red_motif_221.png
+Created slice: media\slices/motif_221\slice_1.png
+Created slice: media\slices/motif_221\slice_2.png
+Created slice: media\slices/motif_221\slice_3.png
+Created slice: media\slices/motif_221\slice_4.png
+Created slice: media\slices/motif_221\slice_5.png
+Created slice: media\slices/motif_221\slice_6.png
+Created slice: media\slices/motif_221\slice_7.png
+Created slice: media\slices/motif_221\slice_8.png
+Created slice: media\slices/motif_221\slice_9.png
+Created slice: media\slices/motif_221\slice_10.png
+Created slice: media\slices/motif_221\slice_11.png
+Created slice: media\slices/motif_221\slice_12.png
+Created slice: media\slices/motif_221\slice_13.png
+Created slice: media\slices/motif_221\slice_14.png
+Created slice: media\slices/motif_221\slice_15.png
+Created slice: media\slices/motif_221\slice_16.png
+Created slice: media\slices/motif_221\slice_17.png
+Created slice: media\slices/motif_221\slice_18.png
+Created slice: media\slices/motif_221\slice_19.png
+Created slice: media\slices/motif_221\slice_20.png
+Created slice: media\slices/motif_221\slice_21.png
+Created slice: media\slices/motif_221\slice_22.png
+Created slice: media\slices/motif_221\slice_23.png
+Created slice: media\slices/motif_221\slice_24.png
+Created slice: media\slices/motif_221\slice_25.png
+Created slice: media\slices/motif_221\slice_26.png
+Created slice: media\slices/motif_221\slice_27.png
+Created slice: media\slices/motif_221\slice_28.png
+Created slice: media\slices/motif_221\slice_29.png
+Created slice: media\slices/motif_221\slice_30.png
+Created slice: media\slices/motif_221\slice_31.png
+Created slice: media\slices/motif_221\slice_32.png
+Created slice: media\slices/motif_221\slice_33.png
+Created slice: media\slices/motif_221\slice_34.png
+Created slice: media\slices/motif_221\slice_35.png
+Created slice: media\slices/motif_221\slice_36.png
+Created slice: media\slices/motif_221\slice_37.png
+Created slice: media\slices/motif_221\slice_38.png
+Created slice: media\slices/motif_221\slice_39.png
+Created slice: media\slices/motif_221\slice_40.png
+Created slice: media\slices/motif_221\slice_41.png
+Created slice: media\slices/motif_221\slice_42.png
+Created slice: media\slices/motif_221\slice_43.png
+Created slice: media\slices/motif_221\slice_44.png
+Created ZIP file: media\zips\motif_221.zip
+Accessing motif detail for ID: 223
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/a4c495d563ff4a2fac8e8f9db8d9b18b.png from 1040x110
+Resized to 600x63
+Created grid image: media\grids\grid_motif_223.png
+Created red line image: media\grids\red_motif_223.png
+Created slice: media\slices/motif_223\slice_1.png
+Created slice: media\slices/motif_223\slice_2.png
+Created slice: media\slices/motif_223\slice_3.png
+Created slice: media\slices/motif_223\slice_4.png
+Created slice: media\slices/motif_223\slice_5.png
+Created slice: media\slices/motif_223\slice_6.png
+Created slice: media\slices/motif_223\slice_7.png
+Created slice: media\slices/motif_223\slice_8.png
+Created slice: media\slices/motif_223\slice_9.png
+Created slice: media\slices/motif_223\slice_10.png
+Created slice: media\slices/motif_223\slice_11.png
+Created ZIP file: media\zips\motif_223.zip
+Accessing motif detail for ID: 225
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/6e1564ad51844717b47ac4de5e4ea7cd.png from 1040x110
+Resized to 600x63
+Accessing motif detail for ID: 226
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_y3QN0V.png from 800x246
+Resized to 600x184
+Created grid image: media\grids\grid_motif_226.png
+Created red line image: media\grids\red_motif_226.png
+Created slice: media\slices/motif_226\slice_1.png
+Created slice: media\slices/motif_226\slice_2.png
+Created slice: media\slices/motif_226\slice_3.png
+Created slice: media\slices/motif_226\slice_4.png
+Created slice: media\slices/motif_226\slice_5.png
+Created slice: media\slices/motif_226\slice_6.png
+Created slice: media\slices/motif_226\slice_7.png
+Created slice: media\slices/motif_226\slice_8.png
+Created slice: media\slices/motif_226\slice_9.png
+Created slice: media\slices/motif_226\slice_10.png
+Created slice: media\slices/motif_226\slice_11.png
+Created slice: media\slices/motif_226\slice_12.png
+Created slice: media\slices/motif_226\slice_13.png
+Created slice: media\slices/motif_226\slice_14.png
+Created slice: media\slices/motif_226\slice_15.png
+Created slice: media\slices/motif_226\slice_16.png
+Created slice: media\slices/motif_226\slice_17.png
+Created slice: media\slices/motif_226\slice_18.png
+Created slice: media\slices/motif_226\slice_19.png
+Created slice: media\slices/motif_226\slice_20.png
+Created slice: media\slices/motif_226\slice_21.png
+Created slice: media\slices/motif_226\slice_22.png
+Created slice: media\slices/motif_226\slice_23.png
+Created slice: media\slices/motif_226\slice_24.png
+Created slice: media\slices/motif_226\slice_25.png
+Created slice: media\slices/motif_226\slice_26.png
+Created slice: media\slices/motif_226\slice_27.png
+Created slice: media\slices/motif_226\slice_28.png
+Created slice: media\slices/motif_226\slice_29.png
+Created slice: media\slices/motif_226\slice_30.png
+Created slice: media\slices/motif_226\slice_31.png
+Created slice: media\slices/motif_226\slice_32.png
+Created ZIP file: media\zips\motif_226.zip
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\models.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /post-image/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 388, in PostImage
+    logger.info("Received POST request for PostImage")
+NameError: name 'logger' is not defined
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Internal Server Error: /post-image/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 388, in PostImage
+    logger.info("Received POST request for PostImage")
+NameError: name 'logger' is not defined
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /gabungkan_motif/
+Not Found: /favicon.ico
+Not Found: /generator/save
+Not Found: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /generator/save
+Not Found: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 229
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/569554e57ce04993a12c19ab284323a1.png from 1040x220
+Resized to 600x126
+Not Found: /generator/PostImageGabungan
+Not Found: /generator/PostImageGabungan
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /generator/PostImageGabungan
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 230
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_8BZfXn.png from 800x369
+Resized to 600x276
+Created grid image: media\grids\grid_motif_230.png
+Created red line image: media\grids\red_motif_230.png
+Created slice: media\slices/motif_230\slice_1.png
+Created slice: media\slices/motif_230\slice_2.png
+Created slice: media\slices/motif_230\slice_3.png
+Created slice: media\slices/motif_230\slice_4.png
+Created slice: media\slices/motif_230\slice_5.png
+Created slice: media\slices/motif_230\slice_6.png
+Created slice: media\slices/motif_230\slice_7.png
+Created slice: media\slices/motif_230\slice_8.png
+Created slice: media\slices/motif_230\slice_9.png
+Created slice: media\slices/motif_230\slice_10.png
+Created slice: media\slices/motif_230\slice_11.png
+Created slice: media\slices/motif_230\slice_12.png
+Created slice: media\slices/motif_230\slice_13.png
+Created slice: media\slices/motif_230\slice_14.png
+Created slice: media\slices/motif_230\slice_15.png
+Created slice: media\slices/motif_230\slice_16.png
+Created slice: media\slices/motif_230\slice_17.png
+Created slice: media\slices/motif_230\slice_18.png
+Created slice: media\slices/motif_230\slice_19.png
+Created slice: media\slices/motif_230\slice_20.png
+Created slice: media\slices/motif_230\slice_21.png
+Created slice: media\slices/motif_230\slice_22.png
+Created slice: media\slices/motif_230\slice_23.png
+Created slice: media\slices/motif_230\slice_24.png
+Created slice: media\slices/motif_230\slice_25.png
+Created slice: media\slices/motif_230\slice_26.png
+Created slice: media\slices/motif_230\slice_27.png
+Created slice: media\slices/motif_230\slice_28.png
+Created slice: media\slices/motif_230\slice_29.png
+Created slice: media\slices/motif_230\slice_30.png
+Created slice: media\slices/motif_230\slice_31.png
+Created slice: media\slices/motif_230\slice_32.png
+Created slice: media\slices/motif_230\slice_33.png
+Created slice: media\slices/motif_230\slice_34.png
+Created slice: media\slices/motif_230\slice_35.png
+Created slice: media\slices/motif_230\slice_36.png
+Created slice: media\slices/motif_230\slice_37.png
+Created slice: media\slices/motif_230\slice_38.png
+Created slice: media\slices/motif_230\slice_39.png
+Created slice: media\slices/motif_230\slice_40.png
+Created slice: media\slices/motif_230\slice_41.png
+Created slice: media\slices/motif_230\slice_42.png
+Created slice: media\slices/motif_230\slice_43.png
+Created slice: media\slices/motif_230\slice_44.png
+Created slice: media\slices/motif_230\slice_45.png
+Created slice: media\slices/motif_230\slice_46.png
+Created slice: media\slices/motif_230\slice_47.png
+Created slice: media\slices/motif_230\slice_48.png
+Created ZIP file: media\zips\motif_230.zip
+Accessing motif detail for ID: 231
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_iXpEON.png from 800x246
+Resized to 600x184
+Created grid image: media\grids\grid_motif_231.png
+Created red line image: media\grids\red_motif_231.png
+Created slice: media\slices/motif_231\slice_1.png
+Created slice: media\slices/motif_231\slice_2.png
+Created slice: media\slices/motif_231\slice_3.png
+Created slice: media\slices/motif_231\slice_4.png
+Created slice: media\slices/motif_231\slice_5.png
+Created slice: media\slices/motif_231\slice_6.png
+Created slice: media\slices/motif_231\slice_7.png
+Created slice: media\slices/motif_231\slice_8.png
+Created slice: media\slices/motif_231\slice_9.png
+Created slice: media\slices/motif_231\slice_10.png
+Created slice: media\slices/motif_231\slice_11.png
+Created slice: media\slices/motif_231\slice_12.png
+Created slice: media\slices/motif_231\slice_13.png
+Created slice: media\slices/motif_231\slice_14.png
+Created slice: media\slices/motif_231\slice_15.png
+Created slice: media\slices/motif_231\slice_16.png
+Created slice: media\slices/motif_231\slice_17.png
+Created slice: media\slices/motif_231\slice_18.png
+Created slice: media\slices/motif_231\slice_19.png
+Created slice: media\slices/motif_231\slice_20.png
+Created slice: media\slices/motif_231\slice_21.png
+Created slice: media\slices/motif_231\slice_22.png
+Created slice: media\slices/motif_231\slice_23.png
+Created slice: media\slices/motif_231\slice_24.png
+Created slice: media\slices/motif_231\slice_25.png
+Created slice: media\slices/motif_231\slice_26.png
+Created slice: media\slices/motif_231\slice_27.png
+Created slice: media\slices/motif_231\slice_28.png
+Created slice: media\slices/motif_231\slice_29.png
+Created slice: media\slices/motif_231\slice_30.png
+Created slice: media\slices/motif_231\slice_31.png
+Created slice: media\slices/motif_231\slice_32.png
+Created ZIP file: media\zips\motif_231.zip
+Accessing motif detail for ID: 227
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/3dc26a1a748a4d63a8210f2b3dc21c8f.png from 1040x120
+Resized to 600x69
+Created grid image: media\grids\grid_motif_227.png
+Created red line image: media\grids\red_motif_227.png
+Created slice: media\slices/motif_227\slice_1.png
+Created slice: media\slices/motif_227\slice_2.png
+Created slice: media\slices/motif_227\slice_3.png
+Created slice: media\slices/motif_227\slice_4.png
+Created slice: media\slices/motif_227\slice_5.png
+Created slice: media\slices/motif_227\slice_6.png
+Created slice: media\slices/motif_227\slice_7.png
+Created slice: media\slices/motif_227\slice_8.png
+Created slice: media\slices/motif_227\slice_9.png
+Created slice: media\slices/motif_227\slice_10.png
+Created slice: media\slices/motif_227\slice_11.png
+Created slice: media\slices/motif_227\slice_12.png
+Created ZIP file: media\zips\motif_227.zip
+Accessing motif detail for ID: 227
+Accessing motif detail for ID: 231
+Accessing motif detail for ID: 232
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/hasilfix/motif_gabung_5nDFAc.png from 800x369
+Resized to 600x276
+Created grid image: media\grids\grid_motif_232.png
+Created red line image: media\grids\red_motif_232.png
+Created slice: media\slices/motif_232\slice_1.png
+Created slice: media\slices/motif_232\slice_2.png
+Created slice: media\slices/motif_232\slice_3.png
+Created slice: media\slices/motif_232\slice_4.png
+Created slice: media\slices/motif_232\slice_5.png
+Created slice: media\slices/motif_232\slice_6.png
+Created slice: media\slices/motif_232\slice_7.png
+Created slice: media\slices/motif_232\slice_8.png
+Created slice: media\slices/motif_232\slice_9.png
+Created slice: media\slices/motif_232\slice_10.png
+Created slice: media\slices/motif_232\slice_11.png
+Created slice: media\slices/motif_232\slice_12.png
+Created slice: media\slices/motif_232\slice_13.png
+Created slice: media\slices/motif_232\slice_14.png
+Created slice: media\slices/motif_232\slice_15.png
+Created slice: media\slices/motif_232\slice_16.png
+Created slice: media\slices/motif_232\slice_17.png
+Created slice: media\slices/motif_232\slice_18.png
+Created slice: media\slices/motif_232\slice_19.png
+Created slice: media\slices/motif_232\slice_20.png
+Created slice: media\slices/motif_232\slice_21.png
+Created slice: media\slices/motif_232\slice_22.png
+Created slice: media\slices/motif_232\slice_23.png
+Created slice: media\slices/motif_232\slice_24.png
+Created slice: media\slices/motif_232\slice_25.png
+Created slice: media\slices/motif_232\slice_26.png
+Created slice: media\slices/motif_232\slice_27.png
+Created slice: media\slices/motif_232\slice_28.png
+Created slice: media\slices/motif_232\slice_29.png
+Created slice: media\slices/motif_232\slice_30.png
+Created slice: media\slices/motif_232\slice_31.png
+Created slice: media\slices/motif_232\slice_32.png
+Created slice: media\slices/motif_232\slice_33.png
+Created slice: media\slices/motif_232\slice_34.png
+Created slice: media\slices/motif_232\slice_35.png
+Created slice: media\slices/motif_232\slice_36.png
+Created slice: media\slices/motif_232\slice_37.png
+Created slice: media\slices/motif_232\slice_38.png
+Created slice: media\slices/motif_232\slice_39.png
+Created slice: media\slices/motif_232\slice_40.png
+Created slice: media\slices/motif_232\slice_41.png
+Created slice: media\slices/motif_232\slice_42.png
+Created slice: media\slices/motif_232\slice_43.png
+Created slice: media\slices/motif_232\slice_44.png
+Created slice: media\slices/motif_232\slice_45.png
+Created slice: media\slices/motif_232\slice_46.png
+Created slice: media\slices/motif_232\slice_47.png
+Created slice: media\slices/motif_232\slice_48.png
+Created ZIP file: media\zips\motif_232.zip
+Accessing motif detail for ID: 234
+Created grid image: media\grids\grid_motif_234.png
+Created red line image: media\grids\red_motif_234.png
+Created slice: media\slices/motif_234\slice_1.png
+Created slice: media\slices/motif_234\slice_2.png
+Created slice: media\slices/motif_234\slice_3.png
+Created slice: media\slices/motif_234\slice_4.png
+Created slice: media\slices/motif_234\slice_5.png
+Created slice: media\slices/motif_234\slice_6.png
+Created slice: media\slices/motif_234\slice_7.png
+Created slice: media\slices/motif_234\slice_8.png
+Created slice: media\slices/motif_234\slice_9.png
+Created slice: media\slices/motif_234\slice_10.png
+Created slice: media\slices/motif_234\slice_11.png
+Created slice: media\slices/motif_234\slice_12.png
+Created slice: media\slices/motif_234\slice_13.png
+Created slice: media\slices/motif_234\slice_14.png
+Created slice: media\slices/motif_234\slice_15.png
+Created slice: media\slices/motif_234\slice_16.png
+Created slice: media\slices/motif_234\slice_17.png
+Created slice: media\slices/motif_234\slice_18.png
+Created slice: media\slices/motif_234\slice_19.png
+Created slice: media\slices/motif_234\slice_20.png
+Created slice: media\slices/motif_234\slice_21.png
+Created slice: media\slices/motif_234\slice_22.png
+Created ZIP file: media\zips\motif_234.zip
+Accessing motif detail for ID: 236
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/2fa005419784446ebeb89e90932ed97d.png from 1040x220
+Resized to 600x126
+Created slice: media\slices/motif_236\slice_9.png
+Created slice: media\slices/motif_236\slice_10.png
+Created slice: media\slices/motif_236\slice_11.png
+Created slice: media\slices/motif_236\slice_12.png
+Created slice: media\slices/motif_236\slice_13.png
+Created slice: media\slices/motif_236\slice_14.png
+Created slice: media\slices/motif_236\slice_15.png
+Created slice: media\slices/motif_236\slice_16.png
+Created slice: media\slices/motif_236\slice_17.png
+Created slice: media\slices/motif_236\slice_18.png
+Created slice: media\slices/motif_236\slice_19.png
+Created slice: media\slices/motif_236\slice_20.png
+Created slice: media\slices/motif_236\slice_21.png
+Created slice: media\slices/motif_236\slice_22.png
