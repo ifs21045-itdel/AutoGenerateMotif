@@ -52,13 +52,13 @@
                                             <label for="Mobile-Number">Jumlah Baris</label>
                                             <input type="number" class="form-control" name ="jmlBaris" placeholder="Contoh: 4" value="{{jmlBaris}}" required>
                                         </div>
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi gambar (pixel) motif yang diinginkan (2-40 baris). </p>
                                         {% else %}
                                         <div class="form-group" style="padding-top: 10px;"> 
                                             <label for="Mobile-Number">Jumlah Baris</label>
                                             <input type="number" class="form-control" name ="jmlBaris" placeholder="Contoh: 4" value="{{jmlBaris}}" required>
                                         </div>
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi gambar (pixel) motif yang diinginkan (2-40 baris). </p>
                                         {% endif %}
                                         
                                         <!-- Input Lidi -->
@@ -68,8 +68,8 @@
                                             <img style="width: 100%;" id="preview">
                                         </div>
                                         
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Spesifikasi gambar dapat diihat di sini pada <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored">Aturan Lidi</a> </p>
-                                        <input style="margin-top: 25px;" type="submit" value="Buat Motif" id="SubmitStyle">
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Untuk ganti lidi, klik ulang tempat unduh lidi, pilih lidi baru, dan akan otomatis terproses. Unggah gambar lidi untuk motif, cek spesifikasi gambar pada  <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored">Aturan Lidi</a> </p>
+                                        <input style="margin-top: 15px;" type="submit" value="Buat Motif" id="SubmitStyle">
                                     </form>
 
                                     <div class="text-center">
