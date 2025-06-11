@@ -4601,6 +4601,38 @@ Created slice: media\slices/motif_236\slice_20.png
 Created slice: media\slices/motif_236\slice_21.png
 Created slice: media\slices/motif_236\slice_22.png
 Watching for file changes with StatReloader
-Not Found: /.well-known/appspecific/com.chrome.devtools.json
+<<<<<<< HEAD
+Accessing motif detail for ID: 150
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/admin/e70b5bc8fcd349b187239357088a589a.png from 900x100
+Resized to 600x66
+Created grid image: media\grids\grid_motif_150.png
+Created red line image: media\grids\red_motif_150.png
+Created slice: media\slices/motif_150\slice_1.png
+Created slice: media\slices/motif_150\slice_2.png
+Created slice: media\slices/motif_150\slice_3.png
+Created slice: media\slices/motif_150\slice_4.png
+Created slice: media\slices/motif_150\slice_5.png
+Created slice: media\slices/motif_150\slice_6.png
+Created slice: media\slices/motif_150\slice_7.png
+Created slice: media\slices/motif_150\slice_8.png
+Created slice: media\slices/motif_150\slice_9.png
+Created slice: media\slices/motif_150\slice_10.png
+Created ZIP file: media\zips\motif_150.zip
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 150
+Accessing motif detail for ID: 151
+Created grid image: media\grids\grid_motif_151.png
+Created red line image: media\grids\red_motif_151.png
+Created slice: media\slices/motif_151\slice_1.png
+Created slice: media\slices/motif_151\slice_2.png
+Created slice: media\slices/motif_151\slice_3.png
+Created slice: media\slices/motif_151\slice_4.png
+Created slice: media\slices/motif_151\slice_5.png
+Created slice: media\slices/motif_151\slice_6.png
+Created slice: media\slices/motif_151\slice_7.png
+Created slice: media\slices/motif_151\slice_8.png
+Created slice: media\slices/motif_151\slice_9.png
+Created slice: media\slices/motif_151\slice_10.png
+Created ZIP file: media\zips\motif_151.zip
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
