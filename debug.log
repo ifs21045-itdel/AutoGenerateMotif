@@ -4601,6 +4601,7 @@ Created slice: media\slices/motif_236\slice_20.png
 Created slice: media\slices/motif_236\slice_21.png
 Created slice: media\slices/motif_236\slice_22.png
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 Accessing motif detail for ID: 150
 Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/admin/e70b5bc8fcd349b187239357088a589a.png from 900x100
 Resized to 600x66
@@ -4633,3 +4634,6 @@ Created slice: media\slices/motif_151\slice_8.png
 Created slice: media\slices/motif_151\slice_9.png
 Created slice: media\slices/motif_151\slice_10.png
 Created ZIP file: media\zips\motif_151.zip
+=======
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+>>>>>>> 8e0996d93cb16e3cf5b722a39314a9b5fd683436
