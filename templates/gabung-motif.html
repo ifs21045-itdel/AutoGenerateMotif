@@ -201,6 +201,44 @@
         display: flex;
         flex-direction: column;
       }
+      .form-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 10px;
+      }
+      .form-container div {
+        flex: 1;
+      }
+      .form-container h5.combined-title {
+        font-size: 10px; /* Match main-title font size */
+        color: #000000; /* Set text color to black */
+        text-align: center;
+      }
+      .form-container p {
+        font-size: 15px; /* Match main-title font size */
+        color: rgb(122, 121, 121); /* Set text color to black */
+      }
+      .select-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+      .select-wrapper select {
+        appearance: none;
+        padding-right: 20px;
+        font-size: 14px; /* Match main-title font size */
+        color: #000000; /* Set text color to black */
+      }
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 10px;
+        top: 30%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 10px; /* Match main-title font size */
+        color: #000000; /* Set text color to black */
+      }
     </style>
   </head>
   <body>
@@ -230,6 +268,30 @@
             <div class="card shadow-lg card-1">
               <div class="card-body inner-card">
                 <div class="row equal-height-row">
+                  <div class="form-container">
+                    <div>
+                      <h3>Jenis Kain</h3>
+                      <p>Klik untuk memilih</p>
+                      <div class="select-wrapper">
+                        <select name="jenis_kain" id="jenis_kain">
+                          <option value="harungguan">Harungguan</option>
+                          <option value="sadum">Sadum</option>
+                          <option value="puca">Puca</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3>Jenis Produk</h3>
+                      <p>Klik untuk memilih</p>
+                      <div class="select-wrapper">
+                        <select name="jenis_produk" id="jenis_produk">
+                          <option value="songket">Songket</option>
+                          <option value="selendang">Selendang</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                   <!-- Kolom untuk Menampilkan Motif Asal dan Hasil Motif -->
                   <div class="col-md-6 equal-height-col">
                     <h5 class="motif-title text-center">Motif</h5>
@@ -470,6 +532,7 @@
         </div>
       </div>
     </div>
+
     {% include "footer.html" %}
     <script src="{% static 'plugins.js' %}"></script>
     <script>
@@ -484,14 +547,14 @@
     ></script>
     <script src="{% static 'script.js' %}"></script>
     <script>
-     function redirectToList() {
-    if (window.savedMotifId) {
-      window.location.href = `/list/${window.savedMotifId}`;
-    } else {
-      console.error("Motif ID tidak tersedia.");
-      window.location.href = "{% url 'list1' %}"; // Fallback ke halaman daftar motif
-    }
-  }
+      function redirectToList() {
+        if (window.savedMotifId) {
+          window.location.href = `/list/${window.savedMotifId}`;
+        } else {
+          console.error("Motif ID tidak tersedia.");
+          window.location.href = "{% url 'list1' %}"; // Fallback ke halaman daftar motif
+        }
+      }
       let allMotifImages = [];
       let urutanAsalArray = [];
       let urutanGabunganArray = [];

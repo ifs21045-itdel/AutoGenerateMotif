@@ -4637,3 +4637,492 @@ Created ZIP file: media\zips\motif_151.zip
 =======
 Not Found: /.well-known/appspecific/com.chrome.devtools.json
 >>>>>>> 8e0996d93cb16e3cf5b722a39314a9b5fd683436
+Watching for file changes with StatReloader
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Not Found: /favicon.ico
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Internal Server Error: /gabungkan_motif/
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py", line 1194, in gabungkan_motif
+    return render(request, 'gabung-motif.html', {
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\LENOVO\AppData\Local\Programs\Python\Python39\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'gabung_motif' not found. 'gabung_motif' is not a valid view function or pattern name.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 152
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/hasilfix/motif_gabung_UHyuVr.png from 800x853
+Resized to 600x639
+Created grid image: media\grids\grid_motif_152.png
+Created red line image: media\grids\red_motif_152.png
+Created slice: media\slices/motif_152\slice_1.png
+Created slice: media\slices/motif_152\slice_2.png
+Created slice: media\slices/motif_152\slice_3.png
+Created slice: media\slices/motif_152\slice_4.png
+Created slice: media\slices/motif_152\slice_5.png
+Created slice: media\slices/motif_152\slice_6.png
+Created slice: media\slices/motif_152\slice_7.png
+Created slice: media\slices/motif_152\slice_8.png
+Created slice: media\slices/motif_152\slice_9.png
+Created slice: media\slices/motif_152\slice_10.png
+Created slice: media\slices/motif_152\slice_11.png
+Created slice: media\slices/motif_152\slice_12.png
+Created slice: media\slices/motif_152\slice_13.png
+Created slice: media\slices/motif_152\slice_14.png
+Created slice: media\slices/motif_152\slice_15.png
+Created slice: media\slices/motif_152\slice_16.png
+Created slice: media\slices/motif_152\slice_17.png
+Created slice: media\slices/motif_152\slice_18.png
+Created slice: media\slices/motif_152\slice_19.png
+Created slice: media\slices/motif_152\slice_20.png
+Created slice: media\slices/motif_152\slice_21.png
+Created slice: media\slices/motif_152\slice_22.png
+Created slice: media\slices/motif_152\slice_23.png
+Created slice: media\slices/motif_152\slice_24.png
+Created slice: media\slices/motif_152\slice_25.png
+Created slice: media\slices/motif_152\slice_26.png
+Created slice: media\slices/motif_152\slice_27.png
+Created slice: media\slices/motif_152\slice_28.png
+Created slice: media\slices/motif_152\slice_29.png
+Created slice: media\slices/motif_152\slice_30.png
+Created slice: media\slices/motif_152\slice_31.png
+Created slice: media\slices/motif_152\slice_32.png
+Created slice: media\slices/motif_152\slice_33.png
+Created slice: media\slices/motif_152\slice_34.png
+Created slice: media\slices/motif_152\slice_35.png
+Created slice: media\slices/motif_152\slice_36.png
+Created slice: media\slices/motif_152\slice_37.png
+Created slice: media\slices/motif_152\slice_38.png
+Created slice: media\slices/motif_152\slice_39.png
+Created slice: media\slices/motif_152\slice_40.png
+Created slice: media\slices/motif_152\slice_41.png
+Created slice: media\slices/motif_152\slice_42.png
+Created slice: media\slices/motif_152\slice_43.png
+Created slice: media\slices/motif_152\slice_44.png
+Created slice: media\slices/motif_152\slice_45.png
+Created slice: media\slices/motif_152\slice_46.png
+Created slice: media\slices/motif_152\slice_47.png
+Created slice: media\slices/motif_152\slice_48.png
+Created slice: media\slices/motif_152\slice_49.png
+Created slice: media\slices/motif_152\slice_50.png
+Created slice: media\slices/motif_152\slice_51.png
+Created slice: media\slices/motif_152\slice_52.png
+Created slice: media\slices/motif_152\slice_53.png
+Created slice: media\slices/motif_152\slice_54.png
+Created slice: media\slices/motif_152\slice_55.png
+Created slice: media\slices/motif_152\slice_56.png
+Created slice: media\slices/motif_152\slice_57.png
+Created slice: media\slices/motif_152\slice_58.png
+Created slice: media\slices/motif_152\slice_59.png
+Created slice: media\slices/motif_152\slice_60.png
+Created slice: media\slices/motif_152\slice_61.png
+Created slice: media\slices/motif_152\slice_62.png
+Created slice: media\slices/motif_152\slice_63.png
+Created slice: media\slices/motif_152\slice_64.png
+Created slice: media\slices/motif_152\slice_65.png
+Created slice: media\slices/motif_152\slice_66.png
+Created slice: media\slices/motif_152\slice_67.png
+Created slice: media\slices/motif_152\slice_68.png
+Created slice: media\slices/motif_152\slice_69.png
+Created slice: media\slices/motif_152\slice_70.png
+Created slice: media\slices/motif_152\slice_71.png
+Created slice: media\slices/motif_152\slice_72.png
+Created slice: media\slices/motif_152\slice_73.png
+Created slice: media\slices/motif_152\slice_74.png
+Created slice: media\slices/motif_152\slice_75.png
+Created slice: media\slices/motif_152\slice_76.png
+Created slice: media\slices/motif_152\slice_77.png
+Created slice: media\slices/motif_152\slice_78.png
+Created slice: media\slices/motif_152\slice_79.png
+Created slice: media\slices/motif_152\slice_80.png
+Created slice: media\slices/motif_152\slice_81.png
+Created slice: media\slices/motif_152\slice_82.png
+Created slice: media\slices/motif_152\slice_83.png
+Created slice: media\slices/motif_152\slice_84.png
+Created slice: media\slices/motif_152\slice_85.png
+Created slice: media\slices/motif_152\slice_86.png
+Created slice: media\slices/motif_152\slice_87.png
+Created slice: media\slices/motif_152\slice_88.png
+Created slice: media\slices/motif_152\slice_89.png
+Created slice: media\slices/motif_152\slice_90.png
+Created slice: media\slices/motif_152\slice_91.png
+Created slice: media\slices/motif_152\slice_92.png
+Created slice: media\slices/motif_152\slice_93.png
+Created slice: media\slices/motif_152\slice_94.png
+Created slice: media\slices/motif_152\slice_95.png
+Created slice: media\slices/motif_152\slice_96.png
+Created ZIP file: media\zips\motif_152.zip
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 153
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/hasilfix/motif_gabung_Bnf4S5.png from 800x353
+Resized to 600x264
+Accessing motif detail for ID: 153
+Accessing motif detail for ID: 154
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/hasilfix/motif_gabung_VB9chv.png from 800x353
+Resized to 600x264
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 155
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/hasilfix/motif_gabung_S7H3t2.png from 800x353
+Resized to 600x264
+Created grid image: media\grids\grid_motif_155.png
+Created red line image: media\grids\red_motif_155.png
+Created slice: media\slices/motif_155\slice_1.png
+Created slice: media\slices/motif_155\slice_2.png
+Created slice: media\slices/motif_155\slice_3.png
+Created slice: media\slices/motif_155\slice_4.png
+Created slice: media\slices/motif_155\slice_5.png
+Created slice: media\slices/motif_155\slice_6.png
+Created slice: media\slices/motif_155\slice_7.png
+Created slice: media\slices/motif_155\slice_8.png
+Created slice: media\slices/motif_155\slice_9.png
+Created slice: media\slices/motif_155\slice_10.png
+Created slice: media\slices/motif_155\slice_11.png
+Created slice: media\slices/motif_155\slice_12.png
+Created slice: media\slices/motif_155\slice_13.png
+Created slice: media\slices/motif_155\slice_14.png
+Created slice: media\slices/motif_155\slice_15.png
+Created slice: media\slices/motif_155\slice_16.png
+Created slice: media\slices/motif_155\slice_17.png
+Created slice: media\slices/motif_155\slice_18.png
+Created slice: media\slices/motif_155\slice_19.png
+Created slice: media\slices/motif_155\slice_20.png
+Created slice: media\slices/motif_155\slice_21.png
+Created slice: media\slices/motif_155\slice_22.png
+Created slice: media\slices/motif_155\slice_23.png
+Created slice: media\slices/motif_155\slice_24.png
+Created slice: media\slices/motif_155\slice_25.png
+Created slice: media\slices/motif_155\slice_26.png
+Created slice: media\slices/motif_155\slice_27.png
+Created slice: media\slices/motif_155\slice_28.png
+Created slice: media\slices/motif_155\slice_29.png
+Created slice: media\slices/motif_155\slice_30.png
+Created slice: media\slices/motif_155\slice_31.png
+Created slice: media\slices/motif_155\slice_32.png
+Created slice: media\slices/motif_155\slice_33.png
+Created slice: media\slices/motif_155\slice_34.png
+Created slice: media\slices/motif_155\slice_35.png
+Created slice: media\slices/motif_155\slice_36.png
+Created slice: media\slices/motif_155\slice_37.png
+Created slice: media\slices/motif_155\slice_38.png
+Created slice: media\slices/motif_155\slice_39.png
+Created slice: media\slices/motif_155\slice_40.png
+Created slice: media\slices/motif_155\slice_41.png
+Created slice: media\slices/motif_155\slice_42.png
+Created slice: media\slices/motif_155\slice_43.png
+Created slice: media\slices/motif_155\slice_44.png
+Created slice: media\slices/motif_155\slice_45.png
+Created slice: media\slices/motif_155\slice_46.png
+Accessing motif detail for ID: 156
+Resizing image D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\media/hasilfix/motif_gabung_TnGKZ0.png from 800x353
+Resized to 600x264
+Created grid image: media\grids\grid_motif_156.png
+Created red line image: media\grids\red_motif_156.png
+Created slice: media\slices/motif_156\slice_1.png
+Created slice: media\slices/motif_156\slice_2.png
+Created slice: media\slices/motif_156\slice_3.png
+Created slice: media\slices/motif_156\slice_4.png
+Created slice: media\slices/motif_156\slice_5.png
+Created slice: media\slices/motif_156\slice_6.png
+Created slice: media\slices/motif_156\slice_7.png
+Created slice: media\slices/motif_156\slice_8.png
+Created slice: media\slices/motif_156\slice_9.png
+Created slice: media\slices/motif_156\slice_10.png
+Created slice: media\slices/motif_156\slice_11.png
+Created slice: media\slices/motif_156\slice_12.png
+Created slice: media\slices/motif_156\slice_13.png
+Created slice: media\slices/motif_156\slice_14.png
+Created slice: media\slices/motif_156\slice_15.png
+Created slice: media\slices/motif_156\slice_16.png
+Created slice: media\slices/motif_156\slice_17.png
+Created slice: media\slices/motif_156\slice_18.png
+Created slice: media\slices/motif_156\slice_19.png
+Created slice: media\slices/motif_156\slice_20.png
+Created slice: media\slices/motif_156\slice_21.png
+Created slice: media\slices/motif_156\slice_22.png
+Created slice: media\slices/motif_156\slice_23.png
+Created slice: media\slices/motif_156\slice_24.png
+Created slice: media\slices/motif_156\slice_25.png
+Created slice: media\slices/motif_156\slice_26.png
+Created slice: media\slices/motif_156\slice_27.png
+Created slice: media\slices/motif_156\slice_28.png
+Created slice: media\slices/motif_156\slice_29.png
+Created slice: media\slices/motif_156\slice_30.png
+Created slice: media\slices/motif_156\slice_31.png
+Created slice: media\slices/motif_156\slice_32.png
+Created slice: media\slices/motif_156\slice_33.png
+Created slice: media\slices/motif_156\slice_34.png
+Created slice: media\slices/motif_156\slice_35.png
+Created slice: media\slices/motif_156\slice_36.png
+Created slice: media\slices/motif_156\slice_37.png
+Created slice: media\slices/motif_156\slice_38.png
+Created slice: media\slices/motif_156\slice_39.png
+Created slice: media\slices/motif_156\slice_40.png
+Created slice: media\slices/motif_156\slice_41.png
+Created slice: media\slices/motif_156\slice_42.png
+Created slice: media\slices/motif_156\slice_43.png
+Created slice: media\slices/motif_156\slice_44.png
+Created slice: media\slices/motif_156\slice_45.png
+Created slice: media\slices/motif_156\slice_46.png
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\.DOCUMENT\Ditenun\Code TA Fix\AutoGenerateMotif\Website\models.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
