@@ -52,23 +52,22 @@
                                             <label for="Mobile-Number">Jumlah Baris</label>
                                             <input type="number" class="form-control" name ="jmlBaris" placeholder="Contoh: 4" value="{{jmlBaris}}" required>
                                         </div>
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi gambar (pixel) motif yang diinginkan (2-40 baris) </p>
                                         {% else %}
                                         <div class="form-group" style="padding-top: 10px;"> 
                                             <label for="Mobile-Number">Jumlah Baris</label>
-                                            <input type="number" class="form-control" name ="jmlBaris" placeholder="Contoh: 4" value="{{jmlBaris}}" required>
+                                            <input type="number" class="form-control" name="jmlBaris" placeholder="Contoh: 4" value="{{jmlBaris}}" required oninvalid="this.setCustomValidity('Harap isi bidang ini')" oninput="this.setCustomValidity('')">
                                         </div>
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi ukuran gambar motif yang ingin dibuat </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan tinggi gambar (pixel) motif yang diinginkan (2-40 baris). </p>
                                         {% endif %}
                                         
                                         <!-- Input Lidi -->
                                         <div class="form-group" style="padding-top: 1px;"> 
                                             <label for="Mobile-Number">Lidi</label>
-                                            <input type="file" name="image" id="UploadImage" accept="image/*" onchange="previewImage();" required >
-                                            <img style="width: 100%;" id="preview">
+                                            <input type="file" name="image" id="UploadImage" accept="image/*" onchange="previewImage();" required oninvalid="this.setCustomValidity('Harap isi bidang ini')" oninput="this.setCustomValidity('')">
                                         </div>
                                         
-                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Spesifikasi gambar dapat diihat di sini pada <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored">Aturan Lidi</a> </p>
+                                        <p style="color: #999; font-size: 12px; margin-top: -25px;"> Masukkan gambar lidi yang ingin digunakan untuk motif. Spesifikasi gambar dapat diihat pada <a style="font-size: 12px;" href="{% url 'help-lidi' %}" target="_parent" rel="sponsored">Aturan Lidi</a> </p>
                                         <input style="margin-top: 25px;" type="submit" value="Buat Motif" id="SubmitStyle">
                                     </form>
 
