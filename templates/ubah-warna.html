@@ -156,6 +156,75 @@
             display: none;
         }
 
+        /* Style untuk button yang diperbaiki */
+        .btn-primary-custom {
+            background-color: #002BA3;
+            border: 2px solid #002BA3;
+            border-radius: 0px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            width: 180px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #001a7a;
+            border-color: #001a7a;
+            color: white;
+        }
+.preview-btn {
+    background-color: #002BA3;
+    border: 2px solid #002BA3;
+    border-radius: 0px;
+    padding: 12px 30px 14px;
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    width: 320px;
+}
+
+.preview-btn:hover {
+    background-color: #001a7a;
+    border-color: #001a7a;
+    color: white;
+}
+        .btn-back {
+            background-color: white;
+            border: 12px solid #002ba3;
+            border-radius: 0px;
+            padding: 12px 30px 14px;
+            font-size: 0.9rem;
+            color: #002ba3;
+            text-decoration: none;
+            display: inline-block;
+            width: 180px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-back:hover {
+            background-color: #e6e6ff;
+            color: #002ba3;
+            border-color: #002ba3;
+        }
+
+        /* Container untuk buttons dengan layout yang diperbaiki */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
         @media (max-width: 768px) {
             .col-md-6, .col-lg-6 {
                 flex: 0 0 100%;
@@ -186,6 +255,16 @@
                 width: 8px;
                 height: 8px;
             }
+
+            .btn-primary-custom, .btn-back {
+                width: 150px;
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+
+            .button-container {
+                gap: 20px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -196,6 +275,17 @@
             .color-box {
                 width: 25px;
                 height: 25px;
+            }
+
+            .btn-primary-custom, .btn-back {
+                width: 140px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+                gap: 15px;
             }
         }
     </style>
@@ -261,13 +351,41 @@
                             </div>
 
                             <form method="POST" enctype="multipart/form-data" action="/motif_colored/preview/{{ motif.id }}/">
-                                {% csrf_token %}
-                                <div class="row mt-4 text-center">
-                                    <div class="col-md-12">
-                                        <button class="btn" type="button" onclick="submitCanvasImages()" style="background-color: #002BA3; color: white;">Lihat Motif Preview</button>
-                                    </div>
-                                </div>
-                            </form>
+    {% csrf_token %}<div class="row mt-4 text-center">
+    <div class="col-md-12 d-flex flex-column align-items-center gap-3">
+        <button class="btn preview-btn" type="button" onclick="submitCanvasImages()">
+            Lihat Motif Preview
+        </button>
+        <div class="btn-container row mt-4 text-center">
+                  <div class="col-md-12">
+                    <a
+                      href="{% url 'generator' %}"
+                      class="btn"
+                      style="
+                        background-color: transparent;
+                        border: 2px solid #002ba3;
+                        border-radius: 0px;
+                        padding: 12px 30px 14px;
+                        font-size: 1rem;
+                        color: #002ba3;
+                        text-decoration: none;
+                        display: inline-block;
+                        width: 320px;
+                      "
+                    >
+                      Kembali
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>
+</form>
                         </div>
                     </div>
                 </div>
@@ -611,6 +729,11 @@
         } catch (error) {
             alert('Terjadi kesalahan: ' + error.message);
         }
+    }
+
+    // Fungsi untuk button kembali
+    function goBack() {
+        window.history.back();
     }
 
     document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
