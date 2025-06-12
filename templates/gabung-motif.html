@@ -25,7 +25,6 @@
       type="image/x-icon"
     />
     <style>
-      /* CSS tetap sama seperti sebelumnya, tidak diubah */
       h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
       .main-title { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
       h1 { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
@@ -487,73 +486,68 @@
 
           // Logika penempatan motif berdasarkan jenis kain dan produk
           if (jenisKain === 'harungguan') {
-            if (jenisProduk === 'songket') {
+            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
               const totalMotifs = allMotifImages.length;
-              const centralCount = Math.min(Math.ceil(totalMotifs / 2), 5);
-              const borderCount = Math.floor(totalMotifs / 2);
 
-              // Pinggiran atas
-              for (let i = 0; i < borderCount && i < totalMotifs; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'border-top'));
-                }
-              }
-
-              // Motif tengah
-              for (let i = borderCount; i < borderCount + centralCount && i < totalMotifs; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'center'));
-                }
-              }
-
-              // Motif tengah cermin
-              for (let i = borderCount + centralCount - 1; i >= borderCount && i < totalMotifs; i--) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'center-mirror'));
-                }
-              }
-
-              // Pinggiran bawah
-              for (let i = borderCount - 1; i >= 0 && i < totalMotifs; i--) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'border-bottom'));
-                }
-              }
-            } else if (jenisProduk === 'selendang') {
-              for (let i = allMotifImages.length - 1; i >= 0; i--) {
+              // Susunan vertikal dari atas ke bawah
+              for (let i = 0; i < totalMotifs; i++) {
                 if (allMotifImages[i] !== "motif kosong") {
                   motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'body'));
-                }
-              }
-
-              for (let i = 0; i < allMotifImages.length; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'body-mirror'));
                 }
               }
             }
-          } else if (jenisKain === 'sadum' || jenisKain === 'puca') {
-            if (jenisProduk === 'songket') {
+          } else if (jenisKain === 'puca') {
+            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
               const totalMotifs = allMotifImages.length;
-              const kepalaCount = Math.min(Math.ceil(totalMotifs / 3), 3);
+              if (totalMotifs % 2 === 0) {
+                alert("Jumlah motif harus ganjil untuk Puca!");
+                return;
+              }
+              const middleIndex = Math.floor(totalMotifs / 2);
 
-              // Kepala kain
-              for (let i = 0; i < kepalaCount && i < totalMotifs; i++) {
+              // Bagian atas (sebelum tengah)
+              for (let i = 0; i < middleIndex; i++) {
                 if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'kepala'));
+                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'top'));
                 }
               }
 
-              // Badan kain
-              for (let i = kepalaCount; i < totalMotifs; i++) {
+              // Motif pembatas tengah
+              if (allMotifImages[middleIndex] !== "motif kosong") {
+                const dividerWrapper = document.createElement("div");
+                dividerWrapper.style.marginBottom = "20px";
+                dividerWrapper.style.textAlign = "center";
+                const dividerImg = document.createElement("img");
+                dividerImg.src = "https://via.placeholder.com/150?text=Pembatas";
+                dividerImg.className = "motif-size";
+                dividerImg.style.maxWidth = "100%";
+                dividerWrapper.appendChild(dividerImg);
+                motifPair.appendChild(dividerWrapper);
+              }
+
+              // Bagian bawah (cermin dari atas)
+              for (let i = totalMotifs - 1; i > middleIndex; i--) {
                 if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'body'));
+                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'bottom'));
                 }
               }
-            } else if (jenisProduk === 'selendang') {
-              for (let i = 0; i < allMotifImages.length; i++) {
+            }
+          } else if (jenisKain === 'sadum') {
+            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
+              const totalMotifs = allMotifImages.length;
+              const halfCount = Math.floor(totalMotifs / 2);
+
+              // Bagian atas (normal)
+              for (let i = 0; i < halfCount; i++) {
                 if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'body'));
+                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'top'));
+                }
+              }
+
+              // Bagian bawah (cermin dari atas)
+              for (let i = halfCount - 1; i >= 0; i--) {
+                if (allMotifImages[i] !== "motif kosong") {
+                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'bottom'));
                 }
               }
             }
@@ -616,29 +610,24 @@
         let mirror = [];
 
         if (jenisKain === 'harungguan') {
-          if (jenisProduk === 'songket') {
-            const totalMotifs = urutanAsalArray.length;
-            const centralCount = Math.min(Math.ceil(totalMotifs / 2), 5);
-            const borderCount = Math.floor(totalMotifs / 2);
-
-            normal = urutanAsalArray.slice(0, borderCount + centralCount).flat();
-            mirror = urutanAsalArray
-              .slice(borderCount, borderCount + centralCount)
-              .reverse()
-              .map((arr) => [...arr].reverse())
-              .flat()
-              .concat(urutanAsalArray.slice(0, borderCount).reverse().flat());
-          } else if (jenisProduk === 'selendang') {
+          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
             normal = urutanAsalArray.flat();
-            mirror = urutanAsalArray
-              .slice()
-              .reverse()
-              .map((arr) => [...arr].reverse())
-              .flat();
           }
-        } else if (jenisKain === 'sadum' || jenisKain === 'puca') {
-          normal = urutanAsalArray.flat();
-          mirror = []; // Tidak ada cermin untuk Sadum dan Puca
+        } else if (jenisKain === 'puca') {
+          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
+            const totalMotifs = urutanAsalArray.length;
+            const middleIndex = Math.floor(totalMotifs / 2);
+            normal = urutanAsalArray.slice(0, middleIndex).flat()
+                   .concat(urutanAsalArray.slice(middleIndex + 1).flat());
+            mirror = urutanAsalArray.slice(middleIndex + 1).reverse().map((arr) => [...arr].reverse()).flat();
+          }
+        } else if (jenisKain === 'sadum') {
+          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
+            const totalMotifs = urutanAsalArray.length;
+            const halfCount = Math.floor(totalMotifs / 2);
+            normal = urutanAsalArray.slice(0, halfCount).flat();
+            mirror = urutanAsalArray.slice(0, halfCount).reverse().map((arr) => [...arr].reverse()).flat();
+          }
         }
 
         const gabungan = normal.concat(mirror);
