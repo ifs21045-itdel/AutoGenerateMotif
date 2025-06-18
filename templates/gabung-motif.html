@@ -25,37 +25,325 @@
       type="image/x-icon"
     />
     <style>
-      h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
-      .main-title { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h1 { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h2 { font-size: 30px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h3 { font-size: 24px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      .container { max-width: 75%; padding-left: 20px; padding-right: 20px; margin-top: 31px; }
-      .form-container { display: flex; justify-content: space-between; gap: 15px; margin-top: -83px; margin-bottom: 30px; }
-      .form-container div { flex: 1; }
-      .form-container h5.combined-title { font-size: 10px; color: #000000; text-align: center; }
-      .form-container p { font-size: 15px; color: rgb(122, 121, 121); text-align: center; }
-      .motif-container { margin-top: 0; border: 3px solid #000000; border-radius: 10px; padding: 15px; background-color: #f5f5f5; height: 1250px; }
-      .motif-container h5 { color: rgb(0, 0, 0); font-weight: bold; margin-top: 0; }
-      .new-combined-motif-container { margin-top: 20px; padding: 15px; background-color: white; border: 1px solid #ddd; align-items: center; position: relative; display: flex; flex-direction: column; gap: 15px; justify-items: center; height: auto; width: 100%; overflow-y: auto; }
-      .motif-size { width: 100%; height: auto; object-fit: contain; margin-bottom: 10px; position: relative; }
-      .motif-number { position: absolute; top: 5px; left: 5px; background-color: blue; color: white; font-size: 16px; font-weight: bold; padding: 5px; border-radius: 0px; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; }
-      .new-combined-motif-container div { position: relative; width: 100%; }
-      .motif-card { margin-bottom: 10px; border: 2px solid #000000; border-radius: 0px; padding: 10px; background-color: #f9f9f9; }
-      .btn-container { margin-top: 40px; display: flex; justify-content: center; align-items: center; }
-      .motif-item { display: flex; flex-direction: column; gap: 15px; position: relative; cursor: pointer; align-items: center; }
-      .inner-card > .row { display: flex; align-items: flex-start; justify-content: center; }
-      .inner-card > .row > .col-md-6 { display: flex; flex-direction: column; align-items: center; }
-      .card-1 { padding: 15px; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .row { width: 100%; display: flex; justify-content: center; align-items: center; }
-      .motif-pair-container { display: flex; flex-direction: column; gap: 15px; position: relative; width: 100%; max-width: 500px; margin: 0 auto; margin-bottom: 60px; }
-      .motif-pair { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .motif-pair img { width: 100%; height: auto; object-fit: contain; border: 1px solid #ddd; display: block; margin: 0 auto; }
-      .equal-height-row { display: flex; align-items: stretch; justify-content: center; }
-      .equal-height-col { display: flex; flex-direction: column; align-items: center; }
-      .select-wrapper { position: relative; display: block; margin: 0 auto; width: 200px; }
-      .select-wrapper select { appearance: none; padding-right: 20px; font-size: 14px; color: #000000; width: 100%; text-align: center; box-sizing: border-box; }
-      .select-wrapper::after { content: "▼"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 15px; color: #000000; }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        padding: 0;
+      }
+      .main-title {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h2 {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h3 {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      .container {
+        max-width: 75%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 31px;
+      }
+      .form-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: -83px;
+        margin-bottom: 30px;
+      }
+      .form-container div {
+        flex: 1;
+      }
+      .form-container h5.combined-title {
+        font-size: 10px;
+        color: #000000;
+        text-align: center;
+      }
+      .form-container p {
+        font-size: 15px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+      }
+      .motif-container {
+        margin-top: 0;
+        border: 3px solid #000000;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        height: 1250px;
+      }
+      .motif-container h5 {
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        margin-top: 0;
+      }
+      .new-combined-motif-container {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: white;
+        border: 1px solid #ddd;
+        align-items: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-items: center;
+        height: auto;
+        width: 100%;
+        overflow-y: auto;
+      }
+      .motif-size {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .motif-number {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: blue;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 0px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .new-combined-motif-container div {
+        position: relative;
+        width: 100%;
+      }
+      .motif-card {
+        margin-bottom: 10px;
+        border: 2px solid #000000;
+        border-radius: 0px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+      .btn-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-item {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        cursor: pointer;
+        align-items: center;
+      }
+      .inner-card > .row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .inner-card > .row > .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card-1 {
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+      }
+      .motif-pair {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 1px solid #ddd;
+        display: block;
+        margin: 0 auto;
+      }
+      .equal-height-row {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+      }
+      .equal-height-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .select-wrapper {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
+      .select-wrapper select {
+        appearance: none;
+        padding-right: 20px;
+        font-size: 14px;
+        color: #000000;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 15px;
+        color: #000000;
+      }
+      .size-info {
+        font-size: 14px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+
+      /* Styling spesifik untuk Puca */
+      .puca-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .puca-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .puca-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .puca-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .new-combined-motif-container.puca {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
+
+      /* Styling spesifik untuk Sadum */
+      .sadum-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .sadum-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .sadum-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .sadum-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .new-combined-motif-container.sadum {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
     </style>
   </head>
   <body>
@@ -91,7 +379,6 @@
                       <p>Klik untuk memilih</p>
                       <div class="select-wrapper">
                         <select name="jenis_kain" id="jenis_kain">
-                          <option value="harungguan">Harungguan</option>
                           <option value="sadum">Sadum</option>
                           <option value="puca">Puca</option>
                         </select>
@@ -103,10 +390,16 @@
                       <p>Klik untuk memilih</p>
                       <div class="select-wrapper">
                         <select name="jenis_produk" id="jenis_produk">
-                          <option value="songket">Songket</option>
+                          <option value="sarung">Sarung</option>
                           <option value="selendang">Selendang</option>
                         </select>
                       </div>
+                      <p id="size-info-sarung" class="size-info">
+                        Ukuran Sarung: Panjang 2 meter, Lebar 1 meter
+                      </p>
+                      <p id="size-info-selendang" class="size-info">
+                        Ukuran Selendang: Panjang 2 meter, Lebar 50-60 cm
+                      </p>
                     </div>
                   </div>
                   <!-- Kolom untuk Menampilkan Motif Asal dan Hasil Motif -->
@@ -130,7 +423,7 @@
                           data-jenis="asal"
                           data-urutanasal="{{ urutanasal }}"
                           data-mirror="true"
-                          onclick="addMotif(this)"
+                          onclick="selectMotif(this)"
                         />
                       </div>
 
@@ -143,7 +436,7 @@
                           loading="lazy"
                           data-urutanasal="{{ urutan }}"
                           data-mirror="true"
-                          onclick="addMotif(this)"
+                          onclick="selectMotif(this)"
                         />
                       </div>
 
@@ -156,7 +449,7 @@
                           loading="lazy"
                           data-urutanasal="{{ urutan1 }}"
                           data-mirror="true"
-                          onclick="addMotif(this)"
+                          onclick="selectMotif(this)"
                         />
                       </div>
 
@@ -169,7 +462,7 @@
                           loading="lazy"
                           data-urutanasal="{{ urutan2 }}"
                           data-mirror="true"
-                          onclick="addMotif(this)"
+                          onclick="selectMotif(this)"
                         />
                       </div>
 
@@ -182,7 +475,7 @@
                           loading="lazy"
                           data-urutanasal="{{ urutan3 }}"
                           data-mirror="true"
-                          onclick="addMotif(this)"
+                          onclick="selectMotif(this)"
                         />
                       </div>
                     </div>
@@ -359,9 +652,12 @@
     <!-- Tambahkan jQuery secara eksplisit -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
     <script src="{% static 'plugins.js' %}" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      defer
       integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-      crossorigin="anonymous"></script>
+      crossorigin="anonymous"
+    ></script>
     <script src="{% static 'script.js' %}" defer></script>
     <script>
       // Gunakan vanilla JavaScript sebagai pengganti jQuery
@@ -370,37 +666,60 @@
       });
 
       // Cache elemen DOM
-      const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
-      const jenisKainSelect = document.getElementById('jenis_kain');
-      const jenisProdukSelect = document.getElementById('jenis_produk');
+      const combinedMotifContainer = document.getElementById(
+        "newCombinedMotifContainer"
+      );
+      const jenisKainSelect = document.getElementById("jenis_kain");
+      const jenisProdukSelect = document.getElementById("jenis_produk");
+      const sizeInfoSarung = document.getElementById("size-info-sarung");
+      const sizeInfoSelendang = document.getElementById("size-info-selendang");
+
+      // Fungsi untuk menampilkan/menyembunyikan ukuran berdasarkan pilihan
+      function updateSizeInfo() {
+        const selectedValue = jenisProdukSelect.value;
+        sizeInfoSarung.style.display = selectedValue === "sarung" ? "block" : "none";
+        sizeInfoSelendang.style.display = selectedValue === "selendang" ? "block" : "none";
+      }
 
       // Fungsi untuk mengatur ukuran container berdasarkan pilihan
       function adjustCombinedMotifContainer() {
-        if (jenisProdukSelect) {
+        if (jenisProdukSelect && combinedMotifContainer) {
           const selectedValue = jenisProdukSelect.value;
-          if (selectedValue === 'songket') {
-            combinedMotifContainer.style.maxWidth = '500px';
-            combinedMotifContainer.style.maxHeight = '800px';
-          } else if (selectedValue === 'selendang') {
-            combinedMotifContainer.style.maxWidth = '300px';
-            combinedMotifContainer.style.maxHeight = '600px';
+          if (selectedValue === "sarung") {
+            combinedMotifContainer.style.maxWidth = "500px";
+            combinedMotifContainer.style.maxHeight = "800px";
+          } else if (selectedValue === "selendang") {
+            combinedMotifContainer.style.maxWidth = "300px";
+            combinedMotifContainer.style.maxHeight = "600px";
           }
+          // Ensure container matches motif-size dimensions
+          combinedMotifContainer.style.width = "100%";
+          combinedMotifContainer.style.height = "auto";
         }
       }
 
       // Tambahkan event listener untuk mendeteksi perubahan pada select
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener("DOMContentLoaded", function () {
         if (jenisKainSelect && jenisProdukSelect) {
           adjustCombinedMotifContainer(); // Panggil saat halaman dimuat untuk set awal
-          jenisKainSelect.addEventListener('change', renderMotifs);
-          jenisProdukSelect.addEventListener('change', adjustCombinedMotifContainer);
-          jenisProdukSelect.addEventListener('change', renderMotifs);
+          updateSizeInfo(); // Panggil untuk set ukuran awal
+          renderMotifs(); // Render awal untuk menampilkan container kosong dengan ukuran sesuai
+          jenisKainSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            renderMotifs();
+          });
+          jenisProdukSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            updateSizeInfo();
+            renderMotifs();
+          });
         }
       });
 
       let allMotifImages = [];
       let urutanAsalArray = [];
       let urutanGabunganArray = [];
+      let isSelectingMiddleMotif = false;
 
       function redirectToList() {
         if (window.savedMotifId) {
@@ -412,21 +731,20 @@
       }
 
       function updateMotifNumbers() {
+ MOUSE_EVENT_LISTENER
         const labels = combinedMotifContainer.querySelectorAll(".motif-number");
-        const totalMotifs = allMotifImages.length;
-
+        const totalMotifs = labels.length;
         for (let i = 0; i < totalMotifs; i++) {
-          labels[i].textContent = totalMotifs - i;
-        }
-
-        for (let i = totalMotifs; i < labels.length; i++) {
-          labels[i].textContent = i - totalMotifs + 1;
+          labels[i].textContent = i + 1;
         }
       }
 
       function renderMotifs() {
         requestAnimationFrame(() => {
           combinedMotifContainer.innerHTML = "";
+
+          // Selalu set ukuran container sesuai jenis produk
+          adjustCombinedMotifContainer();
 
           if (allMotifImages.length === 0) {
             const notif = document.createElement("p");
@@ -439,21 +757,40 @@
           const jenisKain = jenisKainSelect.value;
           const jenisProduk = jenisProdukSelect.value;
 
-          const motifPair = document.createElement("div");
-          motifPair.className = "motif-pair";
-          motifPair.style.display = "flex";
-          motifPair.style.flexDirection = "column";
-          motifPair.style.alignItems = "center";
+          const motifContainer = document.createElement("div");
+          if (jenisKain === "puca") {
+            motifContainer.className = "puca-row";
+          } else if (jenisKain === "sadum") {
+            motifContainer.className = "sadum-row";
+          }
+          motifContainer.style.display = "flex";
+          motifContainer.style.flexDirection = "column";
+          motifContainer.style.alignItems = "center";
+          if (jenisKain === "puca") {
+            motifContainer.classList.add("puca");
+          } else if (jenisKain === "sadum") {
+            motifContainer.classList.add("sadum");
+          }
 
-          function createMotifImage(src, index, isMirror = false, position = 'body') {
+          function createMotifImage(
+            src,
+            index,
+            isMirror = false,
+            position = "body"
+          ) {
             const wrapper = document.createElement("div");
+            if (jenisKain === "puca") {
+              wrapper.className = "puca-motif-wrapper";
+            } else if (jenisKain === "sadum") {
+              wrapper.className = "sadum-motif-wrapper";
+            }
             wrapper.style.marginBottom = "20px";
             wrapper.style.textAlign = "center";
             wrapper.style.position = "relative";
+            wrapper.style.width = "100%";
 
             const label = document.createElement("span");
             label.className = "motif-number";
-            label.textContent = index + 1;
             label.style.position = "absolute";
             label.style.top = "5px";
             label.style.left = "5px";
@@ -465,18 +802,37 @@
             label.style.zIndex = "1";
 
             const img = document.createElement("img");
-            img.src = src === "motif kosong" ? "https://via.placeholder.com/150?text=Kosong" : src;
-            img.className = "motif-size";
-            img.style.maxWidth = "100%";
+            if (jenisKain === "puca") {
+              img.className = "puca-motif";
+            } else if (jenisKain === "sadum") {
+              img.className = "sadum-motif";
+            }
+            img.src =
+              src === "motif kosong"
+                ? "https://via.placeholder.com/150?text=Pembatas"
+                : src;
+            img.style.width = "100%";
+            img.style.height = "auto";
+            img.style.objectFit = "contain";
             if (isMirror) img.style.transform = "scaleY(-1)";
             img.dataset.index = index;
             img.dataset.position = position;
 
-            img.setAttribute("data-urutanasal", JSON.stringify(urutanAsalArray[index] || []));
+            img.setAttribute(
+              "data-urutanasal",
+              JSON.stringify(
+                urutanAsalArray[index % urutanAsalArray.length] || []
+              )
+            );
             img.setAttribute("data-mirror", isMirror ? "true" : "false");
 
             img.onclick = function () {
-              removeMotif(index);
+              if (position === "middle" && jenisKain === "puca") {
+                isSelectingMiddleMotif = true;
+                combinedMotifContainer.classList.add("selecting-middle");
+              } else {
+                removeMotif(index % urutanAsalArray.length);
+              }
             };
 
             wrapper.appendChild(img);
@@ -484,100 +840,117 @@
             return wrapper;
           }
 
-          // Logika penempatan motif berdasarkan jenis kain dan produk
-          if (jenisKain === 'harungguan') {
-            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-              const totalMotifs = allMotifImages.length;
+          if (jenisKain === "puca") {
+            let motifs = [...allMotifImages];
+            let urutan = [...urutanAsalArray];
+            const halfCount = Math.floor(motifs.length / 2);
+            const middleIndex = motifs.length;
 
-              // Susunan vertikal dari atas ke bawah
-              for (let i = 0; i < totalMotifs; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'body'));
-                }
+            motifs.splice(halfCount, 0, "motif kosong");
+            urutan.splice(halfCount, 0, []);
+
+            for (let i = 0; i < halfCount; i++) {
+              if (motifs[i] !== "motif kosong") {
+                motifContainer.appendChild(
+                  createMotifImage(motifs[i], i, false, "top")
+                );
               }
             }
-          } else if (jenisKain === 'puca') {
-            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-              const totalMotifs = allMotifImages.length;
-              if (totalMotifs % 2 === 0) {
-                alert("Jumlah motif harus ganjil untuk Puca!");
-                return;
-              }
-              const middleIndex = Math.floor(totalMotifs / 2);
 
-              // Bagian atas (sebelum tengah)
-              for (let i = 0; i < middleIndex; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'top'));
-                }
-              }
+            motifContainer.appendChild(
+              createMotifImage(
+                motifs[middleIndex],
+                middleIndex,
+                false,
+                "middle"
+              )
+            );
 
-              // Motif pembatas tengah
-              if (allMotifImages[middleIndex] !== "motif kosong") {
-                const dividerWrapper = document.createElement("div");
-                dividerWrapper.style.marginBottom = "20px";
-                dividerWrapper.style.textAlign = "center";
-                const dividerImg = document.createElement("img");
-                dividerImg.src = "https://via.placeholder.com/150?text=Pembatas";
-                dividerImg.className = "motif-size";
-                dividerImg.style.maxWidth = "100%";
-                dividerWrapper.appendChild(dividerImg);
-                motifPair.appendChild(dividerWrapper);
-              }
-
-              // Bagian bawah (cermin dari atas)
-              for (let i = totalMotifs - 1; i > middleIndex; i--) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'bottom'));
-                }
+            for (let i = halfCount - 1; i >= 0; i--) {
+              if (motifs[i] !== "motif kosong") {
+                motifContainer.appendChild(
+                  createMotifImage(motifs[i], i + halfCount + 1, true, "bottom")
+                );
               }
             }
-          } else if (jenisKain === 'sadum') {
-            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-              const totalMotifs = allMotifImages.length;
-              const halfCount = Math.floor(totalMotifs / 2);
+          } else if (jenisKain === "sadum") {
+            const totalMotifs = allMotifImages.length;
 
-              // Bagian atas (normal)
-              for (let i = 0; i < halfCount; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'top'));
-                }
+            for (let i = 0; i < totalMotifs; i++) {
+              if (allMotifImages[i] !== "motif kosong") {
+                motifContainer.appendChild(
+                  createMotifImage(allMotifImages[i], i, false, "top")
+                );
               }
+            }
 
-              // Bagian bawah (cermin dari atas)
-              for (let i = halfCount - 1; i >= 0; i--) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'bottom'));
-                }
+            for (let i = totalMotifs - 1; i >= 0; i--) {
+              if (allMotifImages[i] !== "motif kosong") {
+                motifContainer.appendChild(
+                  createMotifImage(
+                    allMotifImages[i],
+                    i + totalMotifs,
+                    true,
+                    "bottom"
+                  )
+                );
               }
             }
           }
 
-          combinedMotifContainer.appendChild(motifPair);
+          combinedMotifContainer.appendChild(motifContainer);
           updateMotifNumbers();
           tampilkanUrutanGabungan();
         });
       }
 
-      function addMotif(imageElement) {
-        const urutanArray = JSON.parse(imageElement.getAttribute("data-urutanasal"));
-        const src = imageElement.src;
-        const jumlahAktif = allMotifImages.filter(
-          (item) => item !== "motif kosong"
-        ).length;
-        if (jumlahAktif >= 11) {
-          alert("Motif yang ditambahkan maksimal 11!");
-          return;
-        }
-        const kosongIndex = allMotifImages.findIndex(
-          (item) => item === "motif kosong"
+      function selectMotif(imageElement) {
+        const urutanArray = JSON.parse(
+          imageElement.getAttribute("data-urutanasal")
         );
-        if (kosongIndex !== -1) {
-          allMotifImages[kosongIndex] = src;
-          urutanAsalArray[kosongIndex] = urutanArray;
+        const src = imageElement.src;
+
+        // Pastikan container sudah sesuai ukuran sebelum menambahkan motif
+        adjustCombinedMotifContainer();
+
+        if (isSelectingMiddleMotif) {
+          const middleIndex = Math.floor(allMotifImages.length / 2);
+          allMotifImages[middleIndex] = src;
+          urutanAsalArray[middleIndex] = urutanArray;
+          isSelectingMiddleMotif = false;
+          combinedMotifContainer.classList.remove("selecting-middle");
         } else {
-          allMotifImages.push(src);
-          urutanAsalArray.push(urutanArray);
+          const jumlahAktif = allMotifImages.filter(
+            (item) => item !== "motif kosong"
+          ).length;
+          const maxMotifs = 11;
+          if (jumlahAktif >= maxMotifs) {
+            alert(`Motif yang ditambahkan maksimal ${maxMotifs}!`);
+            return;
+          }
+          const kosongIndex = allMotifImages.findIndex(
+            (item) =>
+              item === "motif kosong" &&
+              (jenisKainSelect.value !== "puca" ||
+                item.index !== Math.floor(allMotifImages.length / 2))
+          );
+          if (kosongIndex !== -1) {
+            allMotifImages[kosongIndex] = src;
+            urutanAsalArray[kosongIndex] = urutanArray;
+          } else {
+            if (jenisKainSelect.value === "puca") {
+              const middleIndex = Math.floor(allMotifImages.length / 2);
+              if (
+                middleIndex >= 0 &&
+                allMotifImages[middleIndex] !== "motif kosong"
+              ) {
+                allMotifImages.splice(middleIndex, 0, "motif kosong");
+                urutanAsalArray.splice(middleIndex, 0, []);
+              }
+            }
+            allMotifImages.push(src);
+            urutanAsalArray.push(urutanArray);
+          }
         }
 
         tampilkanUrutanGabungan();
@@ -590,14 +963,15 @@
           indexToRemove < allMotifImages.length &&
           indexToRemove < urutanAsalArray.length
         ) {
-          if (allMotifImages[indexToRemove] === "motif kosong") {
-            allMotifImages.splice(indexToRemove, 1);
-            urutanAsalArray.splice(indexToRemove, 1);
-          } else {
-            allMotifImages[indexToRemove] = "motif kosong";
-            urutanAsalArray[indexToRemove] = [];
+          allMotifImages[indexToRemove] = "motif kosong";
+          urutanAsalArray[indexToRemove] = [];
+          if (jenisKainSelect.value === "puca") {
+            const middleIndex = Math.floor(allMotifImages.length / 2);
+            if (allMotifImages[middleIndex] !== "motif kosong") {
+              allMotifImages.splice(middleIndex, 0, "motif kosong");
+              urutanAsalArray.splice(middleIndex, 0, []);
+            }
           }
-
           renderMotifs();
           tampilkanUrutanGabungan();
         }
@@ -609,24 +983,29 @@
         let normal = [];
         let mirror = [];
 
-        if (jenisKain === 'harungguan') {
-          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
+        if (jenisKain === "puca") {
+          if (jenisProduk === "sarung" || jenisProduk === "selendang") {
+            const halfCount = Math.floor(urutanAsalArray.length / 2);
+            normal = urutanAsalArray
+              .slice(0, halfCount)
+              .flat()
+              .concat(urutanAsalArray[halfCount].flat())
+              .concat(urutanAsalArray.slice(halfCount + 1).flat());
+            mirror = urutanAsalArray
+              .slice(0, halfCount)
+              .reverse()
+              .map((arr) => [...arr].reverse())
+              .flat();
+          }
+        } else if (jenisKain === "sadum") {
+          if (jenisProduk === "sarung" || jenisProduk === "selendang") {
+            const totalMotifs = urutanAsalArray.length;
             normal = urutanAsalArray.flat();
-          }
-        } else if (jenisKain === 'puca') {
-          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-            const totalMotifs = urutanAsalArray.length;
-            const middleIndex = Math.floor(totalMotifs / 2);
-            normal = urutanAsalArray.slice(0, middleIndex).flat()
-                   .concat(urutanAsalArray.slice(middleIndex + 1).flat());
-            mirror = urutanAsalArray.slice(middleIndex + 1).reverse().map((arr) => [...arr].reverse()).flat();
-          }
-        } else if (jenisKain === 'sadum') {
-          if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-            const totalMotifs = urutanAsalArray.length;
-            const halfCount = Math.floor(totalMotifs / 2);
-            normal = urutanAsalArray.slice(0, halfCount).flat();
-            mirror = urutanAsalArray.slice(0, halfCount).reverse().map((arr) => [...arr].reverse()).flat();
+            mirror = urutanAsalArray
+              .slice()
+              .reverse()
+              .map((arr) => [...arr].reverse())
+              .flat();
           }
         }
 
@@ -639,19 +1018,28 @@
       }
 
       function saveMotif() {
-        const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
+        const combinedMotifContainer = document.getElementById(
+          "newCombinedMotifContainer"
+        );
 
         if (
           combinedMotifContainer.children.length === 0 ||
-          combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")
+          combinedMotifContainer.innerHTML.includes(
+            "Belum ada motif yang dipilih"
+          )
         ) {
-          const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
-          const errorModalMessage = document.getElementById("errorModalMessage");
+          const errorModal = new bootstrap.Modal(
+            document.getElementById("errorModal")
+          );
+          const errorModalMessage =
+            document.getElementById("errorModalMessage");
           if (errorModalMessage) {
             errorModalMessage.textContent = "Pilih motif terlebih dahulu!";
             errorModal.show();
           } else {
-            console.error("Error: Element with ID 'errorModalMessage' not found.");
+            console.error(
+              "Error: Element with ID 'errorModalMessage' not found."
+            );
           }
           return;
         }
@@ -673,7 +1061,9 @@
             for (let i = 0; i < cookies.length; i++) {
               const cookie = cookies[i].trim();
               if (cookie.substring(0, name.length + 1) === name + "=") {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                cookieValue = decodeURIComponent(
+                  cookie.substring(name.length + 1)
+                );
                 break;
               }
             }
@@ -683,18 +1073,20 @@
 
         async function combineMotifs() {
           try {
-            const motifImages = Array.from(combinedMotifContainer.querySelectorAll("img"));
+            const motifImages = Array.from(
+              combinedMotifContainer.querySelectorAll("img")
+            );
             if (motifImages.length === 0) {
               alert("Tidak ada gambar ditemukan.");
               return;
             }
 
-            const canvasWidth = parseInt(combinedMotifContainer.style.maxWidth) || 500;
+            const canvasWidth =
+              parseInt(combinedMotifContainer.style.maxWidth) || 500;
             let totalHeight = 0;
             const loadedImages = [];
 
-            // Optimasi: Batasi resolusi untuk performa lebih baik
-            const maxResolution = 300; // Resolusi maksimum dalam piksel
+            const maxResolution = 300;
             for (let img of motifImages) {
               const loaded = await loadImage(img.src);
               const scale = Math.min(maxResolution / loaded.width, 1);
@@ -724,11 +1116,14 @@
             const formDataUpload = new FormData();
             formDataUpload.append("file", blob, "motif_gabung.png");
             formDataUpload.append("imgBefore", imgBeforeSrc);
-            formDataUpload.append("imgAfter", "/media/uploads/itha.png");
+            formDataUpload.append("imgAfter", "/media/uploads/riskia.png");
             formDataUpload.append("urutanLidi", urutanGabunganArray.join(","));
             formDataUpload.append("jenisGenerate", "otomatis");
-            formDataUpload.append("user", "itha");
-            formDataUpload.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+            formDataUpload.append("user", "riskia");
+            formDataUpload.append(
+              "csrfmiddlewaretoken",
+              getCookie("csrftoken")
+            );
             formDataUpload.append("jmlBaris", urutanGabunganArray.join(","));
 
             const response = await fetch("/generator/PostImageGabungan", {
@@ -742,7 +1137,9 @@
             if (response.ok) {
               const responseData = await response.json();
               const motifId = responseData.motif_id;
-              const successModal = new bootstrap.Modal(document.getElementById("successModal"));
+              const successModal = new bootstrap.Modal(
+                document.getElementById("successModal")
+              );
               successModal.show();
               window.savedMotifId = motifId;
             } else {
