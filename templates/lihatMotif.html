@@ -92,12 +92,12 @@
         height: 100%;
         pointer-events: none;
         display: grid;
-        grid-template-columns: repeat(40, 1fr);
-        grid-template-rows: repeat(40, 1fr);
-        z-index: 10;
+        grid-template-columns: repeat(80, 1fr);
+        grid-template-rows: repeat(80, 1fr);
+        z-index: 20;
         background-image: linear-gradient(rgba(0, 0, 0, 0.3) 1px, transparent 1px),
                           linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
-        background-size: 10px 10px;
+        background-size: calc(100% / 80) calc(100% / 80);
     }
 
     .text-muted {
@@ -354,6 +354,16 @@
         <div class="mb-4 d-flex flex-wrap">
             <div class="mr-4 mb-2">
                 <span class="tm-text-gray-dark">Jumlah Baris: </span><a class="link" href="{% url 'tagJmlBaris' motif.jmlBaris %}">{{ motif.jmlBaris|length }} Baris</a></span>
+            </div>
+        </div>
+        <div class="mb-4 d-flex flex-wrap">
+            <div class="mr-4 mb-2">
+                <span class="tm-text-gray-dark">Jenis Kain: </span><span>{{ motif.jenisKain|default:"Tidak tersedia" }}</span>
+            </div>
+        </div>
+        <div class="mb-4 d-flex flex-wrap">
+            <div class="mr-4 mb-2">
+                <span class="tm-text-gray-dark">Jenis Produk: </span><span>{{ motif.jenisProduk|default:"Tidak tersedia" }}</span>
             </div>
         </div>
         <div class="mb-4 d-flex flex-wrap">

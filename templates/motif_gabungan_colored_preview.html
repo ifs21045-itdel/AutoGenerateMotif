@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{% static 'templatemo-style.css'%}">
     <link rel="stylesheet" href="{% static 'image.css'%}">
     
-    <title>Preview Gabungan Motif</title>
-    <link rel="icon" href="{% static 'img/icon/NewTitle.ico' %}" type="image/x-icon">
+    <title>Pratinjau Gabungan Motif</title>
     
     <style>
     .image-container {
@@ -61,21 +60,29 @@
 </head>
 <body>
     
-
     {% include "header.html" %}
 
     <h2 class="tm-text-primary text-center mt-4" style="margin-bottom: -70px;">Hasil Motif</h2>
     <div class="container" style="max-width: 100vw; display: flex; justify-content: center; align-items: center; flex-direction: column;">
         <div id="image-section" style="width: 90%; display: flex; flex-direction: column; gap: 0; align-items: center;">
-                <h2 style="text-align: left;">Nama pembuat: {{user}}</h2>
-                <h2 style="text-align: left;">Tanggal pembuatan: {{ date_now}}</h2>
+                <h2 style="text-align: left;">Nama Pembuat: {{ user }}</h2>
+                <h2 style="text-align: left;">Tanggal Pembuatan: {{ date_now }}</h2>
+                <h2 style="text-align: left;">Jenis Kain: {{ kain }}</h2>
+                <h2 style="text-align: left;">Jenis Produk: {{ produk }}</h2>
+                <h2 style="text-align: left;">Ukuran: 
+                    {% if produk == 'Sarung' %}
+                        Panjang 2 meter, Lebar 1 meter
+                    {% elif produk == 'Selendang' %}
+                        Panjang 2 meter, Lebar 50-60 cm
+                    {% endif %}
+                </h2>
                 {% for Motif1, Motif2 in slice %}
                 <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; margin: 0; padding: 0; line-height: 0;">
                     <div class="image-container grid-overlay" style="width: 80%; margin: 0; padding: 0;">
-                        <img src="{{Motif1}}" data-nama-gambar="Lidi {{Motif2}}" onclick="openModal(this);" style="width: 100%; height: auto; object-fit: contain; margin: 0; padding: 0;">
+                        <img src="{{ Motif1 }}" data-nama-gambar="Lidi {{ Motif2 }}" onclick="openModal(this);" style="width: 100%; height: auto; object-fit: contain; margin: 0; padding: 0;">
                     </div>
                     <div class="lidi" style="text-align: center; margin: 0; padding: 0; font-size: 0.6rem; line-height: 0">
-                        Lidi {{Motif2}}
+                        Lidi {{ Motif2 }}
                     </div>
                 </div>
                 {% endfor %}
@@ -88,7 +95,7 @@
         <a class="btn btn-primary mb-4" onclick="renderDivToImage('png')">Unduh Motif (PNG)</a>
         <a class="btn btn-primary mb-4" onclick="renderDivToImage('jpg')">Unduh Motif (JPG)</a>
         <a class="btn btn-primary mb-4" onclick="renderDivToImage('pdf')">Unduh Motif (PDF)</a>
-        <a class="btn btn-primary mb-4" href="/ubah_warna_combined/{{motif.id}}" style="color: rgb(160, 160, 160);">Kembali</a>
+        <a class="btn btn-primary mb-4" href="/ubah_warna_combined/{{ motif.id }}" style="color: rgb(160, 160, 160);">Kembali</a>
     </div>
 
     <img id="hiddenCombinedImage" src="{{ combined_image_url }}" style="display: none;">
@@ -115,62 +122,69 @@
                 loadingIndicator.style.color = 'white';
                 loadingIndicator.style.borderRadius = '5px';
                 loadingIndicator.style.zIndex = '1000';
-                loadingIndicator.innerText = 'Processing...';
+                loadingIndicator.innerText = 'Memproses...';
                 document.body.appendChild(loadingIndicator);
 
                 html2canvas(section, {
-                    scale: window.devicePixelRatio || 2, // Adjust scale dynamically based on device
+                    scale: window.devicePixelRatio || 2,
                     useCORS: true,
                     allowTaint: true
                 }).then(canvas => {
                     document.body.removeChild(loadingIndicator);
 
                     if (format === 'pdf') {
-                        const pdf = new jsPDF('p', 'mm');
+                        const pdf = new jsPDF('p', 'mm', 'a4');
 
-                        const imgData = canvas.toDataURL('image/jpeg', 0.7);
+                        const imgData = canvas.toDataURL('image/jpeg', 0.8);
                         const pageWidth = pdf.internal.pageSize.getWidth();
                         const pageHeight = pdf.internal.pageSize.getHeight();
 
                         const imgWidth = canvas.width * 0.264583; // Convert px to mm
-                        const imgHeight = canvas.height * 0.264583; // Convert px to mm
+                        const imgHeight = imgWidth * (canvas.height / canvas.width); // Maintain aspect ratio
 
-                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 40) / imgHeight); // Scale to fit within PDF
+                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 80) / imgHeight); // Scale to fit with margins
 
                         const scaledWidth = imgWidth * scaleFactor;
                         const scaledHeight = imgHeight * scaleFactor;
 
                         const xOffset = (pageWidth - scaledWidth) / 2; // Center image horizontally
-                        const yOffset = 20; // Add some top margin
+                        const yOffset = 60; // Start below header info
 
-                        pdf.addImage('/{{ditenun_logo_1}}', 'PNG', 20, 10, 30, 30);
-                        pdf.addImage('/{{ditenun_logo_2}}', 'PNG', pageWidth - 50, 10, 30, 30);
+                        pdf.addImage('/{{ ditenun_logo_1 }}', 'PNG', 20, 10, 30, 30);
+                        pdf.addImage('/{{ ditenun_logo_2 }}', 'PNG', pageWidth - 50, 10, 30, 30);
 
-                        pdf.setFontSize(35 * scaleFactor); // Scale font size proportionally
+                        pdf.setFontSize(20);
                         pdf.text('Lembar Kerja Penenun', pageWidth / 2, 25, { align: 'center' });
 
-                        const logoBottomY = 10 + 30;
-                        pdf.line(30, logoBottomY + 5, pageWidth - 30, logoBottomY + 5);
+                        pdf.setFontSize(12);
+                        pdf.text('Nama Pembuat: {{ user }}', 20, 35);
+                        pdf.text('Tanggal Pembuatan: {{ date_now }}', 20, 45);
+                        pdf.text('Jenis Kain: {{ kain }}', 20, 55);
+                        pdf.text('Jenis Produk: {{ produk }}', 20, 65);
+                        pdf.text('Ukuran: {% if produk == "Sarung" %}Panjang 2 m, Lebar 1 m{% elif produk == "Selendang" %}Panjang 2 m, Lebar 50-60 cm{% endif %}', 20, 75);
 
-                        pdf.addImage(imgData, 'JPEG', xOffset, yOffset + 40, scaledWidth, scaledHeight);
+                        const logoBottom = 10 + 30;
+                        pdf.line(30, logoBottom + 10, pageWidth - 30, logoBottom + 10);
 
-                        pdf.save('image_section.pdf');
+                        pdf.addImage(imgData, 'JPEG', xOffset, yOffset + 20, scaledWidth, scaledHeight);
+
+                        pdf.save('motif_combined.pdf');
                     } else {
                         const link = document.createElement('a');
-                        link.href = canvas.toDataURL(`image/${format}`, 0.7);
-                        link.download = `image_section.${format}`;
+                        link.href = canvas.toDataURL(`image/${format}`, 0.8);
+                        link.download = `motif_image.${format}`;
                         link.click();
                     }
                 }).catch(error => {
                     document.body.removeChild(loadingIndicator);
-                    console.error('Error rendering div to image:', error);
+                    console.error('Kesalahan saat membuat gambar:', error);
                 });
             }
 
             window.renderDivToImage = renderDivToImage;
 
             const submitCanvasImages = () => {
-                console.log('submitCanvasImages function is not implemented yet.');
+                console.log('Fungsi submitCanvasImages belum diimplementasikan.');
             };
             window.submitCanvasImages = submitCanvasImages;
         });
