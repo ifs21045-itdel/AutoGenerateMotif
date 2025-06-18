@@ -258,9 +258,9 @@
 
       function redirectToList() {
         if (window.savedMotifId) {
-          window.location.href = `/list/${window.savedMotifId}`;
+          window.location.href = `/motif/${window.savedMotifId}/`;
         } else {
-          window.location.href = "{% url 'list1' %}";
+          window.location.href = "{% url 'list' %}";
         }
       }
 
