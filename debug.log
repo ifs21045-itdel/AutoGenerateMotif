@@ -3167,214 +3167,41 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 
 Watching for file changes with StatReloader
-Internal Server Error: /download/
-Traceback (most recent call last):
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
-    return render(request, 'download.html', context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
-    return self.template.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
-    return self._render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
-    return self.nodelist.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
-    return self.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
-    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
-C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
 Watching for file changes with StatReloader
-Internal Server Error: /download/
-Traceback (most recent call last):
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
-    return render(request, 'download.html', context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
-    return self.template.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
-    return self._render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
-    return self.nodelist.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
-    return self.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
-    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
-Internal Server Error: /download/
-Traceback (most recent call last):
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
-    return render(request, 'download.html', context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
-    return self.template.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
-    return self._render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
-    return self.nodelist.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
-    return self.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
-    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
-Internal Server Error: /download/
-Traceback (most recent call last):
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
-    return render(request, 'download.html', context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
-    return self.template.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
-    return self._render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
-    return self.nodelist.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
-    return self.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
-    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
-Not Found: /.well-known/appspecific/com.chrome.devtools.json
-Internal Server Error: /download/
-Traceback (most recent call last):
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
-    response = get_response(request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
-    return render(request, 'download.html', context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
-    content = loader.render_to_string(template_name, context, request, using=using)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
-    return template.render(context, request)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
-    return self.template.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
-    return self._render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
-    return self.nodelist.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
-    return SafeString("".join([node.render_annotated(context) for node in self]))
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
-    return self.render(context)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
-    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
-    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
-  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
-    raise NoReverseMatch(msg)
-django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
-Accessing motif detail for ID: 342
-Created grid image: media\grids\grid_motif_342.png
-Created red line image: media\grids\red_motif_342.png
-Created slice: media\slices/motif_342\slice_1.png
-Created slice: media\slices/motif_342\slice_2.png
-Created slice: media\slices/motif_342\slice_3.png
-Created slice: media\slices/motif_342\slice_4.png
-Created slice: media\slices/motif_342\slice_5.png
-Created slice: media\slices/motif_342\slice_6.png
-Created slice: media\slices/motif_342\slice_7.png
-Created slice: media\slices/motif_342\slice_8.png
-Created slice: media\slices/motif_342\slice_9.png
-Created slice: media\slices/motif_342\slice_10.png
-Created slice: media\slices/motif_342\slice_11.png
-Created slice: media\slices/motif_342\slice_12.png
-Created slice: media\slices/motif_342\slice_13.png
-Created slice: media\slices/motif_342\slice_14.png
-Created slice: media\slices/motif_342\slice_15.png
-Created slice: media\slices/motif_342\slice_16.png
-Created slice: media\slices/motif_342\slice_17.png
-Created slice: media\slices/motif_342\slice_18.png
-Created slice: media\slices/motif_342\slice_19.png
-Created slice: media\slices/motif_342\slice_20.png
-Created slice: media\slices/motif_342\slice_21.png
-Created slice: media\slices/motif_342\slice_22.png
-Created slice: media\slices/motif_342\slice_23.png
-Created slice: media\slices/motif_342\slice_24.png
-Created slice: media\slices/motif_342\slice_25.png
-Created slice: media\slices/motif_342\slice_26.png
-Created slice: media\slices/motif_342\slice_27.png
-Created slice: media\slices/motif_342\slice_28.png
-Created slice: media\slices/motif_342\slice_29.png
-Created slice: media\slices/motif_342\slice_30.png
-Created slice: media\slices/motif_342\slice_31.png
-Created slice: media\slices/motif_342\slice_32.png
-Created slice: media\slices/motif_342\slice_33.png
-Created slice: media\slices/motif_342\slice_34.png
-Created slice: media\slices/motif_342\slice_35.png
-Created slice: media\slices/motif_342\slice_36.png
-Created slice: media\slices/motif_342\slice_37.png
-Created slice: media\slices/motif_342\slice_38.png
-Created slice: media\slices/motif_342\slice_39.png
-Created slice: media\slices/motif_342\slice_40.png
-Created slice: media\slices/motif_342\slice_41.png
-Created slice: media\slices/motif_342\slice_42.png
-Created slice: media\slices/motif_342\slice_43.png
-Created slice: media\slices/motif_342\slice_44.png
-Created slice: media\slices/motif_342\slice_45.png
-Created slice: media\slices/motif_342\slice_46.png
-Created slice: media\slices/motif_342\slice_47.png
-Created slice: media\slices/motif_342\slice_48.png
-Created ZIP file: media\zips\motif_342.zip
-Accessing motif detail for ID: 342
+Accessing motif detail for ID: 310
+Created grid image: media\grids\grid_motif_310.png
+Created red line image: media\grids\red_motif_310.png
+Created slice: media\slices/motif_310\slice_1.png
+Created slice: media\slices/motif_310\slice_2.png
+Created slice: media\slices/motif_310\slice_3.png
+Created slice: media\slices/motif_310\slice_4.png
+Created slice: media\slices/motif_310\slice_5.png
+Created slice: media\slices/motif_310\slice_6.png
+Created slice: media\slices/motif_310\slice_7.png
+Created slice: media\slices/motif_310\slice_8.png
+Created slice: media\slices/motif_310\slice_9.png
+Created slice: media\slices/motif_310\slice_10.png
+Created slice: media\slices/motif_310\slice_11.png
+Created slice: media\slices/motif_310\slice_12.png
+Created slice: media\slices/motif_310\slice_13.png
+Created slice: media\slices/motif_310\slice_14.png
+Created slice: media\slices/motif_310\slice_15.png
+Created slice: media\slices/motif_310\slice_16.png
+Created slice: media\slices/motif_310\slice_17.png
+Created slice: media\slices/motif_310\slice_18.png
+Created slice: media\slices/motif_310\slice_19.png
+Created slice: media\slices/motif_310\slice_20.png
+Created slice: media\slices/motif_310\slice_21.png
+Created slice: media\slices/motif_310\slice_22.png
+Created slice: media\slices/motif_310\slice_23.png
+Created slice: media\slices/motif_310\slice_24.png
+Created slice: media\slices/motif_310\slice_25.png
+Created slice: media\slices/motif_310\slice_26.png
+Created slice: media\slices/motif_310\slice_27.png
+Created slice: media\slices/motif_310\slice_28.png
+Created slice: media\slices/motif_310\slice_29.png
+Created slice: media\slices/motif_310\slice_30.png
+Created slice: media\slices/motif_310\slice_31.png
+Created slice: media\slices/motif_310\slice_32.png
+Created ZIP file: media\zips\motif_310.zip
+
