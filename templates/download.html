@@ -260,7 +260,7 @@
         if (window.savedMotifId) {
           window.location.href = `/motif/${window.savedMotifId}/`;
         } else {
-          window.location.href = "{% url 'list' %}";
+          window.location.href = `/list/${window.savedMotifId}`;
         }
       }
 // 

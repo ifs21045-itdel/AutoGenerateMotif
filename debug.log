@@ -3205,3 +3205,520 @@ Created slice: media\slices/motif_310\slice_31.png
 Created slice: media\slices/motif_310\slice_32.png
 Created ZIP file: media\zips\motif_310.zip
 
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Internal Server Error: /download/
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 384, in download
+    return render(request, 'download.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\backends\django.py", line 62, in render
+    return self.template.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 175, in render
+    return self._render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\base.py", line 966, in render_annotated
+    return self.render(context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\urls\resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'list' with no arguments not found. 1 pattern(s) tried: ['list/(?P<id>[0-9]+)\\Z']
+Not Found: /motif/345/
+Not Found: /motif/346/
+Not Found: /motif/347/
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 347
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/7caffda961ba4bd283cf06a9ceae0428.png from 900x110
+Resized to 600x73
+Created grid image: media\grids\grid_motif_347.png
+Created red line image: media\grids\red_motif_347.png
+Created slice: media\slices/motif_347\slice_1.png
+Created slice: media\slices/motif_347\slice_2.png
+Created slice: media\slices/motif_347\slice_3.png
+Created slice: media\slices/motif_347\slice_4.png
+Created slice: media\slices/motif_347\slice_5.png
+Created slice: media\slices/motif_347\slice_6.png
+Created slice: media\slices/motif_347\slice_7.png
+Created slice: media\slices/motif_347\slice_8.png
+Created slice: media\slices/motif_347\slice_9.png
+Created slice: media\slices/motif_347\slice_10.png
+Created slice: media\slices/motif_347\slice_11.png
+Created ZIP file: media\zips\motif_347.zip
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 347
+Error in motif view: motif_detail.html
+Traceback (most recent call last):
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 928, in motif
+    return render(request, 'motif_detail.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: motif_detail.html
+Accessing motif detail for ID: 347
+Error in motif view: motif_detail.html
+Traceback (most recent call last):
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 928, in motif
+    return render(request, 'motif_detail.html', context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: motif_detail.html
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 347
+Internal Server Error: /generator/save
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 335, in save
+    motif = Motif(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\base.py", line 561, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\fields\related_descriptors.py", line 235, in __set__
+    raise ValueError(
+ValueError: Cannot assign "'admin'": "Motif.user" must be a "User" instance.
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /generator/save
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'user_id' in 'INSERT INTO'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py", line 347, in save
+    motif.save()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\base.py", line 831, in save
+    self.save_base(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\base.py", line 882, in save_base
+    updated = self._save_table(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\base.py", line 1025, in _save_table
+    results = self._do_insert(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\base.py", line 1066, in _do_insert
+    return manager._insert(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\manager.py", line 85, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\query.py", line 1790, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\models\sql\compiler.py", line 1657, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 103, in execute
+    return super().execute(sql, params)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\cindy\AppData\Local\Programs\Python\Python38\lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1054, "Unknown column 'user_id' in 'INSERT INTO'")
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+User admin attempting to save motif
+Motif saved successfully with ID 349 by user admin
+Error in save view: name 'reverse' is not defined
+Internal Server Error: /generator/save
+User admin attempting to save motif
+Motif saved successfully with ID 350 by user admin
+Error in save view: name 'reverse' is not defined
+Internal Server Error: /generator/save
+C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\Website\views.py changed, reloading.
+Watching for file changes with StatReloader
+Accessing motif detail for ID: 352
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/60a51fba9b81454da555a4a48286736b.png from 900x120
+Resized to 600x80
+Created grid image: media\grids\grid_motif_352.png
+Created red line image: media\grids\red_motif_352.png
+Created slice: media\slices/motif_352\slice_1.png
+Created slice: media\slices/motif_352\slice_2.png
+Created slice: media\slices/motif_352\slice_3.png
+Created slice: media\slices/motif_352\slice_4.png
+Created slice: media\slices/motif_352\slice_5.png
+Created slice: media\slices/motif_352\slice_6.png
+Created slice: media\slices/motif_352\slice_7.png
+Created slice: media\slices/motif_352\slice_8.png
+Created slice: media\slices/motif_352\slice_9.png
+Created slice: media\slices/motif_352\slice_10.png
+Created slice: media\slices/motif_352\slice_11.png
+Created slice: media\slices/motif_352\slice_12.png
+Created ZIP file: media\zips\motif_352.zip
+Accessing motif detail for ID: 352
+Accessing motif detail for ID: 354
+Resizing image C:\Users\cindy\OneDrive\Desktop\Tugas Akhir\New folder\AutoGenerateMotif\media/admin/85cb3ec1137b43918222b5c5256fea1c.png from 900x120
+Resized to 600x80
+Created grid image: media\grids\grid_motif_354.png
+Created red line image: media\grids\red_motif_354.png
+Created slice: media\slices/motif_354\slice_1.png
+Created slice: media\slices/motif_354\slice_2.png
+Created slice: media\slices/motif_354\slice_3.png
+Created slice: media\slices/motif_354\slice_4.png
+Created slice: media\slices/motif_354\slice_5.png
+Created slice: media\slices/motif_354\slice_6.png
+Created slice: media\slices/motif_354\slice_7.png
+Created slice: media\slices/motif_354\slice_8.png
+Created slice: media\slices/motif_354\slice_9.png
+Created slice: media\slices/motif_354\slice_10.png
+Created slice: media\slices/motif_354\slice_11.png
+Created slice: media\slices/motif_354\slice_12.png
+Created ZIP file: media\zips\motif_354.zip

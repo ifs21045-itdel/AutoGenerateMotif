@@ -328,6 +328,7 @@ def save(request):
             jumlahasal = request.session.get("jumlahasal")
             
             # Ambil data dari form POST (bukan dari session statis)
+            
             imgBefore = request.POST.get("image2")  # Motif asal
             imgAfter = request.POST.get("image3")   # Motif hasil yang dipilih
             urutanLidi = request.POST.get("urutan") # Urutan lidi yang dipilih
@@ -369,6 +370,19 @@ def save(request):
                 "message": str(e)
             })
         
+        
+def download(request):
+    context = {
+        'raw_url1': request.session.get('img_before'),
+        'raw_lidi': request.session.get('raw_lidi'),
+        'raw_asal': request.session.get('raw_asal'),
+        'edit_url1': request.session.get('img_after'),
+        'Urutan': request.session.get('urutan'),
+        'jenis': request.session.get('jenis'),
+        'jmlBaris': request.session.get('jml_baris'),
+        'user': request.session.get('user'),
+    }
+    return render(request, 'download.html', context)
         
 def download(request):
     context = {
@@ -931,9 +945,9 @@ def motif(request, id):
         context = {
             'motif': motif,
             'Lidi': grid_url,
-            'RedLine': red_url,
+            'RedLine': motif.imgAfter,
             'zip': zip_url,
-            'UrutanLidi': Urutan_Lidi,
+            'UrutanLidi': motif.urutanLidi,
             'urutanAsliLidi': motif.urutanLidi,
             'GridHelp': grid_url,
             'SliceLidi': myList,
@@ -944,15 +958,15 @@ def motif(request, id):
             'navlink2': navlink[1],
             'navlink3': navlink[2],
             'navlink4': navlink[3],
-            'list_lidi_path': list_lidi_path,
+            'list_lidi_path': motif.urutanLidi.split(',') if motif.urutanLidi else [],
             'session_name': session_name,
             'slice': mySlice,
             'postImageurl': postImageurl,
             'motif_asal': motif.imgBefore,
         }
-
-        logger.debug(f"Rendering lihatMotif.html with context: {context}")
         return render(request, 'lihatMotif.html', context)
+    except Motif.DoesNotExist:
+        return render(request, 'lihatMotif.html', {'error_messages': ['Motif tidak ditemukan']})
 
     except MotifForm1.DoesNotExist:
         logger.error(f"Motif with ID {id} not found")

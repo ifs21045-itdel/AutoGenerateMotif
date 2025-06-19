@@ -30,6 +30,7 @@ urlpatterns = [
     path('list/Nama/<str:user>', views.tagName, name="tagUser"),
     path('list/JumlahBaris/<path:jmlBaris>/', views.tagJmlBaris, name='tagJmlBaris'),
     path('list/waktu/<str:time>', views.tagWaktu, name="tagTime"),
+    path('motif/<int:id>/', views.motif, name='motif_detail'),
     
     path('delete/', views.deleteMotif, name="delete"),
     path('update/<int:id>', views.UpdateUser, name='update'),
