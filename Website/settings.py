@@ -104,10 +104,10 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD':'root',  # Sesuaikan dengan password MariaDB Anda
         'HOST': 'localhost',  # atau 'localhost'
-        'PORT':'3306',
+        'PORT':'3307',
 }
 }
-# 
+
 
 LOGGING = {
     'version': 1,
