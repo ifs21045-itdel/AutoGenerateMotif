@@ -25,37 +25,412 @@
       type="image/x-icon"
     />
     <style>
-      h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
-      .main-title { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h1 { font-size: 36px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h2 { font-size: 30px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      h3 { font-size: 24px; text-align: center; margin-top: 10px; margin-bottom: 0; }
-      .container { max-width: 75%; padding-left: 20px; padding-right: 20px; margin-top: 31px; }
-      .form-container { display: flex; justify-content: space-between; gap: 15px; margin-top: -83px; margin-bottom: 30px; }
-      .form-container div { flex: 1; }
-      .form-container h5.combined-title { font-size: 10px; color: #000000; text-align: center; }
-      .form-container p { font-size: 15px; color: rgb(122, 121, 121); text-align: center; }
-      .motif-container { margin-top: 0; border: 3px solid #000000; border-radius: 10px; padding: 15px; background-color: #f5f5f5; height: 1250px; }
-      .motif-container h5 { color: rgb(0, 0, 0); font-weight: bold; margin-top: 0; }
-      .new-combined-motif-container { margin-top: 20px; padding: 15px; background-color: white; border: 1px solid #ddd; align-items: center; position: relative; display: flex; flex-direction: column; gap: 15px; justify-items: center; height: auto; width: 100%; overflow-y: auto; }
-      .motif-size { width: 100%; height: auto; object-fit: contain; margin-bottom: 10px; position: relative; }
-      .motif-number { position: absolute; top: 5px; left: 5px; background-color: blue; color: white; font-size: 16px; font-weight: bold; padding: 5px; border-radius: 0px; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; }
-      .new-combined-motif-container div { position: relative; width: 100%; }
-      .motif-card { margin-bottom: 10px; border: 2px solid #000000; border-radius: 0px; padding: 10px; background-color: #f9f9f9; }
-      .btn-container { margin-top: 40px; display: flex; justify-content: center; align-items: center; }
-      .motif-item { display: flex; flex-direction: column; gap: 15px; position: relative; cursor: pointer; align-items: center; }
-      .inner-card > .row { display: flex; align-items: flex-start; justify-content: center; }
-      .inner-card > .row > .col-md-6 { display: flex; flex-direction: column; align-items: center; }
-      .card-1 { padding: 15px; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .row { width: 100%; display: flex; justify-content: center; align-items: center; }
-      .motif-pair-container { display: flex; flex-direction: column; gap: 15px; position: relative; width: 100%; max-width: 500px; margin: 0 auto; margin-bottom: 60px; }
-      .motif-pair { position: relative; width: 100%; display: flex; justify-content: center; align-items: center; }
-      .motif-pair img { width: 100%; height: auto; object-fit: contain; border: 1px solid #ddd; display: block; margin: 0 auto; }
-      .equal-height-row { display: flex; align-items: stretch; justify-content: center; }
-      .equal-height-col { display: flex; flex-direction: column; align-items: center; }
-      .select-wrapper { position: relative; display: block; margin: 0 auto; width: 200px; }
-      .select-wrapper select { appearance: none; padding-right: 20px; font-size: 14px; color: #000000; width: 100%; text-align: center; box-sizing: border-box; }
-      .select-wrapper::after { content: "▼"; position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 15px; color: #000000; }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        padding: 0;
+      }
+      .main-title {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h2 {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h3 {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      .container {
+        max-width: 75%;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-top: 31px;
+      }
+      .form-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-top: -83px;
+        margin-bottom: 30px;
+      }
+      .form-container div {
+        flex: 1;
+      }
+      .form-container h5.combined-title {
+        font-size: 10px;
+        color: #000000;
+        text-align: center;
+      }
+      .form-container p {
+        font-size: 15px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+      }
+      .motif-container {
+        margin-top: 0;
+        border: 3px solid #000000;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #f5f5f5;
+        height: 1250px;
+      }
+      .motif-container h5 {
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        margin-top: 0;
+      }
+      .new-combined-motif-container {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: white;
+        border: 1px solid #ddd;
+        align-items: center;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        justify-items: center;
+        height: auto;
+        width: 100%;
+        overflow-y: auto;
+      }
+      .motif-size {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      .motif-number {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        background-color: blue;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+        border-radius: 0px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .new-combined-motif-container div {
+        position: relative;
+        width: 100%;
+      }
+      .motif-card {
+        margin-bottom: 10px;
+        border: 2px solid #000000;
+        border-radius: 0px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+      .btn-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-item {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        cursor: pointer;
+        align-items: center;
+      }
+      .inner-card > .row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .inner-card > .row > .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .card-1 {
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .row {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+      }
+      .motif-pair {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .motif-pair img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border: 1px solid #ddd;
+        display: block;
+        margin: 0 auto;
+      }
+      .equal-height-row {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+      }
+      .equal-height-col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .select-wrapper {
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+      }
+      .select-wrapper select {
+        appearance: none;
+        padding-right: 20px;
+        font-size: 14px;
+        color: #000000;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+      }
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        font-size: 15px;
+        color: #000000;
+      }
+      .size-info {
+        font-size: 14px;
+        color: rgb(122, 121, 121);
+        text-align: center;
+        margin-top: 10px;
+        display: none;
+      }
+
+      /* Styling untuk Puca */
+      .puca-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .puca-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .puca-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .puca-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .new-combined-motif-container.puca {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
+      .puca-motif-wrapper[data-position="middle"] {
+        border: 2px dashed #002ba3;
+        background-color: #e6f0ff;
+        padding: 10px;
+      }
+      .puca-motif-wrapper[data-position="middle"] img {
+        border: 1px solid #002ba3;
+      }
+
+      /* Styling untuk Sadum */
+      .sadum-row {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .sadum-motif-pair {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+      }
+      .sadum-motif-wrapper {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .sadum-motif {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+      .new-combined-motif-container.sadum {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        padding: 15px;
+        margin: 0;
+      }
+
+      /* Styling loader */
+      #loader-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f5f5f5;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #002ba3;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .loader-section {
+        position: fixed;
+        top: 0;
+        width: 50%;
+        height: 100%;
+        background: #f5f5f5;
+        z-index: 1000;
+        transform: translateX(0);
+        transition: all 0.7s;
+      }
+      .loader-section.section-left {
+        left: 0;
+      }
+      .loader-section.section-right {
+        right: 0;
+      }
+      .loaded #loader-wrapper .loader-section.section-left {
+        transform: translateX(-100%);
+      }
+      .loaded #loader-wrapper .loader-section.section-right {
+        transform: translateX(100%);
+      }
+      .loaded #loader-wrapper {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 0.7s, opacity 0.7s;
+      }
+      
+      /* Styling tambahan untuk motif tengah */
+      .middle-motif-placeholder {
+        width: 100%;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        border: 2px dashed #999;
+        color: #666;
+        font-weight: bold;
+      }
+      .selecting-middle .puca-motif-wrapper:not([data-position="middle"]) {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+      .selecting-middle .puca-motif-wrapper[data-position="middle"] {
+        border: 2px solid red;
+        animation: pulse 1s infinite;
+      }
+      @keyframes pulse {
+        0% { border-color: red; }
+        50% { border-color: #002ba3; }
+        100% { border-color: red; }
+      }
     </style>
   </head>
   <body>
@@ -372,15 +747,31 @@
     ></script>
     <script src="{% static 'script.js' %}" defer></script>
     <script>
-      // Gunakan vanilla JavaScript sebagai pengganti jQuery
+      // Inisialisasi variabel global
+      let allMotifImages = [];
+      let urutanAsalArray = [];
+      let urutanGabunganArray = [];
+      let isSelectingMiddleMotif = false;
+      let windowSavedMotifId = null;
+
+      // Fungsi untuk menyembunyikan loader
       window.addEventListener("load", function () {
         document.body.classList.add("loaded");
+        const loader = document.getElementById("loader-wrapper");
+        if (loader) loader.style.display = "none";
       });
 
+      // Fallback untuk loader
+      setTimeout(() => {
+        const loader = document.getElementById("loader-wrapper");
+        if (loader && loader.style.display !== "none") {
+          loader.style.display = "none";
+          console.warn("Loader timed out after 10 seconds.");
+        }
+      }, 10000);
+
       // Cache elemen DOM
-      const combinedMotifContainer = document.getElementById(
-        "newCombinedMotifContainer"
-      );
+      const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
       const jenisKainSelect = document.getElementById("jenis_kain");
       const jenisProdukSelect = document.getElementById("jenis_produk");
       const sizeInfoSarung = document.getElementById("size-info-sarung");
@@ -404,46 +795,23 @@
             combinedMotifContainer.style.maxWidth = "300px";
             combinedMotifContainer.style.maxHeight = "600px";
           }
-          // Ensure container matches motif-size dimensions
           combinedMotifContainer.style.width = "100%";
           combinedMotifContainer.style.height = "auto";
         }
       }
 
-      // Tambahkan event listener untuk mendeteksi perubahan pada select
-      document.addEventListener("DOMContentLoaded", function () {
-        if (jenisKainSelect && jenisProdukSelect) {
-          adjustCombinedMotifContainer(); // Panggil saat halaman dimuat untuk set awal
-          updateSizeInfo(); // Panggil untuk set ukuran awal
-          renderMotifs(); // Render awal untuk menampilkan container kosong dengan ukuran sesuai
-          jenisKainSelect.addEventListener("change", () => {
-            adjustCombinedMotifContainer();
-            renderMotifs();
-          });
-          jenisProdukSelect.addEventListener("change", () => {
-            adjustCombinedMotifContainer();
-            updateSizeInfo();
-            renderMotifs();
-          });
-        }
-      });
-
-      let allMotifImages = [];
-      let urutanAsalArray = [];
-      let urutanGabunganArray = [];
-      let isSelectingMiddleMotif = false;
-
+      // Fungsi untuk redirect ke halaman list
       function redirectToList() {
-        if (window.savedMotifId) {
-          window.location.href = `/list/${window.savedMotifId}`;
+        if (windowSavedMotifId) {
+          window.location.href = `/list/${windowSavedMotifId}`;
         } else {
           console.error("Motif ID tidak tersedia.");
-          window.location.href = "{% url 'list1' %}"; // Fallback ke halaman daftar motif
+          window.location.href = "{% url 'list1' %}";
         }
       }
 
+      // Fungsi untuk update nomor motif
       function updateMotifNumbers() {
- MOUSE_EVENT_LISTENER
         const labels = combinedMotifContainer.querySelectorAll(".motif-number");
         const totalMotifs = labels.length;
         for (let i = 0; i < totalMotifs; i++) {
@@ -451,11 +819,10 @@
         }
       }
 
+      // Fungsi utama untuk render motif
       function renderMotifs() {
         requestAnimationFrame(() => {
           combinedMotifContainer.innerHTML = "";
-
-          // Selalu set ukuran container sesuai jenis produk
           adjustCombinedMotifContainer();
 
           if (allMotifImages.length === 0) {
@@ -467,39 +834,35 @@
           }
 
           const jenisKain = jenisKainSelect.value;
-          const jenisProduk = jenisProdukSelect.value;
-
           const motifContainer = document.createElement("div");
+          
           if (jenisKain === "puca") {
-            motifContainer.className = "puca-row";
+            motifContainer.className = "puca-row new-combined-motif-container puca";
           } else if (jenisKain === "sadum") {
-            motifContainer.className = "sadum-row";
+            motifContainer.className = "sadum-row new-combined-motif-container sadum";
           }
+          
           motifContainer.style.display = "flex";
           motifContainer.style.flexDirection = "column";
           motifContainer.style.alignItems = "center";
-          if (jenisKain === "puca") {
-            motifContainer.classList.add("puca");
-          } else if (jenisKain === "sadum") {
-            motifContainer.classList.add("sadum");
-          }
 
-          function createMotifImage(
-            src,
-            index,
-            isMirror = false,
-            position = "body"
-          ) {
+          // Fungsi untuk membuat elemen gambar motif
+          function createMotifImage(src, index, isMirror = false, position = "body") {
             const wrapper = document.createElement("div");
             if (jenisKain === "puca") {
               wrapper.className = "puca-motif-wrapper";
+              if (position === "middle") {
+                wrapper.setAttribute("data-position", "middle");
+              }
             } else if (jenisKain === "sadum") {
               wrapper.className = "sadum-motif-wrapper";
             }
+            
             wrapper.style.marginBottom = "20px";
             wrapper.style.textAlign = "center";
             wrapper.style.position = "relative";
             wrapper.style.width = "100%";
+            wrapper.dataset.position = position;
 
             const label = document.createElement("span");
             label.className = "motif-number";
@@ -512,106 +875,93 @@
             label.style.fontWeight = "bold";
             label.style.fontSize = "12px";
             label.style.zIndex = "1";
+            label.textContent = index + 1;
 
-            const img = document.createElement("img");
-            img.src = src === "motif kosong" ? "https://via.placeholder.com/150?text=Kosong" : src;
-            img.className = "motif-size";
-            img.style.maxWidth = "100%";
-            if (isMirror) img.style.transform = "scaleY(-1)";
-            img.dataset.index = index;
-            img.dataset.position = position;
+            const imgContainer = document.createElement("div");
+            imgContainer.style.position = "relative";
+            imgContainer.style.width = "100%";
+            imgContainer.style.height = "auto";
 
-            img.setAttribute(
-              "data-urutanasal",
-              JSON.stringify(
-                urutanAsalArray[index % urutanAsalArray.length] || []
-              )
-            );
-            img.setAttribute("data-mirror", isMirror ? "true" : "false");
+            if (src === "motif kosong") {
+              const placeholder = document.createElement("div");
+              placeholder.className = "middle-motif-placeholder";
+              placeholder.textContent = "Pilih Motif Tengah";
+              imgContainer.appendChild(placeholder);
+            } else {
+              const img = document.createElement("img");
+              if (jenisKain === "puca") img.className = "puca-motif";
+              else if (jenisKain === "sadum") img.className = "sadum-motif";
+              
+              img.src = src;
+              img.style.width = "100%";
+              img.style.height = "auto";
+              img.style.objectFit = "contain";
+              if (isMirror) img.style.transform = "scaleY(-1)";
+              img.dataset.index = index;
+              img.dataset.position = position;
+              img.setAttribute("data-urutanasal", JSON.stringify(urutanAsalArray[index] || []));
+              img.setAttribute("data-mirror", isMirror ? "true" : "false");
+              imgContainer.appendChild(img);
+            }
 
-            img.onclick = function () {
+            wrapper.onclick = function() {
               if (position === "middle" && jenisKain === "puca") {
                 isSelectingMiddleMotif = true;
                 combinedMotifContainer.classList.add("selecting-middle");
-              } else {
-                removeMotif(index % urutanAsalArray.length);
+                alert("Silakan pilih motif untuk posisi tengah");
+              } else if (src !== "motif kosong") {
+                removeMotif(index);
               }
             };
 
-            wrapper.appendChild(img);
+            wrapper.appendChild(imgContainer);
             wrapper.appendChild(label);
             return wrapper;
           }
 
-          // Logika penempatan motif berdasarkan jenis kain dan produk
-          if (jenisKain === 'harungguan') {
-            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-              const totalMotifs = allMotifImages.length;
+          // Render untuk jenis kain Puca
+          if (jenisKain === "puca") {
+            // Pastikan selalu ada motif tengah
+            if (allMotifImages.length % 2 === 0) {
+              const middleIndex = Math.floor(allMotifImages.length / 2);
+              allMotifImages.splice(middleIndex, 0, "motif kosong");
+              urutanAsalArray.splice(middleIndex, 0, []);
+            }
 
-              // Susunan vertikal dari atas ke bawah
-              for (let i = 0; i < totalMotifs; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'body'));
-                }
+            const middleIndex = Math.floor(allMotifImages.length / 2);
+            
+            // Render motif atas
+            for (let i = 0; i < middleIndex; i++) {
+              if (allMotifImages[i] !== "motif kosong") {
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i, false, "top"));
               }
             }
-          } else if (jenisKain === 'puca') {
-            if (jenisProduk === 'songket' || jenisProduk === 'selendang') {
-              const totalMotifs = allMotifImages.length;
-              if (totalMotifs % 2 === 0) {
-                alert("Jumlah motif harus ganjil untuk Puca!");
-                return;
-              }
-              const middleIndex = Math.floor(totalMotifs / 2);
 
-              // Bagian atas (sebelum tengah)
-              for (let i = 0; i < middleIndex; i++) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, false, 'top'));
-                }
-              }
+            // Render motif tengah dengan border khusus
+            const middleWrapper = createMotifImage(allMotifImages[middleIndex], middleIndex, false, "middle");
+            middleWrapper.style.border = "2px dashed #002ba3";
+            middleWrapper.style.backgroundColor = "#e6f0ff";
+            middleWrapper.style.padding = "10px";
+            motifContainer.appendChild(middleWrapper);
 
-              // Motif pembatas tengah
-              if (allMotifImages[middleIndex] !== "motif kosong") {
-                const dividerWrapper = document.createElement("div");
-                dividerWrapper.style.marginBottom = "20px";
-                dividerWrapper.style.textAlign = "center";
-                const dividerImg = document.createElement("img");
-                dividerImg.src = "https://via.placeholder.com/150?text=Pembatas";
-                dividerImg.className = "motif-size";
-                dividerImg.style.maxWidth = "100%";
-                dividerWrapper.appendChild(dividerImg);
-                motifPair.appendChild(dividerWrapper);
-              }
-
-              // Bagian bawah (cermin dari atas)
-              for (let i = totalMotifs - 1; i > middleIndex; i--) {
-                if (allMotifImages[i] !== "motif kosong") {
-                  motifPair.appendChild(createMotifImage(allMotifImages[i], i, true, 'bottom'));
-                }
+            // Render motif bawah (cerminan)
+            for (let i = middleIndex - 1; i >= 0; i--) {
+              if (allMotifImages[i] !== "motif kosong") {
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], allMotifImages.length + i, true, "bottom"));
               }
             }
-          } else if (jenisKain === "sadum") {
+          } 
+          // Render untuk jenis kain Sadum
+          else if (jenisKain === "sadum") {
             const totalMotifs = allMotifImages.length;
-
             for (let i = 0; i < totalMotifs; i++) {
               if (allMotifImages[i] !== "motif kosong") {
-                motifContainer.appendChild(
-                  createMotifImage(allMotifImages[i], i, false, "top")
-                );
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i, false, "top"));
               }
             }
-
             for (let i = totalMotifs - 1; i >= 0; i--) {
               if (allMotifImages[i] !== "motif kosong") {
-                motifContainer.appendChild(
-                  createMotifImage(
-                    allMotifImages[i],
-                    i + totalMotifs,
-                    true,
-                    "bottom"
-                  )
-                );
+                motifContainer.appendChild(createMotifImage(allMotifImages[i], i + totalMotifs, true, "bottom"));
               }
             }
           }
@@ -622,13 +972,10 @@
         });
       }
 
+      // Fungsi untuk memilih motif
       function selectMotif(imageElement) {
-        const urutanArray = JSON.parse(
-          imageElement.getAttribute("data-urutanasal")
-        );
+        const urutanArray = JSON.parse(imageElement.getAttribute("data-urutanasal"));
         const src = imageElement.src;
-
-        // Pastikan container sudah sesuai ukuran sebelum menambahkan motif
         adjustCombinedMotifContainer();
 
         if (isSelectingMiddleMotif) {
@@ -638,34 +985,30 @@
           isSelectingMiddleMotif = false;
           combinedMotifContainer.classList.remove("selecting-middle");
         } else {
-          const jumlahAktif = allMotifImages.filter(
-            (item) => item !== "motif kosong"
-          ).length;
+          const jumlahAktif = allMotifImages.filter((item) => item !== "motif kosong").length;
           const maxMotifs = 11;
           if (jumlahAktif >= maxMotifs) {
             alert(`Motif yang ditambahkan maksimal ${maxMotifs}!`);
             return;
           }
+          
+          // Tambahkan motif kosong di tengah jika belum ada
+          if (jenisKainSelect.value === "puca" && allMotifImages.length % 2 === 0) {
+            const middleIndex = Math.floor(allMotifImages.length / 2);
+            allMotifImages.splice(middleIndex, 0, "motif kosong");
+            urutanAsalArray.splice(middleIndex, 0, []);
+          }
+          
+          // Temukan slot kosong atau tambahkan di akhir
           const kosongIndex = allMotifImages.findIndex(
-            (item) =>
-              item === "motif kosong" &&
-              (jenisKainSelect.value !== "puca" ||
-                item.index !== Math.floor(allMotifImages.length / 2))
+            (item, idx) => item === "motif kosong" && 
+            (jenisKainSelect.value !== "puca" || idx !== Math.floor(allMotifImages.length / 2))
           );
+          
           if (kosongIndex !== -1) {
             allMotifImages[kosongIndex] = src;
             urutanAsalArray[kosongIndex] = urutanArray;
           } else {
-            if (jenisKainSelect.value === "puca") {
-              const middleIndex = Math.floor(allMotifImages.length / 2);
-              if (
-                middleIndex >= 0 &&
-                allMotifImages[middleIndex] !== "motif kosong"
-              ) {
-                allMotifImages.splice(middleIndex, 0, "motif kosong");
-                urutanAsalArray.splice(middleIndex, 0, []);
-              }
-            }
             allMotifImages.push(src);
             urutanAsalArray.push(urutanArray);
           }
@@ -675,26 +1018,25 @@
         renderMotifs();
       }
 
+      // Fungsi untuk menghapus motif
       function removeMotif(indexToRemove) {
-        if (
-          indexToRemove >= 0 &&
-          indexToRemove < allMotifImages.length &&
-          indexToRemove < urutanAsalArray.length
-        ) {
+        if (indexToRemove >= 0 && indexToRemove < allMotifImages.length && indexToRemove < urutanAsalArray.length) {
           allMotifImages[indexToRemove] = "motif kosong";
           urutanAsalArray[indexToRemove] = [];
-          if (jenisKainSelect.value === "puca") {
-            const middleIndex = Math.floor(allMotifImages.length / 2);
-            if (allMotifImages[middleIndex] !== "motif kosong") {
-              allMotifImages.splice(middleIndex, 0, "motif kosong");
-              urutanAsalArray.splice(middleIndex, 0, []);
-            }
+          
+          // Untuk Puca, pastikan motif tengah tetap ada
+          const middleIndex = Math.floor(allMotifImages.length / 2);
+          if (jenisKainSelect.value === "puca" && allMotifImages[middleIndex] !== "motif kosong") {
+            allMotifImages[middleIndex] = "motif kosong";
+            urutanAsalArray[middleIndex] = [];
           }
+          
           renderMotifs();
           tampilkanUrutanGabungan();
         }
       }
 
+      // Fungsi untuk menampilkan urutan gabungan
       function tampilkanUrutanGabungan() {
         const jenisKain = jenisKainSelect.value;
         const jenisProduk = jenisProdukSelect.value;
@@ -735,33 +1077,26 @@
         if (el) el.textContent = `Gabungan urutan: [${gabungan.join(", ")}]`;
       }
 
+      // Fungsi untuk menyimpan motif
       function saveMotif() {
-        const combinedMotifContainer = document.getElementById(
-          "newCombinedMotifContainer"
-        );
+        const combinedMotifContainer = document.getElementById("newCombinedMotifContainer");
 
         if (
           combinedMotifContainer.children.length === 0 ||
-          combinedMotifContainer.innerHTML.includes(
-            "Belum ada motif yang dipilih"
-          )
+          combinedMotifContainer.innerHTML.includes("Belum ada motif yang dipilih")
         ) {
-          const errorModal = new bootstrap.Modal(
-            document.getElementById("errorModal")
-          );
-          const errorModalMessage =
-            document.getElementById("errorModalMessage");
+          const errorModal = new bootstrap.Modal(document.getElementById("errorModal"));
+          const errorModalMessage = document.getElementById("errorModalMessage");
           if (errorModalMessage) {
             errorModalMessage.textContent = "Pilih motif terlebih dahulu!";
             errorModal.show();
           } else {
-            console.error(
-              "Error: Element with ID 'errorModalMessage' not found."
-            );
+            console.error("Error: Element with ID 'errorModalMessage' not found.");
           }
           return;
         }
 
+        // Fungsi untuk memuat gambar
         function loadImage(src) {
           return new Promise((resolve, reject) => {
             const img = new Image();
@@ -772,6 +1107,7 @@
           });
         }
 
+        // Fungsi untuk mendapatkan cookie
         function getCookie(name) {
           let cookieValue = null;
           if (document.cookie && document.cookie !== "") {
@@ -779,9 +1115,7 @@
             for (let i = 0; i < cookies.length; i++) {
               const cookie = cookies[i].trim();
               if (cookie.substring(0, name.length + 1) === name + "=") {
-                cookieValue = decodeURIComponent(
-                  cookie.substring(name.length + 1)
-                );
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                 break;
               }
             }
@@ -789,25 +1123,22 @@
           return cookieValue;
         }
 
+        // Fungsi untuk menggabungkan motif
         async function combineMotifs() {
           try {
-            const motifImages = Array.from(
-              combinedMotifContainer.querySelectorAll("img")
-            );
+            const motifImages = Array.from(combinedMotifContainer.querySelectorAll("img"));
             if (motifImages.length === 0) {
               alert("Tidak ada gambar ditemukan.");
               return;
             }
 
-            const canvasWidth =
-              parseInt(combinedMotifContainer.style.maxWidth) || 500;
+            const canvasWidth = Math.min(parseInt(combinedMotifContainer.style.maxWidth) || 500, 300);
             let totalHeight = 0;
             const loadedImages = [];
 
-            const maxResolution = 300;
             for (let img of motifImages) {
               const loaded = await loadImage(img.src);
-              const scale = Math.min(maxResolution / loaded.width, 1);
+              const scale = Math.min(300 / loaded.width, 1);
               const scaledHeight = loaded.height * scale;
               loadedImages.push({ image: loaded, height: scaledHeight });
               totalHeight += scaledHeight;
@@ -815,17 +1146,16 @@
 
             const canvas = document.createElement("canvas");
             canvas.width = canvasWidth;
-            canvas.height = totalHeight;
+            canvas.height = Math.min(totalHeight, 300);
             const ctx = canvas.getContext("2d");
             ctx.fillStyle = "white";
-            ctx.fillRect(0, 0, canvas.width, totalHeight);
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             let yOffset = 0;
             for (let { image, height } of loadedImages) {
               const scale = canvasWidth / image.width;
               ctx.drawImage(image, 0, yOffset, canvasWidth, height);
               yOffset += height;
             }
-            const jumlahAsal = "{{ jumlahasal }}";
 
             const dataURL = canvas.toDataURL("image/png");
             const blob = await (await fetch(dataURL)).blob();
@@ -838,11 +1168,8 @@
             formDataUpload.append("urutanLidi", urutanGabunganArray.join(","));
             formDataUpload.append("jenisGenerate", "otomatis");
             formDataUpload.append("user", "riskia");
-            formDataUpload.append(
-              "csrfmiddlewaretoken",
-              getCookie("csrftoken")
-            );
-            formDataUpload.append("jmlBaris", urutanGabunganArray.join(","));
+            formDataUpload.append("csrfmiddlewaretoken", getCookie("csrftoken"));
+            formDataUpload.append("jmlBaris", urutanGabunganArray.length.toString());
 
             const response = await fetch("/generator/PostImageGabungan", {
               method: "POST",
@@ -855,11 +1182,9 @@
             if (response.ok) {
               const responseData = await response.json();
               const motifId = responseData.motif_id;
-              const successModal = new bootstrap.Modal(
-                document.getElementById("successModal")
-              );
+              const successModal = new bootstrap.Modal(document.getElementById("successModal"));
               successModal.show();
-              window.savedMotifId = motifId;
+              windowSavedMotifId = motifId;
             } else {
               const errorText = await response.text();
               throw new Error("Gagal menyimpan motif: " + errorText);
@@ -871,6 +1196,26 @@
         }
         combineMotifs();
       }
+
+      // Inisialisasi event listeners saat DOM siap
+      document.addEventListener("DOMContentLoaded", function () {
+        if (jenisKainSelect && jenisProdukSelect) {
+          adjustCombinedMotifContainer();
+          updateSizeInfo();
+          renderMotifs();
+          
+          jenisKainSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            renderMotifs();
+          });
+          
+          jenisProdukSelect.addEventListener("change", () => {
+            adjustCombinedMotifContainer();
+            updateSizeInfo();
+            renderMotifs();
+          });
+        }
+      });
     </script>
   </body>
 </html>
