@@ -346,18 +346,13 @@
             </div>
         </div>
         <div class="mb-4 d-flex flex-wrap">
-            <div class="mr-4 mb-2">
-                <span class="tm-text-gray-dark">Jumlah Baris: </span><a class="link" href="{% url 'tagJmlBaris' motif.jmlBaris %}">{{ motif.jmlBaris|length }} Baris</a></span>
-            </div>
+        <div class="mr-4 mb-2">
+            <span class="tm-text-gray-dark">Jenis Kain: </span><span>{{ jenis_kain|default:"Tidak tersedia" }}</span>
+        </div>
         </div>
         <div class="mb-4 d-flex flex-wrap">
             <div class="mr-4 mb-2">
-                <span class="tm-text-gray-dark">Jenis Kain: </span><span>{{ motif.jenisKain|default:"Tidak tersedia" }}</span>
-            </div>
-        </div>
-        <div class="mb-4 d-flex flex-wrap">
-            <div class="mr-4 mb-2">
-                <span class="tm-text-gray-dark">Jenis Produk: </span><span>{{ motif.jenisProduk|default:"Tidak tersedia" }}</span>
+                <span class="tm-text-gray-dark">Jenis Produk: </span><span>{{ jenis_produk|default:"Tidak tersedia" }}</span>
             </div>
         </div>
         <div class="mb-4 d-flex flex-wrap">

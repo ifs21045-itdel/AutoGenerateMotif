@@ -512,7 +512,7 @@ def PostImageGabungan(request):
         print("DEBUG: POST =>", request.POST)
 
         # Validasi wajib
-        if all(request.POST.get(field) for field in ['imgBefore', 'urutanLidi', 'jenisGenerate', 'user']):
+        if all(request.POST.get(field) for field in ['imgBefore', 'urutanLidi', 'jenisGenerate', 'user', 'jenisKain', 'jenisProduk']):
             urutlidi = request.POST.get('urutanLidi')
             urutlidi_list = urutlidi.split(',')
             jumlah_slice = len(urutlidi_list)
@@ -588,6 +588,8 @@ def PostImageGabungan(request):
             post.slice = json.dumps(hasil_slice_paths)
             raw_lidi = request.session.get('raw_lidi', [])
             post.urutanLidiAsal = ','.join(map(str, raw_lidi)) if raw_lidi else ''
+            post.jenisKain = request.POST.get('jenisKain')
+            post.jenisProduk = request.POST.get('jenisProduk')
 
             post.save()
             print("DEBUG: Sukses simpan post gabungan dan slice.")
@@ -964,6 +966,10 @@ def motif(request, id):
             'navlink3': navlink[2],
             'navlink4': navlink[3],
             'list_lidi_path': list_lidi_path,
+            'jenis_kain': motif.jenisKain,  # Tambahkan jenis kain
+            'jenis_produk': motif.jenisProduk,
+            'jenis_kain': motif.jenisKain, 
+            'jenis_produk': motif.jenisProduk, 
             'session_name': session_name,
             'slice': mySlice,
             'postImageurl': postImageurl,

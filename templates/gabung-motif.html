@@ -1170,6 +1170,8 @@
             formDataUpload.append("user", "riskia");
             formDataUpload.append("csrfmiddlewaretoken", getCookie("csrftoken"));
             formDataUpload.append("jmlBaris", urutanGabunganArray.length.toString());
+            formDataUpload.append("jenisKain", document.getElementById("jenis_kain").value);
+            formDataUpload.append("jenisProduk", document.getElementById("jenis_produk").value);
 
             const response = await fetch("/generator/PostImageGabungan", {
               method: "POST",

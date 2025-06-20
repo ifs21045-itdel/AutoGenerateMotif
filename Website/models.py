@@ -32,6 +32,8 @@ class MotifForm1(models.Model):
     coloredImagecombined = models.TextField(blank=True, null=True)
     sliceColoredImage = models.TextField(blank=True, null=True)
     urutanLidiAsal = models.TextField(blank=True, null=True)
+    jenisKain = models.TextField(blank=True, null=True)  # Tambahkan field ini
+    jenisProduk = models.TextField(blank=True, null=True)
     class Meta:
         db_table = 'website_motifform1'
     def __str__(self):
