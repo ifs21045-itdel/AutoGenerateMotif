@@ -432,6 +432,8 @@ def PostImage(request):
             post.user = request.POST.get('user')
             raw_lidi = request.session.get('raw_lidi', [])
             post.urutanLidiAsal = ','.join(map(str, raw_lidi)) if raw_lidi else ''
+            post.jenisKain = request.POST.get('jenisKain', '-')  # Default "-" jika tidak ada
+            post.jenisProduk = request.POST.get('jenisProduk', '-')
 
             # Save the post object before accessing its ID
             post.save()
