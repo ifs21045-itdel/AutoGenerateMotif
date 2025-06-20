@@ -61,6 +61,7 @@ urlpatterns = [
     path('gabungkan_motif/', views.gabungkan_motif, name='gabungkan_motif'),
     path('generator/', views.generator, name='generator'),
     path('colored_motif/post-image/', PostColoredMotifImage, name='post_colored_motif_image'),
+    path('motif_gabungan_colored_preview/<int:id>/', views.motif_gabungan_colored_preview, name='motif_gabungan_colored_preview'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

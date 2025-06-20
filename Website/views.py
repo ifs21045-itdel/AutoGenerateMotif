@@ -1847,3 +1847,63 @@ def PostColoredMotifImage(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=500)
 
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'})
+
+logger = logging.getLogger(__name__)
+
+def motif_gabungan_colored_preview(request, id):
+    try:
+        motif = MotifForm1.objects.get(id=id)
+        user = request.session.get('user', 'admin')  # Ambil user dari session atau default ke 'admin'
+
+        # Ambil data dari model
+        combined_image_url = motif.coloredImagecombined if motif.coloredImagecombined else motif.imgAfter
+        slice_urls = motif.sliceColoredimage.split('@@') if motif.sliceColoredimage else []
+        urutanLidi = motif.urutanLidi.strip().split(',') if motif.urutanLidi else []
+        jumlahbaris = len(urutanLidi) if urutanLidi else 0
+
+        # Siapkan data untuk slicing jika belum ada
+        if not slice_urls:
+            slice_dir = os.path.join(settings.MEDIA_ROOT, 'admin', 'colored_motifs', f'motif_{id}', 'slice_colored')
+            os.makedirs(slice_dir, exist_ok=True)
+            combined_image_path = os.path.join(settings.BASE_DIR, combined_image_url.lstrip('/'))
+            if os.path.exists(combined_image_path):
+                with Image.open(combined_image_path) as img:
+                    width, height = img.size
+                    slice_height = height / jumlahbaris if jumlahbaris else height
+                    slice_urls = []
+                    for i in range(jumlahbaris):
+                        y_top = round(i * slice_height)
+                        y_bottom = round((i + 1) * slice_height)
+                        slice_img = img.crop((0, y_top, width, y_bottom))
+                        slice_filename = f"colored_slice_image_{i}.png"
+                        slice_path = os.path.join(slice_dir, slice_filename)
+                        slice_img.save(slice_path)
+                        slice_url = os.path.join(settings.MEDIA_URL, 'admin', 'colored_motifs', f'motif_{id}', 'slice_colored', slice_filename).replace('\\', '/')
+                        slice_urls.append(slice_url)
+                motif.sliceColoredimage = '@@'.join(slice_urls)
+                motif.save()
+
+        # Gabungkan slice dan urutanLidi untuk template
+        mySlice = list(zip_longest(slice_urls, urutanLidi))
+
+        # Path logo (sesuaikan dengan struktur direktori Anda)
+        ditenun_logo_1 = os.path.join(settings.MEDIA_ROOT, 'admin', 'ditenun_static', 'image-removebg-preview.png').replace('\\', '/')
+        ditenun_logo_2 = os.path.join(settings.MEDIA_ROOT, 'admin', 'ditenun_static', 'logo_ditenun_2.jpeg').replace('\\', '/')
+
+        context = {
+            'combined_image_url': combined_image_url,
+            'slice_urls': slice_urls,
+            'jumlahbaris': jumlahbaris,
+            'urutanLidi': urutanLidi,
+            'slice': mySlice,
+            'motif': motif,
+            'user': user,
+            'date_now': timezone.now().strftime('%d-%m-%Y'),
+            'ditenun_logo_1': ditenun_logo_1,
+            'ditenun_logo_2': ditenun_logo_2,
+        }
+        logger.debug(f"Preview - Kain: {motif.jenisKain}, Produk: {motif.jenisProduk}")
+        return render(request, 'motif_gabungan_colored_preview.html', context)
+    except MotifForm1.DoesNotExist:
+        logger.error(f"Motif with ID {id} not found")
+        return render(request, 'error.html', {'error_message': 'Motif tidak ditemukan'})
