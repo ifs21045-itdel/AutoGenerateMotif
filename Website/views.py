@@ -430,6 +430,8 @@ def PostImage(request):
             post.jenisGenerate = request.POST.get('jenisGenerate')
             post.jmlBaris = request.POST.get('jmlBaris', '0')  
             post.user = request.POST.get('user')
+            raw_lidi = request.session.get('raw_lidi', [])
+            post.urutanLidiAsal = ','.join(map(str, raw_lidi)) if raw_lidi else ''
 
             # Save the post object before accessing its ID
             post.save()
@@ -584,6 +586,8 @@ def PostImageGabungan(request):
             post.jmlBaris = request.POST.get('jmlBaris', '0')
             post.user = request.POST.get('user')
             post.slice = json.dumps(hasil_slice_paths)
+            raw_lidi = request.session.get('raw_lidi', [])
+            post.urutanLidiAsal = ','.join(map(str, raw_lidi)) if raw_lidi else ''
 
             post.save()
             print("DEBUG: Sukses simpan post gabungan dan slice.")
@@ -792,6 +796,7 @@ def motif(request, id):
     logger.info(f"Accessing motif detail for ID: {id}")
 
     try:
+        
         motif = MotifForm1.objects.get(id=id)
         user = request.user
         status = user.is_superuser or None
@@ -941,7 +946,7 @@ def motif(request, id):
         grid_url = f"/media/grids/{grid_filename}"
         red_url = f"/media/grids/{red_filename}"
         zip_url = f"/media/zips/{zip_filename}"
-
+        list_lidi_path = motif.urutanLidiAsal.split(',') if motif.urutanLidiAsal else []
         context = {
             'motif': motif,
             'Lidi': grid_url,
@@ -958,7 +963,7 @@ def motif(request, id):
             'navlink2': navlink[1],
             'navlink3': navlink[2],
             'navlink4': navlink[3],
-            'list_lidi_path': motif.urutanLidi.split(',') if motif.urutanLidi else [],
+            'list_lidi_path': list_lidi_path,
             'session_name': session_name,
             'slice': mySlice,
             'postImageurl': postImageurl,
@@ -1380,6 +1385,8 @@ def save_combined_motif(request):
             motif.jenisGenerate = "combine"
             motif.jmlBaris = str(row_count)
             motif.user = request.user.username
+            raw_lidi = request.session.get('raw_lidi', [])
+            motif.urutanLidiAsal = ','.join(map(str, raw_lidi)) if raw_lidi else ''
             motif.save()
             
             # Buat file ZIP untuk unduhan

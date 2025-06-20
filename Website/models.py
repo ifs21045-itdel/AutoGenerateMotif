@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 class Motif(models.Model):
-    user = models.CharField(max_length=100)
-    raw_url = models.CharField(max_length=255)
-    edit_url = models.CharField(max_length=255)
-    Urutan = models.CharField(max_length=255)
-    jenis = models.CharField(max_length=50)
-    jmlBaris = models.CharField(max_length=20)
+    user = models.CharField(max_length=100, blank=True, null=True)
+    raw_url = models.CharField(max_length=255, blank=True, null=True)
+    edit_url = models.CharField(max_length=255, blank=True, null=True)
+    Urutan = models.CharField(max_length=255, blank=True, null=True)  # Sesuaikan dengan database
+    jenis = models.CharField(max_length=50, blank=True, null=True)
+    jmlBaris = models.CharField(max_length=20, blank=True, null=True)
     time = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -20,17 +20,18 @@ class MotifForm(models.Model):
     urutanLidi = models.TextField()
 
 class MotifForm1(models.Model):
-    imgBefore = models.TextField()
-    imgAfter = models.TextField()
-    urutanLidi = models.TextField()
-    jenisGenerate = models.TextField()
-    jmlBaris = models.TextField()
-    user = models.TextField()
-    time = models.DateTimeField(auto_now_add= True)
-    slice = models.TextField()
-    coloredImage = models.TextField()
-    coloredImagecombined = models.TextField()
-    sliceColoredImage = models.TextField()
+    imgBefore = models.TextField(blank=True, null=True)
+    imgAfter = models.TextField(blank=True, null=True)
+    urutanLidi = models.TextField(blank=True, null=True)
+    jenisGenerate = models.TextField(blank=True, null=True)
+    jmlBaris = models.TextField(blank=True, null=True)
+    user = models.TextField(blank=True, null=True)
+    time = models.DateTimeField(auto_now_add=True)
+    slice = models.TextField(blank=True, null=True)
+    coloredImage = models.TextField(blank=True, null=True)
+    coloredImagecombined = models.TextField(blank=True, null=True)
+    sliceColoredImage = models.TextField(blank=True, null=True)
+    urutanLidiAsal = models.TextField(blank=True, null=True)
     class Meta:
         db_table = 'website_motifform1'
     def __str__(self):
@@ -41,13 +42,3 @@ class MotifForm1(models.Model):
 class Post(models.Model):
     title= models.TextField()
     content= models.TextField()
-
-# pengenmbangan untuk select optiom
-class Motif(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    imgBefore = models.ImageField(upload_to='images/')  # Gambar sebelum motif dibuat
-    imgAfter = models.ImageField(upload_to='images/')   # Gambar setelah motif dibuat
-    urutanLidi = models.CharField(max_length=100)        # Urutan lidi yang digunakan
-    jenisGenerate = models.CharField(max_length=50)      # Jenis algoritma/generate yang digunakan
-    jmlBaris = models.IntegerField()                     # Jumlah baris yang dihasilkan
-    time = models.DateTimeField(auto_now_add=True)       # Waktu pembuatan motif

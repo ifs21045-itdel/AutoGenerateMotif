@@ -317,22 +317,16 @@
     <div class="tm-bg-gray tm-video-details">
         <!-- Bagian Urutan Lidi dipindahkan ke sini -->
         <div class="mb-4">
-            <div class="text-center mb-3">
-                <h5 class="tm-text-primary">Urutan Lidi Motif Asal</h5>
-                {% if UrutanLidi %}
-                    <p class="tm-text-gray-dark">
-                        {% for item1 in list_lidi_path %}
-                            {% if forloop.last %}
-                                {{ forloop.counter }}
-                            {% else %}
-                                {{ forloop.counter }},
-                            {% endif %}
-                        {% endfor %}
-                    </p>
-                {% else %}
-                    <p class="tm-text-gray-dark">Tidak tersedia</p>
-                {% endif %}
-            </div>
+           <div class="text-center mb-3">
+    <h5 class="tm-text-primary">Urutan Lidi Motif Asal</h5>
+    {% if list_lidi_path %}
+        <p class="tm-text-gray-dark">
+            {{ list_lidi_path|join:", " }}
+        </p>
+    {% else %}
+        <p class="tm-text-gray-dark">Tidak tersedia</p>
+    {% endif %}
+</div>
             
             <div class="text-center mb-3">
                 <h5 class="tm-text-primary">Urutan Lidi Hasil Motif</h5>
