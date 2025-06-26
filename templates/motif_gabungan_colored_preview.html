@@ -16,7 +16,7 @@
     
     <style>
     .image-container {
-        width: 40vw;
+        width: 90vw; /* Diperbesar dari 80% untuk motif lebih besar */
         margin: 0 auto;
         padding: 0;
         display: flex;
@@ -28,6 +28,7 @@
         width: 100%;
         height: auto;
         object-fit: contain;
+        min-width: 300px; /* Pastikan motif tidak terlalu kecil */
     }
 
     .container {
@@ -39,6 +40,14 @@
 
     .image-container div {
         text-align: center;
+    }
+
+    .lidi {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 0.8rem; /* Diperbesar dari 0.6rem */
+        line-height: 1.2;
     }
 
     #download-buttons a {
@@ -55,8 +64,16 @@
         gap: 2px;
         align-items: center;
     }
-</style>
-    
+
+    @media (max-width: 768px) {
+        .image-container {
+            width: 95vw; /* Lebih besar pada layar kecil */
+        }
+        .image-container img {
+            min-width: 200px; /* Sesuaikan untuk layar kecil */
+        }
+    }
+    </style>
 </head>
 <body>
     
@@ -65,28 +82,27 @@
     <h2 class="tm-text-primary text-center mt-4" style="margin-bottom: -70px;">Hasil Motif</h2>
     <div class="container" style="max-width: 100vw; display: flex; justify-content: center; align-items: center; flex-direction: column;">
         <div id="image-section" style="width: 90%; display: flex; flex-direction: column; gap: 0; align-items: center;">
-                <h2 style="text-align: left;">Nama Pembuat: {{ user }}</h2>
-                <h2 style="text-align: left;">Tanggal Pembuatan: {{ date_now }}</h2>
-                <h2 style="text-align: left;">Jenis Kain: {{ motif.jenisKain|default:"-" }}</h2>
-                <h2 style="text-align: left;">Jenis Produk: {{ motif.jenisProduk|default:"-" }}</h2>
-                <h2 style="text-align: left;">Ukuran: 
-                    {% if produk == 'Sarung' %}
-                        Panjang 2 meter, Lebar 1 meter
-                    {% elif produk == 'Selendang' %}
-                        Panjang 2 meter, Lebar 50-60 cm
-                    {% endif %}
-                </h2>
-                {% for Motif1, Motif2 in slice %}
-                <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; margin: 0; padding: 0; line-height: 0;">
-                    <div class="image-container grid-overlay" style="width: 80%; margin: 0; padding: 0;">
-                        <img src="{{ Motif1 }}" data-nama-gambar="Lidi {{ Motif2 }}" onclick="openModal(this);" style="width: 100%; height: auto; object-fit: contain; margin: 0; padding: 0;">
-                    </div>
-                    <div class="lidi" style="text-align: center; margin: 0; padding: 0; font-size: 0.6rem; line-height: 0">
-                        Lidi {{ Motif2 }}
-                    </div>
+            <h2 style="text-align: left;">Nama Pembuat: {{ user }}</h2>
+            <h2 style="text-align: left;">Tanggal Pembuatan: {{ date_now }}</h2>
+            <h2 style="text-align: left;">Jenis Kain: {{ motif.jenisKain|default:"-" }}</h2>
+            <h2 style="text-align: left;">Jenis Produk: {{ motif.jenisProduk|default:"-" }}</h2>
+            <h2 style="text-align: left;">Ukuran: 
+                {% if produk == 'Sarung' %}
+                    Panjang 2 meter, Lebar 1 meter
+                {% elif produk == 'Selendang' %}
+                    Panjang 2 meter, Lebar 50-60 cm
+                {% endif %}
+            </h2>
+            {% for Motif1, Motif2 in slice %}
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; margin: 0; padding: 0; line-height: 0;">
+                <div class="image-container grid-overlay" style="width: 90%; margin: 0; padding: 0;">
+                    <img src="{{ Motif1 }}" data-nama-gambar="Lidi {{ Motif2 }}" onclick="openModal(this);" style="width: 100%; height: auto; object-fit: contain; margin: 0; padding: 0;">
                 </div>
-                {% endfor %}
+                <div class="lidi" style="text-align: center; margin: 0; padding: 0; line-height: 0;">
+                    Lidi {{ Motif2 }}
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -126,7 +142,7 @@
                 document.body.appendChild(loadingIndicator);
 
                 html2canvas(section, {
-                    scale: window.devicePixelRatio || 2,
+                    scale: 4, // Diperbesar dari 2 untuk resolusi lebih tinggi
                     useCORS: true,
                     allowTaint: true
                 }).then(canvas => {
@@ -142,7 +158,7 @@
                         const imgWidth = canvas.width * 0.264583; // Convert px to mm
                         const imgHeight = imgWidth * (canvas.height / canvas.width); // Maintain aspect ratio
 
-                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 80) / imgHeight); // Scale to fit with margins
+                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 100) / imgHeight); // Tambah margin
 
                         const scaledWidth = imgWidth * scaleFactor;
                         const scaledHeight = imgHeight * scaleFactor;
@@ -156,13 +172,7 @@
                         pdf.setFontSize(20);
                         pdf.text('Lembar Kerja Penenun', pageWidth / 2, 25, { align: 'center' });
 
-                        pdf.setFontSize(12);
-                        pdf.text('Nama Pembuat: {{ user }}', 20, 35);
-                        pdf.text('Tanggal Pembuatan: {{ date_now }}', 20, 45);
-                        pdf.text('Jenis Kain: {{ kain }}', 20, 55);
-                        pdf.text('Jenis Produk: {{ produk }}', 20, 65);
-                        pdf.text('Ukuran: {% if produk == "Sarung" %}Panjang 2 m, Lebar 1 m{% elif produk == "Selendang" %}Panjang 2 m, Lebar 50-60 cm{% endif %}', 20, 75);
-
+                       
                         const logoBottom = 10 + 30;
                         pdf.line(30, logoBottom + 10, pageWidth - 30, logoBottom + 10);
 
@@ -189,6 +199,5 @@
             window.submitCanvasImages = submitCanvasImages;
         });
     </script>
-
 </body>
 </html>

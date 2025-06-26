@@ -1,0 +1,19 @@
+.motif-container {
+    margin: 20px 0;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+.image-container img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.image-container img.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+

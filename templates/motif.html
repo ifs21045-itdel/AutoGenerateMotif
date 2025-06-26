@@ -35,9 +35,12 @@
         border-radius: 0px;
         border: 1px solid #e0e0e0;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        padding: 10px; /* Mengurangi padding agar lebih kompak */
-        max-width: 600px; /* Membatasi lebar maksimum */
-        margin: 0 auto; /* Pusatkan container */
+        padding: 10px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .motif-card.asal {
+        max-width: 900px; /* Further increased size for Motif Asal */
       }
       .motif-card:hover {
         transform: translateY(-5px);
@@ -49,16 +52,26 @@
         margin-bottom: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
+      .motif-image.asal {
+        max-height: 700px; /* Increased height for better display */
+        width: auto; /* Allow natural width to prevent stretching */
+        max-width: 100%; /* Ensure it fits container */
+        object-fit: contain; /* Prevent distortion */
+        image-rendering: -webkit-optimize-contrast; /* Maximize sharpness */
+        image-rendering: crisp-edges; /* Fallback for sharpness */
+        image-rendering: pixelated; /* For low-res images to avoid smoothing */
+        filter: contrast(1.1) sharpness(1.2); /* Slight enhancement */
+      }
       .btn-pilih {
         border-radius: 0;
         padding: 10px 30px;
-        font-weight: normal; /* Atau bisa juga hapus baris ini */
+        font-weight: normal;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         background-color: #002ba3 !important;
         border-color: #002ba3 !important;
         color: white !important;
-        }
+      }
       .btn-pilih:hover {
         background-color: #001f7a !important;
         border-color: #001f7a !important;
@@ -70,10 +83,8 @@
       .main-buttons .btn {
         border-radius: 0;
         padding: 12px 40px;
-        font-weight: normal; /* ubah dari 600 ke normal */
-        }
-
-      /* Custom styles for main action buttons */
+        font-weight: normal;
+      }
       .btn-primary {
         background-color: #002ba3 !important;
         border-color: #002ba3 !important;
@@ -94,20 +105,18 @@
         border-color: #002ba3 !important;
         color: white !important;
       }
-      /* Menyesuaikan container utama agar tidak terlalu besar */
       .card-1 {
-        max-width: 700px; /* Membatasi lebar container utama */
-        margin: 0 auto; /* Pusatkan container */
-        padding: 15px; /* Mengurangi padding */
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 15px;
       }
       .inner-card {
-        padding: 10px; /* Mengurangi padding dalam card */
+        padding: 10px;
       }
     </style>
   </head>
   <body>
     {% include "header.html" %}
-    <!-- Page Loader -->
     <div id="loader-wrapper">
       <div id="loader"></div>
       <div class="loader-section section-left"></div>
@@ -115,7 +124,6 @@
     </div>
     <div class="container card-0 justify-content-center">
       <div class="card-body px-sm-4 px-0">
-        <!-- Header Section -->
         <div class="row justify-content-center mb-5">
           <div class="col-md-10 col">
             <h3
@@ -135,20 +143,18 @@
             </p>
           </div>
         </div>
-        <!-- Single Container for Motif Asal and Hasil Motif -->
         <div class="card shadow-lg card-1">
           <div class="card-body inner-card">
-            <!-- Motif Asal -->
             <div class="row justify-content-center mb-5">
               <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="card shadow-sm p-4 motif-card">
+                <div class="card shadow-sm p-4 motif-card asal">
                   <div class="text-center">
                     {% if raw_url %}
                     <h4 class="motif-title">Motif Asal</h4>
                     <img
                       src="{{ raw_url }}"
                       id="Hasil"
-                      class="motif-image"
+                      class="motif-image asal"
                       alt="motif asal"
                     />
                     {% else %}
@@ -158,18 +164,14 @@
                 </div>
               </div>
             </div>
-
-            <!-- Hasil Motif Section -->
             <h4
               class="text-center mb-5"
               style="font-size: 2rem; font-weight: bold; color: #333"
             >
               Hasil Motif
             </h4>
-
             <div class="row justify-content-center">
               <div class="col-lg-8 col-md-10 col-sm-12">
-                <!-- Hasil Motif 1 -->
                 <div class="card shadow-sm mb-4 p-4 motif-card">
                   <form
                     action="save"
@@ -218,7 +220,6 @@
                       />
                     </div>
                     {% endif %}
-
                     <div class="text-center">
                       {% if edit_url %}
                       <h4 class="motif-title">Hasil Motif 1</h4>
@@ -232,7 +233,6 @@
                       <p>Tidak ada hasil motif yang tersedia.</p>
                       {% endif %}
                     </div>
-
                     <div class="text-end">
                       <input
                         type="submit"
@@ -242,7 +242,6 @@
                     </div>
                   </form>
                 </div>
-                <!-- Hasil Motif 2 -->
                 <div class="card shadow-sm mb-4 p-4 motif-card">
                   <form
                     action="save"
@@ -291,7 +290,6 @@
                       />
                     </div>
                     {% endif %}
-
                     <div class="text-center">
                       {% if edit_url2 %}
                       <h4 class="motif-title">Hasil Motif 2</h4>
@@ -305,7 +303,6 @@
                       <p>Tidak ada hasil motif yang tersedia.</p>
                       {% endif %}
                     </div>
-
                     <div class="text-end">
                       <input
                         type="submit"
@@ -315,7 +312,6 @@
                     </div>
                   </form>
                 </div>
-                <!-- Hasil Motif 3 -->
                 <div class="card shadow-sm mb-4 p-4 motif-card">
                   <form
                     action="save"
@@ -364,7 +360,6 @@
                       />
                     </div>
                     {% endif %}
-
                     <div class="text-center">
                       {% if edit_url3 %}
                       <h4 class="motif-title">Hasil Motif 3</h4>
@@ -378,7 +373,6 @@
                       <p>Tidak ada hasil motif yang tersedia.</p>
                       {% endif %}
                     </div>
-
                     <div class="text-end">
                       <input
                         type="submit"
@@ -388,7 +382,6 @@
                     </div>
                   </form>
                 </div>
-                <!-- Hasil Motif 4 -->
                 <div class="card shadow-sm mb-4 p-4 motif-card">
                   <form
                     action="save"
@@ -437,7 +430,6 @@
                       />
                     </div>
                     {% endif %}
-
                     <div class="text-center">
                       {% if edit_url4 %}
                       <h4 class="motif-title">Hasil Motif 4</h4>
@@ -451,7 +443,6 @@
                       <p>Tidak ada hasil motif yang tersedia.</p>
                       {% endif %}
                     </div>
-
                     <div class="text-end">
                       <input
                         type="submit"
@@ -461,7 +452,6 @@
                     </div>
                   </form>
                 </div>
-                <!-- Main Action Buttons -->
                 <div class="d-flex flex-column main-buttons mt-4">
                   <a
                     href="{% url 'gabungkan_motif' %}"
@@ -483,7 +473,6 @@
       </div>
     </div>
     {% include "footer.html" %}
-    <!-- Load jQuery before custom scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'plugins.js' %}"></script>
     <script>
