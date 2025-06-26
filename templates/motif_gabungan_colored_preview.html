@@ -87,10 +87,12 @@
             <h2 style="text-align: left;">Jenis Kain: {{ motif.jenisKain|default:"-" }}</h2>
             <h2 style="text-align: left;">Jenis Produk: {{ motif.jenisProduk|default:"-" }}</h2>
             <h2 style="text-align: left;">Ukuran: 
-                {% if produk == 'Sarung' %}
-                    Panjang 2 meter, Lebar 1 meter
-                {% elif produk == 'Selendang' %}
-                    Panjang 2 meter, Lebar 50-60 cm
+                {% if motif.jenisProduk == 'sarung' %}
+                    Panjang 200-210 cm, Lebar 95-97 cm
+                {% elif motif.jenisProduk == 'selendang' %}
+                    Panjang 190-200 cm, Lebar 60-70 cm
+                {% else %}
+                    -
                 {% endif %}
             </h2>
             {% for Motif1, Motif2 in slice %}
