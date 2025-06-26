@@ -25,6 +25,139 @@
       type="image/x-icon"
     />
     <title>Modul Lidi</title>
+    <style>
+    /* Tambahkan style dari lihatmotif.html untuk motif asal */
+    .motif-grid {
+        display: block;
+        image-rendering: pixelated !important;
+        image-rendering: -moz-crisp-edges !important;
+        image-rendering: crisp-edges !important;
+        border: 1px solid #ddd;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        margin: 15px auto;
+        object-fit: contain;
+    }
+    
+    .motif-container {
+        text-align: center;
+        margin: 20px auto;
+        background-color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 1000px;
+    }
+    
+    .error-placeholder {
+        width: 100%;
+        max-width: 600px;
+        height: 200px;
+        background-color: #f8f9fa;
+        border: 1px dashed #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px auto;
+        color: #666;
+        font-size: 14px;
+    }
+    
+    .image-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        height: auto;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    .container {
+        max-width: 130%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #image-section {
+        width: 110%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    .row-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+    }
+
+    .image-container {
+        width: 95%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        margin: 0;
+        padding: 0;
+    }
+
+    .grid-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        pointer-events: none;
+        grid-template-columns: repeat(20, 1fr);
+        grid-template-rows: repeat(20, 1fr);
+    }
+
+    .grid-lines div {
+        border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .lidi {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 0.6rem;
+        line-height: 0;
+    }
+
+    .lidi-motif-asal {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 0.2rem;
+        line-height: 0;
+    }
+    </style>
   </head>
   <body>
     {% include "header.html" %}
@@ -97,21 +230,24 @@
                       {% endif %}
                       <div class="text-center">
                         {% if raw_url1 or edit_url1 or Urutan %}
-                        <p>Motif Asal</p>
-                        <img
-                          src="{{ raw_url1 }}"
-                          id="Hasil"
-                          style="width: 100%; margin-bottom: 10px"
-                          alt="Motif Asal"
-                        />
-                        <p>Urutan Lidi: {{ raw_lidi }}</p>
-                        <p>Hasil Motif</p>
-                        <img
-                          src="{{ edit_url1 }}"
-                          id="Hasil1"
-                          alt="Hasil Motif"
-                        />
-                        <p> Urutan Lidi: {{ Urutan }}</p>
+                        <!-- Tambahkan container motif asal dari lihatmotif.html -->
+                        <div class="motif-container">
+                            <h5 class="tm-text-primary">Motif Asal</h5>
+                            <img id="lidiImage" class="motif-grid" src="{{ raw_url1 }}" alt="Motif Asal">
+                            <div id="lidiError" class="error-placeholder" style="display: none;">
+                                <div>Gambar motif tidak dapat dimuat</div>
+                            </div>
+                            <p class="lidi-text">Urutan Lidi: {{ raw_lidi }}</p>
+                        </div>
+                        
+                        <div class="motif-container">
+                            <h5 class="tm-text-primary">Hasil Motif</h5>
+                            <img id="redLineImage" class="motif-grid" src="{{ edit_url1 }}" alt="Hasil Motif">
+                            <div id="redLineError" class="error-placeholder" style="display: none;">
+                                <div>Gambar motif tidak dapat dimuat</div>
+                            </div>
+                            <p class="lidi-text">Urutan Lidi: {{ Urutan }}</p>
+                        </div>
                         {% endif %}
                       </div>
                       <div style="display: flex; justify-content: center">
@@ -210,6 +346,12 @@
       </div>
     </div>
 
+    {% for ukuran in motif.ukuran.all %}
+    <p>Jenis Produk: {{ ukuran.jenis_produk }}</p>
+    <p>Panjang: {{ ukuran.panjang }} cm</p>
+    <p>Lebar: {{ ukuran.lebar }} cm</p>
+{% endfor %}
+
     {% include "footer.html" %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static 'plugins.js' %}"></script>
@@ -261,7 +403,7 @@
           window.location.href = `/list/${window.savedMotifId}`;
         }
       }
-// 
+
       let allMotifImages = [];
     </script>
     <script
