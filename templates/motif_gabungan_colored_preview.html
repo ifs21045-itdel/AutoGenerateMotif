@@ -16,8 +16,8 @@
     
     <style>
     .image-container {
-        width: 90vw; /* Diperbesar dari 80% untuk motif lebih besar */
-        margin: 0 auto;
+        width: 100vw;
+        margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
@@ -28,14 +28,16 @@
         width: 100%;
         height: auto;
         object-fit: contain;
-        min-width: 300px; /* Pastikan motif tidak terlalu kecil */
+        min-width: 1200px;
     }
 
     .container {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 0;
         align-items: center;
+        margin: 0;
+        padding: 0;
     }
 
     .image-container div {
@@ -44,33 +46,68 @@
 
     .lidi {
         text-align: center;
-        margin: 0;
-        padding: 0;
-        font-size: 0.8rem; /* Diperbesar dari 0.6rem */
+        margin: 5px 0 0 10px; /* Jarak dari gambar untuk mencegah tumpang tindih */
+        padding: 5px 15px;
+        font-size: 0.8rem;
         line-height: 1.2;
+        font-weight: bold;
+        color: #333;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        white-space: nowrap; /* Mencegah teks membungkus */
     }
 
     #download-buttons a {
-        margin: 0 0 0 2px;
-        padding: 10px 20px;
-        font-size: 1rem;
-        width: 250px;
+        margin: 0 0 5px 0;
+        padding: 12px 24px;
+        font-size: 1.2rem;
+        width: 300px;
         text-align: center;
+    }
+
+    .motif-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center; /* Mengatur align-items ke center */
+        justify-content: center;
+        gap: 15px; /* Jarak lebih besar untuk kejelasan */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .lidi-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 150px;
     }
 
     #download-buttons {
         display: flex;
         flex-direction: column;
-        gap: 2px;
+        gap: 0;
         align-items: center;
+        margin: 0;
+        padding: 0;
     }
 
     @media (max-width: 768px) {
         .image-container {
-            width: 95vw; /* Lebih besar pada layar kecil */
+            width: 100vw;
         }
         .image-container img {
-            min-width: 200px; /* Sesuaikan untuk layar kecil */
+            min-width: 700px;
+        }
+        .motif-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .lidi {
+            font-size: 0.7rem;
+            margin: 5px 0 0 5px;
+            padding: 3px 10px;
         }
     }
     </style>
@@ -79,14 +116,14 @@
     
     {% include "header.html" %}
 
-    <h2 class="tm-text-primary text-center mt-4" style="margin-bottom: -70px;">Hasil Motif</h2>
-    <div class="container" style="max-width: 100vw; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <div id="image-section" style="width: 90%; display: flex; flex-direction: column; gap: 0; align-items: center;">
-            <h2 style="text-align: left;">Nama Pembuat: {{ user }}</h2>
-            <h2 style="text-align: left;">Tanggal Pembuatan: {{ date_now }}</h2>
-            <h2 style="text-align: left;">Jenis Kain: {{ motif.jenisKain|default:"-" }}</h2>
-            <h2 style="text-align: left;">Jenis Produk: {{ motif.jenisProduk|default:"-" }}</h2>
-            <h2 style="text-align: left;">Ukuran: 
+    <h2 class="tm-text-primary text-center mt-0" style="margin-bottom: 0;">Hasil Motif</h2>
+    <div class="container" style="max-width: 100vw; display: flex; justify-content: center; align-items: center; flex-direction: column; margin: 0; padding: 0;">
+        <div id="image-section" style="width: 100%; display: flex; flex-direction: column; gap: 0; align-items: center; margin: 0; padding: 0;">
+            <h2 style="text-align: left; margin: 0; padding: 0;">Nama Pembuat: {{ user }}</h2>
+            <h2 style="text-align: left; margin: 0; padding: 0;">Tanggal Pembuatan: {{ date_now }}</h2>
+            <h2 style="text-align: left; margin: 0; padding: 0;">Jenis Kain: {{ motif.jenisKain|default:"-" }}</h2>
+            <h2 style="text-align: left; margin: 0; padding: 0;">Jenis Produk: {{ motif.jenisProduk|default:"-" }}</h2>
+            <h2 style="text-align: left; margin: 0; padding: 0;">Ukuran: 
                 {% if motif.jenisProduk == 'sarung' %}
                     Panjang 200-210 cm, Lebar 95-97 cm
                 {% elif motif.jenisProduk == 'selendang' %}
@@ -96,8 +133,8 @@
                 {% endif %}
             </h2>
             {% for Motif1, Motif2 in slice %}
-            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 10px; margin: 0; padding: 0; line-height: 0;">
-                <div class="image-container grid-overlay" style="width: 90%; margin: 0; padding: 0;">
+            <div class="motif-row" style="gap: 0; margin: 0; padding: 0; line-height: 0;">
+                <div class="image-container grid-overlay" style="width: 90%; margin: 0; padding: 0; flex-shrink: 0;">
                     <img src="{{ Motif1 }}" data-nama-gambar="Lidi {{ Motif2 }}" onclick="openModal(this);" style="width: 100%; height: auto; object-fit: contain; margin: 0; padding: 0;">
                 </div>
                 <div class="lidi" style="text-align: center; margin: 0; padding: 0; line-height: 0;">
@@ -109,11 +146,11 @@
     </div>
 
     <canvas id="canvasWrapper" style="width: 100%; height: auto;" hidden></canvas>
-    <div class="text-center mt-4" id="download-buttons">
-        <a class="btn btn-primary mb-4" onclick="renderDivToImage('png')">Unduh Motif (PNG)</a>
-        <a class="btn btn-primary mb-4" onclick="renderDivToImage('jpg')">Unduh Motif (JPG)</a>
-        <a class="btn btn-primary mb-4" onclick="renderDivToImage('pdf')">Unduh Motif (PDF)</a>
-        <a class="btn btn-primary mb-4" href="/ubah_warna_combined/{{ motif.id }}" style="color: rgb(160, 160, 160);">Kembali</a>
+    <div class="text-center mt-0" id="download-buttons" style="margin: 0; padding: 0;">
+        <a class="btn btn-primary mb-0" onclick="renderDivToImage('png')">Unduh Motif (PNG)</a>
+        <a class="btn btn-primary mb-0" onclick="renderDivToImage('jpg')">Unduh Motif (JPG)</a>
+        <a class="btn btn-primary mb-0" onclick="renderDivToImage('pdf')">Unduh Motif (PDF)</a>
+        <a class="btn btn-primary mb-0" href="/ubah_warna_combined/{{ motif.id }}" style="color: rgb(160, 160, 160);">Kembali</a>
     </div>
 
     <img id="hiddenCombinedImage" src="{{ combined_image_url }}" style="display: none;">
@@ -144,7 +181,7 @@
                 document.body.appendChild(loadingIndicator);
 
                 html2canvas(section, {
-                    scale: 4, // Diperbesar dari 2 untuk resolusi lebih tinggi
+                    scale: 4,
                     useCORS: true,
                     allowTaint: true
                 }).then(canvas => {
@@ -157,16 +194,16 @@
                         const pageWidth = pdf.internal.pageSize.getWidth();
                         const pageHeight = pdf.internal.pageSize.getHeight();
 
-                        const imgWidth = canvas.width * 0.264583; // Convert px to mm
-                        const imgHeight = imgWidth * (canvas.height / canvas.width); // Maintain aspect ratio
+                        const imgWidth = canvas.width * 0.264583;
+                        const imgHeight = imgWidth * (canvas.height / canvas.width);
 
-                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 100) / imgHeight); // Tambah margin
+                        const scaleFactor = Math.min(pageWidth / imgWidth, (pageHeight - 100) / imgHeight);
 
                         const scaledWidth = imgWidth * scaleFactor;
                         const scaledHeight = imgHeight * scaleFactor;
 
-                        const xOffset = (pageWidth - scaledWidth) / 2; // Center image horizontally
-                        const yOffset = 60; // Start below header info
+                        const xOffset = (pageWidth - scaledWidth) / 2;
+                        const yOffset = 60;
 
                         pdf.addImage('/{{ ditenun_logo_1 }}', 'PNG', 20, 10, 30, 30);
                         pdf.addImage('/{{ ditenun_logo_2 }}', 'PNG', pageWidth - 50, 10, 30, 30);
@@ -174,7 +211,6 @@
                         pdf.setFontSize(20);
                         pdf.text('Lembar Kerja Penenun', pageWidth / 2, 25, { align: 'center' });
 
-                       
                         const logoBottom = 10 + 30;
                         pdf.line(30, logoBottom + 10, pageWidth - 30, logoBottom + 10);
 
