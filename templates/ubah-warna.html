@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'templatemo-style.css' %}" />
@@ -29,7 +30,7 @@
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 44px 6px rgba(0, 0, 0, 0.1);
         }
 
         .row {
@@ -46,7 +47,7 @@
 
         .col-lg-10 {
             flex: 0 0 83.333%;
-            max-width: 83.333%;
+            max-width: uncommon;
             padding: 10px;
         }
 
@@ -128,32 +129,23 @@
             align-items: center;
         }
 
-        .gradient-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-top: 10px;
+        .tool-button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
 
-        .gradient-canvas {
-            width: 200px;
-            height: 100px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
+        .tool-label {
+            font-size: 0.8rem;
+            color: #6c757d;
+            text-align: center;
         }
 
-        .laser-pointer {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: black;
-            border-radius: 50%;
-            pointer-events: none;
-            top: -5px;
-            left: -5px;
-            transform: translate(-50%, -50%);
-            transition: left 0.1s ease-out, top 0.1s ease-out;
-            display: none;
+        /* Style untuk Font Awesome icons */
+        .btn-outline-primary .fa-paintbrush,
+        .btn-outline-danger .fa-eraser {
+            font-size: 1.2rem;
         }
 
         /* Style untuk button yang diperbaiki */
@@ -177,23 +169,25 @@
             border-color: #001a7a;
             color: white;
         }
-.preview-btn {
-    background-color: #002BA3;
-    border: 2px solid #002BA3;
-    border-radius: 0px;
-    padding: 12px 30px 14px;
-    font-size: 1rem;
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    width: 320px;
-}
 
-.preview-btn:hover {
-    background-color: #001a7a;
-    border-color: #001a7a;
-    color: white;
-}
+        .preview-btn {
+            background-color: #002BA3;
+            border: 2px solid #002BA3;
+            border-radius: 0px;
+            padding: 12px 30px 14px;
+            font-size: 1rem;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            width: 320px;
+        }
+
+        .preview-btn:hover {
+            background-color: #001a7a;
+            border-color: #001a7a;
+            color: white;
+        }
+
         .btn-back {
             background-color: white;
             border: 12px solid #002ba3;
@@ -244,16 +238,6 @@
             .tools-container {
                 flex-direction: column;
                 gap: 5px;
-            }
-
-            .gradient-canvas {
-                width: 150px;
-                height: 75px;
-            }
-
-            .laser-pointer {
-                width: 8px;
-                height: 8px;
             }
 
             .btn-primary-custom, .btn-back {
@@ -316,10 +300,6 @@
                                         <h5>Warna Dasar Kain</h5>
                                         <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna untuk latar belakang kain.</p>
                                         <div class="color-palette" id="backgroundPalette"></div>
-                                        <div class="gradient-wrapper">
-                                            <canvas id="backgroundGradient" class="gradient-canvas"></canvas>
-                                            <div class="laser-pointer" id="backgroundLaser"></div>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -335,15 +315,17 @@
                                         <h5>Warna Motif</h5>
                                         <p style="color: #6c757d; font-size: 0.9rem;">Pilih warna untuk motif dan gunakan alat untuk mewarnai.</p>
                                         <div class="color-palette" id="motifPalette"></div>
-                                        <div class="gradient-wrapper">
-                                            <canvas id="motifGradient" class="gradient-canvas"></canvas>
-                                            <div class="laser-pointer" id="motifLaser"></div>
-                                        </div>
                                         <div class="tools-container">
                                             <div id="brushSizeContainer"></div>
                                             <div class="d-flex">
-                                                <button id="pencilTool" class="btn btn-outline-primary mx-2">✏</button>
-                                                <button id="eraserTool" class="btn btn-outline-danger mx-2">🧽</button>
+                                                <div class="tool-button-container">
+                                                    <button id="pencilTool" class="btn btn-outline-primary mx-2"><i class="fa-solid fa-paintbrush"></i></button>
+                                                    <span class="tool-label">Kuas</span>
+                                                </div>
+                                                <div class="tool-button-container">
+                                                    <button id="eraserTool" class="btn btn-outline-danger mx-2"><i class="fa-solid fa-eraser"></i></button>
+                                                    <span class="tool-label">Penghapus</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -351,42 +333,22 @@
                             </div>
 
                             <form method="POST" enctype="multipart/form-data" action="/motif_colored/preview/{{ motif.id }}/">
-    {% csrf_token %}<div class="row mt-4 text-center">
-    <div class="col-md-12 d-flex flex-column align-items-center gap-3">
-        <button class="btn preview-btn" type="button" onclick="submitCanvasImages()">
-            Lihat Motif Preview
-        </button>
-        <div class="btn-container row mt-4 text-center">
-                  <div class="col-md-12">
-                    <a
-                    
-  href="{% url 'gabungkan_motif' %}"
-  class="btn"
-  style="
-    background-color: transparent;
-    border: 2px solid #002ba3;
-    border-radius: 0px;
-    padding: 12px 30px 14px;
-    font-size: 1rem;
-    color: #002ba3;
-    text-decoration: none;
-    display: inline-block;
-    width: 320px;
-"
->
-  Kembali
-</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-</div>
-</form>
+                                {% csrf_token %}
+                                <div class="row mt-4 text-center">
+                                    <div class="col-md-12 d-flex flex-column align-items-center gap-3">
+                                        <button class="btn preview-btn" type="button" onclick="submitCanvasImages()">
+                                            Lihat Hasil Motif
+                                        </button>
+                                        <div class="btn-container row mt-4 text-center">
+                                            <div class="col-md-12">
+                                                <a href="{% url 'gabungkan_motif' %}" class="btn" style="background-color: transparent; border: 2px solid #002ba3; border-radius: 0px; padding: 12px 30px 14px; font-size: 1rem; color: #002ba3; text-decoration: none; display: inline-block; width: 320px;">
+                                                    Kembali
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -403,416 +365,325 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="{% static 'script.js' %}"></script>
     <script>
-    const backgroundCanvas = document.getElementById('backgroundCanvas');
-    const motifCanvas = document.getElementById('motifCanvas');
-    const backgroundCtx = backgroundCanvas.getContext('2d');
-    const motifCtx = motifCanvas.getContext('2d');
-    const pencilTool = document.getElementById('pencilTool');
-    const eraserTool = document.getElementById('eraserTool');
+        const backgroundCanvas = document.getElementById('backgroundCanvas');
+        const motifCanvas = document.getElementById('motifCanvas');
+        const backgroundCtx = backgroundCanvas.getContext('2d');
+        const motifCtx = motifCanvas.getContext('2d');
+        const pencilTool = document.getElementById('pencilTool');
+        const eraserTool = document.getElementById('eraserTool');
 
-    let isPencilActive = false;
-    let isEraserActive = false;
-    let selectedMotifColor = '#000000';
-    let selectedBackgroundColor = '#FFFFFF';
-    let brushSize = 10;
+        let isPencilActive = false;
+        let isEraserActive = false;
+        let selectedMotifColor = '#000000';
+        let selectedBackgroundColor = '#FFFFFF';
+        let brushSize = 10;
 
-    const motifImage = new Image();
-    motifImage.crossOrigin = "anonymous";
-    motifImage.src = "/{{ motif_path }}";
+        const motifImage = new Image();
+        motifImage.crossOrigin = "anonymous";
+        motifImage.src = "/{{ motif_path }}";
 
-    const backgroundImage = new Image();
-    backgroundImage.crossOrigin = "anonymous";
-    backgroundImage.src = "/{{ background_path }}";
+        const backgroundImage = new Image();
+        backgroundImage.crossOrigin = "anonymous";
+        backgroundImage.src = "/{{ background_path }}";
 
-    const overlayCanvas = document.createElement('canvas');
-    const overlayCtx = overlayCanvas.getContext('2d');
+        const overlayCanvas = document.createElement('canvas');
+        const overlayCtx = overlayCanvas.getContext('2d');
 
-    motifImage.onload = () => {
-        motifCanvas.width = motifImage.width;
-        motifCanvas.height = motifImage.height;
-        overlayCanvas.width = motifImage.width;
-        overlayCanvas.height = motifImage.height;
-        backgroundCanvas.width = motifImage.width;
-        backgroundCanvas.height = motifImage.height;
+        motifImage.onload = () => {
+            motifCanvas.width = motifImage.width;
+            motifCanvas.height = motifImage.height;
+            overlayCanvas.width = motifImage.width;
+            overlayCanvas.height = motifImage.height;
+            backgroundCanvas.width = motifImage.width;
+            backgroundCanvas.height = motifImage.height;
 
-        backgroundCanvas.style.width = '100%';
-        motifCanvas.style.width = '100%';
-        backgroundCanvas.style.height = 'auto';
-        motifCanvas.style.height = 'auto';
+            backgroundCanvas.style.width = '100%';
+            motifCanvas.style.width = '100%';
+            backgroundCanvas.style.height = 'auto';
+            motifCanvas.style.height = 'auto';
 
-        const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
-        const aspectRatio = motifImage.width / motifImage.height;
-        canvasWrappers.forEach(wrapper => {
-            wrapper.style.aspectRatio = aspectRatio;
-        });
+            const canvasWrappers = document.querySelectorAll('.canvas-wrapper');
+            const aspectRatio = motifImage.width / motifImage.height;
+            canvasWrappers.forEach(wrapper => {
+                wrapper.style.aspectRatio = aspectRatio;
+            });
 
-        motifCtx.drawImage(motifImage, 0, 0);
-        backgroundCtx.fillStyle = selectedBackgroundColor;
-        backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    };
+            motifCtx.drawImage(motifImage, 0, 0);
+            backgroundCtx.fillStyle = selectedBackgroundColor;
+            backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+        };
 
-    backgroundImage.onload = () => {
-        backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    };
+        backgroundImage.onload = () => {
+            backgroundCtx.drawImage(backgroundImage, 0, 0, backgroundCanvas.width, backgroundCanvas.height);
+        };
 
-    motifImage.onerror = () => console.error("Failed to load motif image from:", motifImage.src);
-    backgroundImage.onerror = () => console.error("Failed to load background image from:", backgroundImage.src);
+        motifImage.onerror = () => console.error("Failed to load motif image from:", motifImage.src);
+        backgroundImage.onerror = () => console.error("Failed to load background image from:", backgroundImage.src);
 
-    function createBrushSizeSelector() {
-        const brushSizeContainer = document.getElementById('brushSizeContainer');
-        const label = document.createElement('label');
-        label.innerText = 'Ukuran Kuas: ';
-        label.style.marginRight = '10px';
-        label.style.fontWeight = 'bold';
+        function createBrushSizeSelector() {
+            const brushSizeContainer = document.getElementById('brushSizeContainer');
+            const label = document.createElement('label');
+            label.innerText = 'Ukuran Kuas: ';
+            label.style.marginRight = '10px';
+            label.style.fontWeight = 'bold';
 
-        const select = document.createElement('select');
-        select.id = 'brushSizeSelector';
-        select.style.padding = '5px';
-        [5, 10, 20, 30, 50].forEach(size => {
-            const option = document.createElement('option');
-            option.value = size;
-            option.innerText = `${size}px`;
-            if (size === brushSize) option.selected = true;
-            select.appendChild(option);
-        });
+            const select = document.createElement('select');
+            select.id = 'brushSizeSelector';
+            select.style.padding = '5px';
+            [5, 10, 20, 30, 50].forEach(size => {
+                const option = document.createElement('option');
+                option.value = size;
+                option.innerText = `${size}px`;
+                if (size === brushSize) option.selected = true;
+                select.appendChild(option);
+            });
 
-        select.addEventListener('change', (event) => {
-            brushSize = parseInt(event.target.value, 10);
-        });
+            select.addEventListener('change', (event) => {
+                brushSize = parseInt(event.target.value, 10);
+            });
 
-        brushSizeContainer.appendChild(label);
-        brushSizeContainer.appendChild(select);
-    }
+            brushSizeContainer.appendChild(label);
+            brushSizeContainer.appendChild(select);
+        }
 
-    createBrushSizeSelector();
+        createBrushSizeSelector();
 
-    function handleCanvasClick(canvas, ctx, overlayCtx, event, color) {
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-        const x = Math.floor((event.clientX - rect.left) * scaleX);
-        const y = Math.floor((event.clientY - rect.top) * scaleY);
+        function handleCanvasClick(canvas, ctx, overlayCtx, event, color) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = Math.floor((event.clientX - rect.left) * scaleX);
+            const y = Math.floor((event.clientY - rect.top) * scaleY);
 
-        if (isPencilActive) {
-            overlayCtx.save();
-            overlayCtx.fillStyle = color;
+            if (isPencilActive) {
+                overlayCtx.save();
+                overlayCtx.fillStyle = color;
 
-            for (let i = -Math.floor(brushSize / 2); i <= Math.floor(brushSize / 2); i++) {
-                for (let j = -Math.floor(brushSize / 2); j <= Math.floor(brushSize / 2); j++) {
-                    const pixelX = x + i;
-                    const pixelY = y + j;
+                for (let i = -Math.floor(brushSize / 2); i <= Math.floor(brushSize / 2); i++) {
+                    for (let j = -Math.floor(brushSize / 2); j <= Math.floor(brushSize / 2); j++) {
+                        const pixelX = x + i;
+                        const pixelY = y + j;
 
-                    if (pixelX >= 0 && pixelY >= 0 && pixelX < canvas.width && pixelY < canvas.height) {
-                        const motifData = motifCtx.getImageData(pixelX, pixelY, 1, 1).data;
-                        const isMotifArea = motifData[0] < 50 && motifData[1] < 50 && motifData[2] < 50 && motifData[3] > 0;
+                        if (pixelX >= 0 && pixelY >= 0 && pixelX < canvas.width && pixelY < canvas.height) {
+                            const motifData = motifCtx.getImageData(pixelX, pixelY, 1, 1).data;
+                            const isMotifArea = motifData[0] < 50 && motifData[1] < 50 && motifData[2] < 50 && motifData[3] > 0;
 
-                        if (isMotifArea) {
+                            if (isMotifArea) {
+                                overlayCtx.fillRect(pixelX, pixelY, 1, 1);
+                            }
+                        }
+                    }
+                }
+
+                overlayCtx.restore();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(overlayCanvas, 0, 0);
+            } else if (isEraserActive) {
+                overlayCtx.save();
+                overlayCtx.globalCompositeOperation = 'destination-out';
+
+                for (let i = -Math.floor(brushSize / 2); i <= Math.floor(brushSize / 2); i++) {
+                    for (let j = -Math.floor(brushSize / 2); j <= Math.floor(brushSize / 2); j++) {
+                        const pixelX = x + i;
+                        const pixelY = y + j;
+
+                        if (pixelX >= 0 && pixelY >= 0 && pixelX < canvas.width && pixelY < canvas.height) {
                             overlayCtx.fillRect(pixelX, pixelY, 1, 1);
                         }
                     }
                 }
+
+                overlayCtx.restore();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(overlayCanvas, 0, 0);
             }
-
-            overlayCtx.restore();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
-            ctx.drawImage(overlayCanvas, 0, 0);
-        } else if (isEraserActive) {
-            overlayCtx.save();
-            overlayCtx.globalCompositeOperation = 'destination-out';
-
-            for (let i = -Math.floor(brushSize / 2); i <= Math.floor(brushSize / 2); i++) {
-                for (let j = -Math.floor(brushSize / 2); j <= Math.floor(brushSize / 2); j++) {
-                    const pixelX = x + i;
-                    const pixelY = y + j;
-
-                    if (pixelX >= 0 && pixelY >= 0 && pixelX < canvas.width && pixelY < canvas.height) {
-                        overlayCtx.fillRect(pixelX, pixelY, 1, 1);
-                    }
-                }
-            }
-
-            overlayCtx.restore();
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
-            ctx.drawImage(overlayCanvas, 0, 0);
         }
-    }
 
-    motifCanvas.addEventListener('click', (event) => {
-        handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
-    });
-
-    backgroundCanvas.addEventListener('click', () => {
-        backgroundCtx.fillStyle = selectedBackgroundColor;
-        backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
-    });
-
-    let isDrawing = false;
-
-    motifCanvas.addEventListener('mousedown', (event) => {
-        isDrawing = true;
-        handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
-    });
-
-    motifCanvas.addEventListener('mousemove', (event) => {
-        if (isDrawing) {
+        motifCanvas.addEventListener('click', (event) => {
             handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
-        }
-    });
+        });
 
-    motifCanvas.addEventListener('mouseup', () => isDrawing = false);
-    motifCanvas.addEventListener('mouseleave', () => isDrawing = false);
+        backgroundCanvas.addEventListener('click', () => {
+            backgroundCtx.fillStyle = selectedBackgroundColor;
+            backgroundCtx.fillRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
+        });
 
-    function populatePalette(paletteId, colors, onSelect) {
-        const palette = document.getElementById(paletteId);
-        colors.forEach(color => {
-            const colorBox = document.createElement('div');
-            colorBox.style.backgroundColor = color;
-            colorBox.className = 'color-box';
-            colorBox.addEventListener('click', () => {
-                document.querySelectorAll(`#${paletteId} .color-box`).forEach(box => box.classList.remove('selected'));
-                colorBox.classList.add('selected');
-                onSelect(color);
+        let isDrawing = false;
+
+        motifCanvas.addEventListener('mousedown', (event) => {
+            isDrawing = true;
+            handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
+        });
+
+        motifCanvas.addEventListener('mousemove', (event) => {
+            if (isDrawing) {
+                handleCanvasClick(motifCanvas, motifCtx, overlayCtx, event, selectedMotifColor);
+            }
+        });
+
+        motifCanvas.addEventListener('mouseup', () => isDrawing = false);
+        motifCanvas.addEventListener('mouseleave', () => isDrawing = false);
+
+        function populatePalette(paletteId, colors, onSelect) {
+            const palette = document.getElementById(paletteId);
+            colors.forEach(color => {
+                const colorBox = document.createElement('div');
+                colorBox.style.backgroundColor = color;
+                colorBox.className = 'color-box';
+                colorBox.addEventListener('click', () => {
+                    document.querySelectorAll(`#${paletteId} .color-box`).forEach(box => box.classList.remove('selected'));
+                    colorBox.classList.add('selected');
+                    onSelect(color);
+                });
+                palette.appendChild(colorBox);
             });
-            palette.appendChild(colorBox);
-        });
-    }
-
-    function hsvToRgb(h, s, v) {
-        let r, g, b;
-        const i = Math.floor(h * 6);
-        const f = h * 6 - i;
-        const p = v * (1 - s);
-        const q = v * (1 - f * s);
-        const t = v * (1 - (1 - f) * s);
-        switch (i % 6) {
-            case 0: r = v, g = t, b = p; break;
-            case 1: r = q, g = v, b = p; break;
-            case 2: r = p, g = v, b = t; break;
-            case 3: r = p, g = q, b = v; break;
-            case 4: r = t, g = p, b = v; break;
-            case 5: r = v, g = p, b = q; break;
         }
-        return {
-            r: Math.round(r * 255),
-            g: Math.round(g * 255),
-            b: Math.round(b * 255)
-        };
-    }
 
-    function rgbToHex(r, g, b) {
-        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
-    }
+        // Warna Dasar (10 warna soft/pastel)
+        const backgroundColors = [
+            '#000000', // C001: Hitam
+            '#384B51', // C017: Biru tua
+            '#1F4F00', // C023: Hijau gelap
+            '#472124', // C002: Merah tua
+            '#5D7E35', // C024: Hijau medium
+            '#4C2E89', // C018: Ungu medium
+            '#7A439B', // C016: Ungu muda
+            '#6F2C12', // C005: Oranye gelap
+            '#913E2A', // C004: Oranye medium
+            '#2D7C70', // C022: Hijau kebiruan gelap
+            '#009900', // C025: Hijau cerah
+            '#5C789E', // C019: Biru medium
+            '#8C0D16', // C003: Merah darah
+            '#BB2F3A', // C008: Merah muda
+            '#BB5512', // C006: Oranye cerah
+            '#BB1C2A', // C014: Merah muda cerah
+            '#B1127D', // C009: Pink tua
+            '#B15C5C', // C015: Merah medium
+            '#B1B100', // C030: Kuning cerah
+            '#CC171E', // C010: Merah muda terang
+            '#DC3232', // C011: Merah muda pucat
+            '#C54848', // C012: Merah sangat pucat
+            '#A3CA36', // C027: Hijau kekuningan
+            '#E38F2B', // C028: Oranye pastel
+            '#D9D900', // C029: Kuning neon
+            '#00ED00', // C026: Hijau neon
+            '#ED12B0', // C013: Pink neon
+            '#F83C28', // C007: Oranye terang
+            '#99CCFF', // C020: Biru pastel
+            '#CCE6FF', // C021: Biru sangat muda
+            '#F5E6A6', // C031: Kuning pucat
+            '#FFE6CC', // C032: Oranye pucat
+            '#E0E0E0', // C033: Abu-abu muda
+            '#FFFFFF'  // C034: Putih
+        ];
 
-    function createGradient(gradientCanvasId, paletteId, laserId, onSelect) {
-        const gradientCanvas = document.getElementById(gradientCanvasId);
-        const ctx = gradientCanvas.getContext('2d');
-        const laser = document.getElementById(laserId);
+        // Warna Motif (25 warna cerah)
+        const motifColors = [
+            '#000000', // C001: Hitam
+            '#384B51', // C017: Biru tua
+            '#1F4F00', // C023: Hijau gelap
+            '#472124', // C002: Merah tua
+            '#5D7E35', // C024: Hijau medium
+            '#4C2E89', // C018: Ungu medium
+            '#7A439B', // C016: Ungu muda
+            '#6F2C12', // C005: Oranye gelap
+            '#913E2A', // C004: Oranye medium
+            '#2D7C70', // C022: Hijau kebiruan gelap
+            '#009900', // C025: Hijau cerah
+            '#5C789E', // C019: Biru medium
+            '#8C0D16', // C003: Merah darah
+            '#BB2F3A', // C008: Merah muda
+            '#BB5512', // C006: Oranye cerah
+            '#BB1C2A', // C014: Merah muda cerah
+            '#B1127D', // C009: Pink tua
+            '#B15C5C', // C015: Merah medium
+            '#B1B100', // C030: Kuning cerah
+            '#CC171E', // C010: Merah muda terang
+            '#DC3232', // C011: Merah muda pucat
+            '#C54848', // C012: Merah sangat pucat
+            '#A3CA36', // C027: Hijau kekuningan
+            '#E38F2B', // C028: Oranye pastel
+            '#D9D900', // C029: Kuning neon
+            '#00ED00', // C026: Hijau neon
+            '#ED12B0', // C013: Pink neon
+            '#F83C28', // C007: Oranye terang
+            '#99CCFF', // C020: Biru pastel
+            '#CCE6FF', // C021: Biru sangat muda
+            '#F5E6A6', // C031: Kuning pucat
+            '#FFE6CC', // C032: Oranye pucat
+            '#E0E0E0', // C033: Abu-abu muda
+            '#FFFFFF'  // C034: Putih
+        ];
 
-        gradientCanvas.width = 200;
-        gradientCanvas.height = 100;
+        populatePalette('backgroundPalette', backgroundColors, (color) => {
+            selectedBackgroundColor = color;
+        });
 
-        const imageData = ctx.createImageData(gradientCanvas.width, gradientCanvas.height);
-        const data = imageData.data;
+        populatePalette('motifPalette', motifColors, (color) => {
+            selectedMotifColor = color;
+        });
 
-        for (let x = 0; x < gradientCanvas.width; x++) {
-            for (let y = 0; y < gradientCanvas.height; y++) {
-                const hue = x / gradientCanvas.width;
-                const saturation = 1;
-                const value = 1 - (y / gradientCanvas.height);
-                const { r, g, b } = hsvToRgb(hue, saturation, value);
-                const idx = (y * gradientCanvas.width + x) * 4;
-                data[idx] = r;
-                data[idx + 1] = g;
-                data[idx + 2] = b;
-                data[idx + 3] = 255;
+        async function saveAndSubmitCanvasImages() {
+            try {
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (!csrfToken) {
+                    alert('CSRF token tidak ditemukan.');
+                    return;
+                }
+
+                const backgroundBlob = await new Promise(resolve => backgroundCanvas.toBlob(resolve, 'image/png'));
+                const backgroundFile = new File([backgroundBlob], 'background_warna.png', { type: 'image/png' });
+
+                const motifBlob = await new Promise(resolve => motifCanvas.toBlob(resolve, 'image/png'));
+                const motifFile = new File([motifBlob], 'motif_warna.png', { type: 'image/png' });
+
+                const formData = new FormData();
+                formData.append('background_warna', backgroundFile);
+                formData.append('motif_warna', motifFile);
+                formData.append('motif_id', String('{{ motif.id }}'));
+                formData.append('csrfmiddlewaretoken', csrfToken.value);
+
+                const response = await fetch(`/colored_motif/post-image/`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const html = await response.text();
+                    document.open();
+                    document.write(html);
+                    document.close();
+                } else {
+                    const errorText = await response.text();
+                    throw new Error('Gagal mengirim gambar: ' + errorText);
+                }
+            } catch (error) {
+                alert('Terjadi kesalahan: ' + error.message);
             }
         }
 
-        ctx.putImageData(imageData, 0, 0);
-
-        function pickColor(event) {
-            const rect = gradientCanvas.getBoundingClientRect();
-            const x = Math.max(0, Math.min(event.clientX - rect.left, gradientCanvas.width - 1));
-            const y = Math.max(0, Math.min(event.clientY - rect.top, gradientCanvas.height - 1));
-            const imageData = ctx.getImageData(x, y, 1, 1).data;
-            const color = rgbToHex(imageData[0], imageData[1], imageData[2]);
-            onSelect(color);
-            document.querySelectorAll(`#${paletteId} .color-box`).forEach(box => box.classList.remove('selected'));
+        // Fungsi untuk button kembali
+        function goBack() {
+            window.history.back();
         }
 
-        function updateLaserPosition(event) {
-            const rect = gradientCanvas.getBoundingClientRect();
-            const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width - 1));
-            const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height - 1));
-            laser.style.left = `${x}px`;
-            laser.style.top = `${y}px`;
-        }
+        document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
 
-        gradientCanvas.addEventListener('mouseenter', () => {
-            laser.style.display = 'block';
+        pencilTool.addEventListener('click', () => {
+            isPencilActive = !isPencilActive;
+            isEraserActive = false;
+            pencilTool.classList.toggle('active', isPencilActive);
+            eraserTool.classList.remove('active');
         });
 
-        gradientCanvas.addEventListener('mousemove', updateLaserPosition);
-        gradientCanvas.addEventListener('click', pickColor);
-
-        gradientCanvas.addEventListener('mouseleave', () => {
-            laser.style.display = 'none';
+        eraserTool.addEventListener('click', () => {
+            isEraserActive = !isEraserActive;
+            isPencilActive = false;
+            eraserTool.classList.toggle('active', isEraserActive);
+            pencilTool.classList.remove('active');
         });
-    }
-
-    // Warna Dasar (10 warna soft/pastel)
-    const backgroundColors = [
-        '#000000', // C001: Hitam
-    '#384B51', // C017: Biru tua
-    '#1F4F00', // C023: Hijau gelap
-    '#472124', // C002: Merah tua
-    '#5D7E35', // C024: Hijau medium
-    '#4C2E89', // C018: Ungu medium
-    '#7A439B', // C016: Ungu muda
-    '#6F2C12', // C005: Oranye gelap
-    '#913E2A', // C004: Oranye medium
-    '#2D7C70', // C022: Hijau kebiruan gelap
-    '#009900', // C025: Hijau cerah
-    '#5C789E', // C019: Biru medium
-    '#8C0D16', // C003: Merah darah
-    '#BB2F3A', // C008: Merah muda
-    '#BB5512', // C006: Oranye cerah
-    '#BB1C2A', // C014: Merah muda cerah
-    '#B1127D', // C009: Pink tua
-    '#B15C5C', // C015: Merah medium
-    '#B1B100', // C030: Kuning cerah
-    '#CC171E', // C010: Merah muda terang
-    '#DC3232', // C011: Merah muda pucat
-    '#C54848', // C012: Merah sangat pucat
-    '#A3CA36', // C027: Hijau kekuningan
-    '#E38F2B', // C028: Oranye pastel
-    '#D9D900', // C029: Kuning neon
-    '#00ED00', // C026: Hijau neon
-    '#ED12B0', // C013: Pink neon
-    '#F83C28', // C007: Oranye terang
-    '#99CCFF', // C020: Biru pastel
-    '#CCE6FF', // C021: Biru sangat muda
-    '#F5E6A6', // C031: Kuning pucat
-    '#FFE6CC', // C032: Oranye pucat
-    '#E0E0E0', // C033: Abu-abu muda
-    '#FFFFFF'  // C034: Putih
-    ];
-
-    // Warna Motif (25 warna cerah)
-    const motifColors = [
-        '#000000', // C001: Hitam
-    '#384B51', // C017: Biru tua
-    '#1F4F00', // C023: Hijau gelap
-    '#472124', // C002: Merah tua
-    '#5D7E35', // C024: Hijau medium
-    '#4C2E89', // C018: Ungu medium
-    '#7A439B', // C016: Ungu muda
-    '#6F2C12', // C005: Oranye gelap
-    '#913E2A', // C004: Oranye medium
-    '#2D7C70', // C022: Hijau kebiruan gelap
-    '#009900', // C025: Hijau cerah
-    '#5C789E', // C019: Biru medium
-    '#8C0D16', // C003: Merah darah
-    '#BB2F3A', // C008: Merah muda
-    '#BB5512', // C006: Oranye cerah
-    '#BB1C2A', // C014: Merah muda cerah
-    '#B1127D', // C009: Pink tua
-    '#B15C5C', // C015: Merah medium
-    '#B1B100', // C030: Kuning cerah
-    '#CC171E', // C010: Merah muda terang
-    '#DC3232', // C011: Merah muda pucat
-    '#C54848', // C012: Merah sangat pucat
-    '#A3CA36', // C027: Hijau kekuningan
-    '#E38F2B', // C028: Oranye pastel
-    '#D9D900', // C029: Kuning neon
-    '#00ED00', // C026: Hijau neon
-    '#ED12B0', // C013: Pink neon
-    '#F83C28', // C007: Oranye terang
-    '#99CCFF', // C020: Biru pastel
-    '#CCE6FF', // C021: Biru sangat muda
-    '#F5E6A6', // C031: Kuning pucat
-    '#FFE6CC', // C032: Oranye pucat
-    '#E0E0E0', // C033: Abu-abu muda
-    '#FFFFFF'  // C034: Putih
-    ];
-
-    populatePalette('backgroundPalette', backgroundColors, (color) => {
-        selectedBackgroundColor = color;
-    });
-
-    populatePalette('motifPalette', motifColors, (color) => {
-        selectedMotifColor = color;
-    });
-
-    createGradient('motifGradient', 'motifPalette', 'motifLaser', (color) => {
-        selectedMotifColor = color;
-    });
-
-    createGradient('backgroundGradient', 'backgroundPalette', 'backgroundLaser', (color) => {
-        selectedBackgroundColor = color;
-    });
-
-    async function saveAndSubmitCanvasImages() {
-        try {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
-            if (!csrfToken) {
-                alert('CSRF token tidak ditemukan.');
-                return;
-            }
-
-            const backgroundBlob = await new Promise(resolve => backgroundCanvas.toBlob(resolve, 'image/png'));
-            const backgroundFile = new File([backgroundBlob], 'background_warna.png', { type: 'image/png' });
-
-            const motifBlob = await new Promise(resolve => motifCanvas.toBlob(resolve, 'image/png'));
-            const motifFile = new File([motifBlob], 'motif_warna.png', { type: 'image/png' });
-
-            const formData = new FormData();
-            formData.append('background_warna', backgroundFile);
-            formData.append('motif_warna', motifFile);
-            formData.append('motif_id', String('{{ motif.id }}'));
-            formData.append('csrfmiddlewaretoken', csrfToken.value);
-
-            const response = await fetch(`/colored_motif/post-image/`, {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (response.ok) {
-                const html = await response.text();
-                document.open();
-                document.write(html);
-                document.close();
-            } else {
-                const errorText = await response.text();
-                throw new Error('Gagal mengirim gambar: ' + errorText);
-            }
-        } catch (error) {
-            alert('Terjadi kesalahan: ' + error.message);
-        }
-    }
-
-    // Fungsi untuk button kembali
-    function goBack() {
-        window.history.back();
-    }
-
-    document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
-
-    pencilTool.addEventListener('click', () => {
-        isPencilActive = !isPencilActive;
-        isEraserActive = false;
-        pencilTool.classList.toggle('active', isPencilActive);
-        eraserTool.classList.remove('active');
-    });
-
-    eraserTool.addEventListener('click', () => {
-        isEraserActive = !isEraserActive;
-        isPencilActive = false;
-        eraserTool.classList.toggle('active', isEraserActive);
-        pencilTool.classList.remove('active');
-    });
     </script>
 </body>
 </html>

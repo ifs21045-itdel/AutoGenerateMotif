@@ -21,7 +21,7 @@
 
     <title>Pratinjau Gabungan Motif</title>
 
-    <style>
+  <style>
       .image-container {
         width: 100vw;
         margin: 0;
@@ -55,7 +55,7 @@
         text-align: center;
         margin: 5px 0 0 10px;
         padding: 5px 15px;
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         line-height: 1.2;
         font-weight: bold;
         color: #333;
@@ -73,18 +73,19 @@
       }
 
       .title-text {
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: bold;
-        color: #0d6efd;
+        color: #002ba3;
         text-align: center;
         margin: 0 !important;
         padding: 0 !important;
+        text-decoration: underline;
       }
 
       .info-text {
-        text-align: left;
-        margin: 0 !important;
-        padding: 2px 0 !important;
+        text-align: justify;
+        margin: 10px 20px !important;
+        padding: 5px 0 !important;
         font-size: 1.5rem;
         font-weight: normal;
         color: #333;
@@ -156,6 +157,60 @@
         width: 250px;
       }
 
+      .info-box {
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border: 1px solid #ddd;
+      }
+
+      .info-box-download {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 10px auto;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        display: none;
+        border: 1px solid #ddd;
+      }
+
+      .download-header {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #002ba3;
+        margin-bottom: 15px;
+        padding: 0;
+      }
+
+      .download-info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        padding: 3px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .download-info-label {
+        font-weight: bold;
+        width: 40%;
+        text-align: left;
+        padding-right: 10px;
+        font-size: 1.8rem;
+      }
+
+      .download-info-value {
+        width: 60%;
+        text-align: left;
+        font-size: 1.4rem;
+      }
+
       @media (max-width: 768px) {
         .image-container {
           width: 100vw;
@@ -169,17 +224,17 @@
           gap: 5px;
         }
         .lidi {
-          font-size: 0.7rem;
+          font-size: 1rem;
           margin: 5px 0 0 5px;
           padding: 3px 10px;
         }
         .info-text {
-          font-size: 0.9rem;
-          margin: 0 !important;
-          padding: 1px 0 !important;
+          font-size: 1.1rem;
+          margin: 5px 10px !important;
+          padding: 3px 0 !important;
         }
         .title-text {
-          font-size: 1.2rem;
+          font-size: 1.5rem;
         }
         #download-buttons {
           flex-direction: column;
@@ -195,14 +250,83 @@
         #back-button a {
           width: 100%;
         }
+        .info-box {
+          max-width: 95%;
+          padding: 10px;
+        }
+        .info-box-download {
+          max-width: 95%;
+          padding: 8px;
+        }
+        .download-header {
+          font-size: 2.5rem;
+          margin-bottom: 10px;
+          text-align: left;
+        }
+        .download-info-row {
+          flex-direction: column;
+        }
+        .download-info-label,
+        .download-info-value {
+          width: 100%;
+          text-align: left;
+          font-size: 1.2rem;
+        }
       }
     </style>
   </head>
   <body>
     {% include "header.html" %}
     <br />
-    <p class="title-text">Hasil Motif</p>
-    <br />
+    <p class="title-text">Lembar Kerja Motif Tenun</p>
+    
+    <!-- Info box yang ditampilkan di halaman -->
+    <div class="info-box">
+      <p class="info-text">Nama Pembuat: {{ user }}</p>
+      <p class="info-text">Tanggal Pembuatan: {{ date_now }}</p>
+      <p class="info-text">Jenis Kain: {{ motif.jenisKain|default:"-" }}</p>
+      <p class="info-text">
+        Jenis Produk: {{ motif.jenisProduk|default:"-" }}
+      </p>
+      <p class="info-text">
+        Ukuran: {% if motif.jenisProduk == 'sarung' %} Panjang 200-210 cm,
+        Lebar 95-97 cm {% elif motif.jenisProduk == 'selendang' %} Panjang
+        190-200 cm, Lebar 60-70 cm {% else %} - {% endif %}
+      </p>
+    </div>
+    
+    <!-- Info box yang akan dimasukkan ke dalam unduhan -->
+    <div id="info-box-download" class="info-box-download">
+      <div class="download-header">INFORMASI MOTIF TENUN</div>
+      <div class="download-info-row">
+        <div class="download-info-label">Nama Pembuat:</div>
+        <div class="download-info-value">{{ user }}</div>
+      </div>
+      <div class="download-info-row">
+        <div class="download-info-label">Tanggal Pembuatan:</div>
+        <div class="download-info-value">{{ date_now }}</div>
+      </div>
+      <div class="download-info-row">
+        <div class="download-info-label">Jenis Kain:</div>
+        <div class="download-info-value">{{ motif.jenisKain|default:"-" }}</div>
+      </div>
+      <div class="download-info-row">
+        <div class="download-info-label">Jenis Produk:</div>
+        <div class="download-info-value">{{ motif.jenisProduk|default:"-" }}</div>
+      </div>
+      <div class="download-info-row">
+        <div class="download-info-label">Ukuran:</div>
+        <div class="download-info-value">
+          {% if motif.jenisProduk == 'sarung' %} 
+            Panjang 200-210 cm, Lebar 95-97 cm 
+          {% elif motif.jenisProduk == 'selendang' %} 
+            Panjang 190-200 cm, Lebar 60-70 cm 
+          {% else %} - 
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
     <div
       class="container"
       style="
@@ -227,18 +351,6 @@
           padding: 0;
         "
       >
-        <p class="info-text">Nama Pembuat: {{ user }}</p>
-        <p class="info-text">Tanggal Pembuatan: {{ date_now }}</p>
-        <p class="info-text">Jenis Kain: {{ motif.jenisKain|default:"-" }}</p>
-        <p class="info-text">
-          Jenis Produk: {{ motif.jenisProduk|default:"-" }}
-        </p>
-        <p class="info-text">
-          Ukuran: {% if motif.jenisProduk == 'sarung' %} Panjang 200-210 cm,
-          Lebar 95-97 cm {% elif motif.jenisProduk == 'selendang' %} Panjang
-          190-200 cm, Lebar 60-70 cm {% else %} - {% endif %}
-        </p>
-        <br />
         {% for Motif1, Motif2 in slice %}
         <div
           class="motif-row"
@@ -318,8 +430,42 @@
         const { jsPDF } = window.jspdf;
 
         function renderDivToImage(format) {
-          window.scrollTo(0, 0); // Pastikan posisi awal halaman di atas
-          const section = document.getElementById("image-section");
+          window.scrollTo(0, 0);
+          
+          // Tampilkan info box untuk diunduh
+          const infoBoxDownload = document.getElementById("info-box-download");
+          infoBoxDownload.style.display = "block";
+          
+          // Buat div baru untuk menangkap semua elemen yang ingin diunduh
+          const captureDiv = document.createElement("div");
+          captureDiv.id = "capture-div";
+          captureDiv.style.width = "100%";
+          captureDiv.style.margin = "0";
+          captureDiv.style.padding = "10px 0 0 0";
+          captureDiv.style.display = "flex";
+          captureDiv.style.flexDirection = "column";
+          captureDiv.style.alignItems = "center";
+          
+          // Tambahkan judul "LEMBAR KERJA MOTIF TENUN" di atas
+          const titleDiv = document.createElement("div");
+          titleDiv.style.textAlign = "center";
+          titleDiv.style.marginBottom = "10px";
+          const title = document.createElement("h1");
+          title.style.color = "#002ba3";
+          title.style.margin = "0";
+          title.style.padding = "0";
+          title.style.fontSize = "2rem";
+          titleDiv.appendChild(title);
+          
+          captureDiv.appendChild(titleDiv);
+          captureDiv.appendChild(infoBoxDownload.cloneNode(true));
+          captureDiv.appendChild(document.getElementById("image-section").cloneNode(true));
+          
+          // Sembunyikan elemen asli
+          infoBoxDownload.style.display = "none";
+          
+          // Tambahkan ke body sementara
+          document.body.appendChild(captureDiv);
 
           const loadingIndicator = document.createElement("div");
           loadingIndicator.id = "loading-indicator";
@@ -335,16 +481,18 @@
           loadingIndicator.innerText = "Memproses...";
           document.body.appendChild(loadingIndicator);
 
-          html2canvas(section, {
+          html2canvas(captureDiv, {
             scale: 4,
             useCORS: true,
             allowTaint: true,
-            width: section.scrollWidth,
-            height: section.scrollHeight,
+            width: captureDiv.scrollWidth,
+            height: captureDiv.scrollHeight,
             windowWidth: document.documentElement.scrollWidth,
             windowHeight: document.documentElement.scrollHeight,
           })
             .then((canvas) => {
+              // Hapus elemen sementara
+              document.body.removeChild(captureDiv);
               document.body.removeChild(loadingIndicator);
 
               if (format === "pdf") {
@@ -359,53 +507,59 @@
 
                 const scaleFactor = Math.min(
                   pageWidth / imgWidth,
-                  (pageHeight - 100) / imgHeight
+                  (pageHeight - 140) / imgHeight
                 );
 
                 const scaledWidth = imgWidth * scaleFactor;
                 const scaledHeight = imgHeight * scaleFactor;
 
                 const xOffset = (pageWidth - scaledWidth) / 2;
-                const yOffset = 60;
+                const yOffset = 55;
 
-                pdf.addImage("/{{ ditenun_logo_1 }}", "PNG", 20, 10, 30, 30);
+                // Logo diposisikan
+                pdf.addImage("/{{ ditenun_logo_1 }}", "PNG", 20, 20, 30, 30);
                 pdf.addImage(
                   "/{{ ditenun_logo_2 }}",
                   "PNG",
                   pageWidth - 50,
-                  10,
+                  20,
                   30,
                   30
                 );
 
                 pdf.setFontSize(20);
-                pdf.text("Lembar Kerja Penenun", pageWidth / 2, 25, {
+                pdf.text("LEMBAR KERJA MOTIF TENUN", pageWidth / 2, 40, {
                   align: "center",
                 });
 
-                const logoBottom = 10 + 30;
-                pdf.line(30, logoBottom + 10, pageWidth - 30, logoBottom + 10);
+                // Garis lurus horizontal di bagian bawah header
+                pdf.setDrawColor(0, 0, 0); // Warna hitam
+                pdf.setLineWidth(0.9); // Ketebalan garis
+                pdf.line(30, 55, pageWidth - 30, 55); // Garis horizontal
+
 
                 pdf.addImage(
                   imgData,
                   "JPEG",
                   xOffset,
-                  yOffset + 20,
+                  yOffset,
                   scaledWidth,
                   scaledHeight
                 );
 
-                pdf.save("motif_combined.pdf");
+                pdf.save(`lembar_kerja_motif_tenun_${new Date().toISOString().slice(0,10)}.pdf`);
               } else {
                 const link = document.createElement("a");
                 link.href = canvas.toDataURL(`image/${format}`, 0.8);
-                link.download = `motif_image.${format}`;
+                link.download = `lembar_kerja_motif_tenun_${new Date().toISOString().slice(0,10)}.${format}`;
                 link.click();
               }
             })
             .catch((error) => {
               document.body.removeChild(loadingIndicator);
+              document.body.removeChild(captureDiv);
               console.error("Kesalahan saat membuat gambar:", error);
+              alert("Terjadi kesalahan saat membuat unduhan. Silakan coba lagi.");
             });
         }
 
