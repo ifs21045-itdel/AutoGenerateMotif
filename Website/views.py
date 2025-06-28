@@ -1902,6 +1902,11 @@ def motif_gabungan_colored_preview(request, id):
             'ditenun_logo_1': ditenun_logo_1,
             'ditenun_logo_2': ditenun_logo_2,
         }
+        
+        # Format tetap sama, hanya memastikan WIB ditambahkan
+        date_now = timezone.now().strftime('%d-%m-%Y %H:%M') + " WIB"
+        logger.debug(f"date_now: {date_now}")
+        
         logger.debug(f"Preview - Kain: {motif.jenisKain}, Produk: {motif.jenisProduk}")
         return render(request, 'motif_gabungan_colored_preview.html', context)
     except MotifForm1.DoesNotExist:

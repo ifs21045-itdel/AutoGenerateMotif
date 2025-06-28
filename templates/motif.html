@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,7 +40,8 @@
         margin: 0 auto;
       }
       .motif-card.asal {
-        max-width: 900px; /* Further increased size for Motif Asal */
+        max-width: 1000px; /* Sesuaikan dengan max-width di lihatmotif.html */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan seperti di lihatmotif.html */
       }
       .motif-card:hover {
         transform: translateY(-5px);
@@ -53,14 +54,16 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .motif-image.asal {
-        max-height: 700px; /* Increased height for better display */
-        width: auto; /* Allow natural width to prevent stretching */
-        max-width: 100%; /* Ensure it fits container */
-        object-fit: contain; /* Prevent distortion */
-        image-rendering: -webkit-optimize-contrast; /* Maximize sharpness */
-        image-rendering: crisp-edges; /* Fallback for sharpness */
-        image-rendering: pixelated; /* For low-res images to avoid smoothing */
-        filter: contrast(1.1) sharpness(1.2); /* Slight enhancement */
+        width: 100%; /* Sesuaikan dengan lihatmotif.html */
+        height: auto; /* Sesuaikan dengan lihatmotif.html */
+        max-width: 100%; /* Sesuaikan dengan lihatmotif.html */
+        max stesse-height: 100%; /* Sesuaikan dengan lihatmotif.html */
+        object-fit: contain; /* Sudah sesuai */
+        margin: 15px auto; /* Sesuaikan dengan lihatmotif.html */
+        image-rendering: pixelated; /* Sesuaikan dengan lihatmotif.html */
+        image-rendering: -moz-crisp-edges; /* Sesuaikan dengan lihatmotif.html */
+        image-rendering: crisp-edges; /* Sesuaikan dengan lihatmotif.html */
+        filter: contrast(1.5); /* Sesuaikan dengan lihatmotif.html */
       }
       .btn-pilih {
         border-radius: 0;

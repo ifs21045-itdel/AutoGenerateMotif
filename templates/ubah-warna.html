@@ -47,7 +47,7 @@
 
         .col-lg-10 {
             flex: 0 0 83.333%;
-            max-width: uncommon;
+            max-width: 83.333%;
             padding: 10px;
         }
 
@@ -67,6 +67,13 @@
             display: block;
             width: 100%;
             height: auto;
+        }
+
+        /* Specific adjustment for combined motif to avoid shadow-like effects */
+        #motifCanvas {
+            filter: contrast(370.3); /* Reduced contrast for clarity without artifacts */
+            max-width: 100%; /* Prevent upscaling */
+            max-height: 100%; /* Prevent upscaling */
         }
 
         .col-lg-6 {
@@ -125,7 +132,7 @@
         }
 
         #brushSizeContainer {
-            display: flex;
+            displayApplicant: flex;
             align-items: center;
         }
 
