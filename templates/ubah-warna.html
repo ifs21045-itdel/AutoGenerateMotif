@@ -30,7 +30,7 @@
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0 44px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .row {
@@ -69,11 +69,10 @@
             height: auto;
         }
 
-        /* Specific adjustment for combined motif to avoid shadow-like effects */
         #motifCanvas {
-            filter: contrast(370.3); /* Reduced contrast for clarity without artifacts */
-            max-width: 100%; /* Prevent upscaling */
-            max-height: 100%; /* Prevent upscaling */
+            filter: contrast(1.2); /* Adjusted contrast to reduce blurriness while enhancing visibility */
+            max-width: 100%;
+            max-height: 100%;
         }
 
         .col-lg-6 {
@@ -132,7 +131,7 @@
         }
 
         #brushSizeContainer {
-            displayApplicant: flex;
+            display: flex;
             align-items: center;
         }
 
@@ -149,13 +148,11 @@
             text-align: center;
         }
 
-        /* Style untuk Font Awesome icons */
         .btn-outline-primary .fa-paintbrush,
         .btn-outline-danger .fa-eraser {
             font-size: 1.2rem;
         }
 
-        /* Style untuk button yang diperbaiki */
         .btn-primary-custom {
             background-color: #002BA3;
             border: 2px solid #002BA3;
@@ -197,7 +194,7 @@
 
         .btn-back {
             background-color: white;
-            border: 12px solid #002ba3;
+            border: 2px solid #002ba3;
             border-radius: 0px;
             padding: 12px 30px 14px;
             font-size: 0.9rem;
@@ -216,7 +213,6 @@
             border-color: #002ba3;
         }
 
-        /* Container untuk buttons dengan layout yang diperbaiki */
         .button-container {
             display: flex;
             justify-content: center;
@@ -295,7 +291,6 @@
                     <div class="card shadow-lg card-1">
                         <div class="card-body inner-card">
                             <div class="row justify-content-center">
-                                <!-- Pewarnaan Dasar Kain -->
                                 <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Dasar Kain</h5>
                                     <div id="backgroundCanvasContainer" class="border" style="flex: 1; display: flex;">
@@ -310,7 +305,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Pewarnaan Motif -->
                                 <div class="col-lg-6 col-md-12 text-center" style="display: flex; flex-direction: column; height: 100%;">
                                     <h5 style="font-weight: bold;">Pewarnaan Motif</h5>
                                     <div id="motifCanvasContainer" class="border" style="flex: 1; display: flex;">
@@ -465,6 +459,20 @@
             if (isPencilActive) {
                 overlayCtx.save();
                 overlayCtx.fillStyle = color;
+                overlayCtx.globalCompositeOperation = 'source-over';
+
+                // Convert hex color to RGB for precise application
+                const hexToRgb = (hex) => {
+                    const cleanHex = hex.replace(/^#/, '');
+                    const r = parseInt(cleanHex.slice(0, 2), 16);
+                    const g = parseInt(cleanHex.slice(2, 4), 16);
+                    const b = parseInt(cleanHex.slice(4, 6), 16);
+                    return [r, g, b];
+                };
+
+                const [r, g, b] = hexToRgb(color);
+                const imageData = overlayCtx.getImageData(0, 0, overlayCanvas.width, overlayCanvas.height);
+                const data = imageData.data;
 
                 for (let i = -Math.floor(brushSize / 2); i <= Math.floor(brushSize / 2); i++) {
                     for (let j = -Math.floor(brushSize / 2); j <= Math.floor(brushSize / 2); j++) {
@@ -476,15 +484,23 @@
                             const isMotifArea = motifData[0] < 50 && motifData[1] < 50 && motifData[2] < 50 && motifData[3] > 0;
 
                             if (isMotifArea) {
-                                overlayCtx.fillRect(pixelX, pixelY, 1, 1);
+                                const index = (pixelY * canvas.width + pixelX) * 4;
+                                data[index] = r;
+                                data[index + 1] = g;
+                                data[index + 2] = b;
+                                data[index + 3] = 255; // Fully opaque
                             }
                         }
                     }
                 }
 
+                overlayCtx.putImageData(imageData, 0, 0);
                 overlayCtx.restore();
+
+                // Redraw motif canvas with original image and colored overlay
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.drawImage(motifImage, 0, 0);
                 ctx.drawImage(overlayCanvas, 0, 0);
             } else if (isEraserActive) {
                 overlayCtx.save();
@@ -503,7 +519,7 @@
 
                 overlayCtx.restore();
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.drawImage(canvas === motifCanvas ? motifImage : backgroundImage, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(motifImage, 0, 0);
                 ctx.drawImage(overlayCanvas, 0, 0);
             }
         }
@@ -548,80 +564,18 @@
             });
         }
 
-        // Warna Dasar (10 warna soft/pastel)
         const backgroundColors = [
-            '#000000', // C001: Hitam
-            '#384B51', // C017: Biru tua
-            '#1F4F00', // C023: Hijau gelap
-            '#472124', // C002: Merah tua
-            '#5D7E35', // C024: Hijau medium
-            '#4C2E89', // C018: Ungu medium
-            '#7A439B', // C016: Ungu muda
-            '#6F2C12', // C005: Oranye gelap
-            '#913E2A', // C004: Oranye medium
-            '#2D7C70', // C022: Hijau kebiruan gelap
-            '#009900', // C025: Hijau cerah
-            '#5C789E', // C019: Biru medium
-            '#8C0D16', // C003: Merah darah
-            '#BB2F3A', // C008: Merah muda
-            '#BB5512', // C006: Oranye cerah
-            '#BB1C2A', // C014: Merah muda cerah
-            '#B1127D', // C009: Pink tua
-            '#B15C5C', // C015: Merah medium
-            '#B1B100', // C030: Kuning cerah
-            '#CC171E', // C010: Merah muda terang
-            '#DC3232', // C011: Merah muda pucat
-            '#C54848', // C012: Merah sangat pucat
-            '#A3CA36', // C027: Hijau kekuningan
-            '#E38F2B', // C028: Oranye pastel
-            '#D9D900', // C029: Kuning neon
-            '#00ED00', // C026: Hijau neon
-            '#ED12B0', // C013: Pink neon
-            '#F83C28', // C007: Oranye terang
-            '#99CCFF', // C020: Biru pastel
-            '#CCE6FF', // C021: Biru sangat muda
-            '#F5E6A6', // C031: Kuning pucat
-            '#FFE6CC', // C032: Oranye pucat
-            '#E0E0E0', // C033: Abu-abu muda
-            '#FFFFFF'  // C034: Putih
+            '#000000', '#384B51', '#1F4F00', '#472124', '#5D7E35', '#4C2E89', '#7A439B', '#6F2C12', '#913E2A', '#2D7C70',
+            '#009900', '#5C789E', '#8C0D16', '#BB2F3A', '#BB5512', '#BB1C2A', '#B1127D', '#B15C5C', '#B1B100', '#CC171E',
+            '#DC3232', '#C54848', '#A3CA36', '#E38F2B', '#D9D900', '#00ED00', '#ED12B0', '#F83C28', '#99CCFF', '#CCE6FF',
+            '#F5E6A6', '#FFE6CC', '#E0E0E0', '#FFFFFF'
         ];
 
-        // Warna Motif (25 warna cerah)
         const motifColors = [
-            '#000000', // C001: Hitam
-            '#384B51', // C017: Biru tua
-            '#1F4F00', // C023: Hijau gelap
-            '#472124', // C002: Merah tua
-            '#5D7E35', // C024: Hijau medium
-            '#4C2E89', // C018: Ungu medium
-            '#7A439B', // C016: Ungu muda
-            '#6F2C12', // C005: Oranye gelap
-            '#913E2A', // C004: Oranye medium
-            '#2D7C70', // C022: Hijau kebiruan gelap
-            '#009900', // C025: Hijau cerah
-            '#5C789E', // C019: Biru medium
-            '#8C0D16', // C003: Merah darah
-            '#BB2F3A', // C008: Merah muda
-            '#BB5512', // C006: Oranye cerah
-            '#BB1C2A', // C014: Merah muda cerah
-            '#B1127D', // C009: Pink tua
-            '#B15C5C', // C015: Merah medium
-            '#B1B100', // C030: Kuning cerah
-            '#CC171E', // C010: Merah muda terang
-            '#DC3232', // C011: Merah muda pucat
-            '#C54848', // C012: Merah sangat pucat
-            '#A3CA36', // C027: Hijau kekuningan
-            '#E38F2B', // C028: Oranye pastel
-            '#D9D900', // C029: Kuning neon
-            '#00ED00', // C026: Hijau neon
-            '#ED12B0', // C013: Pink neon
-            '#F83C28', // C007: Oranye terang
-            '#99CCFF', // C020: Biru pastel
-            '#CCE6FF', // C021: Biru sangat muda
-            '#F5E6A6', // C031: Kuning pucat
-            '#FFE6CC', // C032: Oranye pucat
-            '#E0E0E0', // C033: Abu-abu muda
-            '#FFFFFF'  // C034: Putih
+            '#000000', '#384B51', '#1F4F00', '#472124', '#5D7E35', '#4C2E89', '#7A439B', '#6F2C12', '#913E2A', '#2D7C70',
+            '#009900', '#5C789E', '#8C0D16', '#BB2F3A', '#BB5512', '#BB1C2A', '#B1127D', '#B15C5C', '#B1B100', '#CC171E',
+            '#DC3232', '#C54848', '#A3CA36', '#E38F2B', '#D9D900', '#00ED00', '#ED12B0', '#F83C28', '#99CCFF', '#CCE6FF',
+            '#F5E6A6', '#FFE6CC', '#E0E0E0', '#FFFFFF'
         ];
 
         populatePalette('backgroundPalette', backgroundColors, (color) => {
@@ -669,11 +623,6 @@
             } catch (error) {
                 alert('Terjadi kesalahan: ' + error.message);
             }
-        }
-
-        // Fungsi untuk button kembali
-        function goBack() {
-            window.history.back();
         }
 
         document.querySelector('button[onclick="submitCanvasImages()"]').addEventListener('click', saveAndSubmitCanvasImages);
